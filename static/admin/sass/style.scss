@@ -1,1 +1,31 @@
 @import "colors";
+$navbar-width: 60px;
+body {
+  padding-top: $navbar-width; //fixed-header
+}
+.navbar {
+  border: 0;
+  background-color: $white;
+  .navbar-nav {
+    li {
+      a {
+        color: $chicago;
+        font-size: 14px;
+        font-weight: lighter;
+        text-transform: uppercase;
+      }
+      a:hover {
+        color: $turquoise !important;
+      }
+      .active a {
+
+        // color: $turquoise;
+        background: transparent;
+      }
+    }
+  }
+  .navbar-brand {
+    padding-top: 18px;
+    margin-right: 10px;
+  }
+}
