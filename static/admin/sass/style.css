@@ -73,6 +73,37 @@ h2, #article-subtitle {
   width: auto;
   height: auto;
   padding-bottom: 0;
-  padding-top: 0; }
+  padding-top: 0;
+  margin-bottom: 50px; }
+
+.dropdown {
+  margin-top: 20px; }
+  .dropdown .btn {
+    text-align: left;
+    background: transparent;
+    border-bottom: 1px solid #FFFFFF;
+    border-radius: 0; }
+    .dropdown .btn .btn-icon {
+      margin-right: 20px; }
+  .dropdown .btn:active {
+    box-shadow: none; }
+  .dropdown .dropdown-menu {
+    border-radius: 0;
+    box-shadow: none; }
+
+.btn {
+  padding: 6px 25px;
+  border-radius: 40px;
+  box-shadow: none; }
+
+.btn-white-outline {
+  background: transparent;
+  border-color: #FFFFFF;
+  color: #FFFFFF; }
+
+.btn-white-outline:hover, .btn-white-outline:active, .btn-white-outline:focus {
+  background: transparent;
+  border-color: #36D7B7;
+  color: #36D7B7; }
 
 /*# sourceMappingURL=style.css.map */
