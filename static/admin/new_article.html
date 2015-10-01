@@ -52,7 +52,7 @@
 
   <div class="jumbotron" style="background-image: url(img/jumbotron/admin.jpg);">
     <div class="container">
-      <div class="col-sm-12">
+      <!-- <div class="col-sm-12"> -->
         <form class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
@@ -65,7 +65,7 @@
             </div>
           </div>
         </form>
-      </div>
+      <!-- </div> -->
       <div class="row">
         <div class="col-sm-3">
           <div class="dropdown">
@@ -98,7 +98,7 @@
           </div>
         </div>
         <div class="col-sm-2 col-sm-offset-7">
-          <a class="btn btn-default btn-white-outline" href="#" role="button">Change cover</a>
+          <button class="btn btn-white-outline pull-down" href="#" role="button">Change cover</button>
         </div>
       </div>
     </div>
@@ -120,5 +120,11 @@
 
   <!-- Retina.js -->
   <script type="text/javascript" src="scripts/retina.min.js"></script>
+
+  <script>
+    $('.pull-down').each(function() {
+      $(this).css('margin-top', $(this).parent().height() - $(this).height())
+    });
+  </script>
 </body>
 </head>
