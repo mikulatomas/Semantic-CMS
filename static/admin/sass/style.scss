@@ -18,6 +18,14 @@ h1 {
 h2 {
   font-size: 24px;
 }
+h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: $silver;
+}
+.headline {
+  margin-bottom: 20px;
+}
 .white {
   color: $white !important;
 }
@@ -49,6 +57,7 @@ h2 {
 }
 .jumbotron {
   height: $jumbotron-height;
+  margin-bottom: 60px;
   @include cover-background();
 }
 .form-control {
@@ -95,6 +104,15 @@ h2 {
   padding-top: 0;
   margin-bottom: 50px;
 }
+#article-content {
+  height: inherit;
+  resize: none;
+  font-size: 18px;
+  font-weight: lighter;
+  border: 0;
+  // white-space: normal;
+}
+
 .dropdown {
   margin-top: 20px;
   .btn {

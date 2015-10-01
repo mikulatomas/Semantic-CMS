@@ -9,6 +9,14 @@ h1, #article-title {
 h2, #article-subtitle {
   font-size: 24px; }
 
+h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ABABAB; }
+
+.headline {
+  margin-bottom: 20px; }
+
 .white {
   color: #FFFFFF !important; }
 
@@ -30,6 +38,7 @@ h2, #article-subtitle {
 
 .jumbotron {
   height: 400px;
+  margin-bottom: 60px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; }
@@ -75,6 +84,13 @@ h2, #article-subtitle {
   padding-bottom: 0;
   padding-top: 0;
   margin-bottom: 50px; }
+
+#article-content {
+  height: inherit;
+  resize: none;
+  font-size: 18px;
+  font-weight: lighter;
+  border: 0; }
 
 .dropdown {
   margin-top: 20px; }
