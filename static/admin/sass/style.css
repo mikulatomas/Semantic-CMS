@@ -130,7 +130,6 @@ h4 {
   color: #5F5F5F !important; }
 
 #article-title {
-  width: auto;
   height: auto;
   padding-bottom: 0;
   padding-top: 5px;
@@ -138,7 +137,6 @@ h4 {
 
 #article-subtitle {
   font-weight: normal;
-  width: auto;
   height: auto;
   padding-bottom: 0;
   padding-top: 0;
