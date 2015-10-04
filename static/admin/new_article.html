@@ -68,7 +68,7 @@
       <!-- </div> -->
       <div class="row">
         <div class="col-sm-3">
-          <div class="dropdown">
+          <div class="dropdown dropdown-form">
             <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <i class="btn-icon fa fa-align-left"></i> Dropdown
               <i class="fa fa-angle-down" style="float: right;"></i>
@@ -84,7 +84,7 @@
       </div>
       <div class="row">
         <div class="col-sm-3">
-          <div class="dropdown">
+          <div class="dropdown dropdown-form">
             <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <i class="btn-icon fa fa-align-left"></i> Dropdown
               <i class="fa fa-angle-down" style="float: right;"></i>
@@ -108,18 +108,65 @@
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         <div class="row headline">
-          <div class="col-sm-3">
+          <div class="col-sm-6">
             <h4>markdown</h4>
           </div>
-          <div class="col-sm-3 col-sm-offset-6 text-right">
+          <div class="col-sm-6 text-right">
             <h4>help</h4>
           </div>
         </div>
         <form class="form-horizontal">
           <div class="form-group">
-            <textarea class="form-control" id="article-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque dui sed velit porttitor, ut eleifend elit tincidunt. Donec et tincidunt dui, et fringilla nisi. In semper tellus eu velit faucibus consectetur. Nulla fermentum luctus ultricies. Sed aliquet quam ullamcorper arcu consectetur, id rhoncus orci sagittis. Vestibulum sagittis felis dignissim sapien varius tincidunt. Fusce vehicula consectetur velit, nec vestibulum arcu eleifend vel. Vestibulum cursus leo odio, interdum sodales ipsum luctus non.&#13;&#10;&#13;&#10;#Subheader&#13;&#10;&#13;&#10;Nam eros dolor, lobortis eget tortor eleifend, convallis scelerisque elit. Donec metus massa, congue ac ipsum quis, vehicula blandit nibh. Mauris porttitor, erat id lacinia efficitur, nisl quam suscipit augue, ultrices venenatis dolor felis ut odio. Duis quis neque ut dui interdum varius quis vel tortor. Maecenas ut mi sed tortor ultrices finibus. Suspendisse potenti. Praesent semper, turpis ultricies euimod varius, dolor metus mattis metus, et egestas diam massa ut tellus.&#13;&#10;&#13;&#10;##Subheader2&#13;&#10;&#13;&#10;Nam eros dolor, lobortis eget tortor eleifend, convallis scelerisque elit. Donec metus massa, congue ac ipsum quis, vehicula blandit nibh. Mauris porttitor, erat id lacinia efficitur, nisl quam suscipit augue, ultrices venenatis dolor felis ut odio. Duis quis neque ut dui interdum varius quis vel tortor. Maecenas ut mi sed tortor ultrices finibus. Suspendisse potenti. Praesent semper, turpis ultricies</textarea>
+            <textarea class="form-control" id="article-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque dui sed velit porttitor, ut eleifend elit tincidunt. Donec et tincidunt dui, et fringilla nisi. In semper tellus eu velit faucibus consectetur. Nulla fermentum luctus
+              ultricies. Sed aliquet quam ullamcorper arcu consectetur, id rhoncus orci sagittis. Vestibulum sagittis felis dignissim sapien varius tincidunt. Fusce vehicula consectetur velit, nec vestibulum arcu eleifend vel. Vestibulum cursus leo odio,
+              interdum sodales ipsum luctus non.&#13;&#10;&#13;&#10;#Subheader&#13;&#10;&#13;&#10;Nam eros dolor, lobortis eget tortor eleifend, convallis scelerisque elit. Donec metus massa, congue ac ipsum quis, vehicula blandit nibh. Mauris porttitor,
+              erat id lacinia efficitur, nisl quam suscipit augue, ultrices venenatis dolor felis ut odio. Duis quis neque ut dui interdum varius quis vel tortor. Maecenas ut mi sed tortor ultrices finibus. Suspendisse potenti. Praesent semper, turpis
+              ultricies euimod varius, dolor metus mattis metus, et egestas diam massa ut tellus.&#13;&#10;&#13;&#10;##Subheader2&#13;&#10;&#13;&#10;Nam eros dolor, lobortis eget tortor eleifend, convallis scelerisque elit. Donec metus massa, congue ac
+              ipsum quis, vehicula blandit nibh. Mauris porttitor, erat id lacinia efficitur, nisl quam suscipit augue, ultrices venenatis dolor felis ut odio. Duis quis neque ut dui interdum varius quis vel tortor. Maecenas ut mi sed tortor ultrices
+              finibus. Suspendisse potenti. Praesent semper, turpis ultricies</textarea>
           </div>
         </form>
+        <div class="row headline">
+          <div class="col-sm-8">
+            <h4>keywords</h4>
+          </div>
+          <div class="col-sm-4">
+            <h4>post url</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="input-group">
+              <span class="input-group-addon gray"><i class="fa fa-plus"></i></span>
+              <input type="text" class="form-control gray" placeholder="Enter keyword here">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <span class="input-group-addon gray"><i class="fa fa-link"></i></span>
+              <input type="text" class="form-control gray" placeholder="test-article">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid footer">
+    <div class="container">
+      <div class="col-sm-6 text-left">
+        <button class="btn btn-gray-outline" href="#" role="button">Close</button>
+      </div>
+      <div class="col-sm-6 text-right">
+        <button class="btn btn-green-outline" href="#" role="button">Semantic</button>
+
+        <div class="dropdown inline left-space">
+          <button class="btn dropdown-toggle btn-red-solid" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Publish<i class="fa fa-angle-down icon" style="float: right;"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Draft</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
