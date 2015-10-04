@@ -46,7 +46,8 @@
             <li><a href="#">Settings</a></li>
           </ul>
           <div class="dropdown navbar-right" id="navbar-user">
-            <button class="btn navbar-btn dropdown-toggle btn-red-solid" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img alt="avatar" src="img/avatar.png"><i class="fa fa-angle-down icon" style="float: right;"></i>
+            <button class="btn navbar-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <img alt="avatar" src="img/avatar.png"><i class="fa fa-angle-down icon" style="float: right;"></i>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
               <li><a href="#">Draft</a></li>
@@ -104,7 +105,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-sm-2 col-sm-offset-7">
+        <div class="col-sm-2 col-sm-offset-7 text-right">
           <button class="btn btn-white-outline pull-down" href="#" role="button">Change cover</button>
         </div>
       </div>
@@ -114,14 +115,14 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
-        <div class="row headline">
-          <div class="col-sm-6">
-            <h4>markdown</h4>
-          </div>
-          <div class="col-sm-6 text-right">
-            <h4>help</h4>
-          </div>
-        </div>
+        <!-- <div class="headline"> -->
+          <!-- <div class="col-sm-6"> -->
+          <h4 class="headline">markdown</h4>
+          <!-- </div> -->
+          <!-- <div class="col-sm-6 text-right"> -->
+          <h4 class="headline float-right">help</h4>
+          <!-- </div> -->
+        <!-- </div> -->
         <form class="form-horizontal">
           <div class="form-group">
             <textarea class="form-control" id="article-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque dui sed velit porttitor, ut eleifend elit tincidunt. Donec et tincidunt dui, et fringilla nisi. In semper tellus eu velit faucibus consectetur. Nulla fermentum luctus
@@ -133,48 +134,54 @@
               finibus. Suspendisse potenti. Praesent semper, turpis ultricies</textarea>
           </div>
         </form>
-        <div class="row headline">
-          <div class="col-sm-8">
-            <h4>keywords</h4>
-          </div>
-          <div class="col-sm-4">
-            <h4>post url</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="input-group">
-              <span class="input-group-addon gray"><i class="fa fa-plus"></i></span>
-              <input type="text" class="form-control gray" placeholder="Enter keyword here">
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="input-group">
-              <span class="input-group-addon gray"><i class="fa fa-link"></i></span>
-              <input type="text" class="form-control gray" placeholder="test-article">
-            </div>
+        <!-- <div class="row headline"> -->
+        <div class="col-sm-8">
+          <h4 class="headline">keywords</h4>
+          <div class="input-group">
+            <span class="input-group-addon gray"><i class="fa fa-plus"></i></span>
+            <input type="text" class="form-control gray" placeholder="Enter keyword here">
           </div>
         </div>
+        <div class="col-sm-4">
+          <h4 class="headline">post url</h4>
+          <div class="input-group">
+            <span class="input-group-addon gray"><i class="fa fa-link"></i></span>
+            <input type="text" class="form-control gray" placeholder="test-article">
+          </div>
+        </div>
+        <!-- </div> -->
+        <!-- <div class="row">
+          <div class="col-sm-8">
+
+          </div>
+          <div class="col-sm-4">
+
+          </div>
+        </div> -->
       </div>
     </div>
   </div>
 
   <div class="container-fluid footer">
     <div class="container">
-      <div class="col-sm-6 text-left">
-        <button class="btn btn-gray-outline" href="#" role="button">Close</button>
-      </div>
-      <div class="col-sm-6 text-right">
-        <button class="btn btn-green-outline" href="#" role="button">Semantic</button>
+      <!-- <div class="row"> -->
+        <!-- <div class="col-sm-6 text-left"> -->
+          <button class="btn btn-gray-outline" href="#" role="button">Close</button>
+        <!-- </div> -->
+        <!-- <div class="col-sm-6 text-right"> -->
+        <div class="float-right">
+          <button class="btn btn-green-outline inline" href="#" role="button">Semantic</button>
 
-        <div class="dropdown inline left-space">
-          <button class="btn dropdown-toggle btn-red-solid" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Publish<i class="fa fa-angle-down icon" style="float: right;"></i>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Draft</a></li>
-          </ul>
+          <div class="dropdown inline left-space">
+            <button class="btn dropdown-toggle btn-red-solid" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Publish<i class="fa fa-angle-down icon" style="float: right;"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Draft</a></li>
+            </ul>
+          </div>
         </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
   </div>
 

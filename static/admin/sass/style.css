@@ -21,7 +21,11 @@ h4 {
   margin-left: 20px; }
 
 .headline {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  display: inline-block; }
+
+.float-right {
+  float: right; }
 
 .navbar {
   border: 0;
@@ -46,8 +50,7 @@ h4 {
     color: #5F5F5F;
     border: 0;
     background: transparent;
-    padding-top: 0;
-    padding-bottom: 0; }
+    padding: 0; }
     #navbar-user .btn img {
       border-radius: 50%;
       border: 2px #ABABAB solid; }
