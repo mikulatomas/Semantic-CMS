@@ -7,11 +7,9 @@
   background-position: center center;
   background-size: cover;
 }
-
 @mixin text-white {
   color: $white !important;
 }
-
 body {
   padding-top: $navbar-width; //fixed-header
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
@@ -28,19 +26,15 @@ h4 {
   text-transform: uppercase;
   color: $silver;
 }
-
 .inline {
   display: inline-block;
 }
-
 .left-space {
   margin-left: 20px;
 }
-
 .headline {
   margin-bottom: 20px;
 }
-
 .navbar {
   border: 0;
   border-bottom: 1px solid $mercury;
@@ -68,12 +62,28 @@ h4 {
     margin-right: 10px;
   }
 }
+#navbar-user {
+  margin-right: 0;
+  .btn {
+    color: $chicago;
+    border: 0;
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+    img {
+      border-radius: 50%;
+      border: 2px $silver solid;
+    }
+    .icon {
+      line-height: 34px;
+    }
+  }
+}
 .jumbotron {
   height: $jumbotron-height;
   margin-bottom: 60px;
   @include cover-background();
 }
-
 .form-control {
   font-size: 14px;
   font-weight: lighter;
@@ -85,39 +95,31 @@ h4 {
 .form-control:focus {
   box-shadow: none;
 }
-
 .input-group-addon {
   background: transparent;
   border: 0;
   border-radius: 0;
 }
-
 @mixin form-color($text, $border) {
   color: $text !important;
   border-bottom: 1px solid $border;
 }
-
 @mixin form-color-focus($text, $border) {
   color: $text !important;
   border-bottom: 1px solid $border;
 }
-
 .white {
   @include form-color($white, $white);
 }
-
 .white:focus {
   @include form-color-focus($white, $white);
 }
-
 .gray {
   @include form-color($chicago, $silver);
 }
-
 .gray:focus {
   @include form-color-focus($chicago, $silver);
 }
-
 .white::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: $white !important;
@@ -136,7 +138,6 @@ h4 {
   /* Internet Explorer 10-11 */
   color: $white !important;
 }
-
 .gray::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: $chicago !important;
@@ -179,9 +180,9 @@ h4 {
   font-weight: lighter;
   border: 0;
   margin-bottom: 200px;
+
   // white-space: normal;
 }
-
 .dropdown-form {
   margin-top: 20px;
   .btn {
@@ -195,98 +196,92 @@ h4 {
       margin-right: 20px;
     }
   }
-
   .btn:active {
     box-shadow: none;
   }
-
   .dropdown-menu {
     border-radius: 0;
     box-shadow: none;
   }
 }
-
 .dropdown-menu-right {
   text-align: right;
 }
-
 .dropdown {
   .icon {
     margin-left: 10px;
     line-height: 18px;
   }
 }
-
 .btn {
   font-weight: lighter;
   padding: 6px 25px;
   border-radius: 40px;
   box-shadow: none;
 }
-
 .btn:active {
   box-shadow: none;
 }
-
 @mixin btn-outline ($color) {
   background: transparent;
   border-color: $color;
   color: $color;
 }
-
 @mixin btn-outline-hover ($color) {
   background: transparent;
   border-color: $color;
   color: $color;
 }
-
 .btn-white-outline {
   @include btn-outline($white);
 }
+.btn-white-outline:hover,
+.btn-white-outline:active,
+.btn-white-outline:focus {
 
-.btn-white-outline:hover, .btn-white-outline:active, .btn-white-outline:focus {
   // @extend .btn-white-outline;
   @include btn-outline-hover($turquoise);
 }
-
 .btn-gray-outline {
   @include btn-outline($silver);
 }
+.btn-gray-outline:hover,
+.btn-gray-outline:active,
+.btn-gray-outline:focus {
 
-.btn-gray-outline:hover, .btn-gray-outline:active, .btn-gray-outline:focus {
   // @extend .btn-white-outline;
   @include btn-outline-hover(darken( $silver, 10% ));
 }
-
 .btn-green-outline {
   @include btn-outline($turquoise);
 }
+.btn-green-outline:hover,
+.btn-green-outline:active,
+.btn-green-outline:focus {
 
-.btn-green-outline:hover, .btn-green-outline:active, .btn-green-outline:focus {
   // @extend .btn-white-outline;
   @include btn-outline-hover(darken( $turquoise, 10% ));
 }
-
 @mixin btn-solid ($background, $color) {
   background: $background;
+
   // border-color: $color;
   color: $color;
 }
-
 @mixin btn-solid-hover ($background, $color) {
   background: $background;
+
   // border-color: $color;
   color: $color;
 }
-
 .btn-red-solid {
   @include btn-solid($sunset-orange, $white);
 }
-
-.btn-red-solid:hover, .btn-red-solid:active, .btn-red-solid:focus {
+.btn-red-solid:hover,
+.btn-red-solid:active,
+.btn-red-solid:focus {
   @include btn-solid-hover(darken( $sunset-orange, 10% ), $white);
 }
-
 .footer {
   border-top: 1px solid $mercury;
   margin-top: 150px;

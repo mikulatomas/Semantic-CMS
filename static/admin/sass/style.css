@@ -40,6 +40,20 @@ h4 {
     padding-top: 18px;
     margin-right: 10px; }
 
+#navbar-user {
+  margin-right: 0; }
+  #navbar-user .btn {
+    color: #5F5F5F;
+    border: 0;
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0; }
+    #navbar-user .btn img {
+      border-radius: 50%;
+      border: 2px #ABABAB solid; }
+    #navbar-user .btn .icon {
+      line-height: 34px; }
+
 .jumbotron {
   height: 400px;
   margin-bottom: 60px;
@@ -174,7 +188,9 @@ h4 {
   border-color: #FFFFFF;
   color: #FFFFFF; }
 
-.btn-white-outline:hover, .btn-white-outline:active, .btn-white-outline:focus {
+.btn-white-outline:hover,
+.btn-white-outline:active,
+.btn-white-outline:focus {
   background: transparent;
   border-color: #36D7B7;
   color: #36D7B7; }
@@ -184,7 +200,9 @@ h4 {
   border-color: #ABABAB;
   color: #ABABAB; }
 
-.btn-gray-outline:hover, .btn-gray-outline:active, .btn-gray-outline:focus {
+.btn-gray-outline:hover,
+.btn-gray-outline:active,
+.btn-gray-outline:focus {
   background: transparent;
   border-color: #929292;
   color: #929292; }
@@ -194,7 +212,9 @@ h4 {
   border-color: #36D7B7;
   color: #36D7B7; }
 
-.btn-green-outline:hover, .btn-green-outline:active, .btn-green-outline:focus {
+.btn-green-outline:hover,
+.btn-green-outline:active,
+.btn-green-outline:focus {
   background: transparent;
   border-color: #24b699;
   color: #24b699; }
@@ -203,7 +223,9 @@ h4 {
   background: #F64747;
   color: #FFFFFF; }
 
-.btn-red-solid:hover, .btn-red-solid:active, .btn-red-solid:focus {
+.btn-red-solid:hover,
+.btn-red-solid:active,
+.btn-red-solid:focus {
   background: #f41616;
   color: #FFFFFF; }
 
