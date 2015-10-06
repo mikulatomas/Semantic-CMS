@@ -1,0 +1,30 @@
+// _typography.scss
+
+body {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  color: $chicago;
+}
+
+h1 {
+  font-size: 48px !important;
+  font-weight: bolder;
+}
+
+h2 {
+  font-size: 24px !important;
+}
+
+h4 {
+  font-size: 14px !important;
+  text-transform: uppercase;
+  color: $silver;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+//COLORS
+//---------
+
+.white {
+  color: $white !important;
+}

@@ -1,4 +1,6 @@
-// _variables.scss
+// _base.scss
 
 $navbar-width: 60px;
 $jumbotron-height: 400px;
+
+@import "../modules/all";
