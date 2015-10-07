@@ -15,6 +15,12 @@
   box-shadow: none;
 }
 
+.btn-round {
+  border-radius: 100px;
+  // padding: 11px 9px 11px 8px;
+  padding: 8px 11.5px 9px 11.5px;
+}
+
 .btn-white-outline {
   @include btn-outline($white);
 }
@@ -43,6 +49,16 @@
 .btn-green-outline:active,
 .btn-green-outline:focus {
   @include btn-outline-hover(darken( $turquoise, 10% ));
+}
+
+.btn-red-outline {
+  @include btn-outline($sunset-orange);
+}
+
+.btn-red-outline:hover,
+.btn-red-outline:active,
+.btn-red-outline:focus {
+  @include btn-outline-hover(darken( $sunset-orange, 10% ));
 }
 
 .btn-red-solid {
