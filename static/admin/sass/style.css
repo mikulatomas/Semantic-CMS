@@ -133,14 +133,23 @@ h1, #article-title {
   font-weight: bolder; }
 
 h2, #article-subtitle {
-  font-size: 24px !important; }
+  font-size: 24px !important;
+  font-weight: normal; }
 
-h4 {
+h4, .nav-tabs li a {
   font-size: 14px !important;
   text-transform: uppercase;
   color: #ABABAB;
   margin-bottom: 20px;
   display: inline-block; }
+
+.headline h1, .headline #article-title {
+  margin-top: 80px;
+  margin-bottom: 0;
+  color: #2F2F2F; }
+.headline h2, .headline #article-subtitle {
+  margin-top: 0;
+  margin-bottom: 55px; }
 
 .white {
   color: #FFFFFF !important; }
@@ -284,9 +293,9 @@ h4 {
   .article-list .article-row {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 30px; }
-    .article-list .article-row h2, .article-list .article-row #article-subtitle, .article-list .article-row h4 {
+    .article-list .article-row h2, .article-list .article-row #article-subtitle, .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
       margin-bottom: 0; }
-    .article-list .article-row h4 {
+    .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
       margin-left: 20px; }
     .article-list .article-row button {
       margin-left: 20px; }
@@ -301,5 +310,31 @@ h4 {
       margin-left: 20px; }
     .article-list .article-row .details .detail:nth-child(1) {
       margin-left: 0; }
+
+.nav-tabs {
+  border: 0;
+  border-top: 1px solid #E5E5E5; }
+  .nav-tabs li a {
+    margin-top: -1px !important;
+    padding-top: 13px;
+    border: 0;
+    border-radius: 0; }
+  .nav-tabs li a:hover {
+    background: none;
+    color: #36D7B7;
+    padding-top: 10px;
+    border-top: 3px #36D7B7 solid; }
+  .nav-tabs li.active a {
+    color: #36D7B7;
+    padding-top: 10px;
+    border: 0;
+    border-radius: 0;
+    border-top: 3px #36D7B7 solid; }
+  .nav-tabs li.active a:hover {
+    color: #36D7B7;
+    padding-top: 10px;
+    border: 0;
+    border-radius: 0;
+    border-top: 3px #36D7B7 solid; }
 
 /*# sourceMappingURL=style.css.map */
