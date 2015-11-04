@@ -37,7 +37,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'article'
+
+    #Own apps
+    'article',
+    'semantic',
+
+    #3party
+    'markupfield',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,3 +97,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#MARKDOWN PLUGIN
+import markdown
+from docutils.core import publish_parts
+
+def render_rest(markup):
+    parts = publish_parts(source=markup, writer_name="html4css1")
+    return parts["fragment"]
+
+MARKUP_FIELD_TYPES = (
+    ('markdown', markdown.markdown),
+)
