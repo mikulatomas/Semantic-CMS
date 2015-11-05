@@ -17,6 +17,9 @@ from django.contrib.auth.models import User
 #import fields
 from .fields import *
 
+#import Semantic model
+from semantic.models import Semantic
+
 
 class Article(models.Model):
     """
@@ -24,7 +27,7 @@ class Article(models.Model):
     """
 
     title = models.CharField(max_length=128)
-    sub_title = models.CharField(max_length=128)
+    sub_title = models.CharField(max_length=128, blank=True, null=True)
     slug = models.SlugField(max_length=50)
 
     statut = models.CharField(max_length=1,
@@ -38,15 +41,33 @@ class Article(models.Model):
 
     author = models.ForeignKey(User, null=True, blank=True)
 
+    semantic = models.ManyToManyField(Semantic, blank=True)
+
     edited_date = models.DateTimeField('date edited', null=True, blank=True)
     created_date = models.DateTimeField('date created')
     published_date = models.DateTimeField('date published', null=True, blank=True)
 
-    def publish_article(self, time):
+    class Meta:
+        ordering = ["created_date"]
+        get_latest_by = "published_date"
 
-        self.edited_date = time
+    def generate_html(self):
+        self.html = self.content.rendered
+
+    def publish_article(self, time):
+        """Change statut of article and dates"""
         self.published_date = time
 
         self.statut = PUBLISHED
 
-        self.html = self.content.rendered
+    def edit_article(self, time):
+        """Update time of edit article"""
+        self.edited_date = time
+
+    def save(self, *args, **kwargs):
+        """Override save"""
+        time = timezone.now()
+
+        self.edit_article(time)
+        self.generate_html()
+        super(Article, self).save(*args, **kwargs) # Call the "real" save() method.

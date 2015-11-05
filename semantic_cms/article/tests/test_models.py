@@ -38,7 +38,5 @@ class ArticleTestCase(TestCase):
 
         article.publish_article(time)
 
-        self.assertEqual(article.edited_date, time)
         self.assertEqual(article.published_date, time)
         self.assertEqual(article.statut, PUBLISHED)
-        self.assertEqual(article.html, "<p><em>Test</em> Markdown</p>")

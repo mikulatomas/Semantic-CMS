@@ -11,5 +11,5 @@ class Semantic(models.Model):
 
     childs = models.ManyToManyField("self", blank=True)
 
-    edited_date = models.DateTimeField('date edited')
+    edited_date = models.DateTimeField('date edited', null=True, blank=True)
     created_date = models.DateTimeField('date created')
