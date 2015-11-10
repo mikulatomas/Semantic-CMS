@@ -15,3 +15,7 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+TEMPLATE_DIRS = (
+    '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/templates/',
+)
