@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'article',
     'semantic',
     'keywords',
+    'flags',
 
     #3party
     'markupfield',
@@ -63,7 +64,7 @@ ROOT_URLCONF = 'semantic_cms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
