@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'semantic',
     'keywords',
     'flags',
+    'semantic_admin',
 
     #3party
     'markupfield',

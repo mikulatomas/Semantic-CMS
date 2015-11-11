@@ -16,10 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-# from article.admin import my_admin
 
 urlpatterns = [
-    url(r'^semantic_admin/', include('semantic_admin.urls', namespace="semantic_admin")),
-    # url(r'^myadmin/', include(my_admin.urls)),
-    url(r'^admin/', include(admin.site.urls)),
+
 ]
