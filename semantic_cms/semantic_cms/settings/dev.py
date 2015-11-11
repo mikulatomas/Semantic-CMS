@@ -19,3 +19,9 @@ DATABASES = {
 TEMPLATE_DIRS = (
     '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/templates/',
 )
+
+STATICFILES_DIRS = (
+    '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/static',
+)
+
+# STATIC_ROOT = '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/static'

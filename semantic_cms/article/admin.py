@@ -34,7 +34,7 @@ class MyAdminSite(AdminSite):
                 module_name = self.module_name_dict[model]
                 my_patterns += patterns('',
                     url(r'^%s/' % (module_name),
-                        include(model_admin.urls))
+                        include(model_admin.urls), name=module_name)
                 )
 
         return my_patterns + base_patterns
@@ -45,7 +45,7 @@ class MyArticleAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(MyArticleAdmin, self).get_urls()
         my_urls = [
-            url(r'^$', self.admin_site.admin_view(self.content)),
+            # url(r'^$', include(.urls), name="myadmin"),
         ]
         return my_urls + urls
 

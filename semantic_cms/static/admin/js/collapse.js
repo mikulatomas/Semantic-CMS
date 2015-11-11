@@ -1,0 +1,1 @@
+/Users/tomasmikula/.virtualenvs/semanticcms/lib/python3.5/site-packages/django/contrib/admin/static/admin/js/collapse.js

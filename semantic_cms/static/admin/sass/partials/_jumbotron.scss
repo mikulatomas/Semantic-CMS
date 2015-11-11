@@ -1,0 +1,18 @@
+// _jumbotron.scss
+
+.jumbotron {
+  height: $jumbotron-height;
+  margin-bottom: 60px;
+  @include cover-background();
+
+  h1 {
+    margin-bottom: 0;
+  }
+  h2 {
+    margin-top: 0;
+  }
+
+  .jumbotron-gap {
+    margin-top: 50px;
+  }
+}
