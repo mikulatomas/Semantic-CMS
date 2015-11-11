@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
+from semantic_admin import views
 
 
 urlpatterns = [
-
+    url(r'^$', views.dashboard, name='index'),
+    url(r'^login/$', auth_views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'semantic_admin/logged_out.html'}, name='logout'),
 ]

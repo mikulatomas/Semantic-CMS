@@ -117,6 +117,10 @@ STATICFILES_DIRS = (
     '%s/static/' % (BASE_DIR),
 )
 
+LOGIN_REDIRECT_URL = '/semantic_admin/'
+LOGIN_URL = '/semantic_admin/login'
+LOGOUT_URL = '/semantic_admin/logout'
+
 #MARKDOWN PLUGIN
 import markdown
 from docutils.core import publish_parts
