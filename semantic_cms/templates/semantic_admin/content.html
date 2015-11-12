@@ -1,0 +1,114 @@
+{% extends "semantic_admin/base_site.html" %}
+
+{% block jumbotron %}
+<div class="jumbotron" style="background-image: linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);">
+  <div class="container">
+    <h1 class="white">Content manager</h1>
+    <h2 class="white">Manage your content here</h2>
+    <div class="row jumbotron-gap">
+      <div class="col-sm-3">
+        <div class="input-group">
+          <span class="input-group-addon white-form"><i class="fa fa-search"></i></span>
+          <input type="text" class="form-control white-form" placeholder="Search">
+        </div>
+      </div>
+      <div class="col-sm-3 col-sm-offset-3">
+        <div class="dropdown dropdown-form">
+          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="btn-icon fa fa-align-left"></i> Dropdown
+            <i class="fa fa-angle-down" style="float: right;"></i>
+          </button>
+          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="dropdown dropdown-form">
+          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="btn-icon fa fa-align-left"></i> Dropdown
+            <i class="fa fa-angle-down" style="float: right;"></i>
+          </button>
+          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 col-sm-offset-6">
+        <div class="dropdown dropdown-form">
+          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="btn-icon fa fa-align-left"></i> Dropdown
+            <i class="fa fa-angle-down" style="float: right;"></i>
+          </button>
+          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="dropdown dropdown-form">
+          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="btn-icon fa fa-align-left"></i> Dropdown
+            <i class="fa fa-angle-down" style="float: right;"></i>
+          </button>
+          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<button class="btn btn-green-solid" href="#" role="button">
+  <span class="icon margin-right">+</span>Write new article</button>
+<div class="float-right">
+  <button class="btn btn-gray-outline inline" href="#" role="button">
+    <span class="icon margin-right">×</span>Reset filters</button>
+</div>
+
+<div class="article-list">
+  {% for article in article_list %}
+  <div class="article-row">
+    <h2 class="inline">{{ article.title }}</h2>
+    {% if article.is_draft %}
+    <h4>draft</h4>
+    {% endif %}
+    <div class="details">
+      <span class="left">
+        <span class="detail"><i class="fa fa-align-left icon"></i>{{ article.flag }}</span>
+        <span class="detail"><i class="fa fa-calendar-o icon"></i>{{ article.created_date }}</span>
+      </span>
+      <span class="right">
+        <span class="detail"><i class="fa fa-eye icon"></i>N/A</span>
+        <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
+        <button class="btn btn-gray-outline btn-round" href="#" role="button">
+          <i class="fa fa-sitemap"></i></button>
+        <button class="btn btn-green-outline btn-round" href="#" role="button">
+          <i class="fa fa-sitemap"></i></button>
+        <button class="btn btn-red-outline btn-round" href="#" role="button">
+          <i class="fa fa-sitemap"></i></button>
+      </span>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

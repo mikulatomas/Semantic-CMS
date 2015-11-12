@@ -1,22 +1,11 @@
-{% extends "admin/base_site.html" %}
-{% load i18n admin_static %}
+{% extends "semantic_admin/base_site.html" %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}" />{% endblock %}
-
-{% block bodyclass %}{{ block.super }} login{% endblock %}
-
-{% block usertools %}{% endblock %}
-
-{% block nav-global %}{% endblock %}
-
-{% block content_title %}{% endblock %}
-
-{% block breadcrumbs %}{% endblock %}
+{% block navbar %}{% endblock %}
 
 {% block content %}
 {% if form.errors and not form.non_field_errors %}
 <p class="errornote">
-{% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+{% if form.errors.items|length == 1 %}Please correct the error below.{% else %}Please correct the errors below.{% endif %}
 </p>
 {% endif %}
 
@@ -42,16 +31,19 @@
   {% url 'admin_password_reset' as password_reset_url %}
   {% if password_reset_url %}
   <div class="password-reset-link">
-    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
+    <a href="{{ password_reset_url }}">Forgotten your password or username?</a>
   </div>
   {% endif %}
   <div class="submit-row">
-    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
+    <label>&nbsp;</label><input type="submit" value="Log in" />
   </div>
 </form>
 
+{% block extrascripts %}
 <script type="text/javascript">
 document.getElementById('id_username').focus()
 </script>
 </div>
+{% endblock %}
+</body>
 {% endblock %}

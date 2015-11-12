@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Semantic Admin - {% block title %}{{ title }}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'semantic_admin/css/bootstrap.min.css' %}">
+        {% block extrastyle %}{% endblock %}
+    </head>
+
+    <body>
+      {% block navbar %}{% endblock %}
+      {% block jumbotron %}{% endblock %}
+      <div class="container">
+      {% block content %}{% endblock %}
+      </div>
+
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="{% static 'semantic_admin/scripts/bootstrap.min.js' %}"></script>
+
+      <!-- Retina.js -->
+      <script type="text/javascript" src="{% static 'semantic_admin/scripts/retina.min.js' %}"></script>
+      {% block extrascripts %}{% endblock %}
+    </body>
+</html>

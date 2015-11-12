@@ -14,25 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
-from django.contrib import admin
-from django.contrib.auth import views as auth_views
 
-from semantic_admin import views
-from semantic_admin.views import DashboardView
 from semantic_admin.views import ContentView
 from semantic_admin.views import CreateArticleView
 
-
-content_patterns = [
+urlpatterns = [
     url(r'^$', ContentView.as_view(), name='index'),
     url(r'^create/$', CreateArticleView.as_view(), name='create_article'),
-]
-
-urlpatterns = [
-    # url(r'^$', views.dashboard, name='index'),
-    url(r'^$', DashboardView.as_view(), name='index'),
-    url(r'^login/$', views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),
-    # url(r'^login/$', views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, {'template_name': 'semantic_admin/logged_out.html'}, name='logout'),
-    url(r'^content/$', include(content_patterns, namespace="content")),
 ]

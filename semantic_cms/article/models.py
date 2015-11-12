@@ -66,6 +66,9 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+    def is_draft(self):
+        return self.statut == DRAFT
+
     def generate_html(self):
         self.html = self.content.rendered
 
