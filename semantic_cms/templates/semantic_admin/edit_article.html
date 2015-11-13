@@ -1,0 +1,134 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block jumbotron %}
+<div class="jumbotron" style="background-image: url({% static 'semantic_admin/img/jumbotron/admin.jpg' %});">
+  <div class="container">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-7">
+          {{ form.title.errors }}
+          {% render_field form.title form="article_form" placeholder="Enter name of the Article" class+="form-control white-form" id="article_title" %}
+          <!-- <input type="text" class="form-control white-form" id="article-title" name="articleTitle" placeholder="Enter name of the Article"> -->
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-4">
+          {{ form.sub_title.errors }}
+          {% render_field form.sub_title form="article_form" placeholder="Enter subtitle here" class+="form-control white-form" id="article_subtitle" %}
+          <!-- <input type="text" class="form-control white-form" id="article-subtitle" name="articleSubtitle" placeholder="Enter subtitle here"> -->
+        </div>
+      </div>
+    </form>
+    <div class="row jumbotron-gap">
+      <div class="col-sm-3">
+        <div class="dropdown dropdown-form">
+          {{ form.flag.errors }}
+          {% render_field form.flag form="article_form" id="article_flag" data-width="100%" %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <!-- <div class="dropdown dropdown-form"> -->
+          <!-- <div class="dropdown dropdown-form"> -->
+            <div id="article_created_date2" class="input-group input-append date">
+              <span class="input-group-addon white-form add-on"><i class="fa fa-calendar"></i></span>
+              {{ form.created_date.errors }}
+              {% render_field form.created_date form="article_form" class+="form-control white-form" id="article_created_date" data-format="yyyy-MM-dd hh:mm:ss" placeholder="Insert create date" %}
+              <!-- <input type="text" class="form-control gray-form" placeholder="test-article"> -->
+            </div>
+          <!-- {{ form.created_date }} -->
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+      <div class="col-sm-2 col-sm-offset-7 text-right">
+        <button class="btn btn-white-outline pull-down" href="#" role="button">Change cover</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="article_created_date" class="date">
+
+</div>
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+      <h4 class="headline">markdown</h4>
+      <h4 class="headline float-right">help</h4>
+    <form class="form-horizontal">
+      <div class="form-group">
+        {{ form.content.errors }}
+        {% render_field form.content form="article_form" class+="form-control" id="article_content" placeholder="Write your article here." %}
+      </div>
+    </form>
+    <div class="col-sm-8">
+      <h4 class="headline">keywords</h4>
+      <div class="input-group">
+        <span class="input-group-addon gray-form"><i class="fa fa-plus"></i></span>
+        <input type="text" class="form-control gray-form" placeholder="Enter keyword here">
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <h4 class="headline">post url</h4>
+      <div class="input-group">
+        <span class="input-group-addon gray-form"><i class="fa fa-link"></i></span>
+        {{ form.slug.errors }}
+        {% render_field form.slug form="article_form" class+="form-control gray-form" id="article_slug" placeholder="Enter article slug here" %}
+        <!-- <input type="text" class="form-control gray-form" placeholder="test-article"> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form> -->
+{% endblock %}
+
+{% block footer %}
+<form id="article_form" method="post">
+  {% csrf_token %}
+</form>
+<div class="container-fluid footer">
+  <div class="container">
+        <a class="btn btn-gray-outline" href="{% url 'semantic_admin:content:index' %}" role="button">Close</a>
+      <div class="float-right">
+        <button class="btn btn-green-outline inline" href="#" role="button">Semantic</button>
+
+          <button form="article_form" class="btn btn-red-solid inline left-space" href="#" role="button" type="submit">Save</button>
+
+        <div class="dropdown inline left-space">
+          <button class="btn dropdown-toggle btn-red-solid" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Publish<i class="fa fa-angle-down icon" style="float: right;"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Draft</a></li>
+          </ul>
+        </div>
+
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+$('#article_slug').slugify('#article_title');
+
+$('#article_flag').selectpicker({
+      style: 'white-form',
+  });
+
+// $(function() {
+//       $( "#article_created_date" ).datepicker();
+//   });
+
+$(function() {
+    $('#article_created_date2').datetimepicker();
+  });
+
+</script>
+{% endblock %}

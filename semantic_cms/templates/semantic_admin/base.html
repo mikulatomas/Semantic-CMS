@@ -5,7 +5,9 @@
     <head>
         <title>Semantic Admin - {% block title %}{{ title }}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'semantic_admin/css/bootstrap.min.css' %}">
+        {# <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">#}
         {% block extrastyle %}{% endblock %}
+        {% block extrahead %}{% endblock %}
     </head>
 
     <body>
@@ -15,6 +17,8 @@
       {% block content %}{% endblock %}
       </div>
 
+      {% block footer %}{% endblock %}
+
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
@@ -23,6 +27,16 @@
 
       <!-- Retina.js -->
       <script type="text/javascript" src="{% static 'semantic_admin/scripts/retina.min.js' %}"></script>
+
+      <!-- Bootstrap Select.js -->
+      <script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-select.js' %}"></script>
+
+      <!-- Bootstrap DateTimePicker.js -->
+      <script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-datetimepicker.js' %}"></script>
+
+      <!-- Slugify.js -->
+      <script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
+
       {% block extrascripts %}{% endblock %}
     </body>
 </html>

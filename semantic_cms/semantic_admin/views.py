@@ -18,6 +18,14 @@ from article.models import Article
 from semantic.models import Semantic
 from flags.models import Flag
 from keywords.models import Keyword
+
+from datetimewidget.widgets import DateTimeWidget
+from django.forms.models import modelform_factory
+
+#time
+import datetime
+from django.utils import timezone
+
 # @login_required
 # def dashboard(request):
 #     now = datetime.datetime.now()
@@ -29,6 +37,10 @@ class LoginRequiredMixin(object):
     def as_view(cls, **initkwargs):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
+
+class ModelFormWidgetMixin(object):
+    def get_form_class(self):
+        return modelform_factory(self.model, fields=self.fields, widgets=self.widgets)
 
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = "semantic_admin/dashboard.html"
@@ -52,10 +64,19 @@ class ContentView(LoginRequiredMixin, ListView):
         context['title'] = 'Dashboard'
         return context
 
+from .forms import ArticleEditForm
+from django.core.urlresolvers import reverse_lazy
+
 class CreateArticleView(LoginRequiredMixin, CreateView):
-    template_name = "semantic_admin/create_article.html"
-    model = Article
-    fields = ["title"]
+    template_name = "semantic_admin/edit_article.html"
+    success_url = reverse_lazy('semantic_admin:content:index')
+    form_class = ArticleEditForm
+
+    def get_initial(self):
+        initial = super(CreateArticleView, self).get_initial()
+
+        initial["created_date"] = datetime.datetime.now()
+        return initial
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context

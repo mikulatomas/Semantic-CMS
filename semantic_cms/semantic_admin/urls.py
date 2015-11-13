@@ -29,7 +29,7 @@ content_patterns = [
 ]
 
 urlpatterns = [
-    url(r'^content/$', include(content_patterns, namespace="content")),
+    url(r'^content/', include(content_patterns, namespace="content")),
     url(r'^$', DashboardView.as_view(), name='index'),
     url(r'^login/$', views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'semantic_admin/logged_out.html'}, name='logout'),

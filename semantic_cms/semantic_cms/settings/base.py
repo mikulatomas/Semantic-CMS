@@ -48,6 +48,8 @@ INSTALLED_APPS = (
     #3party
     'markupfield',
     'django_extensions',
+    'widget_tweaks',
+    'datetimewidget',
 )
 
 MIDDLEWARE_CLASSES = (

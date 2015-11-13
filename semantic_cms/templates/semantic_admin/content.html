@@ -77,8 +77,8 @@
 
 
 {% block content %}
-<button class="btn btn-green-solid" href="#" role="button">
-  <span class="icon margin-right">+</span>Write new article</button>
+<a class="btn btn-green-solid" href="{% url 'semantic_admin:content:create_article' %}" role="button">
+  <span class="icon margin-right">+</span>Write new article</a>
 <div class="float-right">
   <button class="btn btn-gray-outline inline" href="#" role="button">
     <span class="icon margin-right">×</span>Reset filters</button>

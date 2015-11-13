@@ -1,5 +1,7 @@
 // _forms.scss
 
+// .bootstrap-select
+
 .form-control {
   font-size: 14px;
   font-weight: lighter;
@@ -70,7 +72,7 @@
   /* Internet Explorer 10-11 */
   color: $chicago !important;
 }
-#article-title {
+#article_title {
   @extend h1;
   // width: auto;
   // min-width: 200px;
@@ -79,7 +81,7 @@
   padding-top: 5px;
   margin-bottom: -5px;
 }
-#article-subtitle {
+#article_subtitle {
   @extend h2;
   font-weight: normal;
   // width: auto;
@@ -87,7 +89,7 @@
   padding-bottom: 0;
   padding-top: 0;
 }
-#article-content {
+#article_content {
   height: inherit;
   resize: none;
   font-size: 18px;
@@ -97,3 +99,19 @@
 
   // white-space: normal;
 }
+
+// .bootstrap-select {
+//   button {
+//     color: red;
+//   }
+// }
+//
+// .bootstrap-select:focus {
+//   outline: none !important;
+//   box-shadow: none !important;
+//
+//   button:focus {
+//     outline: none !important;
+//     box-shadow: none !important;
+//   }
+// }

@@ -71,19 +71,19 @@
   /* Internet Explorer 10-11 */
   color: #5F5F5F !important; }
 
-#article-title {
+#article_title {
   height: auto;
   padding-bottom: 0;
   padding-top: 5px;
   margin-bottom: -5px; }
 
-#article-subtitle {
+#article_subtitle {
   font-weight: normal;
   height: auto;
   padding-bottom: 0;
   padding-top: 0; }
 
-#article-content {
+#article_content {
   height: inherit;
   resize: none;
   font-size: 18px;
@@ -128,11 +128,11 @@ body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   color: #5F5F5F; }
 
-h1, #article-title {
+h1, #article_title {
   font-size: 48px !important;
   font-weight: bolder; }
 
-h2, #article-subtitle {
+h2, #article_subtitle {
   font-size: 24px !important;
   font-weight: normal; }
 
@@ -143,11 +143,11 @@ h4, .nav-tabs li a {
   margin-bottom: 20px;
   display: inline-block; }
 
-.headline h1, .headline #article-title {
+.headline h1, .headline #article_title {
   margin-top: 80px;
   margin-bottom: 0;
   color: #2F2F2F; }
-.headline h2, .headline #article-subtitle {
+.headline h2, .headline #article_subtitle {
   margin-top: 0;
   margin-bottom: 55px; }
 
@@ -160,9 +160,9 @@ h4, .nav-tabs li a {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; }
-  .jumbotron h1, .jumbotron #article-title {
+  .jumbotron h1, .jumbotron #article_title {
     margin-bottom: 0; }
-  .jumbotron h2, .jumbotron #article-subtitle {
+  .jumbotron h2, .jumbotron #article_subtitle {
     margin-top: 0; }
   .jumbotron .jumbotron-gap {
     margin-top: 50px; }
@@ -256,6 +256,17 @@ h4, .nav-tabs li a {
   background: #24b699;
   color: #FFFFFF; }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.bootstrap-select:focus {
+  outline: none !important;
+  box-shadow: none !important; }
+
+.bootstrap-datetimepicker-widget ul {
+  padding-left: 0px; }
+
 .dropdown-form {
   margin-top: 25px; }
   .dropdown-form .btn {
@@ -268,6 +279,13 @@ h4, .nav-tabs li a {
   .dropdown-form .btn:active {
     box-shadow: none; }
   .dropdown-form .dropdown-menu {
+    border-radius: 0;
+    box-shadow: none; }
+    .dropdown-form .dropdown-menu a:focus {
+      outline: none;
+      box-shadow: none; }
+  .dropdown-form .dropdown-menu:focus {
+    outline: none;
     border-radius: 0;
     box-shadow: none; }
 
@@ -293,7 +311,7 @@ h4, .nav-tabs li a {
   .article-list .article-row {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 30px; }
-    .article-list .article-row h2, .article-list .article-row #article-subtitle, .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
+    .article-list .article-row h2, .article-list .article-row #article_subtitle, .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
       margin-bottom: 0; }
     .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
       margin-left: 20px; }

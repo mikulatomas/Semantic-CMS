@@ -29,7 +29,6 @@ from flags.models import Flag
 #slugify
 from django.utils.text import slugify
 
-
 class Article(models.Model):
     """
     Article is basic unit for Semantic CMS, this model holds info about article.
@@ -47,7 +46,7 @@ class Article(models.Model):
 
     cover_image = models.ImageField(upload_to="images", blank=True, null=True)
 
-    content = MarkupField(null=True, blank=True)
+    content = MarkupField(default_markup_type='markdown', null=True, blank=True)
     html = models.TextField(null=True, blank=True)
 
     author = models.ForeignKey(User, null=True, blank=True)
