@@ -15,3 +15,7 @@ class ArticleEditForm(forms.ModelForm):
             'flag': forms.Select(),
             'created_date': forms.DateTimeInput(),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(ArticleEditForm, self).__init__(*args, **kwargs)
+        self.fields['flag'].empty_label = "Select type of Article"

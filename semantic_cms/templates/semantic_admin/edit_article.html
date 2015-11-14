@@ -2,15 +2,64 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 
+{% block extrahead %}
+  {% if form.errors %}
+
+  {% endif %}
+{% endblock %}
+
+
+<!--<style>
+  body {
+    padding-top: 120px; //fixed-header
+  }
+</style>-->
+
+
+<!-- <div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</div> -->
+
+{% block message %}
+{% if form.errors %}
+<div id="message">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <div class="container">
+        <i class="fa fa-exclamation-circle"></i>
+        Please check errors.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+{% endblock %}
+
 {% block jumbotron %}
 <div class="jumbotron" style="background-image: url({% static 'semantic_admin/img/jumbotron/admin.jpg' %});">
   <div class="container">
     <form class="form-horizontal">
       <div class="form-group">
         <div class="col-sm-7">
-          {{ form.title.errors }}
-          {% render_field form.title form="article_form" placeholder="Enter name of the Article" class+="form-control white-form" id="article_title" %}
-          <!-- <input type="text" class="form-control white-form" id="article-title" name="articleTitle" placeholder="Enter name of the Article"> -->
+          {% if form.title.errors %}
+              {% render_field form.title form="article_form" placeholder="Enter name of the Article" class+="form-error form-control white-form" id="article_title" %}
+              <div id="form-error-message">
+                <div class="alert alert-danger" role="alert">
+                <!-- <i class="fa fa-exclamation-circle"></i> -->
+                {% for error in form.title.errors %}
+                  {{ error|escape }}
+                {% endfor %}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+              </div>
+            </div>
+          {% else %}
+              {% render_field form.title form="article_form" placeholder="Enter name of the Article" class+="form-control white-form" id="article_title" %}
+          {% endif %}
         </div>
       </div>
       <div class="form-group">
@@ -74,12 +123,31 @@
     </div>
     <div class="col-sm-4">
       <h4 class="headline">post url</h4>
-      <div class="input-group">
-        <span class="input-group-addon gray-form"><i class="fa fa-link"></i></span>
-        {{ form.slug.errors }}
-        {% render_field form.slug form="article_form" class+="form-control gray-form" id="article_slug" placeholder="Enter article slug here" %}
+
+
+        {% if form.slug.errors %}
+        <div class="input-group">
+          <span class="form-error input-group-addon gray-form"><i class="fa fa-link"></i></span>
+          {% render_field form.slug form="article_form" class+="form-error form-control gray-form" id="article_slug" placeholder="Enter article slug here" %}
+        </div>
+          <div id="form-error-message">
+            <div class="alert alert-danger" role="alert">
+            <!-- <i class="fa fa-exclamation-circle"></i> -->
+            {% for error in form.slug.errors %}
+              {{ error|escape }}
+            {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+          </div>
+
+        {% else %}
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-link"></i></span>
+          {% render_field form.slug form="article_form" class+="form-control gray-form" id="article_slug" placeholder="Enter article slug here" %}
+        </div>
+        {% endif %}
         <!-- <input type="text" class="form-control gray-form" placeholder="test-article"> -->
-      </div>
+
     </div>
   </div>
 </div>

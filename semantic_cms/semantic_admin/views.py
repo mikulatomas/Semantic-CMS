@@ -11,6 +11,7 @@ from django.contrib.auth import views
 # from django.template import RequestContext
 
 from django.views.generic.edit import CreateView
+from django.views.generic.edit import DeleteView
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 
@@ -25,6 +26,9 @@ from django.forms.models import modelform_factory
 #time
 import datetime
 from django.utils import timezone
+
+from .forms import ArticleEditForm
+from django.core.urlresolvers import reverse_lazy
 
 # @login_required
 # def dashboard(request):
@@ -64,9 +68,6 @@ class ContentView(LoginRequiredMixin, ListView):
         context['title'] = 'Dashboard'
         return context
 
-from .forms import ArticleEditForm
-from django.core.urlresolvers import reverse_lazy
-
 class CreateArticleView(LoginRequiredMixin, CreateView):
     template_name = "semantic_admin/edit_article.html"
     success_url = reverse_lazy('semantic_admin:content:index')
@@ -74,7 +75,6 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         initial = super(CreateArticleView, self).get_initial()
-
         initial["created_date"] = datetime.datetime.now()
         return initial
 
@@ -84,6 +84,17 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
 
         context['title'] = 'Create New Article'
         return context
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.save()
+        return super(CreateArticleView, self).form_valid(form)
+
+class DeleteArticleView(LoginRequiredMixin, DeleteView):
+    template_name = "semantic_admin/article_confirm_delete.html"
+    model = Article
+    success_url = reverse_lazy('semantic_admin:content:index')
+
 
 def login(request, template_name):
     login_context = {

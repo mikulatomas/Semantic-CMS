@@ -10,7 +10,7 @@
 //----------
 
 @mixin form-color($text, $border) {
-  color: $text !important;
+  color: $text;
   border-bottom: 1px solid $border;
 }
 

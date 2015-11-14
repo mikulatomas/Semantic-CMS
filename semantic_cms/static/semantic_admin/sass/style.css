@@ -19,8 +19,11 @@
   border-radius: 0;
   padding-left: 25px; }
 
+.form-error {
+  border-bottom: 3px solid #e15d5d !important; }
+
 .white-form {
-  color: #FFFFFF !important;
+  color: #FFFFFF;
   border-bottom: 1px solid #FFFFFF; }
 
 .white-form:focus {
@@ -28,7 +31,7 @@
   border-bottom: 1px solid #FFFFFF; }
 
 .gray-form {
-  color: #5F5F5F !important;
+  color: #5F5F5F;
   border-bottom: 1px solid #ABABAB; }
 
 .gray-form:focus {
@@ -37,21 +40,21 @@
 
 .white-form::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #FFFFFF !important; }
+  color: #FFFFFF; }
 
 .white-form:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #FFFFFF !important;
+  color: #FFFFFF;
   opacity: 1; }
 
 .white-form::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #FFFFFF !important;
+  color: #FFFFFF;
   opacity: 1; }
 
 .white-form:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #FFFFFF !important; }
+  color: #FFFFFF; }
 
 .gray::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -155,8 +158,10 @@ h4, .nav-tabs li a {
   color: #FFFFFF !important; }
 
 .jumbotron {
-  height: 400px;
+  height: auto;
   margin-bottom: 60px;
+  padding-top: 70px;
+  padding-bottom: 70px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; }
@@ -183,6 +188,9 @@ h4, .nav-tabs li a {
 
 .btn:active {
   box-shadow: none; }
+
+.btn:hover {
+  color: white; }
 
 .btn-round {
   border-radius: 100px;
@@ -315,7 +323,7 @@ button:focus,
       margin-bottom: 0; }
     .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
       margin-left: 20px; }
-    .article-list .article-row button {
+    .article-list .article-row a, .article-list .article-row button {
       margin-left: 20px; }
     .article-list .article-row .left {
       line-height: 38px; }
@@ -357,5 +365,34 @@ button:focus,
 
 .settings-tab {
   margin-top: 100px; }
+
+.alert-danger {
+  background-color: #F9DEDE;
+  border: 0;
+  color: #b72121; }
+  .alert-danger button {
+    color: #b72121; }
+
+.alert {
+  padding: 10px;
+  border-radius: 0;
+  margin-bottom: 10px; }
+  .alert button {
+    margin-right: 10px;
+    top: 0px !important;
+    right: 0px !important; }
+  .alert i {
+    margin-left: 2px;
+    margin-right: 20px; }
+
+#message {
+  position: fixed;
+  top: 61px;
+  left: 0;
+  width: 100%; }
+  #message .alert {
+    margin-bottom: 0; }
+  #message .alert-danger {
+    border-top: 3px solid #e15d5d; }
 
 /*# sourceMappingURL=style.css.map */

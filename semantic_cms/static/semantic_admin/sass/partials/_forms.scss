@@ -24,6 +24,11 @@
   padding-left: 25px;
 }
 
+.form-error {
+  // color: #d75654 !important;
+  border-bottom: 3px solid darken( $cosmos, 30% ) !important;
+}
+
 .white-form {
   @include form-color($white, $white);
 }
@@ -38,21 +43,21 @@
 }
 .white-form::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: $white !important;
+  color: $white;
 }
 .white-form:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: $white !important;
+  color: $white;
   opacity: 1;
 }
 .white-form::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: $white !important;
+  color: $white;
   opacity: 1;
 }
 .white-form:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: $white !important;
+  color: $white;
 }
 .gray::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -79,6 +84,7 @@
   height: auto;
   padding-bottom: 0;
   padding-top: 5px;
+  // margin-top: 20px;
   margin-bottom: -5px;
 }
 #article_subtitle {
