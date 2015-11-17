@@ -81,9 +81,9 @@ class Article(models.Model):
         """Update time of edit article"""
         self.edited_date = time
 
-    def update_slug(self):
-        if not self.slug:
-            self.slug = slugify(self.title)
+    # def update_slug(self):
+    #     if not self.slug:
+    #         self.slug = slugify(self.title)
 
     def save(self, *args, **kwargs):
         """Override save"""
@@ -91,7 +91,7 @@ class Article(models.Model):
 
         self.edit_article(time)
 
-        self.update_slug()
+        # self.update_slug()
 
         super(Article, self).save(*args, **kwargs) # Call the "real" save() method.
         self.generate_html()

@@ -151,10 +151,6 @@
     </div>
   </div>
 </div>
-<!-- <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create" />
-</form> -->
 {% endblock %}
 
 {% block footer %}
@@ -165,17 +161,21 @@
   <div class="container">
         <a class="btn btn-gray-outline" href="{% url 'semantic_admin:content:index' %}" role="button">Close</a>
       <div class="float-right">
-        <button class="btn btn-green-outline inline" href="#" role="button">Semantic</button>
+        <button class="btn btn-blue-outline inline" href="#" role="button">Semantic</button>
 
-          <button form="article_form" class="btn btn-red-solid inline left-space" href="#" role="button" type="submit">Save</button>
+        <input form="article_form" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="save" value="Save as Draft" />
+        <!-- Save as Draft</input> -->
+        <input form="article_form" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="publish" value="Publish Article" />
 
-        <div class="dropdown inline left-space">
+        <!-- <button class="btn btn-green-solid inline left-space" href="#" role="button">Publish Article</button> -->
+
+        <!-- <div class="dropdown inline left-space">
           <button class="btn dropdown-toggle btn-red-solid" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Publish<i class="fa fa-angle-down icon" style="float: right;"></i>
           </button>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
             <li><a href="#">Draft</a></li>
           </ul>
-        </div>
+        </div> -->
 
       </div>
   </div>
@@ -184,19 +184,22 @@
 
 {% block extrascripts %}
 <script type="text/javascript">
+$(function() {
+    $('form').areYouSure(
+      {
+        message: 'It looks like you have been editing something. '
+               + 'If you leave before saving, your changes will be lost.'
+      });
+  });
+
 $('#article_slug').slugify('#article_title');
 
 $('#article_flag').selectpicker({
       style: 'white-form',
   });
 
-// $(function() {
-//       $( "#article_created_date" ).datepicker();
-//   });
-
 $(function() {
     $('#article_created_date2').datetimepicker();
   });
-
 </script>
 {% endblock %}

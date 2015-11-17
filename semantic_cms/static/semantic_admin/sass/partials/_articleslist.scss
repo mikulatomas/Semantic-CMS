@@ -10,13 +10,17 @@
 
     h2, h4 {
       margin-bottom: 0;
+
+      a {
+        color: $chicago;
+      }
     }
 
     h4 {
       margin-left: 20px;
     }
 
-    a, button {
+    .btn {
       margin-left: 20px;
     }
 

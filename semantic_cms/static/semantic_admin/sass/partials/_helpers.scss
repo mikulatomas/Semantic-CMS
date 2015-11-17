@@ -4,6 +4,11 @@
   display: inline-block !important;
 }
 
+.inline-block {
+  display: inline-block !important;
+  float:none;
+}
+
 .float-right {
   float: right;
 }

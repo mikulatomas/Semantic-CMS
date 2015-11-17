@@ -38,6 +38,34 @@ h4 {
   }
 }
 
+.no-content {
+
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+  .text {
+    color: $silver;
+    margin-left: 30px;
+  }
+
+  .icon {
+    font-size: 80px;
+    color: $mercury;
+  }
+
+  .title {
+    font-size: 45px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+}
+
 //COLORS
 //---------
 

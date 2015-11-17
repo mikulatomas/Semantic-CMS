@@ -12,6 +12,7 @@ from django.contrib.auth import views
 
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 
@@ -87,8 +88,43 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+
+        if self.request.POST:
+            if 'publish' in self.request.POST:
+                form.instance.publish_article(datetime.datetime.now())
+
         form.save()
         return super(CreateArticleView, self).form_valid(form)
+
+class UpdateArticleView(LoginRequiredMixin, UpdateView):
+    model = Article
+    template_name = "semantic_admin/edit_article.html"
+    success_url = reverse_lazy('semantic_admin:content:index')
+    form_class = ArticleEditForm
+
+    # fields = ["title", "sub_title", "content", "slug", "flag", "created_date"]
+
+    # def get_initial(self):
+    #     initial = super(CreateArticleView, self).get_initial()
+    #     initial["created_date"] = datetime.datetime.now()
+    #     return initial
+
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     context = super(CreateArticleView, self).get_context_data(**kwargs)
+    #
+    #     context['title'] = 'Create New Article'
+    #     return context
+
+    # def form_valid(self, form):
+    #     form.instance.author = self.request.user
+    #
+    #     if self.request.POST:
+    #         if 'publish' in self.request.POST:
+    #             form.instance.publish_article(datetime.datetime.now())
+    #
+    #     form.save()
+    #     return super(CreateArticleView, self).form_valid(form)
 
 class DeleteArticleView(LoginRequiredMixin, DeleteView):
     template_name = "semantic_admin/article_confirm_delete.html"

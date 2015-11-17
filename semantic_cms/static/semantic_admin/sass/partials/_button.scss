@@ -55,6 +55,16 @@
   @include btn-outline-hover(darken( $turquoise, 10% ));
 }
 
+.btn-blue-outline {
+  @include btn-outline($shakespeare);
+}
+
+.btn-blue-outline:hover,
+.btn-blue-outline:active,
+.btn-blue-outline:focus {
+  @include btn-outline-hover(darken( $shakespeare, 10% ));
+}
+
 .btn-red-outline {
   @include btn-outline($sunset-orange);
 }
@@ -63,6 +73,16 @@
 .btn-red-outline:active,
 .btn-red-outline:focus {
   @include btn-outline-hover(darken( $sunset-orange, 10% ));
+}
+
+.btn-blue-solid {
+  @include btn-solid($shakespeare, $white);
+}
+
+.btn-blue-solid:hover,
+.btn-blue-solid:active,
+.btn-blue-solid:focus {
+  @include btn-solid-hover(darken( $shakespeare, 10% ), $white);
 }
 
 .btn-red-solid {

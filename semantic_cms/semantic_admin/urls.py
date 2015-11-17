@@ -22,11 +22,13 @@ from semantic_admin.views import DashboardView
 from semantic_admin.views import ContentView
 from semantic_admin.views import CreateArticleView
 from semantic_admin.views import DeleteArticleView
+from semantic_admin.views import UpdateArticleView
 
 
 content_patterns = [
     url(r'^$', ContentView.as_view(), name='index'),
     url(r'^create/$', CreateArticleView.as_view(), name='create_article'),
+    url(r'^edit/(?P<pk>\d+)$', UpdateArticleView.as_view(), name='edit_article'),
     url(r'^delete/(?P<pk>\d+)$', DeleteArticleView.as_view(), name='delete_article'),
 ]
 

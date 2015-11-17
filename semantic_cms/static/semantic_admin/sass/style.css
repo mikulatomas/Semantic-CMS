@@ -154,6 +154,24 @@ h4, .nav-tabs li a {
   margin-top: 0;
   margin-bottom: 55px; }
 
+.no-content {
+  margin-top: 80px;
+  margin-bottom: 80px; }
+  .no-content .text {
+    color: #ABABAB;
+    margin-left: 30px; }
+  .no-content .icon {
+    font-size: 80px;
+    color: #E5E5E5; }
+  .no-content .title {
+    font-size: 45px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 0; }
+  .no-content .subtitle {
+    font-size: 18px;
+    text-transform: uppercase; }
+
 .white {
   color: #FFFFFF !important; }
 
@@ -232,6 +250,18 @@ h4, .nav-tabs li a {
   border-color: #24b699;
   color: #24b699; }
 
+.btn-blue-outline {
+  background: transparent;
+  border-color: #40BBCB;
+  color: #40BBCB; }
+
+.btn-blue-outline:hover,
+.btn-blue-outline:active,
+.btn-blue-outline:focus {
+  background: transparent;
+  border-color: #2e9caa;
+  color: #2e9caa; }
+
 .btn-red-outline {
   background: transparent;
   border-color: #F64747;
@@ -243,6 +273,16 @@ h4, .nav-tabs li a {
   background: transparent;
   border-color: #f41616;
   color: #f41616; }
+
+.btn-blue-solid {
+  background: #40BBCB;
+  color: #FFFFFF; }
+
+.btn-blue-solid:hover,
+.btn-blue-solid:active,
+.btn-blue-solid:focus {
+  background: #2e9caa;
+  color: #FFFFFF; }
 
 .btn-red-solid {
   background: #F64747;
@@ -310,6 +350,10 @@ button:focus,
 .inline {
   display: inline-block !important; }
 
+.inline-block {
+  display: inline-block !important;
+  float: none; }
+
 .float-right {
   float: right; }
 
@@ -321,9 +365,11 @@ button:focus,
     padding-bottom: 30px; }
     .article-list .article-row h2, .article-list .article-row #article_subtitle, .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
       margin-bottom: 0; }
+      .article-list .article-row h2 a, .article-list .article-row #article_subtitle a, .article-list .article-row h4 a, .article-list .article-row .nav-tabs li a a, .nav-tabs li .article-list .article-row a a {
+        color: #5F5F5F; }
     .article-list .article-row h4, .article-list .article-row .nav-tabs li a, .nav-tabs li .article-list .article-row a {
       margin-left: 20px; }
-    .article-list .article-row a, .article-list .article-row button {
+    .article-list .article-row .btn {
       margin-left: 20px; }
     .article-list .article-row .left {
       line-height: 38px; }
