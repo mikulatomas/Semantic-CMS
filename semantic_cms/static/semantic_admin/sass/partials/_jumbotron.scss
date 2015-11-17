@@ -1,0 +1,22 @@
+// _jumbotron.scss
+
+.jumbotron {
+  // height: $jumbotron-height;
+  height: auto;
+  margin-bottom: 60px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+  @include cover-background();
+
+  h1 {
+    margin-bottom: 0;
+  }
+  h2 {
+    margin-top: 0;
+  }
+
+  .jumbotron-gap {
+    margin-top: 50px;
+  }
+}

@@ -1,0 +1,12 @@
+{% extends "semantic_admin/base_site.html" %}
+
+{% block content %}
+
+<div class="alert alert-danger" role="alert">Are you sure you want to delete "{{ object }}"?</div>
+
+<form action="" method="post">{% csrf_token %}
+
+    <input type="submit" value="Confirm" />
+</form>
+
+{% endblock %}

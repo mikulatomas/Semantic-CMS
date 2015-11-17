@@ -1,0 +1,66 @@
+// _dropdown.scss
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.bootstrap-select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.bootstrap-datetimepicker-widget {
+  ul {
+    padding-left: 0px;
+  }
+}
+
+.dropdown-form {
+  margin-top: 25px;
+
+  .btn {
+    text-align: left;
+    background: transparent;
+    border-bottom: 1px solid $white;
+    border-radius: 0;
+
+    .btn-icon {
+      margin-right: 20px;
+    }
+  }
+
+  .btn:active {
+    box-shadow: none;
+  }
+
+  .dropdown-menu {
+    border-radius: 0;
+    box-shadow: none;
+
+    a:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .dropdown-menu:focus {
+    outline: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.dropdown-menu-right {
+  text-align: right;
+}
+
+.dropdown {
+  .icon {
+    margin-left: 10px;
+    line-height: 18px;
+  }
+}
+
+.left-space {
+  margin-left: 20px;
+}

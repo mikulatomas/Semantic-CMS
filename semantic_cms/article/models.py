@@ -29,7 +29,6 @@ from flags.models import Flag
 #slugify
 from django.utils.text import slugify
 
-
 class Article(models.Model):
     """
     Article is basic unit for Semantic CMS, this model holds info about article.
@@ -47,7 +46,7 @@ class Article(models.Model):
 
     cover_image = models.ImageField(upload_to="images", blank=True, null=True)
 
-    content = MarkupField(null=True, blank=True)
+    content = MarkupField(default_markup_type='markdown', null=True, blank=True)
     html = models.TextField(null=True, blank=True)
 
     author = models.ForeignKey(User, null=True, blank=True)
@@ -66,6 +65,9 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+    def is_draft(self):
+        return self.statut == DRAFT
+
     def generate_html(self):
         self.html = self.content.rendered
 
@@ -79,9 +81,9 @@ class Article(models.Model):
         """Update time of edit article"""
         self.edited_date = time
 
-    def update_slug(self):
-        if not self.slug:
-            self.slug = slugify(self.title)
+    # def update_slug(self):
+    #     if not self.slug:
+    #         self.slug = slugify(self.title)
 
     def save(self, *args, **kwargs):
         """Override save"""
@@ -89,7 +91,7 @@ class Article(models.Model):
 
         self.edit_article(time)
 
-        self.update_slug()
+        # self.update_slug()
 
         super(Article, self).save(*args, **kwargs) # Call the "real" save() method.
         self.generate_html()

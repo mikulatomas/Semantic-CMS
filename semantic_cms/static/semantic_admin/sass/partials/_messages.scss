@@ -1,0 +1,45 @@
+// _messages.scss
+
+.alert-danger {
+  background-color: $cosmos;
+  border: 0;
+  // border-bottom: 3px solid $sunset-orange;
+  color: darken( $cosmos, 50% );
+
+  button {
+    color: darken( $cosmos, 50% );
+  }
+}
+
+.alert {
+  padding: 10px;
+  border-radius: 0;
+  margin-bottom: 10px;
+
+  button {
+    margin-right : 10px;
+    top: 0px !important;
+    right: 0px !important;
+  }
+
+  i {
+    margin-left: 2px;
+    margin-right: 20px;
+  }
+}
+
+#message {
+    // background-color: $white;
+    position: fixed;
+    top: $navbar-width + 1;
+    left: 0;
+    width: 100%;
+
+    .alert {
+      margin-bottom: 0;
+    }
+
+    .alert-danger {
+      border-top: 3px solid darken( $cosmos, 30% );
+    }
+}
