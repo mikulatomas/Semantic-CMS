@@ -50,6 +50,9 @@ INSTALLED_APPS = (
     'django_extensions',
     'widget_tweaks',
     'datetimewidget',
+    'taggit',
+    'taggit_templatetags',
+    'taggit_autocomplete',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -132,6 +135,8 @@ STATICFILES_DIRS = (
 LOGIN_REDIRECT_URL = '/semantic_admin/'
 LOGIN_URL = '/semantic_admin/login'
 LOGOUT_URL = '/semantic_admin/logout'
+
+# TAGGIT_AUTOCOMPLETE_JS_BASE_URL = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
 
 #MARKDOWN PLUGIN
 import markdown

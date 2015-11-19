@@ -1,6 +1,7 @@
 {% extends "semantic_admin/base_site.html" %}
 {% load staticfiles %}
 {% load widget_tweaks %}
+{% load taggit_extras %}
 
 {% block extrahead %}
   {% if form.errors %}
@@ -117,8 +118,11 @@
     <div class="col-sm-8">
       <h4 class="headline">keywords</h4>
       <div class="input-group">
-        <span class="input-group-addon gray-form"><i class="fa fa-plus"></i></span>
-        <input type="text" class="form-control gray-form" placeholder="Enter keyword here">
+        <!-- {% render_field form.keywords form="article_form" class+="tagit-hidden-field form-control gray-form" id="article_keywords" %} -->
+        <!-- <span class="input-group-addon gray-form"><i class="fa fa-plus"></i></span> -->
+        {% render_field form.keywords form="article_form" class+="tagit-hidden-field" id="article_keywords" %}
+
+        <!-- <input type="text" class="form-control gray-form" placeholder="Enter keyword here"> -->
       </div>
     </div>
     <div class="col-sm-4">
@@ -149,6 +153,18 @@
         <!-- <input type="text" class="form-control gray-form" placeholder="test-article"> -->
 
     </div>
+    <div class="col-sm-4">
+      <h4 class="headline gap">Author</h4>
+
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-user"></i></span>
+          <!-- <input type="text" class="form-control gray-form" placeholder="Tomáš Mikula"> -->
+          {% render_field form.author form="article_form" class+="form-control gray-form" id="article_author" %}
+        </div>
+
+
+    </div>
+
   </div>
 </div>
 {% endblock %}
