@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^semantic_admin/', include('semantic_admin.urls', namespace="semantic_admin")),
     # url(r'^myadmin/', include(my_admin.urls)),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^taggit_autocomplete/', include('taggit_autocomplete.urls')),
+    url(r'^keywords/', include('keywords.urls')),
 ]

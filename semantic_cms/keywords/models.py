@@ -10,11 +10,13 @@ import datetime
 from django.utils import timezone
 
 class Keyword(models.Model):
-    """Keyword model for represen keyword in the system"""
+    """Keyword model for represen keyword in the system, taggit-autocomplete integrated"""
 
     name = models.CharField(max_length=50, unique=True)
+    # Probably redundant delete later
     # slug = models.SlugField(max_length=50, unique=True)
 
+    # edited_date will be probably redundant
     edited_date = models.DateTimeField('date edited', null=True, blank=True)
     created_date = models.DateTimeField('date created')
 
@@ -28,7 +30,7 @@ class Keyword(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        """Override save"""
+        """Add actual time during saving"""
         time = timezone.now()
 
         self.created_date = time
@@ -41,5 +43,4 @@ class TaggedArticle(GenericTaggedItemBase):
     # example Food and Drink.
 
     # Here is where you provide your custom Tag class.
-    tag = models.ForeignKey(Keyword,
-                            related_name="%(app_label)s_%(class)s_items")
+    tag = models.ForeignKey(Keyword, related_name="%(app_label)s_%(class)s_items")

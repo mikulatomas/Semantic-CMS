@@ -95,7 +95,7 @@
   font-size: 18px;
   font-weight: lighter;
   border: 0;
-  margin-bottom: 200px; }
+  margin-bottom: 100px; }
 
 ul.tagit {
   width: 100% !important; }
@@ -238,7 +238,7 @@ h4.gap, .nav-tabs li a.gap {
   height: auto;
   margin-bottom: 60px;
   padding-top: 70px;
-  padding-bottom: 70px;
+  padding-bottom: 90px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; }

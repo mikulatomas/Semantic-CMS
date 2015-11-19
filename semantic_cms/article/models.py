@@ -23,7 +23,7 @@ from semantic.models import Semantic
 #import Keywords model
 from keywords.models import Keyword
 from keywords.models import TaggedArticle
-from taggit_autocomplete.managers import TaggableManager
+from keywords.managers import TaggableManager
 # from taggit.managers import TaggableManager
 # from taggit.models import TaggedItemBase
 

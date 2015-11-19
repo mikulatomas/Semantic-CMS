@@ -52,7 +52,6 @@ INSTALLED_APPS = (
     'datetimewidget',
     'taggit',
     'taggit_templatetags',
-    'taggit_autocomplete',
 )
 
 MIDDLEWARE_CLASSES = (

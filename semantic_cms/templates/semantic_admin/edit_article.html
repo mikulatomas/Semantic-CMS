@@ -3,6 +3,11 @@
 {% load widget_tweaks %}
 {# {% load taggit_extras %}#}
 
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+
 {% block message %}
   {% if form.errors %}
     <div id="message">
@@ -163,6 +168,9 @@
 <!-- Are you sure?.js -->
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
 
+<!-- autosize.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
+
 <!-- tag it.js -->
 <script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
@@ -171,6 +179,8 @@
       message: 'It looks like you have been editing something. ' + 'If you leave before saving, your changes will be lost.'
     });
   });
+
+  autosize($('textarea'));
 
   $('#article_slug').slugify('#article_title');
 
