@@ -21,5 +21,4 @@ def list_tags(request):
 	except MultiValueDictKeyError:
 		pass
 
-	# return HttpResponse('\n'.join(tags), content_type='text/plain')
 	return HttpResponse(tags, content_type='application/json')
