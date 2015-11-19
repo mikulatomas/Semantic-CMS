@@ -77,12 +77,12 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
     def get_initial(self):
         initial = super(CreateArticleView, self).get_initial()
         initial["created_date"] = datetime.datetime.now()
+        # initial["author"] = self.request.user
         return initial
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(CreateArticleView, self).get_context_data(**kwargs)
-
         context['title'] = 'Create New Article'
         return context
 

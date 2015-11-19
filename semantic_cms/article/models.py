@@ -24,6 +24,7 @@ from semantic.models import Semantic
 from keywords.models import Keyword
 from keywords.models import TaggedArticle
 from taggit_autocomplete.managers import TaggableManager
+# from taggit.managers import TaggableManager
 # from taggit.models import TaggedItemBase
 
 #import Flags model
@@ -56,7 +57,7 @@ class Article(models.Model):
 
     semantic = models.ManyToManyField(Semantic, blank=True)
     # keywords = models.ManyToManyField(Keyword, blank=True)
-    keywords = TaggableManager(through=TaggedArticle, blank=True)
+    keywords = TaggableManager(blank=True, through=TaggedArticle)
 
 
     edited_date = models.DateTimeField('date edited', null=True, blank=True)

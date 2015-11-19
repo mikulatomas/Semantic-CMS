@@ -10,11 +10,13 @@ from .widgets import TagAutocomplete
 class TaggableManager(BaseTaggableManager):
     def formfield(self, form_class=TagField, **kwargs):
         defaults = {
-            "label": _("Tags"),
-            "help_text": _("A comma-separated list of tags."),
+            "label": self.verbose_name,
+            "help_text": self.help_text,
+            "required": not self.blank
         }
+        defaults['widget'] = TagAutocomplete
         defaults.update(kwargs)
 
-        kwargs['widget'] = TagAutocomplete
 
-        return form_class(**kwargs)
+
+        return form_class(**defaults)
