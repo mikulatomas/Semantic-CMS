@@ -42,7 +42,7 @@ class Article(models.Model):
     sub_title = models.CharField(max_length=128, blank=True, null=True)
     slug = models.SlugField(max_length=50, unique=True, blank=True,  null=True)
 
-    statut = models.CharField(max_length=1,
+    status = models.CharField(max_length=1,
                                 choices=ARTICLE_STATUS,
                                 default=DRAFT)
 
@@ -72,16 +72,16 @@ class Article(models.Model):
         return self.title
 
     def is_draft(self):
-        return self.statut == DRAFT
+        return self.status == DRAFT
 
     def generate_html(self):
         self.html = self.content.rendered
 
     def publish_article(self, time):
-        """Change statut of article and dates"""
+        """Change status of article and dates"""
         self.published_date = time
 
-        self.statut = PUBLISHED
+        self.status = PUBLISHED
 
     def edit_article(self, time):
         """Update time of edit article"""

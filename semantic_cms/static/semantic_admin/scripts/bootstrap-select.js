@@ -407,9 +407,9 @@
       var drop =
           '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
           '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
-          '<i class="btn-icon fa fa-align-left"></i>' +
+          '<i id="icon" class="btn-icon fa"></i>' +
           '<span class="filter-option"></span>&nbsp;' +
-          '<i class="fa fa-angle-down" style="float: right;"></i>' +
+          '<i class="arrow fa fa-angle-down"></i>' +
           '</button>' +
           '<div class="dropdown-menu open">' +
           header +

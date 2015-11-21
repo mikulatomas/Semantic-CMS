@@ -23,10 +23,12 @@ from semantic_admin.views import ContentView
 from semantic_admin.views import CreateArticleView
 from semantic_admin.views import DeleteArticleView
 from semantic_admin.views import UpdateArticleView
+# from semantic_admin.views import ContentViewFilter
 
 
 content_patterns = [
     url(r'^$', ContentView.as_view(), name='index'),
+    # url(r'^filter/$', ContentViewFilter.as_view(), name='index_filter'),
     url(r'^create/$', CreateArticleView.as_view(), name='create_article'),
     url(r'^edit/(?P<pk>\d+)$', UpdateArticleView.as_view(), name='edit_article'),
     url(r'^delete/(?P<pk>\d+)$', DeleteArticleView.as_view(), name='delete_article'),
@@ -36,6 +38,6 @@ urlpatterns = [
     url(r'^content/', include(content_patterns, namespace="content")),
     url(r'^$', DashboardView.as_view(), name='index'),
     url(r'^login/$', views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'template_name': 'semantic_admin/logged_out.html'}, name='logout'),
+    url(r'^logout/$', auth_views.logout_then_login, name='logout'),
 
 ]

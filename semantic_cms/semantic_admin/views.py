@@ -15,6 +15,8 @@ from django.views.generic.edit import DeleteView
 from django.views.generic.edit import UpdateView
 from django.views.generic import TemplateView
 from django.views.generic import ListView
+from django_filters.views import FilterView
+from article.filter import ArticleFilter
 
 from article.models import Article
 from semantic.models import Semantic
@@ -53,19 +55,30 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(DashboardView, self).get_context_data(**kwargs)
-
         context['title'] = 'Dashboard'
         return context
 
-class ContentView(LoginRequiredMixin, ListView):
+# class ContentView(LoginRequiredMixin, ListView):
+#     template_name = "semantic_admin/content.html"
+#     model = Article
+#     context_object_name = 'article_list'
+#
+#     def get_context_data(self, **kwargs):
+#         # Call the base implementation first to get a context
+#         context = super(ContentView, self).get_context_data(**kwargs)
+#
+#         context['title'] = 'Dashboard'
+#         return context
+
+class ContentView(LoginRequiredMixin, FilterView):
     template_name = "semantic_admin/content.html"
-    model = Article
+    filterset_class = ArticleFilter
     context_object_name = 'article_list'
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(ContentView, self).get_context_data(**kwargs)
-
+        context['request'] = self.request
         context['title'] = 'Dashboard'
         return context
 
@@ -101,30 +114,6 @@ class UpdateArticleView(LoginRequiredMixin, UpdateView):
     template_name = "semantic_admin/edit_article.html"
     success_url = reverse_lazy('semantic_admin:content:index')
     form_class = ArticleEditForm
-
-    # fields = ["title", "sub_title", "content", "slug", "flag", "created_date"]
-
-    # def get_initial(self):
-    #     initial = super(CreateArticleView, self).get_initial()
-    #     initial["created_date"] = datetime.datetime.now()
-    #     return initial
-
-    # def get_context_data(self, **kwargs):
-    #     # Call the base implementation first to get a context
-    #     context = super(CreateArticleView, self).get_context_data(**kwargs)
-    #
-    #     context['title'] = 'Create New Article'
-    #     return context
-
-    # def form_valid(self, form):
-    #     form.instance.author = self.request.user
-    #
-    #     if self.request.POST:
-    #         if 'publish' in self.request.POST:
-    #             form.instance.publish_article(datetime.datetime.now())
-    #
-    #     form.save()
-    #     return super(CreateArticleView, self).form_valid(form)
 
 class DeleteArticleView(LoginRequiredMixin, DeleteView):
     template_name = "semantic_admin/article_confirm_delete.html"

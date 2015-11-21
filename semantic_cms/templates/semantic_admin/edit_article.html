@@ -55,7 +55,7 @@
     </form>
     <div class="row jumbotron-gap">
       <div class="col-sm-3">
-        <div class="dropdown dropdown-form">
+        <div id="article_flag_dropdown" class="dropdown dropdown-form">
           {% render_field form.flag form="article_form" id="article_flag" data-width="100%" %}
         </div>
       </div>
@@ -65,6 +65,7 @@
         <div id="article_created_date2" class="input-group input-append date">
           <span class="input-group-addon white-form add-on"><i class="fa fa-calendar"></i></span>
           {% render_field form.created_date form="article_form" class+="form-control white-form" id="article_created_date" data-format="yyyy-MM-dd hh:mm:ss" placeholder="Insert create date" %}
+          <span class="input-group-addon white-form add-on"><i class="fa fa-angle-down"></i></span>
           <!-- <input type="text" class="form-control gray-form" placeholder="test-article"> -->
         </div>
       </div>
@@ -191,5 +192,7 @@
   $(function() {
     $('#article_created_date2').datetimepicker();
   });
+
+  $('#article_flag_dropdown #icon').addClass('fa-align-left');
 </script>
 {% endblock %}

@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'datetimewidget',
     'taggit',
     'taggit_templatetags',
+    'django_filters',
 )
 
 MIDDLEWARE_CLASSES = (

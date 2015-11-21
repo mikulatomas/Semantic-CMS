@@ -15,6 +15,13 @@ button:focus,
   }
 }
 
+.bootstrap-select {
+  .arrow {
+    float: right;
+    margin-right: -10px;
+  }
+}
+
 .dropdown-form {
   margin-top: 25px;
 
@@ -32,22 +39,50 @@ button:focus,
   .btn:active {
     box-shadow: none;
   }
+}
 
-  .dropdown-menu {
-    border-radius: 0;
-    box-shadow: none;
+.dropdown-menu {
+  border: 1px solid $mercury !important;
+  border-radius: $dropdown-menu-radius;
+  background: $white;
+  box-shadow: none;
 
-    a:focus {
-      outline: none;
-      box-shadow: none;
-    }
+  li {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background: none !important;
   }
 
-  .dropdown-menu:focus {
+  .selected {
+      a {
+        font-weight: 400;
+      }
+  }
+
+  li a {
+    background: none !important;
+    font-weight: 100;
+  }
+
+  li a:hover {
+    background: none;
+    color: $turquoise;
+  }
+
+  a:focus {
     outline: none;
-    border-radius: 0;
     box-shadow: none;
   }
+}
+
+.dropdown-menu .inner {
+  border: none !important;
+}
+
+.dropdown-menu:focus {
+  outline: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .dropdown-menu-right {
@@ -63,4 +98,68 @@ button:focus,
 
 .left-space {
   margin-left: 20px;
+}
+
+.bootstrap-datetimepicker-widget {
+  width: 262px;
+  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+  td.active {
+    text-shadow: none;
+    background: none;
+    border: none;
+    border-radius: $dropdown-menu-radius;
+    background-color: $turquoise !important;
+    color: $white;
+
+  }
+
+  td.active:hover.active {
+    color: $mine;
+    text-shadow: none;
+  }
+
+  thead tr:first-child th:hover {
+    background: white;
+    text-shadow: none;
+  }
+
+  td.day:hover {
+    background: white;
+    color: $turquoise;
+  }
+
+  .picker-switch {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .picker-switch a {
+    color: $mine !important;
+  }
+
+  .picker-switch:hover a {
+    color: $turquoise !important;
+  }
+
+  td span:hover {
+    background-color: $white;
+    color: $turquoise;
+  }
+
+  .timepicker-picker a {
+    color: $mine;
+  }
+
+
+}
+
+.bootstrap-datetimepicker-widget:before {
+  border: none !important;
+}
+
+.bootstrap-datetimepicker-widget:after {
+  border: none !important;
 }

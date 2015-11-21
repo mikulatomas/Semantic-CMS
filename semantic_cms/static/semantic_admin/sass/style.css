@@ -134,7 +134,7 @@ ul.tagit {
 
 .ui-autocomplete {
   border: 1px solid #E5E5E5 !important;
-  border-radius: 3px;
+  border-radius: 2px;
   background: #FFFFFF; }
   .ui-autocomplete .ui-menu-item {
     margin-top: 8px;
@@ -263,6 +263,9 @@ h4.gap, .nav-tabs li a.gap {
   .btn .margin-right {
     margin-right: 10px; }
 
+.btn-group.open .dropdown-toggle {
+  box-shadow: none !important; }
+
 .btn:active {
   box-shadow: none; }
 
@@ -374,6 +377,10 @@ button:focus,
 .bootstrap-datetimepicker-widget ul {
   padding-left: 0px; }
 
+.bootstrap-select .arrow {
+  float: right;
+  margin-right: -10px; }
+
 .dropdown-form {
   margin-top: 25px; }
   .dropdown-form .btn {
@@ -385,16 +392,35 @@ button:focus,
       margin-right: 20px; }
   .dropdown-form .btn:active {
     box-shadow: none; }
-  .dropdown-form .dropdown-menu {
-    border-radius: 0;
-    box-shadow: none; }
-    .dropdown-form .dropdown-menu a:focus {
-      outline: none;
-      box-shadow: none; }
-  .dropdown-form .dropdown-menu:focus {
+
+.dropdown-menu {
+  border: 1px solid #E5E5E5 !important;
+  border-radius: 2px;
+  background: #FFFFFF;
+  box-shadow: none; }
+  .dropdown-menu li {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background: none !important; }
+  .dropdown-menu .selected a {
+    font-weight: 400; }
+  .dropdown-menu li a {
+    background: none !important;
+    font-weight: 100; }
+  .dropdown-menu li a:hover {
+    background: none;
+    color: #36D7B7; }
+  .dropdown-menu a:focus {
     outline: none;
-    border-radius: 0;
     box-shadow: none; }
+
+.dropdown-menu .inner {
+  border: none !important; }
+
+.dropdown-menu:focus {
+  outline: none;
+  border-radius: 0;
+  box-shadow: none; }
 
 .dropdown-menu-right {
   text-align: right; }
@@ -405,6 +431,46 @@ button:focus,
 
 .left-space {
   margin-left: 20px; }
+
+.bootstrap-datetimepicker-widget {
+  width: 262px;
+  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px; }
+  .bootstrap-datetimepicker-widget td.active {
+    text-shadow: none;
+    background: none;
+    border: none;
+    border-radius: 2px;
+    background-color: #36D7B7 !important;
+    color: #FFFFFF; }
+  .bootstrap-datetimepicker-widget td.active:hover.active {
+    color: #2F2F2F;
+    text-shadow: none; }
+  .bootstrap-datetimepicker-widget thead tr:first-child th:hover {
+    background: white;
+    text-shadow: none; }
+  .bootstrap-datetimepicker-widget td.day:hover {
+    background: white;
+    color: #36D7B7; }
+  .bootstrap-datetimepicker-widget .picker-switch {
+    margin-top: 15px;
+    margin-bottom: 10px; }
+  .bootstrap-datetimepicker-widget .picker-switch a {
+    color: #2F2F2F !important; }
+  .bootstrap-datetimepicker-widget .picker-switch:hover a {
+    color: #36D7B7 !important; }
+  .bootstrap-datetimepicker-widget td span:hover {
+    background-color: #FFFFFF;
+    color: #36D7B7; }
+  .bootstrap-datetimepicker-widget .timepicker-picker a {
+    color: #2F2F2F; }
+
+.bootstrap-datetimepicker-widget:before {
+  border: none !important; }
+
+.bootstrap-datetimepicker-widget:after {
+  border: none !important; }
 
 .inline {
   display: inline-block !important; }
@@ -479,6 +545,7 @@ button:focus,
     color: #b72121; }
 
 .alert {
+  text-align: left !important;
   padding: 10px;
   border-radius: 0;
   margin-bottom: 10px; }
@@ -499,5 +566,21 @@ button:focus,
     margin-bottom: 0; }
   #message .alert-danger {
     border-top: 3px solid #e15d5d; }
+
+.login img {
+  margin-top: 80px;
+  margin-bottom: 20px; }
+.login .button {
+  margin-top: 60px; }
+
+.form {
+  border: 1px solid #E5E5E5;
+  border-radius: 20px;
+  margin-top: 50px; }
+  .form form {
+    margin-top: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 70px; }
 
 /*# sourceMappingURL=style.css.map */
