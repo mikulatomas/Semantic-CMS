@@ -22,6 +22,10 @@ from semantic.models import Semantic
 
 #import Keywords model
 from keywords.models import Keyword
+from keywords.models import TaggedArticle
+from keywords.managers import TaggableManager
+# from taggit.managers import TaggableManager
+# from taggit.models import TaggedItemBase
 
 #import Flags model
 from flags.models import Flag
@@ -38,13 +42,13 @@ class Article(models.Model):
     sub_title = models.CharField(max_length=128, blank=True, null=True)
     slug = models.SlugField(max_length=50, unique=True, blank=True,  null=True)
 
-    statut = models.CharField(max_length=1,
+    status = models.CharField(max_length=1,
                                 choices=ARTICLE_STATUS,
                                 default=DRAFT)
 
     flag = models.ForeignKey(Flag, null=True, blank=True)
 
-    cover_image = models.ImageField(upload_to="images", blank=True, null=True)
+    cover_image = models.ImageField(upload_to="articles/", blank=True, null=True)
 
     content = MarkupField(default_markup_type='markdown', null=True, blank=True)
     html = models.TextField(null=True, blank=True)
@@ -52,7 +56,9 @@ class Article(models.Model):
     author = models.ForeignKey(User, null=True, blank=True)
 
     semantic = models.ManyToManyField(Semantic, blank=True)
-    keywords = models.ManyToManyField(Keyword, blank=True)
+    # keywords = models.ManyToManyField(Keyword, blank=True)
+    keywords = TaggableManager(blank=True, through=TaggedArticle)
+
 
     edited_date = models.DateTimeField('date edited', null=True, blank=True)
     created_date = models.DateTimeField('date created')
@@ -66,16 +72,16 @@ class Article(models.Model):
         return self.title
 
     def is_draft(self):
-        return self.statut == DRAFT
+        return self.status == DRAFT
 
     def generate_html(self):
         self.html = self.content.rendered
 
     def publish_article(self, time):
-        """Change statut of article and dates"""
+        """Change status of article and dates"""
         self.published_date = time
 
-        self.statut = PUBLISHED
+        self.status = PUBLISHED
 
     def edit_article(self, time):
         """Update time of edit article"""

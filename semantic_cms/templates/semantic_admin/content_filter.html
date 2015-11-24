@@ -1,0 +1,142 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block jumbotron %}
+<div class="jumbotron" style="background-image: linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);">
+  <div class="container">
+    <h1 class="white">Content manager</h1>
+    <h2 class="white">Manage your content here</h2>
+
+    <div class="row jumbotron-gap">
+      <div class="col-sm-3">
+        <div class="input-group">
+          <span class="input-group-addon white-form"><i class="fa fa-search"></i></span>
+          {% render_field filter.form.title__icontains form="filter_article_form" class+="form-control white-form" id="filter_article_title" %}
+        </div>
+      </div>
+      <div class="col-sm-3 col-sm-offset-3">
+        <div class="dropdown dropdown-form">
+          {% render_field filter.form.status form="filter_article_form" id="filter_article_status" data-width="100%" %}
+        </div>
+      </div>
+      <div class="col-sm-3">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 col-sm-offset-6">
+        <div class="dropdown dropdown-form">
+          {% render_field filter.form.flag form="filter_article_form" id="filter_article_flag" data-width="100%" %}
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div id="filter_article_created_date_wrapper" class="input-group input-append date">
+          <span class="input-group-addon white-form add-on"><i class="fa fa-calendar"></i></span>
+          {% render_field filter.form.created_date__gt form="filter_article_form" class+="form-control white-form" id="filter_article_created_date" data-format="yyyy-MM-dd hh:mm:ss" placeholder="Older then" %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- {{ filter.form.as_p }} -->
+{% endblock %}
+
+{% block content %}
+<form id="filter_article_form" action="" method="get">
+  <!-- <input type="submit" /> -->
+</form>
+{% if article_list.all %}
+<a class="btn btn-green-solid" href="{% url 'semantic_admin:content:create_article' %}" role="button">
+  <span class="icon margin-right">+</span>Write new article</a>
+<div class="float-right">
+  <button class="btn btn-gray-outline inline" href="#" role="button">
+    <span class="icon margin-right">×</span>Reset filters</button>
+</div>
+
+
+<div class="article-list">
+  {% for article in filter %}
+  <div class="article-row">
+    <h2 class="inline"><a href="{% url 'semantic_admin:content:edit_article' article.id %}">{{ article.title }}</a></h2>
+    {% if article.is_draft %}
+    <h4>draft</h4>
+    {% endif %}
+    <div class="details">
+      <span class="left">
+        <span class="detail"><i class="fa fa-align-left icon"></i>{{ article.flag }}</span>
+        <span class="detail"><i class="fa fa-calendar-o icon"></i>{{ article.created_date }}</span>
+      </span>
+      <span class="right">
+        <span class="detail"><i class="fa fa-eye icon"></i>N/A</span>
+        <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
+        <button class="btn btn-gray-outline btn-round" href="#" role="button">
+          <i class="fa fa-sitemap"></i></button>
+        <a class="btn btn-blue-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.id %}" role="button">
+          <i class="fa fa-pencil"></i></a>
+        <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:content:delete_article' article.id %}" role="button">
+          <i class="fa fa-trash-o"></i></a>
+      </span>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="row">
+  <div class="no-content text-center">
+    <div class="inline-block">
+      <i class="fa fa-align-left icon" style="font-size:80px;"></i>
+    </div>
+    <div class="text text-left inline-block">
+      <h3 class="title">No articles</h3>
+      <div class="subtitle">You should write some!</div>
+    </div>
+  </div>
+
+  <div class="text-center">
+  <a class="btn btn-green-solid" href="{% url 'semantic_admin:content:create_article' %}" role="button">
+    <span class="icon margin-right">+</span>Write new article</a>
+  </div>
+  <div class="no-content">
+  </div>
+</div>
+
+{% endif %} {% endblock %}
+
+{% block extrascripts %}
+<!-- Bootstrap DateTimePicker.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-datetimepicker.js' %}"></script>
+
+<!-- Slugify.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
+
+<!-- Are you sure?.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
+
+<!-- autosize.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
+
+<!-- tag it.js -->
+<script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+
+  $('#filter_article_flag').selectpicker({
+    style: 'white-form',
+  });
+
+  $('#filter_article_status').selectpicker({
+    style: 'white-form',
+  });
+
+  $(function() {
+    $('#filter_article_created_date_wrapper').datetimepicker();
+  });
+
+  $('input').keydown(function(e) {
+    if (e.keyCode == 13) {
+        $('#filter_article_form').submit();
+    }});
+</script>
+{% endblock %}

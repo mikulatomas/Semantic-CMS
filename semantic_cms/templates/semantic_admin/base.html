@@ -14,7 +14,8 @@
       {% block navbar %}{% endblock %}
       {% block jumbotron %}{% endblock %}
       <div class="container">
-      {% block content %}{% endblock %}
+      {% block content %}
+      {% endblock %}
       </div>
 
       {% block footer %}{% endblock %}
@@ -25,6 +26,8 @@
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="{% static 'semantic_admin/scripts/bootstrap.min.js' %}"></script>
 
@@ -33,20 +36,6 @@
 
       <!-- Bootstrap Select.js -->
       <script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-select.js' %}"></script>
-
-      <!-- Bootstrap DateTimePicker.js -->
-      <script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-datetimepicker.js' %}"></script>
-
-      <!-- Slugify.js -->
-      <script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
-
-      <!-- Are you sure?.js -->
-      <script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
-
-
-      <script type="text/javascript">
-
-      </script>
 
       {% block extrascripts %}{% endblock %}
     </body>

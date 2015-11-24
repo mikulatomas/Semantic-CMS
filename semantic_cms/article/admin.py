@@ -9,7 +9,7 @@ from .models import Article
 # Classic admin
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'statut', 'flag','author', 'created_date')
+    list_display = ('title', 'status', 'flag','author', 'created_date')
     exclude = ("markdown",)
     filter_horizontal = ("semantic",)
     prepopulated_fields = {"slug": ("title",)}

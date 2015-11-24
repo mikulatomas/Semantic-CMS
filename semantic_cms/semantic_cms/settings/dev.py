@@ -24,4 +24,9 @@ STATICFILES_DIRS = (
     '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/static',
 )
 
-# STATIC_ROOT = '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/static'
+# MEDIA_DIRS = (
+#     '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/media',
+# )
+
+MEDIA_ROOT = '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/media'
+MEDIA_URL = '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/media/'

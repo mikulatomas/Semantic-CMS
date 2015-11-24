@@ -11,6 +11,11 @@
   }
 }
 
+
+.btn-group.open .dropdown-toggle {
+  box-shadow: none !important;
+}
+
 .btn:active {
   box-shadow: none;
 }

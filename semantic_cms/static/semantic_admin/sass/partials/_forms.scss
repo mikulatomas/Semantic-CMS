@@ -15,6 +15,9 @@
   box-shadow: none;
   padding-left: 13px;
 }
+.form-control[readonly] {
+  background: transparent;
+}
 .form-control:focus {
   box-shadow: none;
 }
@@ -105,10 +108,136 @@
   font-size: 18px;
   font-weight: lighter;
   border: 0;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 
   // white-space: normal;
 }
+
+ul.tagit {
+  width: 100% !important;
+  // margin-top: -17px !important;
+}
+
+.tagit, .ui-widget-content {
+  @extend .form-control;
+  @extend .gray-form;
+  border: none !important;
+  font-family: Roboto !important;
+  font-size: 14px !important;
+  color: $chicago !important;
+  font-weight: lighter !important;
+  padding-bottom: 5px !important;
+  // width: 100%;
+  // font-weight: 400 !important;
+
+  .ui-state-default {
+    background: none !important;
+    border: 1px solid $silver !important;
+    border-radius: 40px;
+    line-height: 25px !important;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    // border: 1px solid #F64747;
+    // border-radius: 40px;
+    // background-color: $white !important;
+  }
+
+  li.tagit-choice {
+    padding-left: 20px !important;
+    // padding-right: 30px !important;
+
+    span.tagit-label {
+      margin-right: 20px;
+    }
+
+    a.tagit-close {
+      margin-right: 15px;
+      font-size: 18px;
+      margin-top: -10px !important;
+    }
+
+    a.tagit-close:hover {
+
+    }
+  }
+
+  .tagit-new {
+    margin-top: 7px;
+    margin-bottom: 4px;
+    margin-left: 10px;
+
+    // input::-webkit-input-placeholder {
+    //   /* WebKit, Blink, Edge */
+    //   color: $chicago !important;
+    // }
+    // input:-moz-placeholder {
+    //   /* Mozilla Firefox 4 to 18 */
+    //   color: $chicago !important;
+    //   opacity: 1;
+    // }
+    // input::-moz-placeholder {
+    //   /* Mozilla Firefox 19+ */
+    //   color: $chicago !important;
+    //   opacity: 1;
+    // }
+    // input:-ms-input-placeholder {
+    //   /* Internet Explorer 10-11 */
+    //   color: $chicago !important;
+    // }
+  }
+
+
+
+  .ui-state-default:hover {
+    background: none !important;
+    border: 1px solid $sunset-orange !important;
+    // background-color: $white !important;
+
+    a {
+      color: $sunset-orange;
+    }
+  }
+}
+
+.ui-autocomplete {
+  border: 1px solid $mercury !important;
+  border-radius: $dropdown-menu-radius;
+  background: $white;
+
+  .ui-menu-item {
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+
+  li.ui-menu-item:hover a {
+    background: none !important;
+    border: none !important;
+    list-style-image: none !important;
+    font-weight: lighter !important;
+  }
+
+  a:hover {
+    background: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    list-style-image: none !important;
+  }
+}
+
+
+// /* Rectangle 106 Copy 2: */
+// border: 1px solid #F64747;
+// border-radius: 40px;
+// /* Keyword: */
+// font-family: Roboto-Light;
+// font-size: 14px;
+// color: #5F5F5F;
+// line-height: 16px;
+// /* ×: */
+// font-family: Roboto-Light;
+// font-size: 18px;
+// color: #F64747;
+// line-height: 14px;
 
 // .bootstrap-select {
 //   button {

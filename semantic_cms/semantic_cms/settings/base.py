@@ -50,6 +50,9 @@ INSTALLED_APPS = (
     'django_extensions',
     'widget_tweaks',
     'datetimewidget',
+    'taggit',
+    'taggit_templatetags',
+    'django_filters',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -120,18 +123,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    '%s/static/' % (BASE_DIR),
-)
+# STATICFILES_DIRS = (
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     '%s/static/' % (BASE_DIR),
+# )
 
 LOGIN_REDIRECT_URL = '/semantic_admin/'
 LOGIN_URL = '/semantic_admin/login'
 LOGOUT_URL = '/semantic_admin/logout'
+
+# TAGGIT_AUTOCOMPLETE_JS_BASE_URL = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
 
 #MARKDOWN PLUGIN
 import markdown

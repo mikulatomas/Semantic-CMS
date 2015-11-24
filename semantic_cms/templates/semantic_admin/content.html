@@ -1,91 +1,73 @@
-{% extends "semantic_admin/base_site.html" %} {% block jumbotron %}
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block jumbotron %}
 <div class="jumbotron" style="background-image: linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);">
   <div class="container">
     <h1 class="white">Content manager</h1>
     <h2 class="white">Manage your content here</h2>
-    {% if article_list.all %}
     <div class="row jumbotron-gap">
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <div class="input-group">
           <span class="input-group-addon white-form"><i class="fa fa-search"></i></span>
-          <input type="text" class="form-control white-form" placeholder="Search">
+          {% render_field filter.form.title__icontains form="filter_article_form" class+="form-control white-form" id="filter_article_title" placeholder="Search" %}
         </div>
       </div>
-      <div class="col-sm-3 col-sm-offset-3">
-        <div class="dropdown dropdown-form">
-          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="btn-icon fa fa-align-left"></i> Dropdown
-            <i class="fa fa-angle-down" style="float: right;"></i>
-          </button>
-          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
+      <div class="col-sm-3 col-sm-offset-2">
+        <div id="filter_article_status_dropdown" class="dropdown dropdown-form">
+          {% render_field filter.form.status form="filter_article_form" id="filter_article_status" data-width="100%" onchange="this.form.submit()" %}
         </div>
       </div>
       <div class="col-sm-3">
-        <div class="dropdown dropdown-form">
-          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="btn-icon fa fa-align-left"></i> Dropdown
-            <i class="fa fa-angle-down" style="float: right;"></i>
-          </button>
-          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
+        <div id="filter_article_created_date_wrapper_from" class="input-group input-append date">
+          <span class="input-group-addon white-form add-on"><i class="fa fa-calendar"></i></span>
+          {% render_field filter.form.created_date__gt form="filter_article_form" class+="form-control white-form" id="filter_article_created_date" data-format="yyyy-MM-dd" placeholder="From" onchange="this.form.submit()" %}
+          <span class="input-group-addon white-form add-on"><i class="fa fa-angle-down"></i></span>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-3 col-sm-offset-6">
-        <div class="dropdown dropdown-form">
-          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="btn-icon fa fa-align-left"></i> Dropdown
-            <i class="fa fa-angle-down" style="float: right;"></i>
-          </button>
-          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
+        <div id="filter_article_flag_dropdown" class="dropdown dropdown-form">
+          {% render_field filter.form.flag form="filter_article_form" id="filter_article_flag" data-width="100%" onchange="this.form.submit()" %}
         </div>
       </div>
       <div class="col-sm-3">
-        <div class="dropdown dropdown-form">
-          <button class="btn dropdown-toggle btn-block white" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="btn-icon fa fa-align-left"></i> Dropdown
-            <i class="fa fa-angle-down" style="float: right;"></i>
-          </button>
-          <ul class="dropdown-menu btn-block" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
+        <div id="filter_article_created_date_wrapper_to" class="input-group input-append date">
+          <span class="input-group-addon white-form add-on"><i class="fa fa-calendar"></i></span>
+          {% render_field filter.form.created_date__lt form="filter_article_form" class+="form-control white-form" id="filter_article_created_date" data-format="yyyy-MM-dd" placeholder="To" onchange="this.form.submit()" %}
+
+          <span class="input-group-addon white-form add-on"><i class="fa fa-angle-down"></i></span>
         </div>
       </div>
     </div>
-    {% endif %}
   </div>
 </div>
 {% endblock %}
+
 {% block content %}
-{% if article_list.all %}
+<form id="filter_article_form" action="" method="get">
+  <!-- <input type="submit" /> -->
+</form>
+
+{% if filter %}
 <a class="btn btn-green-solid" href="{% url 'semantic_admin:content:create_article' %}" role="button">
   <span class="icon margin-right">+</span>Write new article</a>
+{% endif %}
+
+
 <div class="float-right">
-  <button class="btn btn-gray-outline inline" href="#" role="button">
-    <span class="icon margin-right">×</span>Reset filters</button>
+  {% if request.GET.title__icontains != None and filter %}
+  <a class="btn btn-gray-outline inline" href="{% url 'semantic_admin:content:index' %}" role="button">
+    <span class="icon margin-right">×</span>Reset filters</a>
+  {% endif %}
 </div>
 
 
+{% if filter %}
 <div class="article-list">
-  {% for article in article_list %}
+  {% for article in filter %}
   <div class="article-row">
     <h2 class="inline"><a href="{% url 'semantic_admin:content:edit_article' article.id %}">{{ article.title }}</a></h2>
     {% if article.is_draft %}
@@ -94,13 +76,13 @@
     <div class="details">
       <span class="left">
         <span class="detail"><i class="fa fa-align-left icon"></i>{{ article.flag }}</span>
-        <span class="detail"><i class="fa fa-calendar-o icon"></i>{{ article.created_date }}</span>
+        <span class="detail"><i class="fa fa-calendar icon"></i>{{ article.created_date }}</span>
       </span>
       <span class="right">
         <span class="detail"><i class="fa fa-eye icon"></i>N/A</span>
         <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
-        <button class="btn btn-gray-outline btn-round" href="#" role="button">
-          <i class="fa fa-sitemap"></i></button>
+        <!-- <button class="btn btn-gray-outline btn-round" href="#" role="button">
+          <i class="fa fa-sitemap"></i></button> -->
         <a class="btn btn-blue-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.id %}" role="button">
           <i class="fa fa-pencil"></i></a>
         <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:content:delete_article' article.id %}" role="button">
@@ -109,6 +91,26 @@
     </div>
   </div>
   {% endfor %}
+</div>
+{% else %}
+{% if request.GET.title__icontains != None %}
+<div class="row">
+  <div class="no-content text-center">
+    <div class="inline-block">
+      <i class="fa fa-exclamation-triangle icon" style="font-size:80px;"></i>
+    </div>
+    <div class="text text-left inline-block">
+      <h3 class="title">No articles found</h3>
+      <div class="subtitle">Change parameters in your filter.</div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <a class="btn btn-gray-outline inline" href="{% url 'semantic_admin:content:index' %}" role="button">
+      <span class="icon margin-right">×</span>Reset filters</a>
+  </div>
+  <div class="no-content">
+  </div>
 </div>
 {% else %}
 <div class="row">
@@ -129,5 +131,54 @@
   <div class="no-content">
   </div>
 </div>
+{% endif %}
+{% endif %}
 
-{% endif %} {% endblock %}
+
+
+{% endblock %}
+
+{% block extrascripts %}
+<!-- Bootstrap DateTimePicker.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-datetimepicker.js' %}"></script>
+
+<!-- Slugify.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
+
+<!-- Are you sure?.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
+
+<!-- autosize.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
+
+<!-- tag it.js -->
+<script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+  $('#filter_article_flag').selectpicker({
+    style: 'white-form',
+  });
+
+  $('#filter_article_status').selectpicker({
+    style: 'white-form',
+  });
+
+  $(function() {
+    $('#filter_article_created_date_wrapper_from').datetimepicker({format: 'yyyy-MM-dd', pickTime: false});
+  });
+
+  $(function() {
+    $('#filter_article_created_date_wrapper_to').datetimepicker({format: 'yyyy-MM-dd', pickTime: false});
+  });
+
+  $('input').keydown(function(e) {
+    if (e.keyCode == 13) {
+        $('#filter_article_form').submit();
+    }});
+
+  $('#filter_article_status_dropdown #icon').addClass('fa-file-o');
+
+  $('#filter_article_flag_dropdown #icon').addClass('fa-align-left');
+</script>
+{% endblock %}
