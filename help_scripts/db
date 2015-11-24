@@ -9,3 +9,8 @@ CREATE DATABASE semantic_cms;
 -- ALTER ROLE semantic_cms_user SET timezone TO 'UTC';
 --
 -- GRANT ALL PRIVILEGES ON DATABASE semantic_cms TO semantic_cms_user;
+
+
+drop schema public cascade;
+create schema public;
+ALTER SCHEMA public OWNER to semantic_cms_user;
