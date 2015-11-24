@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class ArticleEditForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords", "author"]
+        fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords", "author", "cover_image"]
         # fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords"]
         widgets = {
             'author': TextInput(attrs={'readonly':'readonly'}),

@@ -48,7 +48,7 @@ class Article(models.Model):
 
     flag = models.ForeignKey(Flag, null=True, blank=True)
 
-    cover_image = models.ImageField(upload_to="images", blank=True, null=True)
+    cover_image = models.ImageField(upload_to="articles/", blank=True, null=True)
 
     content = MarkupField(default_markup_type='markdown', null=True, blank=True)
     html = models.TextField(null=True, blank=True)

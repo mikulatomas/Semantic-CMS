@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block jumbotron %}
-<div class="jumbotron" style="background-image: url({% static 'semantic_admin/img/jumbotron/admin.jpg' %});">
+<div class="jumbotron" id="jumbotron" style="background-image: url({% static 'semantic_admin/img/jumbotron/admin.jpg' %});">
   <div class="container">
     <form class="form-horizontal">
       <div class="form-group">
@@ -70,7 +70,9 @@
         </div>
       </div>
       <div class="col-sm-2 col-sm-offset-7 text-right">
-        <button class="btn btn-white-outline pull-down" href="#" role="button">Change cover</button>
+        {# <button class="btn btn-white-outline pull-down" href="#" role="button">Change cover</button>#}
+        <input type="button" value="Change cover" class="btn btn-white-outline pull-down" onclick="document.getElementById('article_cover_image').click();" />
+        {% render_field form.cover_image form="article_form" style="display: none;" id="article_cover_image" %}
       </div>
     </div>
   </div>
@@ -78,6 +80,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div id="article_created_date" class="date">
 
 </div>
@@ -131,7 +134,7 @@
 {% endblock %}
 
 {% block footer %}
-<form id="article_form" method="post">
+<form id="article_form" method="post" enctype="multipart/form-data">
   {% csrf_token %}
 </form>
 <div class="container-fluid footer">
@@ -175,6 +178,17 @@
 <!-- tag it.js -->
 <script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+  document.getElementById("article_cover_image").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+          document.getElementById("jumbotron").style.backgroundImage = 'url(' + e.target.result + ')';
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+  };
+
   $(function() {
     $('form').areYouSure({
       message: 'It looks like you have been editing something. ' + 'If you leave before saving, your changes will be lost.'

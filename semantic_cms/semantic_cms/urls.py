@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 # from article.admin import my_admin
 
@@ -23,4 +25,4 @@ urlpatterns = [
     # url(r'^myadmin/', include(my_admin.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^keywords/', include('keywords.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
