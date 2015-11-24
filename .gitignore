@@ -37,7 +37,8 @@ node_modules
 .sass-cache
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+*.pyc
+__pycache__
 *.py[cod]
 *$py.class
 
