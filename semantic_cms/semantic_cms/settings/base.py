@@ -53,6 +53,8 @@ INSTALLED_APPS = (
     'taggit',
     'taggit_templatetags',
     'django_filters',
+    'django_dag',
+    # 'django_dag.dag_tags',
 )
 
 MIDDLEWARE_CLASSES = (

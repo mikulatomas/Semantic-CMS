@@ -120,6 +120,18 @@ class DeleteArticleView(LoginRequiredMixin, DeleteView):
     model = Article
     success_url = reverse_lazy('semantic_admin:content:index')
 
+class SemanticView(LoginRequiredMixin, ListView):
+    template_name = "semantic_admin/semantic_tree.html"
+    model = Semantic
+    context_object_name = 'dag_list'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(SemanticView, self).get_context_data(**kwargs)
+
+        context['title'] = 'Semantic'
+        return context
+
 
 def login(request, template_name):
     login_context = {
