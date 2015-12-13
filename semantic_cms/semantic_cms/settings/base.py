@@ -54,7 +54,7 @@ INSTALLED_APPS = (
     'taggit_templatetags',
     'django_filters',
     'django_dag',
-    # 'django_dag.dag_tags',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -152,3 +152,7 @@ def render_rest(markup):
 MARKUP_FIELD_TYPES = (
     ('markdown', markdown.markdown),
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+}

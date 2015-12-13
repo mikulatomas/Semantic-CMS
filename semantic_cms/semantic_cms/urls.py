@@ -17,12 +17,19 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
-
+from rest_framework import routers
+from semantic import views
 # from article.admin import my_admin
+
+router = routers.DefaultRouter()
+router.register(r'semantic_node', views.SemanticNodeViewSet)
+router.register(r'semantic_edge', views.SemanticEdgeViewSet)
 
 urlpatterns = [
     url(r'^semantic_admin/', include('semantic_admin.urls', namespace="semantic_admin")),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^myadmin/', include(my_admin.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^keywords/', include('keywords.urls')),
+    url(r'^api/', include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,27 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+{% endblock %}
+{% block jumbotron %}
+<div class="row">
+  <div class="col-sm-9">
+    <svg></svg>
+  </div>
+  <div class="col-sm-3 article-list-right">
+    <h4>Articles</h4>
+    <div class="input-group">
+      <span class="input-group-addon gray-form"><i class="fa fa-link"></i></span>
+      <input type="text" class="form-control gray-form" placeholder="test-article">
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/d3.js' %}"></script>
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/semantic_map.js' %}"></script>
+{% endblock %}

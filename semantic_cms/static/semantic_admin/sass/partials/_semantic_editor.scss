@@ -1,0 +1,57 @@
+svg {
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  // border: 1px solid black;
+}
+
+.node {
+  fill: #36D7B7;
+}
+
+.node.selected {
+  stroke-width: 3px;
+  stroke: #19987F;
+}
+
+// .link {
+//   stroke: #999;
+//   stroke-width: 1.5px;
+// }
+
+.text {
+  text-anchor: middle;
+  fill: white;
+}
+
+path.link {
+  fill: none;
+  stroke: gray;
+  stroke-width: 2px;
+  cursor: default;
+}
+
+path.link.selected {
+  stroke-dasharray: 10,2;
+}
+
+path.link.dragline {
+  pointer-events: none;
+}
+
+path.link.hidden {
+  stroke-width: 0;
+}
+
+.article-list-right {
+  height: 100%;
+  border-left: 1px $mercury solid;
+  padding-top: 30px;
+  padding-right: 30px;
+}

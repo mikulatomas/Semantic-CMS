@@ -121,7 +121,7 @@ class DeleteArticleView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('semantic_admin:content:index')
 
 class SemanticView(LoginRequiredMixin, ListView):
-    template_name = "semantic_admin/semantic_tree.html"
+    template_name = "semantic_admin/semantic.html"
     model = Semantic
     context_object_name = 'dag_list'
 
