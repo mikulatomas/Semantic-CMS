@@ -10,11 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
+# SECURITY WARNING: don't run with debug turned on in production!
+TEMPLATE_DEBUG = DEBUG = False
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -22,11 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'x1!)9*uc#1@7#qi8pawo&fh4bn2h$3abu*n2tz9@r8n6l_u_kb'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-TEMPLATE_DEBUG = DEBUG = False
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -51,7 +48,7 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'datetimewidget',
     'taggit',
-    'taggit_templatetags',
+    # 'taggit_templatetags',
     'django_filters',
     'django_dag',
     'rest_framework',
@@ -68,17 +65,43 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.template.context_processors.debug",
-    "django.template.context_processors.i18n",
-    "django.template.context_processors.media",
-    "django.template.context_processors.static",
-    "django.template.context_processors.tz",
-    "django.contrib.messages.context_processors.messages"
-)
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     "django.contrib.auth.context_processors.auth",
+#     "django.template.context_processors.debug",
+#     "django.template.context_processors.i18n",
+#     "django.template.context_processors.media",
+#     "django.template.context_processors.static",
+#     "django.template.context_processors.tz",
+#     "django.contrib.messages.context_processors.messages"
+# )
 
 ROOT_URLCONF = 'semantic_cms.urls'
+
+t_path = os.path.join(BASE_DIR, 'templates')
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            t_path
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                "django.core.context_processors.request",
+            ],
+        },
+    },
+]
 
 # TEMPLATES = [
 #     {
@@ -96,12 +119,12 @@ ROOT_URLCONF = 'semantic_cms.urls'
 #     },
 # ]
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    '%s/templates' % (BASE_DIR),
-)
+# TEMPLATE_DIRS = (
+#     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     '%s/templates' % (BASE_DIR),
+# )
 
 WSGI_APPLICATION = 'semantic_cms.wsgi.application'
 
@@ -120,20 +143,44 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Media locations
+
+media_root_path = os.path.join(BASE_DIR, 'media')
+# media_url_path = os.path.join(BASE_DIR, 'media/')
+media_url_path = '/media/'
+
+MEDIA_ROOT = media_root_path
+MEDIA_URL = media_url_path
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+STATIC_ROOT = BASE_DIR
+STATIC_URL = os.path.join(BASE_DIR, 'static/')
 
-# Additional locations of static files
-# STATICFILES_DIRS = (
-#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
-#     # Always use forward slashes, even on Windows.
-#     # Don't forget to use absolute paths, not relative paths.
-#     '%s/static/' % (BASE_DIR),
-# )
+staticfiles_path = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = (
+    staticfiles_path,
+)
+
+# Password validation
+# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
 LOGIN_REDIRECT_URL = '/semantic_admin/'
 LOGIN_URL = '/semantic_admin/login'
