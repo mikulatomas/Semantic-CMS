@@ -5,34 +5,6 @@
 // $.getJSON('/api/semantic_edge', function(data) {
 //     var edgesJson = data;
 // });
-var width = 960,
-  height = 500;
-
-
-
-// var svg = d3.select("body").append("svg")
-//     .attr("width", width)
-//     .attr("height", height);
-
-var svg = d3.select("body").selectAll("svg");
-
-// svg.attr("height", $(document).height() - 70);
-
-svg.style("height", $(document).height() - 100);
-
-width = parseInt(svg.style("width"));
-height = parseInt(svg.style("height"));
-
-// console.log(width);
-// console.log(height);
-
-var force = d3.layout.force()
-  .charge(-2000)
-  .linkDistance(200)
-  .chargeDistance(500)
-  .size([width, height]);
-
-
 
 function getNodes(callback) {
   d3.json("/api/semantic_node", function(error, nodesJson) {
@@ -111,33 +83,16 @@ function saveData(jsonNodes, jsonEdges) {
     }
   });
 
-  // var testData = {
-  //   "glossary": {
-  //       "title": "example glossary",
-  // 	"GlossDiv": {
-  //           "title": "S",
-  // 		"GlossList": {
-  //               "GlossEntry": {
-  //                   "ID": "SGML",
-  // 				"SortAs": "SGML",
-  // 				"GlossTerm": "Standard Generalized Markup Language",
-  // 				"Acronym": "SGML",
-  // 				"Abbrev": "ISO 8879:1986",
-  // 				"GlossDef": {
-  //                       "para": "A meta-markup language, used to create markup languages such as DocBook.",
-  // 					"GlossSeeAlso": ["GML", "XML"]
-  //                   },
-  // 				"GlossSee": "markup"
-  //               }
-  //           }
-  //       }
-  //   }
-  // };
+  console.log(jsonNodes);
 
   $.ajax({
     url: 'save/',
     type: 'POST',
-    data: JSON.stringify({ nodes: jsonNodes, edges: jsonEdges }),
+    // data: JSON.stringify({
+    //   nodes: jsonNodes,
+    //   edges: jsonEdges
+    // }),
+    data: JSON.stringify(jsonNodes),
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
     async: false,
@@ -150,18 +105,17 @@ function saveData(jsonNodes, jsonEdges) {
 getNodes(function(nodes) {
   getEdges(function(edges) {
 
-    svg.append('svg:defs').append('svg:marker')
-      .attr('id', 'end-arrow')
-      .attr('viewBox', '0 -5 10 10')
-      .attr('refX', 6)
-      .attr('markerWidth', 4)
-      .attr('markerHeight', 4)
-      .attr('orient', 'auto')
-      .append('svg:path')
-      .attr('d', 'M0,-5L10,0L0,5')
-      .attr('fill', 'gray');
+    var width = 960,
+      height = 500;
+
+    var svg = d3.select("body").selectAll("svg");
+
+    svg.style("height", $(document).height() - 100);
+    width = parseInt(svg.style("width"));
+    height = parseInt(svg.style("height"));
 
     var nodeById = d3.map();
+    var lastNodeId = nodes[0].id;
 
     nodes.forEach(function(node) {
       nodeById.set(node.id, node);
@@ -173,43 +127,32 @@ getNodes(function(nodes) {
       link.right = true;
     });
 
-    force
+    var force = d3.layout.force()
+      .charge(-2000)
+      .linkDistance(200)
+      .chargeDistance(500)
       .nodes(nodes)
       .links(edges)
-      .start();
+      .size([width, height])
+      .on('tick', tick);
+
+    // Definition of the marker
+    svg.append('svg:defs').append('svg:marker')
+      .attr('id', 'end-arrow')
+      .attr('viewBox', '0 -5 10 10')
+      .attr('refX', 6)
+      .attr('markerWidth', 4)
+      .attr('markerHeight', 4)
+      .attr('orient', 'auto')
+      .append('svg:path')
+      .attr('d', 'M0,-5L10,0L0,5')
+      .attr('fill', 'gray');
 
     var path = svg.append('g').selectAll('path');
-    path = path.data(edges);
-    path.enter().append('path')
-      .attr('class', 'link')
-      .style('marker-start', function(d) {
-        return d.left ? 'url(#start-arrow)' : '';
-      })
-      .style('marker-end', function(d) {
-        return d.right ? 'url(#end-arrow)' : '';
-      });
+    var nodeEnter = svg.append('svg:g').selectAll("g");
 
-    var nodeEnter = svg.append('svg:g').selectAll("g")
-      .data(nodes)
-      .enter().append("g");
 
-    var circle = nodeEnter.append("circle")
-      .attr("class", "node")
-      // .attr("r", 45);
-      .attr("r", function(d) {
-        return 40 + (d.number_of_descendants * 8);
-      });
-
-    var nodeText = nodeEnter.append("text")
-      .attr("class", "text")
-      .attr("dy", "0em")
-      .attr("y", "4")
-      .text(function(d) {
-        return d.name;
-      })
-      .call(wrap, 70);
-
-    force.on("tick", function() {
+    function tick() {
       path.attr('d', function(d) {
         var deltaX = d.target.x - d.source.x,
           deltaY = d.target.y - d.source.y,
@@ -228,10 +171,81 @@ getNodes(function(nodes) {
       nodeEnter.attr('transform', function(d) {
         return 'translate(' + d.x + ',' + d.y + ')';
       });
+    }
 
-      document.getElementById("save").addEventListener("click", function() {
-        saveData(nodes, edges);
-      }, false);
-    });
+    function restart() {
+      path = path.data(edges);
+
+      path.enter().append('path')
+        .attr('class', 'link')
+        .style('marker-start', function(d) {
+          return d.left ? 'url(#start-arrow)' : '';
+        })
+        .style('marker-end', function(d) {
+          return d.right ? 'url(#end-arrow)' : '';
+        });
+
+      // remove old links
+      path.exit().remove();
+
+      nodeEnter = nodeEnter.data(nodes, function(d) { return d.id; });
+
+      nodeEnter.enter().append("g").attr("class", "nodeGroup");
+
+      var circle = nodeEnter.append("circle");
+
+      circle.attr("class", "node")
+        .attr("r", function(d) {
+          return 40 + (d.number_of_descendants * 8);
+        });
+
+      var nodeText = nodeEnter.append("text");
+
+      nodeText.attr("class", "text")
+        .attr("dy", "0em")
+        .attr("y", "4")
+        .text(function(d) {
+          return d.name;
+        })
+        .call(wrap, 70);
+
+      nodeEnter.exit().remove();
+
+      force.start();
+    }
+
+    document.getElementById("save").addEventListener("click", function() {
+      saveData(nodes, edges);
+    }, false);
+
+    document.getElementById("add").addEventListener("click", function() {
+      add();
+    }, false);
+
+    document.getElementById("restart").addEventListener("click", function() {
+      restart();
+    }, false);
+
+    function add() {
+      // prevent I-bar on drag
+      //d3.event.preventDefault();
+
+      // because :active only works in WebKit?
+      svg.classed('active', true);
+
+      // if(d3.event.ctrlKey || mousedown_node || mousedown_link) return;
+
+      // insert new node at point
+      // var point = d3.mouse(this),
+      // var nodesLength = nodes.length;
+      var node = {id: ++lastNodeId, name: "added", is_root_node: true, number_of_descendants: 0};
+      // node.x = point[0];
+      // node.y = point[1];
+      nodes.push(node);
+
+      restart();
+    }
+
+    restart();
   });
 });
