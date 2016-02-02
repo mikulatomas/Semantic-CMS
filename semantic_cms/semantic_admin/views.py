@@ -33,6 +33,12 @@ from django.utils import timezone
 from .forms import ArticleEditForm
 from django.core.urlresolvers import reverse_lazy
 
+#Save test
+from django.shortcuts import render_to_response
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
+import json
+
 # @login_required
 # def dashboard(request):
 #     now = datetime.datetime.now()
@@ -132,6 +138,19 @@ class SemanticView(LoginRequiredMixin, ListView):
         context['title'] = 'Semantic'
         return context
 
+def semantic_save(request):
+    # print(request)
+    # if request.is_ajax():
+    #     if request.method == 'POST':
+    #         print(request.body)
+    # return HttpResponse("OK")
+    if request.method == 'POST':
+        print(request.body)
+    # try:
+    #     data = json_data['data']
+    # except KeyError:
+    #     return HttpResponseServerError("Malformed data!")
+    return HttpResponse("Got json data")
 
 def login(request, template_name):
     login_context = {

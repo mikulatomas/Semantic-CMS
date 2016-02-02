@@ -25,6 +25,7 @@ from semantic_admin.views import DeleteArticleView
 from semantic_admin.views import UpdateArticleView
 from semantic_admin.views import SemanticView
 # from semantic_admin.views import ContentViewFilter
+# from semantic_admin.views import semantic_save
 
 
 content_patterns = [
@@ -37,6 +38,7 @@ content_patterns = [
 
 semantic_patterns = [
     url(r'^$', SemanticView.as_view(), name='index'),
+    url(r'^save/$', 'semantic_admin.views.semantic_save'),
 ]
 
 urlpatterns = [
