@@ -27,6 +27,7 @@
 
 from django.db import models
 from django_dag.models import *
+from django.utils import timezone
 
 class Semantic(node_factory('SemanticEdge')):
     """
@@ -43,14 +44,34 @@ class Semantic(node_factory('SemanticEdge')):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        """Override save"""
+        time = timezone.now()
+        self.created_date = time
+
+        super(Semantic, self).save(*args, **kwargs)
+
+
 class SemanticEdge(edge_factory('Semantic', concrete = False)):
     """
     SemanticEdge model class
     """
-    # name = models.CharField(max_length = 32, blank = True, null = True)
 
     edited_date = models.DateTimeField('date edited', null=True, blank=True)
     created_date = models.DateTimeField('date created')
 
     def __str__(self):
         return self.parent.name + " -> " + self.child.name
+
+    def parentId(self):
+        return self.parent.id
+
+    def childId(self):
+        return self.child.id
+
+    def save(self, *args, **kwargs):
+        """Override save"""
+        time = timezone.now()
+        self.created_date = time
+
+        super(SemanticEdge, self).save(*args, **kwargs)

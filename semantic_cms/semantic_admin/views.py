@@ -20,6 +20,7 @@ from article.filter import ArticleFilter
 
 from article.models import Article
 from semantic.models import Semantic
+from semantic.models import SemanticEdge
 from flags.models import Flag
 from keywords.models import Keyword
 
@@ -38,6 +39,8 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 import json
+from semantic.serializers import SemanticNodeSerializer
+from semantic.serializers import SemanticEdgeSerializer
 
 # @login_required
 # def dashboard(request):
@@ -139,17 +142,46 @@ class SemanticView(LoginRequiredMixin, ListView):
         return context
 
 def semantic_save(request):
-    # print(request)
-    # if request.is_ajax():
-    #     if request.method == 'POST':
-    #         print(request.body)
-    # return HttpResponse("OK")
     if request.method == 'POST':
-        print(request.body)
-    # try:
-    #     data = json_data['data']
-    # except KeyError:
-    #     return HttpResponseServerError("Malformed data!")
+        jsonData = json.loads(request.body.decode('utf-8'))
+        jsonNodes = jsonData["nodes"]
+        jsonNodesClean = []
+        jsonEdges = jsonData["edges"]
+        jsonEdgesClean = []
+
+        for node in jsonNodes:
+            tmp = {}
+            for attribute in node:
+                if (attribute == "id") or (attribute == "name"):
+                    tmp[attribute] = node[attribute]
+            jsonNodesClean.append(tmp)
+
+        for edge in jsonEdges:
+            tmp = {}
+            for attribute in edge:
+                if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
+                    tmp[attribute] = edge[attribute]
+            jsonEdgesClean.append(tmp)
+
+        querysetNodes = Semantic.objects.all()
+        querysetEdges = SemanticEdge.objects.all()
+
+        serializerNodes = SemanticNodeSerializer(querysetNodes, data=jsonNodesClean, many=True)
+        serializerEdges = SemanticEdgeSerializer(querysetEdges, data=jsonEdgesClean, many=True)
+
+        # serializerNodes.is_valid()
+        # serializerEdges.is_valid()
+        # # print(serializerNodes.errors)
+        # serializerNodes.validated_data
+        # serializerEdges.validated_data
+        if serializerNodes.is_valid():
+            serializerNodes.save()
+
+        print(serializerEdges.is_valid())
+        print(serializerEdges.errors)
+        if serializerEdges.is_valid():
+            serializerEdges.save()
+
     return HttpResponse("Got json data")
 
 def login(request, template_name):

@@ -97,5 +97,3 @@ docs/_build/
 
 # PyBuilder
 target/
-
-semantic_cms/semantic_cms.db

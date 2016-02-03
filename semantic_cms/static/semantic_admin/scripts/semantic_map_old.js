@@ -1,15 +1,22 @@
+// $.getJSON('/api/semantic_node', function(data) {
+//     var nodesJson = data;
+// });
+//
+// $.getJSON('/api/semantic_edge', function(data) {
+//     var edgesJson = data;
+// });
 
-
-//FUNCTIONS
 function getNodes(callback) {
-  d3.json("/api/semantic_node/", function(error, nodesJson) {
+  d3.json("/api/semantic_node", function(error, nodesJson) {
+    // console.log(graph);
     if (error) return console.warn(error);
     callback(nodesJson);
   });
 }
 
 function getEdges(callback) {
-  d3.json("/api/semantic_edge/", function(error, edgesJson) {
+  d3.json("/api/semantic_edge", function(error, edgesJson) {
+    // console.log(graph);
     if (error) return console.warn(error);
     callback(edgesJson);
   });
@@ -43,9 +50,10 @@ function wrap(text, width) {
   });
 }
 
+// using jQuery
 function getCookie(name) {
   var cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
+  if (document.cookie && document.cookie != '') {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
       var cookie = jQuery.trim(cookies[i]);
@@ -59,26 +67,41 @@ function getCookie(name) {
   return cookieValue;
 }
 
+var csrftoken = getCookie('csrftoken');
+
 function csrfSafeMethod(method) {
   // these HTTP methods do not require CSRF protection
   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
-// function flushAllD3Transitions() {
-//     var now = Date.now;
-//     Date.now = function() { return Infinity; };
-//     d3.timer.flush();
-//     Date.now = now;
-//  }
+function saveData(jsonNodes, jsonEdges) {
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    }
+  });
 
-//GLOBAL VARIABLES
-var csrftoken = getCookie('csrftoken');
+  console.log(jsonNodes);
 
-// mouse event vars
-var selected_node = null,
-    selected_link = null;
+  $.ajax({
+    url: 'save/',
+    type: 'POST',
+    // data: JSON.stringify({
+    //   nodes: jsonNodes,
+    //   edges: jsonEdges
+    // }),
+    data: JSON.stringify(jsonNodes),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    async: false,
+    success: function(msg) {
+      alert(msg);
+    }
+  });
+}
 
-//CALLS
 getNodes(function(nodes) {
   getEdges(function(edges) {
 
@@ -88,8 +111,6 @@ getNodes(function(nodes) {
     var svg = d3.select("body").selectAll("svg");
 
     svg.style("height", $(document).height() - 100);
-
-    //Set real width and height
     width = parseInt(svg.style("width"));
     height = parseInt(svg.style("height"));
 
@@ -100,21 +121,16 @@ getNodes(function(nodes) {
       nodeById.set(node.id, node);
     });
 
-    console.log(nodes);
-    console.log(edges);
-
-    // nodeEnter = nodeEnter.data(nodes, function(d) { return d.id; });
-
     edges.forEach(function(link) {
       link.source = nodeById.get(link.parent);
       link.target = nodeById.get(link.child);
-      // link.right = true;
+      link.right = true;
     });
 
     var force = d3.layout.force()
-      .charge(-1000)
-      .linkDistance(150)
-      .chargeDistance(2000)
+      .charge(-2000)
+      .linkDistance(200)
+      .chargeDistance(500)
       .nodes(nodes)
       .links(edges)
       .size([width, height])
@@ -135,6 +151,7 @@ getNodes(function(nodes) {
     var path = svg.append('g').selectAll('path');
     var nodeEnter = svg.append('svg:g').selectAll("g");
 
+
     function tick() {
       path.attr('d', function(d) {
         var deltaX = d.target.x - d.source.x,
@@ -142,10 +159,13 @@ getNodes(function(nodes) {
           dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
           normX = deltaX / dist,
           normY = deltaY / dist,
+          sourcePadding = d.left ? 17 : 44, //for delete
           targetPadding = 43 + (d.target.number_of_descendants * 8),
+          sourceX = d.source.x + (sourcePadding * normX),
+          sourceY = d.source.y + (sourcePadding * normY),
           targetX = d.target.x - (targetPadding * normX),
           targetY = d.target.y - (targetPadding * normY);
-        return 'M' + d.source.x + ',' + d.source.y + 'L' + targetX + ',' + targetY;
+        return 'M' + sourceX + ',' + sourceY + 'L' + targetX + ',' + targetY;
       });
 
       nodeEnter.attr('transform', function(d) {
@@ -156,20 +176,13 @@ getNodes(function(nodes) {
     function restart() {
       path = path.data(edges);
 
-      path.classed('selected', function(d) { return d === selected_link; });
-
       path.enter().append('path')
         .attr('class', 'link')
-        .style('marker-end', 'url(#end-arrow)')
-        .on('mousedown', function(d) {
-          // select node
-          mousedown_link = d;
-          if(mousedown_link === selected_link) selected_link = null;
-          else selected_link = mousedown_link;
-          selected_node = null;
-          restart();
-
-          restart();
+        .style('marker-start', function(d) {
+          return d.left ? 'url(#start-arrow)' : '';
+        })
+        .style('marker-end', function(d) {
+          return d.right ? 'url(#end-arrow)' : '';
         });
 
       // remove old links
@@ -177,18 +190,7 @@ getNodes(function(nodes) {
 
       nodeEnter = nodeEnter.data(nodes, function(d) { return d.id; });
 
-      nodeEnter.classed('selected', function(d) { return d === selected_node; });
-
-      nodeEnter.enter().append("g").attr("class", "nodeGroup")
-                .on('mousedown', function(d) {
-                  // select node
-                  mousedown_node = d;
-                  if(mousedown_node === selected_node) selected_node = null;
-                  else selected_node = mousedown_node;
-                  selected_link = null;
-
-                  restart();
-                });
+      nodeEnter.enter().append("g").attr("class", "nodeGroup");
 
       var circle = nodeEnter.append("circle");
 
@@ -210,7 +212,6 @@ getNodes(function(nodes) {
       nodeEnter.exit().remove();
 
       force.start();
-      // flushAllD3Transitions();
     }
 
     document.getElementById("save").addEventListener("click", function() {
@@ -223,10 +224,6 @@ getNodes(function(nodes) {
 
     document.getElementById("restart").addEventListener("click", function() {
       restart();
-    }, false);
-
-    document.getElementById("delete").addEventListener("click", function() {
-      del();
     }, false);
 
     function add() {
@@ -247,57 +244,6 @@ getNodes(function(nodes) {
       nodes.push(node);
 
       restart();
-    }
-
-    function spliceEdgesForNode(node) {
-      var toSplice = edges.filter(function(l) {
-        return (l.source === node || l.target === node);
-      });
-      toSplice.map(function(l) {
-        edges.splice(edges.indexOf(l), 1);
-      });
-    }
-
-    function del() {
-      if(selected_node) {
-          nodes.splice(nodes.indexOf(selected_node), 1);
-          spliceEdgesForNode(selected_node);
-        } else if(selected_link) {
-          edges.splice(edges.indexOf(selected_link), 1);
-        }
-        selected_link = null;
-        selected_node = null;
-        restart();
-        console.log(nodes);
-        console.log(edges);
-    }
-
-    function saveData(jsonNodes, jsonEdges) {
-      $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-      });
-
-      console.log(jsonNodes);
-
-      $.ajax({
-        url: 'save/',
-        type: 'POST',
-        data: JSON.stringify({
-          nodes: jsonNodes,
-          edges: jsonEdges
-        }),
-        // data: JSON.stringify(jsonNodes),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        async: false,
-        success: function(msg) {
-          alert(msg);
-        }
-      });
     }
 
     restart();

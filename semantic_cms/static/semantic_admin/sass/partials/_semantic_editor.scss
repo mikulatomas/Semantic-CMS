@@ -20,6 +20,11 @@ svg {
   stroke: #19987F;
 }
 
+.nodeGroup.selected circle {
+  stroke-width: 3px;
+  stroke: #19987F;
+}
+
 // .link {
 //   stroke: #999;
 //   stroke-width: 1.5px;
@@ -33,7 +38,7 @@ svg {
 path.link {
   fill: none;
   stroke: gray;
-  stroke-width: 2px;
+  stroke-width: 2.5px;
   cursor: default;
 }
 

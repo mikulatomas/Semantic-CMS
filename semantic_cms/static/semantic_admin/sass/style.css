@@ -601,6 +601,10 @@ svg {
   stroke-width: 3px;
   stroke: #19987F; }
 
+.nodeGroup.selected circle {
+  stroke-width: 3px;
+  stroke: #19987F; }
+
 .text {
   text-anchor: middle;
   fill: white; }
@@ -608,7 +612,7 @@ svg {
 path.link {
   fill: none;
   stroke: gray;
-  stroke-width: 2px;
+  stroke-width: 2.5px;
   cursor: default; }
 
 path.link.selected {
