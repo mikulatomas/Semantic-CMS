@@ -25,6 +25,11 @@ svg {
   stroke: #19987F;
 }
 
+.nodeGroup.selected-end circle {
+  stroke-width: 3px;
+  stroke: red;
+}
+
 // .link {
 //   stroke: #999;
 //   stroke-width: 1.5px;

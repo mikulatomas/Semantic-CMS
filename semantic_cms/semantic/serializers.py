@@ -38,6 +38,7 @@ class SemanticNodeSerializer(serializers.Serializer):
     name = serializers.CharField()
     # is_root_node = serializers.BooleanField(source = 'is_root')
     is_root_node = serializers.ReadOnlyField(source = 'is_root')
+    is_leaf_node = serializers.ReadOnlyField(source = 'is_leaf')
     # number_of_descendants = serializers.IntegerField(source = 'descendants_set_size')
     number_of_descendants = serializers.ReadOnlyField(source = 'descendants_set_size')
 

@@ -605,6 +605,10 @@ svg {
   stroke-width: 3px;
   stroke: #19987F; }
 
+.nodeGroup.selected-end circle {
+  stroke-width: 3px;
+  stroke: red; }
+
 .text {
   text-anchor: middle;
   fill: white; }

@@ -70,7 +70,8 @@ var selected_node = null,
   selected_link = null,
   mousedown_link = null,
   mousedown_node = null,
-  mouseup_node = null;
+  mouseup_node = null,
+  end_selected_node = null;
 
 function resetMouseVars() {
   mousedown_node = null;
@@ -208,10 +209,9 @@ getNodes(function(nodes) {
 
           // select node
           mousedown_link = d;
-          if (mousedown_link === selected_link) selected_link = null;
+          if (mousedown_link === selected_link) return;
           else selected_link = mousedown_link;
           selected_node = null;
-          restart();
 
           restart();
         });
@@ -227,30 +227,34 @@ getNodes(function(nodes) {
         return d === selected_node;
       });
 
-      nodeEnter.enter().append("g").attr("class", "nodeGroup");
+      nodeEnter.classed('selected-end', function(d) {
+        return d === end_selected_node;
+      });
 
-
-      var circle = nodeEnter.append("circle");
-
-      circle.attr("class", "node")
-        .attr("r", function(d) {
-          return 40 + (d.number_of_descendants * 8);
-        })
+      nodeEnter.enter().append("g").attr("class", "nodeGroup")
         .on('mousedown', function(d) {
           //disable panning
           d3.event.stopImmediatePropagation();
 
-          // select node
-          mousedown_node = d;
-          if (mousedown_node === selected_node) selected_node = null;
-          else selected_node = mousedown_node;
-          selected_link = null;
-          //
-          // // // reposition drag line
-          // drag_line
-          //   .style('marker-end', 'url(#end-arrow)')
-          //   .classed('hidden', false)
-          //   .attr('d', 'M' + mousedown_node.x + ',' + mousedown_node.y + 'L' + mousedown_node.x + ',' + mousedown_node.y);
+          // console.log(selected_node);
+          if (d3.event.shiftKey) {
+            if (selected_node !== null && selected_node !== d && end_selected_node !== d) {
+              mousedown_node = d;
+              end_selected_node = mousedown_node;
+              selected_link = null;
+            } else {
+              return;
+            }
+          } else {
+            // select node
+            mousedown_node = d;
+            if (mousedown_node === selected_node) return;
+            else selected_node = mousedown_node;
+            selected_link = null;
+          }
+
+
+
           restart();
         })
         .on('mouseup', function(d) {
@@ -263,6 +267,15 @@ getNodes(function(nodes) {
 
           // selected_node = null;
           // restart();
+        });
+
+
+      var circle = nodeEnter.append("circle");
+
+      circle.attr("class", "node");
+
+      nodeEnter.selectAll("circle").attr("r", function(d) {
+          return 40 + (d.number_of_descendants * 8);
         });
 
       var nodeText = nodeEnter.append("text");
@@ -289,12 +302,16 @@ getNodes(function(nodes) {
       add();
     }, false);
 
-    document.getElementById("restart").addEventListener("click", function() {
-      restart();
-    }, false);
+    // document.getElementById("restart").addEventListener("click", function() {
+    //   restart();
+    // }, false);
 
     document.getElementById("delete").addEventListener("click", function() {
       del();
+    }, false);
+
+    document.getElementById("connect").addEventListener("click", function() {
+      connect();
     }, false);
 
     // function dragstarted(d) {
@@ -327,9 +344,18 @@ getNodes(function(nodes) {
     }
 
     function mousedown() {
-      var stop = d3.event.button || d3.event.ctrlKey;
+      var stop = d3.event.button;
       if (stop) d3.event.stopImmediatePropagation();
 
+      if (selected_node !== null || selected_link !== null || end_selected_node !== null) {
+        selected_node = null;
+        selected_link = null;
+        end_selected_node = null;
+        restart();
+      }
+
+
+      // restart();
       // prevent I-bar on drag
       //d3.event.preventDefault();
 
@@ -366,6 +392,40 @@ getNodes(function(nodes) {
       return exists;
     }
 
+    function checkIfConnectionExists(edges, source_node, target_node) {
+      var connections = edges.filter(function (l) {
+        return (l.source === source_node && l.target === target_node) || (l.source === target_node && l.target === source_node);
+      });
+
+      return (connections.length > 0);
+    }
+
+    function resetWeigth(edges) {
+      edges.forEach(function (edge) {
+        edge.number_of_descendants = 0;
+      });
+    }
+
+    function connect() {
+      // resetWeigth(nodes);
+      // restart();
+      console.log(nodes);
+      console.log(edges);
+
+      if (end_selected_node === null) {
+        return;
+      }
+
+      if (checkIfConnectionExists(edges, selected_node, end_selected_node)) {
+        return;
+      }
+
+      var link;
+      link = {source: selected_node, target: end_selected_node};
+      edges.push(link);
+      restart();
+    }
+
     function add() {
       // prevent I-bar on drag
       //d3.event.preventDefault();
@@ -382,6 +442,10 @@ getNodes(function(nodes) {
           break;
         }
       }
+
+      // if (name.length === 0) {
+      //   return;
+      // }
       // insert new node at point
       // var point = d3.mouse(this),
       // var nodesLength = nodes.length;
@@ -389,6 +453,7 @@ getNodes(function(nodes) {
         id: ++lastNodeId,
         name: name,
         is_root_node: true,
+        is_leaf_node: true,
         number_of_descendants: 0
       };
       // node.x = point[0];
@@ -451,7 +516,7 @@ getNodes(function(nodes) {
       });
     }
 
-    svg_tag.on('mousedown', mousedown)
+    svg.on('mousedown', mousedown)
       .on('mousemove', mousemove)
       .on('mouseup', mouseup);
     restart();
