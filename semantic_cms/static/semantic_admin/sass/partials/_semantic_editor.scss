@@ -15,6 +15,11 @@ svg {
   fill: #36D7B7;
 }
 
+.node text {
+  color: gray;
+  fill: gray;
+}
+
 .node.selected {
   stroke-width: 3px;
   stroke: #19987F;
@@ -39,6 +44,7 @@ svg {
   text-anchor: middle;
   fill: white;
 }
+
 
 path.link {
   fill: none;

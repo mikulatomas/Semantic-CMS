@@ -141,7 +141,7 @@ class SemanticView(LoginRequiredMixin, ListView):
         context['title'] = 'Semantic'
         return context
 
-def semantic_save(request):
+def save_graph(request):
     if request.method == 'POST':
         jsonData = json.loads(request.body.decode('utf-8'))
         jsonNodes = jsonData["nodes"]
@@ -178,11 +178,42 @@ def semantic_save(request):
             serializerNodes.save()
 
         print(serializerEdges.is_valid())
-        print(serializerEdges.errors)
+        # print(serializerEdges.errors)
         if serializerEdges.is_valid():
             serializerEdges.save()
 
     return HttpResponse("Got json data")
+
+def add_edge(request):
+    if request.method == 'POST':
+        jsonData = json.loads(request.body.decode('utf-8'))
+
+        edge = {}
+        # print(jsonData)
+        for attribute in jsonData:
+            if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
+                edge[attribute] = jsonData[attribute]
+
+        print(edge)
+        test = []
+        test.append(edge)
+
+        querysetEdges = SemanticEdge.objects.all()
+
+        serializerEdges = SemanticEdgeSerializer(data=edge)
+
+        if serializerEdges.is_valid():
+            print(serializerEdges.save())
+            # print(serializerEdges.errors)
+            return HttpResponse(json.dumps({'message': "True"}))
+        else:
+            print(serializerEdges.errors)
+            return HttpResponse(json.dumps({'message': "False"}))
+
+
+
+    # return HttpResponse("Got json data")
+
 
 def login(request, template_name):
     login_context = {

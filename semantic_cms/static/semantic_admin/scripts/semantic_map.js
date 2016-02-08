@@ -80,6 +80,7 @@ function resetMouseVars() {
 }
 
 //CALLS
+
 getNodes(function(nodes) {
   getEdges(function(edges) {
 
@@ -126,6 +127,7 @@ getNodes(function(nodes) {
 
     var nodeById = d3.map();
     var lastNodeId = nodes[0].id;
+    var lastEdgeId = edges[0].id;
 
     nodes.forEach(function(node) {
       nodeById.set(node.id, node);
@@ -134,7 +136,7 @@ getNodes(function(nodes) {
     // console.log(nodes);
     // console.log(edges);
 
-    // nodeEnter = nodeEnter.data(nodes, function(d) { return d.id; });
+    // node = node.data(nodes, function(d) { return d.id; });
 
     edges.forEach(function(link) {
       link.source = nodeById.get(link.parent);
@@ -169,7 +171,7 @@ getNodes(function(nodes) {
     //   .attr('d', 'M0,0L0,0');
 
     var path = container.append('g').selectAll('path');
-    var nodeEnter = container.append('svg:g').selectAll("g");
+    var node = container.append('svg:g');
 
     function zoomed() {
       container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
@@ -188,7 +190,7 @@ getNodes(function(nodes) {
         return 'M' + d.source.x + ',' + d.source.y + 'L' + targetX + ',' + targetY;
       });
 
-      nodeEnter.attr('transform', function(d) {
+      node.attr('transform', function(d) {
         return 'translate(' + d.x + ',' + d.y + ')';
       });
     }
@@ -219,19 +221,21 @@ getNodes(function(nodes) {
       // remove old links
       path.exit().remove();
 
-      nodeEnter = nodeEnter.data(nodes, function(d) {
+
+      // NODES ////////////////////////
+      node = node.selectAll("g").data(nodes, function(d) {
         return d.id;
       });
 
-      nodeEnter.classed('selected', function(d) {
+      node.classed('selected', function(d) {
         return d === selected_node;
       });
 
-      nodeEnter.classed('selected-end', function(d) {
+      node.classed('selected-end', function(d) {
         return d === end_selected_node;
       });
 
-      nodeEnter.enter().append("g").attr("class", "nodeGroup")
+      var group = node.enter().append("g").attr("class", "nodeGroup")
         .on('mousedown', function(d) {
           //disable panning
           d3.event.stopImmediatePropagation();
@@ -253,34 +257,20 @@ getNodes(function(nodes) {
             selected_link = null;
           }
 
-
-
           restart();
-        })
-        .on('mouseup', function(d) {
-          if (!mousedown_node) return;
-
-          // needed by FF
-          // drag_line
-          //   .classed('hidden', true)
-          //   .style('marker-end', '');
-
-          // selected_node = null;
-          // restart();
         });
 
+      //ADD CIRCLE
+      group.append("circle")
+        .attr("class", "node");
 
-      var circle = nodeEnter.append("circle");
+      group.selectAll("circle").attr("r", function(d) {
+        return 40 + (d.number_of_descendants * 8);
+      });
 
-      circle.attr("class", "node");
-
-      nodeEnter.selectAll("circle").attr("r", function(d) {
-          return 40 + (d.number_of_descendants * 8);
-        });
-
-      var nodeText = nodeEnter.append("text");
-
-      nodeText.attr("class", "text")
+      //ADD TEXT
+      group.append("text")
+        .attr("class", "text")
         .attr("dy", "0em")
         .attr("y", "4")
         .text(function(d) {
@@ -288,15 +278,10 @@ getNodes(function(nodes) {
         })
         .call(wrap, 70);
 
-      nodeEnter.exit().remove();
+      node.exit().remove();
 
       force.start();
-      // flushAllD3Transitions();
     }
-
-    document.getElementById("save").addEventListener("click", function() {
-      saveData(nodes, edges);
-    }, false);
 
     document.getElementById("add").addEventListener("click", function() {
       add();
@@ -314,34 +299,6 @@ getNodes(function(nodes) {
       connect();
     }, false);
 
-    // function dragstarted(d) {
-    //   d3.event.sourceEvent.stopPropagation();
-    //
-    //   d3.select(this).classed("dragging", true);
-    //   force.start();
-    // }
-    //
-    // function dragged(d) {
-    //
-    //   d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
-    //
-    // }
-    //
-    // function dragended(d) {
-    //
-    //   d3.select(this).classed("dragging", false);
-    // }
-
-    function mousemove() {
-      if (!mousedown_node) return;
-
-      // update drag line
-      // drag_line.attr('d', 'M' + mousedown_node.x + ',' + mousedown_node.y + 'L' + d3.mouse(this)[0] + ',' + d3.mouse(this)[1]);
-
-      // console.log("AAAAA");
-
-      // restart();
-    }
 
     function mousedown() {
       var stop = d3.event.button;
@@ -353,33 +310,80 @@ getNodes(function(nodes) {
         end_selected_node = null;
         restart();
       }
-
-
-      // restart();
-      // prevent I-bar on drag
-      //d3.event.preventDefault();
-
-      // because :active only works in WebKit?
-      // svg_tag.classed('active', true);
-
-      // if (d3.event.ctrlKey || mousedown_node || mousedown_link) return;
-
-      // restart();
     }
 
-    function mouseup() {
-      // if (mousedown_node) {
-      //   // hide drag line
-      //   drag_line
-      //     .classed('hidden', true)
-      //     .style('marker-end', '');
-      // }
-      // //
-      // // // because :active only works in WebKit?
-      // svg_tag.classed('active', false);
-      // //
-      // // // clear mouse event vars
-      // resetMouseVars();
+    function addEdge(edge) {
+      var response;
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+      });
+
+      $.ajax({
+        url: 'add_edge/',
+        type: 'POST',
+        data: JSON.stringify(edge),
+        // data: JSON.stringify(jsonNodes),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        success: function(msg) {
+          response = msg;
+        }
+      });
+    }
+
+    function addNode(node) {
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+      });
+
+      $.ajax({
+        url: 'add_node/',
+        type: 'POST',
+        data: JSON.stringify(node),
+        // data: JSON.stringify(jsonNodes),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        success: function(msg) {
+          response = msg;
+        }
+      });
+    }
+
+    function saveGraph(jsonNodes, jsonEdges) {
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+      });
+
+      $.ajax({
+        url: 'save_graph/',
+        type: 'POST',
+        data: JSON.stringify({
+          nodes: jsonNodes,
+          edges: jsonEdges
+        }),
+        // data: JSON.stringify(jsonNodes),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        success: function(msg) {
+          response = msg;
+        }
+      });
+
     }
 
     function checkIfNameExists(name) {
@@ -393,24 +397,41 @@ getNodes(function(nodes) {
     }
 
     function checkIfConnectionExists(edges, source_node, target_node) {
-      var connections = edges.filter(function (l) {
+      var connections = edges.filter(function(l) {
         return (l.source === source_node && l.target === target_node) || (l.source === target_node && l.target === source_node);
       });
 
       return (connections.length > 0);
     }
 
-    function resetWeigth(edges) {
-      edges.forEach(function (edge) {
-        edge.number_of_descendants = 0;
+    // function resetWeigth(edges) {
+    //   edges.forEach(function(edge) {
+    //     edge.number_of_descendants = 0;
+    //   });
+    // }
+
+    function refreshWeights(nodes) {
+      getNodes(function(nodesActual) {
+        var nodeById = d3.map();
+
+        nodesActual.forEach(function(node) {
+          nodeById.set(node.id, node);
+        });
+
+        nodes.forEach(function(node) {
+          if (node.number_of_descendants !== nodeById.get(node.id).number_of_descendants) {
+            console.log("UDPATE");
+          }
+          node.number_of_descendants = nodeById.get(node.id).number_of_descendants;
+        });
       });
     }
 
     function connect() {
       // resetWeigth(nodes);
       // restart();
-      console.log(nodes);
-      console.log(edges);
+      // console.log(nodes);
+      // console.log(edges);
 
       if (end_selected_node === null) {
         return;
@@ -421,9 +442,20 @@ getNodes(function(nodes) {
       }
 
       var link;
-      link = {source: selected_node, target: end_selected_node};
+      link = {
+        id: ++lastEdgeId,
+        source: selected_node,
+        target: end_selected_node,
+        parent: selected_node.id,
+        child: end_selected_node.id
+      };
+
+      addEdge(link);
+
       edges.push(link);
+      refreshWeights(nodes);
       restart();
+
     }
 
     function add() {
@@ -458,9 +490,14 @@ getNodes(function(nodes) {
       };
       // node.x = point[0];
       // node.y = point[1];
+
       nodes.push(node);
 
       restart();
+
+      saveGraph(nodes, edges);
+
+
     }
 
     function spliceEdgesForNode(node) {
@@ -482,43 +519,15 @@ getNodes(function(nodes) {
 
       selected_link = null;
       selected_node = null;
-
       restart();
+      saveGraph(nodes, edges);
+
+
       // console.log(nodes);
       // console.log(edges);
     }
 
-    function saveData(jsonNodes, jsonEdges) {
-      $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-      });
-
-      console.log(jsonNodes);
-
-      $.ajax({
-        url: 'save/',
-        type: 'POST',
-        data: JSON.stringify({
-          nodes: jsonNodes,
-          edges: jsonEdges
-        }),
-        // data: JSON.stringify(jsonNodes),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        async: false,
-        success: function(msg) {
-          alert(msg);
-        }
-      });
-    }
-
     svg.on('mousedown', mousedown)
-      .on('mousemove', mousemove)
-      .on('mouseup', mouseup);
     restart();
   });
 });

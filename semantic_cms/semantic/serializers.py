@@ -97,13 +97,13 @@ class SemanticEdgeSerializer(serializers.Serializer):
 
     class Meta:
         list_serializer_class = SemanticEdgeListSerializer
-        fields = ('id', 'parent', 'child')
+        # fields = ('id', 'parent', 'child')
 
     def create(self, validated_data):
         semanticEdge = SemanticEdge(
-            parent=validated_data['parent'],
-            child=validated_data['child'],
-            created_date=timezone.now()
+            parent = Semantic.objects.get(pk=validated_data['parentId']),
+            child = Semantic.objects.get(pk=validated_data['childId']),
+            created_date = timezone.now()
         )
         semanticEdge.save()
         return semanticEdge
