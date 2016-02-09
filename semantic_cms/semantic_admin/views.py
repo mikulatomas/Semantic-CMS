@@ -182,7 +182,7 @@ def save_graph(request):
         if serializerEdges.is_valid():
             serializerEdges.save()
 
-    return HttpResponse("Got json data")
+    return HttpResponse(json.dumps({'message': 0}))
 
 def add_edge(request):
     if request.method == 'POST':
@@ -194,6 +194,7 @@ def add_edge(request):
             if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
                 edge[attribute] = jsonData[attribute]
 
+        print("ODESLANO: ")
         print(edge)
         test = []
         test.append(edge)
@@ -203,12 +204,17 @@ def add_edge(request):
         serializerEdges = SemanticEdgeSerializer(data=edge)
 
         if serializerEdges.is_valid():
-            print(serializerEdges.save())
-            # print(serializerEdges.errors)
-            return HttpResponse(json.dumps({'message': "True"}))
+            try:
+                serializerEdges.save()
+            except Exception as e:
+                print(e)
+                return HttpResponse(json.dumps({'message': 1}))
+
+            print(serializerEdges.errors)
+            return HttpResponse(json.dumps({'message': 0}))
         else:
             print(serializerEdges.errors)
-            return HttpResponse(json.dumps({'message': "False"}))
+            return HttpResponse(json.dumps({'message': 1}))
 
 
 

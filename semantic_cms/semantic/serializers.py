@@ -36,6 +36,7 @@ class SemanticNodeListSerializer(serializers.ListSerializer):
 class SemanticNodeSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
+    type = serializers.CharField()
     # is_root_node = serializers.BooleanField(source = 'is_root')
     is_root_node = serializers.ReadOnlyField(source = 'is_root')
     is_leaf_node = serializers.ReadOnlyField(source = 'is_leaf')

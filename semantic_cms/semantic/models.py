@@ -51,6 +51,9 @@ class Semantic(node_factory('SemanticEdge')):
 
         super(Semantic, self).save(*args, **kwargs)
 
+    def type(self):
+        return "semantic"
+
 
 class SemanticEdge(edge_factory('Semantic', concrete = False)):
     """

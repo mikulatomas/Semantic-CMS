@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
-from semantic import views
+from semantic import views as semantic_views
+from article import views as article_views
 # from article.admin import my_admin
 
 router = routers.DefaultRouter()
-router.register(r'semantic_node', views.SemanticNodeViewSet)
-router.register(r'semantic_edge', views.SemanticEdgeViewSet)
+router.register(r'semantic_node', semantic_views.SemanticNodeViewSet)
+router.register(r'semantic_edge', semantic_views.SemanticEdgeViewSet)
+router.register(r'articles', article_views.ArticleViewSet)
+router.register(r'articles_edge', article_views.ArticleEdgeViewSet)
 
 urlpatterns = [
     url(r'^semantic_admin/', include('semantic_admin.urls', namespace="semantic_admin")),

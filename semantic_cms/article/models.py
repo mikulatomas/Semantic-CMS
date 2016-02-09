@@ -91,6 +91,9 @@ class Article(models.Model):
     #     if not self.slug:
     #         self.slug = slugify(self.title)
 
+    def type(self):
+        return "article";
+
     def save(self, *args, **kwargs):
         """Override save"""
         time = timezone.now()
