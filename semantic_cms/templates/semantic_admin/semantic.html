@@ -1,13 +1,23 @@
-{% extends "semantic_admin/base_site.html" %} {% load staticfiles %} {% block extrahead %} {% endblock %} {% block jumbotron %}
-<div class="row">
-  <div class="col-sm-9">
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% block extrahead %} {% endblock %}
+{% block jumbotron %}
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-sm-9 no-padding">
+    <div class="toolbar">
+
+        <a class="btn btn-green-solid" id="add" role="button">
+          <span class="icon margin-right">+</span>Add new topic</a>
+
+        <a class="btn btn-red-outline hidden" id="delete" role="button">
+          <span class="icon margin-right"><span class="icon margin-right">×</span>Delete</a>
+
+          <a class="btn btn-green-outline hidden" id="connect" role="button">Connect</a>
+
+    </div>
     <svg>
-      <g/>
     </svg>
-    <input form="semantic_form" id="save" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="save" value="Save" />
-    <input form="semantic_form" id="add" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="save" value="Add" />
-    <input form="semantic_form" id="delete" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="save" value="Delete" />
-    <input form="semantic_form" id="connect" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="save" value="Connect" />
   </div>
   <div class="col-sm-3 article-list-right">
     <h4>Articles</h4>
@@ -23,7 +33,8 @@
     {% endfor %}
   </div>
 </div>
-{% endblock %} {% block content %} {% endblock %} {% block extrascripts %}
+</div>
+{% endblock %} {% block extrascripts %}
 <script type="text/javascript">
   var article_nodes = JSON.parse("{{ article_nodes }}");
   var selectedArticle; {% if selected_article.id %}

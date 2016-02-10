@@ -16,8 +16,17 @@ svg {
   fill: white;
 }
 
+.article circle {
+  fill: $sunset-orange;
+}
+
+.article.selected circle {
+  stroke-width: 3px;
+  stroke: darken($sunset-orange, 30%);
+}
+
 .node circle {
-  fill: #36D7B7;
+  fill: $turquoise;
 }
 
 .node text {
@@ -25,19 +34,15 @@ svg {
   fill: white;
 }
 
-.node.selected circle {
+.selected circle {
   stroke-width: 3px;
-  stroke: #19987F;
+  stroke: darken($turquoise, 20%);
 }
 
-.nodeGroup.selected circle {
+.selected-end circle {
   stroke-width: 3px;
-  stroke: #19987F;
-}
-
-.nodeGroup.selected-end circle {
-  stroke-width: 3px;
-  stroke: red;
+  stroke: darken($turquoise, 20%);
+  stroke-dasharray:10,5;
 }
 
 // .link {
@@ -70,6 +75,19 @@ path.link.hidden {
   stroke-width: 0;
 }
 
+.toolbar {
+  background: transparent;
+  position: absolute;
+  right: 0;
+  top:0;
+  margin-top: 30px;
+  margin-right: 30px;
+
+  a {
+    margin-left: 20px;
+  }
+}
+
 .article-list-right {
   height: 100%;
   border-left: 1px $mercury solid;
@@ -89,6 +107,12 @@ path.link.hidden {
     h4 {
       margin-top: 5px;
       margin-bottom: 0;
+    }
+  }
+
+  .article.selected {
+    h3, h4 {
+    color: $turquoise;
     }
   }
 
