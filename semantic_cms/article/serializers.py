@@ -75,5 +75,5 @@ class ArticleSerializer(serializers.Serializer):
 #         fields = ("__all__")
 
 class ArticleEdgeSerializer(serializers.Serializer):
-    parent = serializers.IntegerField(source = "id")
+    id = serializers.IntegerField()
     semantic = serializers.PrimaryKeyRelatedField(many=True, read_only=True)

@@ -86,13 +86,15 @@ function resetMouseVars() {
   mousedown_link = null;
 }
 
+var apiroot = "/semantic_admin/semantic/";
+
 //CALLS
 
 getNodes(function(nodes) {
   getEdges(function(edges) {
     getArticles(function(articles) {
 
-      console.log(articles);
+      // console.log(article_nodes);
       var width = 960,
         height = 500;
 
@@ -134,6 +136,9 @@ getNodes(function(nodes) {
 
       var container = svg.append("g");
 
+      refreshArticleNodes();
+
+      // var selectedArticle;
       var nodeById = d3.map();
       var lastNodeId;
       var lastEdgeId;
@@ -235,6 +240,8 @@ getNodes(function(nodes) {
       }
 
       function restart() {
+        // console.log(selectedArticle);
+        // console.log(article_nodes);
         path = path.data(edges);
 
         path.classed('selected', function(d) {
@@ -279,12 +286,37 @@ getNodes(function(nodes) {
         });
 
         redrawWeight();
+        refreshArticleNodes();
 
         var group = node.enter().append("g").attr("class", "nodeGroup")
+          .on('dblclick', function(d) {
+            //disable panning
+            d3.event.stopImmediatePropagation();
+            // console.log(selectedArticle);
+            if (selectedArticle) {
+              if (d.article) {
+                d.article = false;
+                var index = article_nodes.indexOf(d.id);
+                if (index > -1) {
+                  article_nodes.splice(index, 1);
+                }
+              } else {
+                d.article = true;
+
+                article_nodes.push(d.id);
+              }
+              restart();
+              saveArticleNodes(selectedArticle, article_nodes);
+            }
+          })
           .on('mousedown', function(d) {
             //disable panning
             d3.event.stopImmediatePropagation();
 
+            // if (d.hasClass("article")) {
+
+            // console.log(d);
+            // }
             // console.log(selected_node);
             if (d3.event.shiftKey) {
               if (selected_node !== null && selected_node !== d && end_selected_node !== d) {
@@ -307,13 +339,6 @@ getNodes(function(nodes) {
 
         //ADD CIRCLE
         group.append("circle")
-          .attr("class", function(d) {
-            if (d.type === "semantic") {
-              return "node";
-            } else {
-              return "article";
-            }
-          })
           .attr("r", function(d) {
             if (d.type === "semantic") {
               return 20 + (25 * (Math.log((d.number_of_descendants + 2))));
@@ -321,6 +346,14 @@ getNodes(function(nodes) {
               return 40;
             }
           });
+
+        node.classed('article', function(d) {
+          return d.article;
+        });
+
+        node.classed('node', function(d) {
+          return !d.article;
+        });
 
         //ADD TEXT
         group.append("text")
@@ -337,13 +370,37 @@ getNodes(function(nodes) {
         force.start();
       }
 
+      function showResetButton() {
+        $("#reset").removeClass("hidden");
+      }
+
+      function hideResetButton() {
+        $("#reset").addClass("hidden");
+      }
+
+      var articleButtonsList = document.getElementsByClassName("article");
+      articleButtons = Array.prototype.slice.call(articleButtonsList, 0);
+
+      articleButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+          displayArticleNodes(button);
+          showResetButton();
+            // console.log(button.id);
+        }, false);
+
+      });
+
+
+      document.getElementById("reset").addEventListener("click", function() {
+        hideResetButton();
+        selectedArticle = null;
+        article_nodes = [];
+        restart();
+      }, false);
+
       document.getElementById("add").addEventListener("click", function() {
         add();
       }, false);
-
-      // document.getElementById("restart").addEventListener("click", function() {
-      //   restart();
-      // }, false);
 
       document.getElementById("delete").addEventListener("click", function() {
         del();
@@ -352,7 +409,6 @@ getNodes(function(nodes) {
       document.getElementById("connect").addEventListener("click", function() {
         connect();
       }, false);
-
 
       function mousedown() {
         var stop = d3.event.button;
@@ -377,7 +433,7 @@ getNodes(function(nodes) {
         });
 
         $.ajax({
-          url: 'add_edge/',
+          url: apiroot + 'add_edge/',
           type: 'POST',
           data: JSON.stringify(edge),
           // data: JSON.stringify(jsonNodes),
@@ -392,7 +448,7 @@ getNodes(function(nodes) {
         return response.message;
       }
 
-      function addNode(node) {
+      function requestArticleNodes(article) {
         var response;
         $.ajaxSetup({
           beforeSend: function(xhr, settings) {
@@ -403,9 +459,11 @@ getNodes(function(nodes) {
         });
 
         $.ajax({
-          url: 'add_node/',
+          url: apiroot + 'request_article_nodes/',
           type: 'POST',
-          data: JSON.stringify(node),
+          data: JSON.stringify({
+            id: article
+          }),
           // data: JSON.stringify(jsonNodes),
           contentType: 'application/json; charset=utf-8',
           dataType: 'json',
@@ -418,6 +476,62 @@ getNodes(function(nodes) {
         return response.message;
       }
 
+      function saveArticleNodes(article, article_nodes) {
+        // console.log("SAVING " + article);
+        // console.log("WITH DATA " + article_nodes);
+        var response;
+        $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+          }
+        });
+
+        $.ajax({
+          url: apiroot + 'save_article_nodes/',
+          type: 'POST',
+          data: JSON.stringify({
+            id: article,
+            article_nodes: article_nodes
+          }),
+          // data: JSON.stringify(jsonNodes),
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          async: false,
+          success: function(msg) {
+            response = msg;
+          }
+        });
+
+        return response.message;
+      }
+      // function addNode(node) {
+      //   var response;
+      //   $.ajaxSetup({
+      //     beforeSend: function(xhr, settings) {
+      //       if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+      //         xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      //       }
+      //     }
+      //   });
+      //
+      //   $.ajax({
+      //     url: 'add_node/',
+      //     type: 'POST',
+      //     data: JSON.stringify(node),
+      //     // data: JSON.stringify(jsonNodes),
+      //     contentType: 'application/json; charset=utf-8',
+      //     dataType: 'json',
+      //     async: false,
+      //     success: function(msg) {
+      //       response = msg;
+      //     }
+      //   });
+      //
+      //   return response.message;
+      // }
+
       function saveGraph(jsonNodes, jsonEdges) {
         var response;
         $.ajaxSetup({
@@ -429,7 +543,7 @@ getNodes(function(nodes) {
         });
 
         $.ajax({
-          url: 'save_graph/',
+          url: apiroot + 'save_graph/',
           type: 'POST',
           data: JSON.stringify({
             nodes: jsonNodes,
@@ -445,6 +559,33 @@ getNodes(function(nodes) {
         });
         return response.message;
       }
+
+      // function getArticleSemantics(article_id) {
+      //   var response;
+      //   $.ajaxSetup({
+      //     beforeSend: function(xhr, settings) {
+      //       if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+      //         xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      //       }
+      //     }
+      //   });
+      //
+      //   $.ajax({
+      //     url: 'save_graph/',
+      //     type: 'POST',
+      //     data: JSON.stringify({
+      //       article: article_id
+      //     }),
+      //     // data: JSON.stringify(jsonNodes),
+      //     contentType: 'application/json; charset=utf-8',
+      //     dataType: 'json',
+      //     async: false,
+      //     success: function(msg) {
+      //       response = msg;
+      //     }
+      //   });
+      //   return response.semantics;
+      // }
 
       function checkIfNameExists(name) {
         var exists = false;
@@ -469,6 +610,25 @@ getNodes(function(nodes) {
       //     edge.number_of_descendants = 0;
       //   });
       // }
+      function refreshArticleNodes() {
+        nodes.forEach(function(d) {
+          d.article = false;
+          article_nodes.forEach(function(n) {
+            if (d.id === n) {
+              d.article = true;
+              return;
+            }
+          });
+        });
+      }
+
+      function displayArticleNodes(button) {
+        // console.log(button.id);
+        article_nodes = requestArticleNodes(button.id);
+        selectedArticle = button.id;
+        refreshArticleNodes();
+        restart();
+      }
 
       function refreshWeights(nodes) {
         getNodes(function(nodesActual) {
@@ -546,8 +706,9 @@ getNodes(function(nodes) {
         var node = {
           id: ++lastNodeId,
           name: name,
-          is_root_node: true,
-          is_leaf_node: true,
+          type: "semantic",
+          // is_root_node: true,
+          // is_leaf_node: true,
           number_of_descendants: 0
         };
         // node.x = point[0];

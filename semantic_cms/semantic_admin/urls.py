@@ -38,9 +38,15 @@ content_patterns = [
 
 semantic_patterns = [
     url(r'^$', SemanticView.as_view(), name='index'),
-    # url(r'^add_node/$', 'semantic_admin.views.add_node'),
     url(r'^add_edge/$', 'semantic_admin.views.add_edge'),
     url(r'^save_graph/$', 'semantic_admin.views.save_graph'),
+    url(r'^request_article_nodes/$', 'semantic_admin.views.request_article_nodes'),
+    url(r'^save_article_nodes/$', 'semantic_admin.views.save_article_nodes'),
+    url(r'^article/(?P<slug>[-_\w]+)/$', SemanticView.as_view(), name='article'),
+    # url(r'^article/(?P<slug>[-_\w]+)/add_edge/$', 'semantic_admin.views.add_edge'),
+    # url(r'^article/(?P<slug>[-_\w]+)/save_graph/$', 'semantic_admin.views.save_graph'),
+    # url(r'^add_node/$', 'semantic_admin.views.add_node'),
+
 ]
 
 urlpatterns = [

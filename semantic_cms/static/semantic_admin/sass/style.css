@@ -195,6 +195,10 @@ h2, #article_subtitle {
   font-size: 24px !important;
   font-weight: normal; }
 
+h3 {
+  font-size: 18px !important;
+  font-weight: normal; }
+
 h4, .nav-tabs li a {
   font-size: 14px !important;
   text-transform: uppercase;
@@ -204,6 +208,9 @@ h4, .nav-tabs li a {
 
 h4.gap, .nav-tabs li a.gap {
   margin-top: 50px; }
+
+.lowercase {
+  text-transform: none !important; }
 
 .headline h1, .headline #article_title {
   margin-top: 80px;
@@ -274,7 +281,7 @@ h4.gap, .nav-tabs li a.gap {
 
 .btn-round {
   border-radius: 100px;
-  padding: 8px 11.5px 9px 11.5px; }
+  padding: 7.5px 11.5px 7.5px 11.5px; }
 
 .btn-white-outline {
   background: transparent;
@@ -473,7 +480,7 @@ button:focus,
   border: none !important; }
 
 .inline {
-  display: inline-block !important; }
+  display: inline-block; }
 
 .inline-block {
   display: inline-block !important;
@@ -594,14 +601,18 @@ svg {
   -o-user-select: none;
   user-select: none; }
 
-.node {
+.article text {
+  text-anchor: middle;
+  fill: white; }
+
+.node circle {
   fill: #36D7B7; }
 
 .node text {
-  color: gray;
-  fill: gray; }
+  text-anchor: middle;
+  fill: white; }
 
-.node.selected {
+.node.selected circle {
   stroke-width: 3px;
   stroke: #19987F; }
 
@@ -612,10 +623,6 @@ svg {
 .nodeGroup.selected-end circle {
   stroke-width: 3px;
   stroke: red; }
-
-.text {
-  text-anchor: middle;
-  fill: white; }
 
 path.link {
   fill: none;
@@ -636,6 +643,19 @@ path.link.hidden {
   height: 100%;
   border-left: 1px #E5E5E5 solid;
   padding-top: 30px;
-  padding-right: 30px; }
+  padding-right: 40px;
+  padding-left: 25px; }
+  .article-list-right h4, .article-list-right .nav-tabs li a, .nav-tabs li .article-list-right a {
+    margin-bottom: 15px; }
+  .article-list-right .article h3 {
+    margin-bottom: 0; }
+  .article-list-right .article h4, .article-list-right .article .nav-tabs li a, .nav-tabs li .article-list-right .article a {
+    margin-top: 5px;
+    margin-bottom: 0; }
+  .article-list-right .article:hover h3 {
+    color: #36D7B7;
+    text-decoration: underline; }
+  .article-list-right .article:hover h4, .article-list-right .article:hover .nav-tabs li a, .nav-tabs li .article-list-right .article:hover a {
+    color: #36D7B7; }
 
 /*# sourceMappingURL=style.css.map */

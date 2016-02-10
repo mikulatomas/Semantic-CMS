@@ -91,6 +91,17 @@ class Article(models.Model):
     #     if not self.slug:
     #         self.slug = slugify(self.title)
 
+    def semantic_ids(self):
+        result = []
+        for semantic in self.semantic.all():
+            result.append(semantic.id)
+        return result
+
+    def reset_semantic_ids(self, ids):
+        self.semantic.clear()
+        for id in ids:
+            self.semantic.add(Semantic.objects.get(pk = id))
+
     def type(self):
         return "article";
 

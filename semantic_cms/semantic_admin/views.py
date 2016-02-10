@@ -131,15 +131,61 @@ class DeleteArticleView(LoginRequiredMixin, DeleteView):
 
 class SemanticView(LoginRequiredMixin, ListView):
     template_name = "semantic_admin/semantic.html"
-    model = Semantic
-    context_object_name = 'dag_list'
+    model = Article
+    context_object_name = 'article_list'
+
+    # def get_queryset(self):
+        # slug = self.kwargs['slug']
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(SemanticView, self).get_context_data(**kwargs)
 
+        # print(self.kwargs['slug'])
+        # if 'slug' in self.request.POST:
+        #     context['slug'] = self.kwargs['slug']
+
+        if 'slug' in self.kwargs:
+            # print("YES")
+
+            article = Article.objects.get(slug=self.kwargs['slug'])
+            # print(article.semantic_ids())
+            # serializerArticle = ArticleEdgeSerializer(article)
+
+            # context['article_semantic'] = serializerArticle.data["semantic"];
+            context['selected_article'] = article
+            context['article_nodes'] = json.dumps(article.semantic_ids())
+            # context['slug'] = self.kwargs['slug']
+        else:
+            context['article_nodes'] = json.dumps([])
+
         context['title'] = 'Semantic'
         return context
+
+def request_article_nodes(request):
+    if request.method == 'POST':
+        jsonData = json.loads(request.body.decode('utf-8'))
+        articleId = jsonData["id"]
+
+        article = Article.objects.get(pk=articleId);
+
+        return HttpResponse(json.dumps({'message': article.semantic_ids()}))
+
+    return HttpResponse(json.dumps({'message': []}))
+
+def save_article_nodes(request):
+    if request.method == 'POST':
+        jsonData = json.loads(request.body.decode('utf-8'))
+        articleId = jsonData["id"]
+        articleNodes = jsonData["article_nodes"]
+
+        article = Article.objects.get(pk = articleId)
+        article.reset_semantic_ids(articleNodes)
+
+        return HttpResponse(json.dumps({'message': 0}))
+
+    return HttpResponse(json.dumps({'message': 1}))
+
 
 def save_graph(request):
     if request.method == 'POST':
@@ -176,8 +222,8 @@ def save_graph(request):
         # serializerEdges.validated_data
         if serializerNodes.is_valid():
             serializerNodes.save()
-
-        print(serializerEdges.is_valid())
+        # print(serializerNodes.errors)
+        # print(serializerEdges.is_valid())
         # print(serializerEdges.errors)
         if serializerEdges.is_valid():
             serializerEdges.save()

@@ -11,16 +11,21 @@ svg {
   // border: 1px solid black;
 }
 
-.node {
+.article text {
+  text-anchor: middle;
+  fill: white;
+}
+
+.node circle {
   fill: #36D7B7;
 }
 
 .node text {
-  color: gray;
-  fill: gray;
+  text-anchor: middle;
+  fill: white;
 }
 
-.node.selected {
+.node.selected circle {
   stroke-width: 3px;
   stroke: #19987F;
 }
@@ -40,10 +45,10 @@ svg {
 //   stroke-width: 1.5px;
 // }
 
-.text {
-  text-anchor: middle;
-  fill: white;
-}
+// .text {
+//   text-anchor: middle;
+//   fill: white;
+// }
 
 
 path.link {
@@ -69,5 +74,32 @@ path.link.hidden {
   height: 100%;
   border-left: 1px $mercury solid;
   padding-top: 30px;
-  padding-right: 30px;
+  padding-right: 40px;
+  padding-left: 25px;
+
+  h4 {
+    margin-bottom: 15px;
+  }
+
+  .article {
+    h3 {
+      margin-bottom: 0;
+    }
+
+    h4 {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+  }
+
+  .article:hover {
+    h3 {
+      color: $turquoise;
+      text-decoration: underline;
+    }
+
+    h4 {
+      color: $turquoise;
+    }
+  }
 }
