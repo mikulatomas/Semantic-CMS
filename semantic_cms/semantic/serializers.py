@@ -29,6 +29,8 @@ class SemanticNodeListSerializer(serializers.ListSerializer):
         # Perform deletions.
         for semantic_id, semantic in semantic_mapping.items():
             if semantic_id not in data_mapping:
+                print("DELETE NODE")
+                print(semantic)
                 semantic.delete()
 
         return ret
@@ -64,6 +66,7 @@ class SemanticNodeSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
         instance.edited_date = timezone.now()
+        instance.save()
         return instance
 
 class SemanticEdgeListSerializer(serializers.ListSerializer):
@@ -83,12 +86,14 @@ class SemanticEdgeListSerializer(serializers.ListSerializer):
             semanticEdge = semanticEdge_mapping.get(semanticEdge_id, None)
             if semanticEdge is None:
                 ret.append(self.child.create(data))
-            else:
-                ret.append(self.child.update(semanticEdge, data))
+            # else:
+                # ret.append(self.child.update(semanticEdge, data))
 
         # Perform deletions.
         for semanticEdge_id, semanticEdge in semanticEdge_mapping.items():
             if semanticEdge_id not in data_mapping:
+                print("DELETE EDGE")
+                print(semanticEdge)
                 semanticEdge.delete()
 
         return ret
@@ -111,8 +116,15 @@ class SemanticEdgeSerializer(serializers.Serializer):
         semanticEdge.save()
         return semanticEdge
 
-    def update(self, instance, validated_data):
-        instance.parent = validated_data.get('parent', instance.parent)
-        instance.child = validated_data.get('child', instance.child)
-        instance.edited_date = timezone.now()
-        return instance
+    # def update(self, instance, validated_data):
+    #     print(instance.parent)
+    #     print(Semantic.objects.get(pk=validated_data['parentId']))
+    #     print(instance.child)
+    #     print(Semantic.objects.get(pk=validated_data['childId']))
+    #     # instance.parent = validated_data.get('parent', instance.parent)
+    #     # instance.child = validated_data.get('child', instance.child
+    #     instance.parent = Semantic.objects.get(pk=validated_data['parentId'])
+    #     instance.child = Semantic.objects.get(pk=validated_data['childId'])
+    #     instance.edited_date = timezone.now()
+    #     instance.save()
+    #     return instance

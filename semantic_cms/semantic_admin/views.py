@@ -221,10 +221,13 @@ def save_graph(request):
         # serializerNodes.validated_data
         # serializerEdges.validated_data
         if serializerNodes.is_valid():
-            serializerNodes.save()
+            print(serializerNodes.save())
+
+        print(serializerNodes.errors)
         # print(serializerNodes.errors)
         # print(serializerEdges.is_valid())
         # print(serializerEdges.errors)
+        print(jsonEdgesClean)
         if serializerEdges.is_valid():
             serializerEdges.save()
 
