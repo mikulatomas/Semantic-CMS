@@ -281,7 +281,8 @@ h4.gap, .nav-tabs li a.gap {
 
 .btn-round {
   border-radius: 100px;
-  padding: 7.5px 11.5px 7.5px 11.5px; }
+  width: 35px;
+  padding: 7px 0px 7px 0px; }
 
 .btn-white-outline {
   background: transparent;
@@ -294,6 +295,18 @@ h4.gap, .nav-tabs li a.gap {
   background: transparent;
   border-color: #36D7B7;
   color: #36D7B7; }
+
+.btn-white-outline-no-hover {
+  background: transparent;
+  border-color: #FFFFFF;
+  color: #FFFFFF; }
+
+.btn-white-outline-no-hover:hover,
+.btn-white-outline-no-hover:active,
+.btn-white-outline-no-hover:focus {
+  background: transparent;
+  border-color: #FFFFFF;
+  color: #FFFFFF; }
 
 .btn-gray-outline {
   background: transparent;
@@ -491,6 +504,10 @@ button:focus,
 
 .no-padding {
   padding: 0; }
+
+.hidden-minimal {
+  display: none !important;
+  font-size: 1px; }
 
 .article-list {
   margin-top: 70px;

@@ -315,7 +315,6 @@ getNodes(function(nodes) {
         .attr("y", "4");
 
       group.selectAll("text").text(function(d) {
-          // console.log(d);
           return d.name;
         }).call(wrap, 70);
 
@@ -391,8 +390,7 @@ getNodes(function(nodes) {
     }
 
     function del() {
-      console.log(nodes);
-      console.log(edges);
+
       if (selected_node) {
         nodes.splice(nodes.indexOf(selected_node), 1);
         spliceEdgesForNode(selected_node);
@@ -403,13 +401,9 @@ getNodes(function(nodes) {
       selected_link = null;
       selected_node = null;
 
-      console.log(nodes);
-      console.log(edges);
       saveGraph(nodes, edges);
       refreshWeights(nodes);
       restart();
-      // console.log(nodes);
-      // console.log(edges);
     }
 
     function edit(node) {
@@ -423,12 +417,8 @@ getNodes(function(nodes) {
           break;
         }
       }
-      console.log(node.name);
-      console.log(name);
-      console.log(node);
+
       node.name = name;
-      console.log(node);
-      console.log(nodes);
 
       restart();
       saveGraph(nodes, edges);
@@ -490,7 +480,6 @@ getNodes(function(nodes) {
     }
 
     function displayArticleNodes(button) {
-      // console.log(button.id);
       article_nodes = requestArticleNodes(button.id);
       selectedArticle = button.id;
       refreshArticleNodes();
@@ -662,8 +651,10 @@ getNodes(function(nodes) {
     articleButtons = Array.prototype.slice.call(articleButtonsList, 0);
 
     articleButtons.forEach(function(button) {
-
-      console.log($("#" + button.id));
+      if (selectedArticle == button.id) {
+        $("#" + button.id).addClass("selected");
+        showButton("#reset");
+      }
       button.addEventListener("click", function() {
         $(".article").removeClass("selected");
         $("#" + button.id).addClass("selected");

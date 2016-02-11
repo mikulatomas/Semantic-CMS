@@ -26,8 +26,9 @@
 
 .btn-round {
   border-radius: 100px;
+  width: 35px;
   // padding: 11px 9px 11px 8px;
-  padding: 7.5px 11.5px 7.5px 11.5px;
+  padding: 7px 0px 7px 0px;
 }
 
 .btn-white-outline {
@@ -38,6 +39,16 @@
 .btn-white-outline:active,
 .btn-white-outline:focus {
   @include btn-outline-hover($turquoise);
+}
+
+.btn-white-outline-no-hover {
+  @include btn-outline($white);
+}
+
+.btn-white-outline-no-hover:hover,
+.btn-white-outline-no-hover:active,
+.btn-white-outline-no-hover:focus {
+  @include btn-outline-hover($white);
 }
 
 .btn-gray-outline {

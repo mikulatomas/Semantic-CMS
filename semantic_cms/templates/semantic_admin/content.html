@@ -83,7 +83,9 @@
         <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
         <!-- <button class="btn btn-gray-outline btn-round" href="#" role="button">
           <i class="fa fa-sitemap"></i></button> -->
-        <a class="btn btn-blue-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.id %}" role="button">
+        <a class="btn btn-blue-outline btn-round" href="{% url 'semantic_admin:semantic:article' article.slug %}" role="button">
+          <i class="fa fa-sitemap"></i></a>
+        <a class="btn btn-green-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.id %}" role="button">
           <i class="fa fa-pencil"></i></a>
         <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:content:delete_article' article.id %}" role="button">
           <i class="fa fa-trash-o"></i></a>

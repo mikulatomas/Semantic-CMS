@@ -110,8 +110,9 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-
+        print(self.request.POST)
         if self.request.POST:
+            print(self.request.POST)
             if 'publish' in self.request.POST:
                 form.instance.publish_article(datetime.datetime.now())
 
@@ -123,6 +124,19 @@ class UpdateArticleView(LoginRequiredMixin, UpdateView):
     template_name = "semantic_admin/edit_article.html"
     success_url = reverse_lazy('semantic_admin:content:index')
     form_class = ArticleEditForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        print(self.request.POST)
+        if self.request.POST:
+            print(self.request.POST)
+            if 'publish' in self.request.POST:
+                form.instance.publish_article(datetime.datetime.now())
+            if 'draft' in self.request.POST:
+                form.instance.unpublish_article()
+
+        form.save()
+        return super(UpdateArticleView, self).form_valid(form)
 
 class DeleteArticleView(LoginRequiredMixin, DeleteView):
     template_name = "semantic_admin/article_confirm_delete.html"

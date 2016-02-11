@@ -83,6 +83,11 @@ class Article(models.Model):
 
         self.status = PUBLISHED
 
+    def unpublish_article(self):
+        """Change status of article """
+        self.published_date = None;
+        self.status = DRAFT
+
     def edit_article(self, time):
         """Update time of edit article"""
         self.edited_date = time
