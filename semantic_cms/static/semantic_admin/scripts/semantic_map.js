@@ -121,14 +121,26 @@ getNodes(function(nodes) {
 
     if (nodes.length > 0) {
       lastNodeId = nodes[0].id;
+      nodes.forEach(function (node) {
+        if (node.id > lastNodeId) {
+          lastNodeId = node.id;
+        }
+      });
     } else {
       lastNodeId = 0;
     }
     if (edges.length > 0) {
       lastEdgeId = edges[0].id;
+      edges.forEach(function (edge) {
+        if (edge.id > lastEdgeId) {
+          lastEdgeId = edge.id;
+        }
+      });
     } else {
       lastEdgeId = 0;
     }
+
+    console.log(nodes);
 
     nodes.forEach(function(node) {
       nodeById.set(node.id, node);
@@ -375,7 +387,7 @@ getNodes(function(nodes) {
           break;
         }
       }
-
+      console.log(lastNodeId);
       var node = {
         id: ++lastNodeId,
         name: name,
@@ -384,7 +396,7 @@ getNodes(function(nodes) {
       };
 
       nodes.push(node);
-
+      console.log(nodes);
       restart();
       saveGraph(nodes, edges);
     }
