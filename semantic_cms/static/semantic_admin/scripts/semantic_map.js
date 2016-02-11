@@ -141,7 +141,10 @@ getNodes(function(nodes) {
 
     var force = d3.layout.force()
       .charge(-2000)
-      .linkDistance(150)
+      // .linkDistance(150)
+      .linkDistance(function(d) {
+        return 100 + 20 * (d.source.number_of_descendants);
+      })
       .chargeDistance(2000)
       .nodes(nodes)
       .links(edges)
@@ -317,7 +320,6 @@ getNodes(function(nodes) {
         }).call(wrap, 70);
 
       node.exit().remove();
-
       force.start();
     }
 
@@ -346,11 +348,20 @@ getNodes(function(nodes) {
 
         edges.push(link);
         refreshWeights(nodes);
+
+        //MAYBE DELETE
+        force.stop();
+        force.linkDistance(function(d) {
+          return 100 + 20 * (d.source.number_of_descendants);
+        });
+        force.start();
+
         restart();
       } else {
         lastEdgeId--;
         alert("Invalid connection.");
       }
+
 
     }
 
@@ -493,7 +504,6 @@ getNodes(function(nodes) {
         nodesActual.forEach(function(node) {
           nodeById.set(node.id, node);
         });
-
         nodes.forEach(function(node) {
           node.number_of_descendants = nodeById.get(node.id).number_of_descendants;
         });
