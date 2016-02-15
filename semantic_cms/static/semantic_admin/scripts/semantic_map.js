@@ -94,7 +94,7 @@ getNodes(function(nodes) {
       .on("zoom", zoomed);
 
     var svg_tag = d3.select("body").selectAll("svg")
-      .style("height", $(document).height() - 63);
+      .style("height", $(document).height() - 65);
 
     //Set real width and height
     width = parseInt(svg_tag.style("width"));

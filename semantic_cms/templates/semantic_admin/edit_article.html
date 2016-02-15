@@ -135,7 +135,7 @@
   <div class="container">
     <a class="btn btn-gray-outline" href="{% url 'semantic_admin:content:index' %}" role="button">Close</a>
     <div class="float-right">
-      <button class="btn btn-blue-outline inline" href="#" role="button">Set semantic topics</button>
+      <input form="article_form" class="btn btn-blue-outline inline" href="#" role="button" type="submit" name="semantic" value="Set semantic categories"/>
 
       <input form="article_form" class="btn btn-gray-outline inline left-space" href="#" role="button" type="submit" name="draft" value="Draft" />
       <!-- Save as Draft</input> -->
@@ -183,11 +183,11 @@
     reader.readAsDataURL(this.files[0]);
   };
 
-  $(function() {
-    $('form').areYouSure({
-      message: 'It looks like you have been editing something. ' + 'If you leave before saving, your changes will be lost.'
-    });
-  });
+  // $(function() {
+  //   $('form').areYouSure({
+  //     message: 'It looks like you have been editing something. ' + 'If you leave before saving, your changes will be lost.'
+  //   });
+  // });
 
   autosize($('textarea'));
 

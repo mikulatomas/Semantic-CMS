@@ -110,14 +110,19 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        print(self.request.POST)
         if self.request.POST:
-            print(self.request.POST)
             if 'publish' in self.request.POST:
                 form.instance.publish_article(datetime.datetime.now())
 
         form.save()
         return super(CreateArticleView, self).form_valid(form)
+
+    def get_success_url(self):
+        if 'semantic' in self.request.POST:
+            return reverse('semantic_admin:semantic:article', kwargs={'slug': self.object.slug})
+        else:
+            return reverse('semantic_admin:content:index')
+
 
 class UpdateArticleView(LoginRequiredMixin, UpdateView):
     model = Article
@@ -138,6 +143,12 @@ class UpdateArticleView(LoginRequiredMixin, UpdateView):
         form.save()
         return super(UpdateArticleView, self).form_valid(form)
 
+    def get_success_url(self):
+        if 'semantic' in self.request.POST:
+            return reverse('semantic_admin:semantic:article', kwargs={'slug': self.object.slug})
+        else:
+            return reverse('semantic_admin:content:index')
+            
 class DeleteArticleView(LoginRequiredMixin, DeleteView):
     template_name = "semantic_admin/article_confirm_delete.html"
     model = Article
