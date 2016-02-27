@@ -17,8 +17,8 @@ class Keyword(models.Model):
     # slug = models.SlugField(max_length=50, unique=True)
 
     # edited_date will be probably redundant
-    edited_date = models.DateTimeField('date edited', null=True, blank=True)
-    created_date = models.DateTimeField('date created')
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["name"]
@@ -29,12 +29,12 @@ class Keyword(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        """Add actual time during saving"""
-        time = timezone.now()
-
-        self.created_date = time
-        super(Keyword, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     """Add actual time during saving"""
+    #     time = timezone.now()
+    #
+    #     self.created_date = time
+    #     super(Keyword, self).save(*args, **kwargs)
 
 class TaggedArticle(GenericTaggedItemBase):
     # TaggedWhatever can also extend TaggedItemBase or a combination of

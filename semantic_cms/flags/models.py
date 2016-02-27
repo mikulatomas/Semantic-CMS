@@ -1,13 +1,16 @@
 from django.db import models
 
+#slugify
+# from django.utils.text import slugify
+
 class Flag(models.Model):
     """Flag model, you can set up flag for your content"""
 
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
 
-    edited_date = models.DateTimeField('date edited', null=True, blank=True)
-    created_date = models.DateTimeField('date created')
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["name"]

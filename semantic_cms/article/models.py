@@ -30,8 +30,11 @@ from keywords.managers import TaggableManager
 #import Flags model
 from flags.models import Flag
 
-#slugify
-from django.utils.text import slugify
+# #slugify
+# from django.utils.text import slugify
+
+#redactor
+from redactor.fields import RedactorField
 
 class Article(models.Model):
     """
@@ -50,8 +53,9 @@ class Article(models.Model):
 
     cover_image = models.ImageField(upload_to="articles/", blank=True, null=True)
 
-    content = MarkupField(default_markup_type='markdown', null=True, blank=True)
-    html = models.TextField(null=True, blank=True)
+    content = RedactorField(verbose_name='Content')
+    # content = MarkupField(default_markup_type='markdown', null=True, blank=True)
+    # html = models.TextField(null=True, blank=True)
 
     author = models.ForeignKey(User, null=True, blank=True)
 
@@ -60,8 +64,10 @@ class Article(models.Model):
     keywords = TaggableManager(blank=True, through=TaggedArticle)
 
 
-    edited_date = models.DateTimeField('date edited', null=True, blank=True)
+    # edited_date = models.DateTimeField('date edited', null=True, blank=True)
     created_date = models.DateTimeField('date created')
+    # created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField('date published', null=True, blank=True)
 
     class Meta:
@@ -74,8 +80,8 @@ class Article(models.Model):
     def is_draft(self):
         return self.status == DRAFT
 
-    def generate_html(self):
-        self.html = self.content.rendered
+    # def generate_html(self):
+    #     self.html = self.content.rendered
 
     def publish_article(self, time):
         """Change status of article and dates"""
@@ -107,8 +113,9 @@ class Article(models.Model):
         for id in ids:
             self.semantic.add(Semantic.objects.get(pk = id))
 
-    def type(self):
-        return "article";
+    # Do I need this???
+    # def type(self):
+    #     return "article";
 
     def save(self, *args, **kwargs):
         """Override save"""
@@ -119,5 +126,5 @@ class Article(models.Model):
         # self.update_slug()
 
         super(Article, self).save(*args, **kwargs) # Call the "real" save() method.
-        self.generate_html()
-        super(Article, self).save(*args, **kwargs)
+        # self.generate_html()
+        # super(Article, self).save(*args, **kwargs)
