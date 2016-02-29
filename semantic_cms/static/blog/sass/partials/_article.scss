@@ -1,0 +1,60 @@
+.article-footer {
+  margin-bottom: 100px;
+
+  h3 {
+  color: $mine;
+  font-weight: lighter;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;
+  border-bottom: 1px solid $mercury;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+  }
+}
+
+.empty {
+  font-weight: lighter;
+  margin-top: 25px;
+}
+
+.bubble {
+  font-weight: lighter;
+  padding: 6px 25px;
+  border-radius: 40px;
+  border: 1px solid $mercury;
+  box-shadow: none;
+  line-height: 40px;
+  margin-right: 5px;
+
+  a {
+    color: $silver;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.keyword {
+  @extend .bubble;
+}
+
+.topic {
+  @extend .bubble;
+}
+
+.keyword:hover {
+  a {
+    color: $cosmos;
+  }
+
+  border-color: $cosmos;
+}
+
+.topic:hover {
+  a {
+    color: $turquoise;
+  }
+
+  border-color: $turquoise;
+}

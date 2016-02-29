@@ -694,4 +694,7 @@ path.link.hidden {
   .article-list-right .article:hover h4, .article-list-right .article:hover .nav-tabs li a, .nav-tabs li .article-list-right .article:hover a {
     color: #36D7B7; }
 
+.redactor-box {
+  max-width: 100% !important; }
+
 /*# sourceMappingURL=style.css.map */

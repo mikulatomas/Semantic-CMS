@@ -4,6 +4,8 @@ from django.db import models
 # from taggit_autocomplete.managers import TaggableManager
 # from taggit.managers import TaggableManager
 from taggit.models import TagBase, GenericTaggedItemBase
+#slugify
+from django.utils.text import slugify
 
 #time
 import datetime
@@ -12,9 +14,8 @@ from django.utils import timezone
 class Keyword(models.Model):
     """Keyword model for represen keyword in the system, taggit-autocomplete integrated"""
 
-    name = models.CharField(max_length=50, unique=True)
-    # Probably redundant delete later
-    # slug = models.SlugField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50)
 
     # edited_date will be probably redundant
     created_date = models.DateTimeField(auto_now_add=True)
@@ -29,12 +30,9 @@ class Keyword(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     """Add actual time during saving"""
-    #     time = timezone.now()
-    #
-    #     self.created_date = time
-    #     super(Keyword, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Keyword, self).save(*args, **kwargs)
 
 class TaggedArticle(GenericTaggedItemBase):
     # TaggedWhatever can also extend TaggedItemBase or a combination of

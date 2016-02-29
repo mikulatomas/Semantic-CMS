@@ -52,6 +52,8 @@ INSTALLED_APPS = (
     'django_filters',
     'django_dag',
     'rest_framework',
+    'redactor',
+    'imagekit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -203,3 +205,7 @@ MARKUP_FIELD_TYPES = (
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
 }
+
+REDACTOR_OPTIONS = {'lang': 'en'}
+REDACTOR_UPLOAD = 'image/uploads/'
+REDACTOR_UPLOAD_HANDLER = 'redactor.handlers.DateDirectoryUploader'

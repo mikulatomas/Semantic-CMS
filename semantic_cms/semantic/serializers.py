@@ -46,6 +46,7 @@ class SemanticNodeSerializer(serializers.Serializer):
     type = serializers.ReadOnlyField()
     # number_of_descendants = serializers.IntegerField(source = 'descendants_set_size')
     number_of_descendants = serializers.ReadOnlyField(source = 'descendants_set_size')
+    slug = serializers.ReadOnlyField()
 
     class Meta:
         list_serializer_class = SemanticNodeListSerializer

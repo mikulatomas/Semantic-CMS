@@ -1,7 +1,7 @@
 from django.db import models
 
 #slugify
-# from django.utils.text import slugify
+from django.utils.text import slugify
 
 class Flag(models.Model):
     """Flag model, you can set up flag for your content"""
@@ -18,3 +18,9 @@ class Flag(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        """Override save"""
+        self.slug = slugify(self.name)
+
+        super(Flag, self).save(*args, **kwargs)

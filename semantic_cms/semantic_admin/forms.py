@@ -3,7 +3,7 @@ from article.models import Article
 from datetimewidget.widgets import DateTimeWidget
 from django.forms.widgets import TextInput
 from django.contrib.auth.models import User
-
+from redactor.widgets import RedactorEditor
 
 class ArticleEditForm(forms.ModelForm):
     class Meta:
@@ -12,6 +12,7 @@ class ArticleEditForm(forms.ModelForm):
         # fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords"]
         widgets = {
             'author': TextInput(attrs={'readonly':'readonly'}),
+            'content': RedactorEditor(),
         }
 
     def __init__(self, *args, **kwargs):

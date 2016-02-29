@@ -28,6 +28,7 @@
 from django.db import models
 from django_dag.models import *
 from django.utils import timezone
+from django.utils.text import slugify
 
 class Semantic(node_factory('SemanticEdge')):
     """
@@ -35,19 +36,19 @@ class Semantic(node_factory('SemanticEdge')):
     """
 
     name = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(max_length=50, unique=True, blank=True,  null=True)
 
     # relationships = models.ManyToManyField("self", through="Relationship",blank=True, symmetrical=False, related_name="related_to")
 
-    edited_date = models.DateTimeField('date edited', null=True, blank=True)
-    created_date = models.DateTimeField('date created')
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
         """Override save"""
-        time = timezone.now()
-        self.created_date = time
+        self.slug = slugify(self.name)
 
         super(Semantic, self).save(*args, **kwargs)
 
@@ -60,8 +61,8 @@ class SemanticEdge(edge_factory('Semantic', concrete = False)):
     SemanticEdge model class
     """
 
-    edited_date = models.DateTimeField('date edited', null=True, blank=True)
-    created_date = models.DateTimeField('date created')
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.parent.name + " -> " + self.child.name
@@ -72,9 +73,9 @@ class SemanticEdge(edge_factory('Semantic', concrete = False)):
     def childId(self):
         return self.child.id
 
-    def save(self, *args, **kwargs):
-        """Override save"""
-        time = timezone.now()
-        self.created_date = time
-
-        super(SemanticEdge, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     """Override save"""
+    #     time = timezone.now()
+    #     self.created_date = time
+    #
+    #     super(SemanticEdge, self).save(*args, **kwargs)

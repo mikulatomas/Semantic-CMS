@@ -36,6 +36,11 @@ from flags.models import Flag
 #redactor
 from redactor.fields import RedactorField
 
+#Images
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
+from semantic_cms.image_tools import upload_to_id_image, default_quality
+
 class Article(models.Model):
     """
     Article is basic unit for Semantic CMS, this model holds info about article.
@@ -51,7 +56,11 @@ class Article(models.Model):
 
     flag = models.ForeignKey(Flag, null=True, blank=True)
 
-    cover_image = models.ImageField(upload_to="articles/", blank=True, null=True)
+    # cover_image = models.ImageField(upload_to="articles/", blank=True, null=True)
+    cover_image = ProcessedImageField(upload_to=upload_to_id_image,
+                                           processors=[ResizeToFill(3000, 1000)],
+                                           format='JPEG',
+                                           options={'quality': default_quality}, blank=True, null=True)
 
     content = RedactorField(verbose_name='Content')
     # content = MarkupField(default_markup_type='markdown', null=True, blank=True)
@@ -107,6 +116,7 @@ class Article(models.Model):
         for semantic in self.semantic.all():
             result.append(semantic.id)
         return result
+
 
     def reset_semantic_ids(self, ids):
         self.semantic.clear()

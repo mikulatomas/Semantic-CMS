@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<main>
+  {% include "blog/includes/header-subtitle.html" with title=semantic.name subtitle="Articles with topic" %}
+  {% for article in article_list %}
+    {% include "blog/includes/article-preview.html" with article=article %}
+  {% empty %}
+  <div class="container">
+    <p class="text-center empty">No articles.</p>
+  </div>
+  {% endfor %}
+</main>
+{% endblock %}
