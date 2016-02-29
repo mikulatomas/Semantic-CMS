@@ -148,7 +148,7 @@ class UpdateArticleView(LoginRequiredMixin, UpdateView):
             return reverse('semantic_admin:semantic:article', kwargs={'slug': self.object.slug})
         else:
             return reverse('semantic_admin:content:index')
-            
+
 class DeleteArticleView(LoginRequiredMixin, DeleteView):
     template_name = "semantic_admin/article_confirm_delete.html"
     model = Article
@@ -240,23 +240,15 @@ def save_graph(request):
         serializerNodes = SemanticNodeSerializer(querysetNodes, data=jsonNodesClean, many=True)
         serializerEdges = SemanticEdgeSerializer(querysetEdges, data=jsonEdgesClean, many=True)
 
-        # serializerNodes.is_valid()
-        # serializerEdges.is_valid()
-        # # print(serializerNodes.errors)
-        # serializerNodes.validated_data
-        # serializerEdges.validated_data
         if serializerNodes.is_valid():
-            print(serializerNodes.save())
+            serializerNodes.save()
 
-        print(serializerNodes.errors)
-        # print(serializerNodes.errors)
-        # print(serializerEdges.is_valid())
-        # print(serializerEdges.errors)
-        print(jsonEdgesClean)
         if serializerEdges.is_valid():
             serializerEdges.save()
 
-    return HttpResponse(json.dumps({'message': 0}))
+        return HttpResponse(json.dumps({'message': 0}))
+
+    return HttpResponse(json.dumps({'message': 1}))
 
 def add_edge(request):
     if request.method == 'POST':
@@ -268,12 +260,15 @@ def add_edge(request):
             if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
                 edge[attribute] = jsonData[attribute]
 
-        print("ODESLANO: ")
-        print(edge)
-        test = []
-        test.append(edge)
+        # print("ODESLANO: ")
+        # print(edge)
+        # test = []
+        # test.append(edge)
 
-        querysetEdges = SemanticEdge.objects.all()
+
+        # querysetEdges = SemanticEdge.objects.all()
+        # print("PRINT")
+        # print(querysetEdges)
 
         serializerEdges = SemanticEdgeSerializer(data=edge)
 
@@ -284,10 +279,8 @@ def add_edge(request):
                 print(e)
                 return HttpResponse(json.dumps({'message': 1}))
 
-            print(serializerEdges.errors)
             return HttpResponse(json.dumps({'message': 0}))
         else:
-            print(serializerEdges.errors)
             return HttpResponse(json.dumps({'message': 1}))
 
 

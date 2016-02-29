@@ -140,7 +140,6 @@ getNodes(function(nodes) {
       lastEdgeId = 0;
     }
 
-    console.log(nodes);
 
     nodes.forEach(function(node) {
       nodeById.set(node.id, node);
@@ -199,10 +198,12 @@ getNodes(function(nodes) {
           return d.name;
         }).call(wrap, 70);
 
-      redrawWeight();
+      // redrawWeight();
     }
 
     function restart() {
+      force.stop();
+      console.log("RESTART");
       path = path.data(edges);
 
       path.classed('selected', function(d) {
@@ -331,6 +332,7 @@ getNodes(function(nodes) {
         }).call(wrap, 70);
 
       node.exit().remove();
+      force.resume();
       force.start();
     }
 
@@ -387,7 +389,7 @@ getNodes(function(nodes) {
           break;
         }
       }
-      console.log(lastNodeId);
+
       var node = {
         id: ++lastNodeId,
         name: name,
@@ -396,7 +398,6 @@ getNodes(function(nodes) {
       };
 
       nodes.push(node);
-      console.log(nodes);
       restart();
       saveGraph(nodes, edges);
     }
@@ -412,6 +413,8 @@ getNodes(function(nodes) {
 
       selected_link = null;
       selected_node = null;
+
+      hideButton("#edit");
 
       saveGraph(nodes, edges);
       refreshWeights(nodes);
