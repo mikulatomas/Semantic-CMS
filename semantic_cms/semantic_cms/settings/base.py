@@ -35,14 +35,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #Own apps
-    'article',
-    'semantic',
-    'keywords',
-    'flags',
-    'semantic_admin',
-
     #3party
+    'django_dag',
     'markupfield',
     'django_extensions',
     'widget_tweaks',
@@ -50,10 +44,18 @@ INSTALLED_APPS = (
     'taggit',
     # 'taggit_templatetags',
     'django_filters',
-    'django_dag',
     'rest_framework',
     'redactor',
     'imagekit',
+
+    #Own apps
+    'article',
+    'semantic',
+    'keywords',
+    'flags',
+    'semantic_admin',
+
+
 )
 
 MIDDLEWARE_CLASSES = (

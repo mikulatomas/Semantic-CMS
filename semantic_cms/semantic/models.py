@@ -30,7 +30,7 @@ from django_dag.models import *
 from django.utils import timezone
 from django.utils.text import slugify
 
-class Semantic(node_factory('SemanticEdge')):
+class Semantic(node_factory('semantic.SemanticEdge')):
     """
     Semantic is some kind of category. Every Article can has one or more Semantic category.
     """
@@ -56,7 +56,7 @@ class Semantic(node_factory('SemanticEdge')):
         return "semantic"
 
 
-class SemanticEdge(edge_factory('Semantic', concrete = False)):
+class SemanticEdge(edge_factory('semantic.Semantic', concrete = False)):
     """
     SemanticEdge model class
     """
