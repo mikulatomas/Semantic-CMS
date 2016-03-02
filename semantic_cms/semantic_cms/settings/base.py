@@ -47,6 +47,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'redactor',
     'imagekit',
+    'constance',
+    'constance.backends.database',
 
     #Own apps
     'article',
@@ -101,7 +103,8 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                "django.core.context_processors.request",
+                'django.template.context_processors.request',
+                'constance.context_processors.config',
             ],
         },
     },
@@ -211,3 +214,6 @@ MARKUP_FIELD_TYPES = (
 REDACTOR_OPTIONS = {'lang': 'en'}
 REDACTOR_UPLOAD = 'image/uploads/'
 REDACTOR_UPLOAD_HANDLER = 'redactor.handlers.DateDirectoryUploader'
+
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'

@@ -8,10 +8,11 @@ django-markupfield==1.4.0
 django-mptt==0.8.2
 -e git+https://github.com/wilima/django-dag/#egg=django-dag
 -e git+https://github.com/alex/django-taggit.git#egg=django-taggit
+-e git+https://github.com/wilima/django-wysiwyg-redactor#egg=django-wysiwyg-redactor
 django-templatetag-sugar==1.0
 django-uuidfield==0.5.0
 django-widget-tweaks==1.4.1
-django-wysiwyg-redactor==0.4.9
+#django-wysiwyg-redactor==0.4.9
 djangorestframework==3.3.2
 docutils==0.12
 Markdown==2.6.5

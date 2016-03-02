@@ -48,7 +48,13 @@ class Semantic(node_factory('semantic.SemanticEdge')):
 
     def save(self, *args, **kwargs):
         """Override save"""
-        self.slug = slugify(self.name)
+        if (self.slug != slugify(self.name)):
+            print("-----DEBUG----")
+            print(self.slug)
+            print(slugify(self.name))
+            print("-------------")
+            self.slug = slugify(self.name)
+
 
         super(Semantic, self).save(*args, **kwargs)
 

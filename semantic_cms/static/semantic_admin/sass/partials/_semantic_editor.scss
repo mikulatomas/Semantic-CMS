@@ -45,6 +45,12 @@ svg {
   stroke-dasharray:10,5;
 }
 
+.article.selected-end circle {
+  stroke-width: 3px;
+  stroke: darken($sunset-orange, 30%);
+  stroke-dasharray:10,5;
+}
+
 // .link {
 //   stroke: #999;
 //   stroke-width: 1.5px;

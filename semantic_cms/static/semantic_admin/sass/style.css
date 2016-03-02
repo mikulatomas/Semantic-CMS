@@ -502,6 +502,9 @@ button:focus,
 .float-right {
   float: right; }
 
+.float-left {
+  float: left; }
+
 .no-padding {
   padding: 0; }
 
@@ -646,6 +649,11 @@ svg {
 .selected-end circle {
   stroke-width: 3px;
   stroke: #1c8b75;
+  stroke-dasharray: 10,5; }
+
+.article.selected-end circle {
+  stroke-width: 3px;
+  stroke: #9c0808;
   stroke-dasharray: 10,5; }
 
 path.link {

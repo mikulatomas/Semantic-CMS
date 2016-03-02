@@ -203,7 +203,6 @@ getNodes(function(nodes) {
 
     function restart() {
       force.stop();
-      console.log("RESTART");
       path = path.data(edges);
 
       path.classed('selected', function(d) {
@@ -381,25 +380,26 @@ getNodes(function(nodes) {
     function add() {
       // because :active only works in WebKit?
       svg.classed('active', true);
-
-      var name;
       while (true) {
-        name = prompt("Please enter (unique) name of the node");
+        var name = prompt("Please enter (unique and non-empty) name of the node");
+
+        if (name === "") {
+          return;
+        }
         if (!checkIfNameExists(name)) {
-          break;
+          var node = {
+            id: ++lastNodeId,
+            name: name,
+            type: "semantic",
+            number_of_descendants: 0
+          };
+
+          nodes.push(node);
+          restart();
+          saveGraph(nodes, edges);
+          return;
         }
       }
-
-      var node = {
-        id: ++lastNodeId,
-        name: name,
-        type: "semantic",
-        number_of_descendants: 0
-      };
-
-      nodes.push(node);
-      restart();
-      saveGraph(nodes, edges);
     }
 
     function del() {

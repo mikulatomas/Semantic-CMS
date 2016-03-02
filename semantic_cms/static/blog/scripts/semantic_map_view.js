@@ -139,8 +139,6 @@ getNodes(function(nodes) {
       lastEdgeId = 0;
     }
 
-    console.log(nodes);
-
     nodes.forEach(function(node) {
       nodeById.set(node.id, node);
     });
@@ -237,7 +235,7 @@ getNodes(function(nodes) {
           //disable panning
           d3.event.stopImmediatePropagation();
 
-          window.location = "/semantic/" + d.slug;
+          window.location = "/semantic/" + d.slug + "/";
           // console.log(d.name);
 
           // if (d3.event.shiftKey) {

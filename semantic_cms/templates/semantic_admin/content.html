@@ -69,7 +69,7 @@
 <div class="article-list">
   {% for article in filter %}
   <div class="article-row">
-    <h2 class="inline"><a href="{% url 'semantic_admin:content:edit_article' article.id %}">{{ article.title }}</a></h2>
+    <h2 class="inline"><a href="{% url 'semantic_admin:content:edit_article' article.slug %}">{{ article.title }}</a></h2>
     {% if article.is_draft %}
     <h4>draft</h4>
     {% endif %}
@@ -85,9 +85,9 @@
           <i class="fa fa-sitemap"></i></button> -->
         <a class="btn btn-blue-outline btn-round" href="{% url 'semantic_admin:semantic:article' article.slug %}" role="button">
           <i class="fa fa-sitemap"></i></a>
-        <a class="btn btn-green-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.id %}" role="button">
+        <a class="btn btn-green-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.slug %}" role="button">
           <i class="fa fa-pencil"></i></a>
-        <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:content:delete_article' article.id %}" role="button">
+        <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:content:delete_article' article.slug %}" role="button">
           <i class="fa fa-trash-o"></i></a>
       </span>
     </div>

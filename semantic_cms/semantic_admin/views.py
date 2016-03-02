@@ -32,6 +32,7 @@ import datetime
 from django.utils import timezone
 
 from .forms import ArticleEditForm
+from .forms import ArticleFlagEditForm
 from django.core.urlresolvers import reverse_lazy
 
 #Save test
@@ -67,17 +68,48 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context['title'] = 'Dashboard'
         return context
 
-# class ContentView(LoginRequiredMixin, ListView):
-#     template_name = "semantic_admin/content.html"
-#     model = Article
-#     context_object_name = 'article_list'
+# class ArticleFlagView(LoginRequiredMixin, ListView):
+#     template_name = "semantic_admin/article_flag_list.html"
+#     model = Flag
+#     context_object_name = 'article_flags'
 #
 #     def get_context_data(self, **kwargs):
 #         # Call the base implementation first to get a context
-#         context = super(ContentView, self).get_context_data(**kwargs)
-#
-#         context['title'] = 'Dashboard'
+#         context = super(ArticleFlagView, self).get_context_data(**kwargs)
+#         context['title'] = 'Article types'
 #         return context
+
+class CreateArticleFlagView(LoginRequiredMixin, CreateView):
+    template_name = "semantic_admin/article_flag_edit.html"
+    success_url = reverse_lazy('semantic_admin:article_types:index')
+    form_class = ArticleFlagEditForm
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(CreateArticleFlagView, self).get_context_data(**kwargs)
+        context['article_flags'] = Flag.objects.all()
+        context['title'] = 'Create New Article Type'
+        context['button_text'] = "Add new"
+        return context
+
+class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
+    model = Flag
+    template_name = "semantic_admin/article_flag_edit.html"
+    success_url = reverse_lazy('semantic_admin:article_types:index')
+    form_class = ArticleFlagEditForm
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(UpdateArticleFlagView, self).get_context_data(**kwargs)
+        context['article_flags'] = Flag.objects.all()
+        context['title'] = context['flag']
+        context['button_text'] = "Save"
+        return context
+
+class DeleteArticleFlagView(LoginRequiredMixin, DeleteView):
+    template_name = "semantic_admin/article_flag_confirm_delete.html"
+    model = Flag
+    success_url = reverse_lazy('semantic_admin:article_types:index')
 
 class ContentView(LoginRequiredMixin, FilterView):
     template_name = "semantic_admin/content.html"
@@ -88,7 +120,7 @@ class ContentView(LoginRequiredMixin, FilterView):
         # Call the base implementation first to get a context
         context = super(ContentView, self).get_context_data(**kwargs)
         context['request'] = self.request
-        context['title'] = 'Dashboard'
+        context['title'] = 'Content Manager'
         return context
 
 class CreateArticleView(LoginRequiredMixin, CreateView):
@@ -123,6 +155,13 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
         else:
             return reverse('semantic_admin:content:index')
 
+from django.views.generic.edit import FormView
+from constance.admin import ConstanceAdmin, ConstanceForm, Config
+
+class UpdateSettingsView(LoginRequiredMixin, FormView):
+    template_name = "semantic_admin/edit_settings.html"
+    success_url = reverse_lazy('semantic_admin:index')
+    form_class = ConstanceForm
 
 class UpdateArticleView(LoginRequiredMixin, UpdateView):
     model = Article
@@ -132,9 +171,8 @@ class UpdateArticleView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        print(self.request.POST)
+
         if self.request.POST:
-            print(self.request.POST)
             if 'publish' in self.request.POST:
                 form.instance.publish_article(datetime.datetime.now())
             if 'draft' in self.request.POST:
@@ -142,6 +180,12 @@ class UpdateArticleView(LoginRequiredMixin, UpdateView):
 
         form.save()
         return super(UpdateArticleView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(UpdateArticleView, self).get_context_data(**kwargs)
+        context['title'] = context['article']
+        return context
 
     def get_success_url(self):
         if 'semantic' in self.request.POST:
@@ -166,21 +210,10 @@ class SemanticView(LoginRequiredMixin, ListView):
         # Call the base implementation first to get a context
         context = super(SemanticView, self).get_context_data(**kwargs)
 
-        # print(self.kwargs['slug'])
-        # if 'slug' in self.request.POST:
-        #     context['slug'] = self.kwargs['slug']
-
         if 'slug' in self.kwargs:
-            # print("YES")
-
             article = Article.objects.get(slug=self.kwargs['slug'])
-            # print(article.semantic_ids())
-            # serializerArticle = ArticleEdgeSerializer(article)
-
-            # context['article_semantic'] = serializerArticle.data["semantic"];
             context['selected_article'] = article
             context['article_nodes'] = json.dumps(article.semantic_ids())
-            # context['slug'] = self.kwargs['slug']
         else:
             context['article_nodes'] = json.dumps([])
 
@@ -255,20 +288,10 @@ def add_edge(request):
         jsonData = json.loads(request.body.decode('utf-8'))
 
         edge = {}
-        # print(jsonData)
+
         for attribute in jsonData:
             if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
                 edge[attribute] = jsonData[attribute]
-
-        # print("ODESLANO: ")
-        # print(edge)
-        # test = []
-        # test.append(edge)
-
-
-        # querysetEdges = SemanticEdge.objects.all()
-        # print("PRINT")
-        # print(querysetEdges)
 
         serializerEdges = SemanticEdgeSerializer(data=edge)
 
@@ -282,10 +305,6 @@ def add_edge(request):
             return HttpResponse(json.dumps({'message': 0}))
         else:
             return HttpResponse(json.dumps({'message': 1}))
-
-
-
-    # return HttpResponse("Got json data")
 
 
 def login(request, template_name):

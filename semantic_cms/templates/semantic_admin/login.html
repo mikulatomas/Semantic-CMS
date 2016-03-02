@@ -10,7 +10,13 @@
 <div class="col-sm-4 col-sm-offset-4 text-center form">
 <img class="logo" src="{% static 'semantic_admin/img/logo-big.png' %}">
 
-<form action="{{ app_path }}" method="post" id="login_form">{% csrf_token %}
+{% if next %}
+<form action="?next={{next}}" method="post" id="login_form" >
+{%else%}
+
+<form action="{{ app_path }}" method="post" id="login_form">
+  {% endif %}
+  {% csrf_token %}
 
     {% if form.username.errors %}
       <div class="input-group">
