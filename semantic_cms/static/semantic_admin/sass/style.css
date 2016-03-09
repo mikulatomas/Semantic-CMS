@@ -166,6 +166,8 @@ body {
     color: #36D7B7 !important; }
   .navbar .navbar-nav li .active a {
     background: transparent; }
+  .navbar .navbar-nav li.right-space {
+    margin-right: 30px; }
   .navbar .navbar-brand {
     padding-top: 18px;
     margin-right: 10px; }
@@ -199,12 +201,15 @@ h3 {
   font-size: 18px !important;
   font-weight: normal; }
 
-h4, .nav-tabs li a {
+h4, .settings-section h4, .nav-tabs li a {
   font-size: 14px !important;
   text-transform: uppercase;
   color: #ABABAB;
   margin-bottom: 10px;
   display: inline-block; }
+
+.settings-section h4, .settings-section .nav-tabs li a, .nav-tabs li .settings-section a {
+  display: block; }
 
 h4.gap, .nav-tabs li a.gap {
   margin-top: 50px; }
@@ -213,7 +218,7 @@ h4.gap, .nav-tabs li a.gap {
   text-transform: none !important; }
 
 .headline h1, .headline #article_title {
-  margin-top: 80px;
+  margin-top: 60px;
   margin-bottom: 0;
   color: #2F2F2F; }
 .headline h2, .headline #article_subtitle {
@@ -269,6 +274,9 @@ h4.gap, .nav-tabs li a.gap {
   box-shadow: none; }
   .btn .margin-right {
     margin-right: 10px; }
+
+#navbar-user .btn {
+  border-radius: 0; }
 
 .btn-group.open .dropdown-toggle {
   box-shadow: none !important; }
@@ -704,5 +712,15 @@ path.link.hidden {
 
 .redactor-box {
   max-width: 100% !important; }
+
+.settings {
+  margin-top: 70px;
+  margin-bottom: 100px; }
+  .settings .settings-section {
+    margin-bottom: 50px; }
+    .settings .settings-section .user-picture {
+      margin-top: 30px; }
+      .settings .settings-section .user-picture input {
+        margin-left: 30px; }
 
 /*# sourceMappingURL=style.css.map */

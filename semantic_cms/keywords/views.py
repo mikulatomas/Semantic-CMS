@@ -2,7 +2,10 @@ from django.http import HttpResponse
 from .models import Keyword
 from django.core import serializers
 from article.models import Article
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 import json
 
 def list_keywords(request):
@@ -21,7 +24,15 @@ def list_keywords(request):
 	return HttpResponse(tags, content_type='application/json')
 
 def articles_with_keyword(request, slug):
-    keyword = get_object_or_404(Keyword, slug=slug)
-    articles = Article.objects.order_by('-published_date').filter(keywords=keyword, status='P')
+	keyword = get_object_or_404(Keyword, slug=slug)
+	articles = Article.objects.order_by('-published_date').filter(keywords=keyword, status='P')
+	paginator = Paginator(articles, 5)
+	page = request.GET.get('page')
+	try:
+		article_list = paginator.page(page)
+	except PageNotAnInteger:
+		article_list = paginator.page(1)
+	except EmptyPage:
+		article_list = paginator.page(paginator.num_pages)
 
-    return render_to_response('blog/keyword.html', {'keyword': keyword, 'article_list': articles})
+	return render(request, 'blog/keyword.html', {'keyword': keyword, 'article_list': article_list})

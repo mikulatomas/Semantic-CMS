@@ -112,6 +112,33 @@
   }
 }
 
+.pagination-container {
+  text-align: center;
+  margin-bottom: 50px;
+  border-top: 1px solid $mercury;
+}
+
+.pagination {
+  margin-top: 30px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 300;
+
+
+  li {
+    span {
+      color: $turquoise;
+    }
+    span:hover {
+      background: none;
+      color: $turquoise;
+    }
+    a {
+      color: $turquoise;
+    }
+  }
+}
+
 main {
   header {
     margin: 80px 0 60px;

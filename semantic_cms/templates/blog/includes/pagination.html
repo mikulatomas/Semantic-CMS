@@ -1,0 +1,21 @@
+{# {% if is_paginated %}#}
+<div class="container">
+  <div class="col-sm-10 col-sm-offset-1 pagination-container">
+<ul class="pagination">
+{% if article_list.has_previous %}
+    <li>
+        <span><a href="?page={{ article_list.previous_page_number }}">Previous</a></span>
+    </li>
+{% endif %}
+    <li class="">
+        <span>Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}.</span>
+    </li>
+{% if article_list.has_next %}
+    <li>
+        <span><a href="?page={{ article_list.next_page_number }}">Next</a></span>
+    </li>
+{% endif %}
+</ul>
+</div>
+</div>
+{# {% endif %}#}

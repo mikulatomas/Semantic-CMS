@@ -12,5 +12,7 @@
   {% for article in article_list %}
     {% include "blog/includes/article-preview.html" with article=article %}
   {% endfor %}
+
+  {% include "blog/includes/pagination.html" %}
   </main>
 {% endblock %}

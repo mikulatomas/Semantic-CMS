@@ -17,7 +17,7 @@
     <span class="date">{{ article.published_date|date:'d. E Y' }}</span>
     <p>
     {% for semantic in article.semantic.all %}
-    <a href="{% url 'semantic' semantic.slug %}">{{ semantic.name }}</a>
+    <a href="{% url 'semantic' semantic.slug %}">{{ semantic.name }}</a>{% if not forloop.last %}, {% endif %}
     {% endfor %}
     </p>
   </div>

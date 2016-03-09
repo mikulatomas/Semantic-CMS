@@ -2,6 +2,9 @@ from .models import Article
 from rest_framework import viewsets
 from .serializers import ArticleSerializer, ArticleEdgeSerializer
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 
 class ArticleViewSet(viewsets.ModelViewSet):
     """
@@ -23,9 +26,28 @@ class ArticleListView(ListView):
     """
 
     model = Article
-    queryset = Article.objects.select_related().order_by('-published_date').filter(status='P')
-    context_object_name = 'article_list'
+    # queryset = Article.objects.select_related().order_by('-published_date').filter(status='P')
+    # context_object_name = 'article_list'
     template_name = 'blog/homepage.html'
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super(ArticleListView, self).get_context_data(**kwargs)
+        article_list = Article.objects.order_by('-published_date').filter(status='P')
+        # article_list = Article.objects.all()
+        paginator = Paginator(article_list, self.paginate_by)
+
+        page = self.request.GET.get('page')
+
+        try:
+            articles = paginator.page(page)
+        except PageNotAnInteger:
+            articles = paginator.page(1)
+        except EmptyPage:
+            articles = paginator.page(paginator.num_pages)
+
+        context['article_list'] = articles
+        return context
 
 class ArticleDetailView(DetailView):
     """

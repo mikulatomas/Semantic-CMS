@@ -23,6 +23,8 @@ from semantic.models import Semantic
 from semantic.models import SemanticEdge
 from flags.models import Flag
 from keywords.models import Keyword
+from .models import UserProfile
+from .models import BlogSettings
 
 from datetimewidget.widgets import DateTimeWidget
 from django.forms.models import modelform_factory
@@ -33,6 +35,7 @@ from django.utils import timezone
 
 from .forms import ArticleEditForm
 from .forms import ArticleFlagEditForm
+from .forms import UserProfileEditForm
 from django.core.urlresolvers import reverse_lazy
 
 #Save test
@@ -42,6 +45,9 @@ from django.views.decorators.csrf import csrf_protect
 import json
 from semantic.serializers import SemanticNodeSerializer
 from semantic.serializers import SemanticEdgeSerializer
+
+from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 # @login_required
 # def dashboard(request):
@@ -54,6 +60,11 @@ class LoginRequiredMixin(object):
     def as_view(cls, **initkwargs):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(LoginRequiredMixin, self).get_context_data(**kwargs)
+        context['user_profile'] = UserProfile.objects.filter(user = self.request.user)
+        return context
 
 class ModelFormWidgetMixin(object):
     def get_form_class(self):
@@ -91,6 +102,49 @@ class CreateArticleFlagView(LoginRequiredMixin, CreateView):
         context['title'] = 'Create New Article Type'
         context['button_text'] = "Add new"
         return context
+
+class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
+    model = User
+    template_name = "semantic_admin/user_profile_edit.html"
+    success_url = reverse_lazy('semantic_admin:settings:user')
+    form_class = UserProfileEditForm
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateUserProfileView, self).get_form_kwargs()
+        kwargs.update(instance={
+            'info': self.object,
+            'user': self.object.user,
+        })
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(UpdateUserProfileView, self).get_context_data(**kwargs)
+        context['title'] = 'Edit User Info'
+        context['user_profile'] = UserProfile.objects.filter(user = self.request.user)
+        return context
+
+    def get_object(self):
+        obj, created = UserProfile.objects.get_or_create(user = self.request.user)
+        return obj
+
+class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
+    model = BlogSettings
+    template_name = "semantic_admin/blog_settings_edit.html"
+    success_url = reverse_lazy('semantic_admin:settings:index')
+    fields = ('__all__')
+    # form_class = UserProfileEditForm
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(UpdateBlogSettingsView, self).get_context_data(**kwargs)
+        context['title'] = 'Edit Blog Settings'
+        # context['user_profile'] = UserProfile.objects.filter(user = self.request.user)
+        return context
+
+    def get_object(self):
+        obj, created = BlogSettings.objects.get_or_create(pk = 0)
+        return obj
 
 class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
     model = Flag
@@ -155,13 +209,13 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
         else:
             return reverse('semantic_admin:content:index')
 
-from django.views.generic.edit import FormView
-from constance.admin import ConstanceAdmin, ConstanceForm, Config
-
-class UpdateSettingsView(LoginRequiredMixin, FormView):
-    template_name = "semantic_admin/edit_settings.html"
-    success_url = reverse_lazy('semantic_admin:index')
-    form_class = ConstanceForm
+# from django.views.generic.edit import FormView
+# from constance.admin import ConstanceAdmin, ConstanceForm, Config
+#
+# class UpdateSettingsView(LoginRequiredMixin, FormView):
+#     template_name = "semantic_admin/edit_settings.html"
+#     success_url = reverse_lazy('semantic_admin:index')
+#     form_class = ConstanceForm
 
 class UpdateArticleView(LoginRequiredMixin, UpdateView):
     model = Article
@@ -210,6 +264,8 @@ class SemanticView(LoginRequiredMixin, ListView):
         # Call the base implementation first to get a context
         context = super(SemanticView, self).get_context_data(**kwargs)
 
+        # context['last_node_id'] = Semantic.objects.latest('id').id
+
         if 'slug' in self.kwargs:
             article = Article.objects.get(slug=self.kwargs['slug'])
             context['selected_article'] = article
@@ -256,15 +312,24 @@ def save_graph(request):
         for node in jsonNodes:
             tmp = {}
             for attribute in node:
-                if (attribute == "id") or (attribute == "name"):
+                # if (attribute == "id") or (attribute == "name"):
+                if (attribute == "id"):
                     tmp[attribute] = node[attribute]
+                if (attribute == "name"):
+                    tmp[attribute] = node[attribute]
+                    tmp["slug"] = slugify(node[attribute])
             jsonNodesClean.append(tmp)
 
         for edge in jsonEdges:
             tmp = {}
             for attribute in edge:
-                if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
+                # if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
+                if (attribute == "id"):
                     tmp[attribute] = edge[attribute]
+                if (attribute == "parent_name"):
+                    tmp["parent_slug"] = slugify(edge[attribute])
+                if (attribute == "child_name"):
+                    tmp["child_slug"] = slugify(edge[attribute])
             jsonEdgesClean.append(tmp)
 
         querysetNodes = Semantic.objects.all()
@@ -273,6 +338,7 @@ def save_graph(request):
         serializerNodes = SemanticNodeSerializer(querysetNodes, data=jsonNodesClean, many=True)
         serializerEdges = SemanticEdgeSerializer(querysetEdges, data=jsonEdgesClean, many=True)
 
+        # print(serializerNodes)
         if serializerNodes.is_valid():
             serializerNodes.save()
 
@@ -289,21 +355,34 @@ def add_edge(request):
 
         edge = {}
 
+        # for attribute in jsonData:
+        #     if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
+        #         edge[attribute] = jsonData[attribute]
+
         for attribute in jsonData:
-            if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
+            if (attribute == "id"):
                 edge[attribute] = jsonData[attribute]
+            if (attribute == "parent_name"):
+                edge["parent_slug"] = slugify(jsonData[attribute])
+            if (attribute == "child_name"):
+                edge["child_slug"] = slugify(jsonData[attribute])
 
         serializerEdges = SemanticEdgeSerializer(data=edge)
+        # print(serializerEdges)
+        # serializerEdges.is_valid()
 
         if serializerEdges.is_valid():
-            try:
-                serializerEdges.save()
-            except Exception as e:
-                print(e)
-                return HttpResponse(json.dumps({'message': 1}))
+            # try:
+            #     print("SAVING")
+            serializerEdges.save()
+            # except Exception as e:
+            #     print(e)
+            #     return HttpResponse(json.dumps({'message': 1}))
 
             return HttpResponse(json.dumps({'message': 0}))
         else:
+            print("ERROR")
+            print(serializerEdges.errors)
             return HttpResponse(json.dumps({'message': 1}))
 
 

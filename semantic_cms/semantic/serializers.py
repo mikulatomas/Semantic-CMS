@@ -5,6 +5,7 @@ from rest_framework import serializers
 #time
 import datetime
 from django.utils import timezone
+from django.utils.text import slugify
 
 class SemanticNodeListSerializer(serializers.ListSerializer):
     def create(self, validated_data):
@@ -14,11 +15,14 @@ class SemanticNodeListSerializer(serializers.ListSerializer):
     def update(self, instance, validated_data):
         # Maps for id->instance and id->data item.
         # print("UPDATE")
-        semantic_mapping = {semantic.id: semantic for semantic in instance}
-        data_mapping = {item['id']: item for item in validated_data}
+        # semantic_mapping = {semantic.id: semantic for semantic in instance}
+        # data_mapping = {item['id']: item for item in validated_data}
+        semantic_mapping = {semantic.slug: semantic for semantic in instance}
+        data_mapping = {item['slug']: item for item in validated_data}
 
         # Perform creations and updates.
         ret = []
+
         for semantic_id, data in data_mapping.items():
             semantic = semantic_mapping.get(semantic_id, None)
             if semantic is None:
@@ -29,8 +33,6 @@ class SemanticNodeListSerializer(serializers.ListSerializer):
         # Perform deletions.
         for semantic_id, semantic in semantic_mapping.items():
             if semantic_id not in data_mapping:
-                print("DELETE NODE")
-                print(semantic)
                 semantic.delete()
 
         return ret
@@ -46,7 +48,8 @@ class SemanticNodeSerializer(serializers.Serializer):
     type = serializers.ReadOnlyField()
     # number_of_descendants = serializers.IntegerField(source = 'descendants_set_size')
     number_of_descendants = serializers.ReadOnlyField(source = 'descendants_set_size')
-    slug = serializers.ReadOnlyField()
+    # slug = serializers.ReadOnlyField()
+    slug = serializers.CharField()
 
     class Meta:
         list_serializer_class = SemanticNodeListSerializer
@@ -59,14 +62,14 @@ class SemanticNodeSerializer(serializers.Serializer):
     def create(self, validated_data):
         semanticNode = Semantic(
             name=validated_data['name'],
-            created_date=timezone.now()
+            # slug=slugify(validated_data['name'])
         )
         semanticNode.save()
         return semanticNode
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
-        instance.edited_date = timezone.now()
+        # instance.edited_date = timezone.now()
         instance.save()
         return instance
 
@@ -93,26 +96,33 @@ class SemanticEdgeListSerializer(serializers.ListSerializer):
         # Perform deletions.
         for semanticEdge_id, semanticEdge in semanticEdge_mapping.items():
             if semanticEdge_id not in data_mapping:
-                print("DELETE EDGE")
-                print(semanticEdge)
+                # print("DELETE EDGE")
+                # print(semanticEdge)
                 semanticEdge.delete()
 
         return ret
 
 class SemanticEdgeSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    parent = serializers.IntegerField(source = 'parentId')
-    child = serializers.IntegerField(source = 'childId')
+    # parent = serializers.IntegerField(source = 'parentId')
+    # child = serializers.IntegerField(source = 'childId')
+    parent = serializers.ReadOnlyField(source = 'parentId')
+    child = serializers.ReadOnlyField(source = 'childId')
+    parent_slug = serializers.CharField(source = 'parentSlug')
+    child_slug = serializers.CharField(source = 'childSlug')
 
     class Meta:
         list_serializer_class = SemanticEdgeListSerializer
         # fields = ('id', 'parent', 'child')
 
     def create(self, validated_data):
+        print(validated_data)
         semanticEdge = SemanticEdge(
-            parent = Semantic.objects.get(pk=validated_data['parentId']),
-            child = Semantic.objects.get(pk=validated_data['childId']),
-            created_date = timezone.now()
+            # parent = Semantic.objects.get(pk=validated_data['parentId']),
+            # child = Semantic.objects.get(pk=validated_data['childId']),
+            # created_date = timezone.now()
+            parent = Semantic.objects.get(slug=validated_data['parentSlug']),
+            child = Semantic.objects.get(slug=validated_data['childSlug']),
         )
         semanticEdge.save()
         return semanticEdge

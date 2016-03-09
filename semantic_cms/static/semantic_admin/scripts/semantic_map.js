@@ -129,6 +129,7 @@ getNodes(function(nodes) {
     } else {
       lastNodeId = 0;
     }
+
     if (edges.length > 0) {
       lastEdgeId = edges[0].id;
       edges.forEach(function (edge) {
@@ -353,7 +354,9 @@ getNodes(function(nodes) {
         source: selected_node,
         target: end_selected_node,
         parent: selected_node.id,
-        child: end_selected_node.id
+        child: end_selected_node.id,
+        parent_name: selected_node.name,
+        child_name: end_selected_node.name,
       };
 
       if (addEdge(link) === 0) {
@@ -384,7 +387,7 @@ getNodes(function(nodes) {
         var name = prompt("Please enter (unique and non-empty) name of the node");
 
         if (name === "") {
-          return;
+          break;
         }
         if (!checkIfNameExists(name)) {
           var node = {
@@ -394,12 +397,16 @@ getNodes(function(nodes) {
             number_of_descendants: 0
           };
 
+          console.log(node);
+          console.log(nodes);
           nodes.push(node);
+
           restart();
           saveGraph(nodes, edges);
-          return;
+          break;
         }
       }
+
     }
 
     function del() {

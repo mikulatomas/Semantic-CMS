@@ -1,5 +1,5 @@
 .article-footer {
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 
   h3 {
   color: $mine;
@@ -57,4 +57,14 @@
   }
 
   border-color: $turquoise;
+}
+
+.author-info {
+  .name {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  .bio {
+    font-weight: lighter;
+  }
 }

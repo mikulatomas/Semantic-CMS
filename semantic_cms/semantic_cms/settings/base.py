@@ -47,8 +47,9 @@ INSTALLED_APPS = (
     'rest_framework',
     'redactor',
     'imagekit',
-    'constance',
-    'constance.backends.database',
+    # 'constance',
+    # 'constance.backends.database',
+    'betterforms',
 
     #Own apps
     'article',
@@ -105,6 +106,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'constance.context_processors.config',
+                'context_processors.semantic_cms.basic',
             ],
         },
     },

@@ -24,11 +24,13 @@ from semantic_admin.views import CreateArticleView
 from semantic_admin.views import DeleteArticleView
 from semantic_admin.views import UpdateArticleView
 from semantic_admin.views import SemanticView
-from semantic_admin.views import UpdateSettingsView
+# from semantic_admin.views import UpdateSettingsView
 # from semantic_admin.views import ArticleFlagView
 from semantic_admin.views import CreateArticleFlagView
 from semantic_admin.views import UpdateArticleFlagView
 from semantic_admin.views import DeleteArticleFlagView
+from semantic_admin.views import UpdateUserProfileView
+from semantic_admin.views import UpdateBlogSettingsView
 import semantic_admin.views as semantic_admin_views
 # from semantic_admin.views import ContentViewFilter
 # from semantic_admin.views import semantic_save
@@ -49,6 +51,15 @@ article_types_patterns = [
     url(r'^delete/(?P<slug>[-_\w]+)$', DeleteArticleFlagView.as_view(), name='delete_article_flag'),
 ]
 
+settings_patterns = [
+    # url(r'^$', ArticleFlagView.as_view(), name='index'),
+    # url(r'^user/password-change/$', auth_views.password_change, {'template_name': 'semantic_admin/change_password.html'}),
+    url(r'^$', UpdateBlogSettingsView.as_view(), name='index'),
+    url(r'^user/$', UpdateUserProfileView.as_view(), name='user'),
+    # url(r'^edit/(?P<slug>[-_\w]+)$', UpdateArticleFlagView.as_view(), name='edit_article_flag'),
+    # url(r'^delete/(?P<slug>[-_\w]+)$', DeleteArticleFlagView.as_view(), name='delete_article_flag'),
+]
+
 semantic_patterns = [
     url(r'^$', SemanticView.as_view(), name='index'),
     url(r'^add_edge/$', semantic_admin_views.add_edge),
@@ -65,7 +76,7 @@ urlpatterns = [
     url(r'^content/', include(content_patterns, namespace="content")),
     url(r'^article-types/', include(article_types_patterns, namespace="article_types")),
     url(r'^semantic/', include(semantic_patterns, namespace="semantic")),
-    url(r'^settings/', UpdateSettingsView.as_view(), name='settings'),
+    url(r'^settings/', include(settings_patterns, namespace="settings")),
     url(r'^$', DashboardView.as_view(), name='index'),
     url(r'^login/$', auth_views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),
     url(r'^login$', auth_views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),

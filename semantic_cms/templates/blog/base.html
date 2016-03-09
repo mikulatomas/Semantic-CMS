@@ -3,7 +3,12 @@
 
 <html>
     <head>
-        <title>Blog name{% block title %}{{ title }}{% endblock %}</title>
+        <title>{% if blog_settings.blog_name %}
+          {{ blog_settings.blog_name }}
+          {% else %}
+          Blog name
+          {% endif %}
+          {% block title %}{{ title }}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
         {# <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">#}
         <!-- Font Awesome -->
@@ -28,8 +33,17 @@
 
             <div class="navbar-header">
               <a class="navbar-brand" href="{% url 'index' %}">
-                BLOG NAME
+                {% if blog_settings.blog_name %}
+                  {{ blog_settings.blog_name }}
+                  {% else %}
+                  Blog name
+                {% endif %}
               </a>
+              <p class="navbar-text">
+                {% if blog_settings.blog_description %}
+                  {{ blog_settings.blog_description }}
+                {% endif %}
+              </p>
             </div>
             <div class="navbar-right">
             <a class="btn btn-green-outline" id="show-topics" role="button">Show Topics</a>

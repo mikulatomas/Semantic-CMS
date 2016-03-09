@@ -8,7 +8,7 @@ body {
   border: 0;
   border-bottom: 1px solid $mercury;
   background-color: $white;
-  
+
   .navbar-nav {
     li {
       a {
@@ -25,6 +25,9 @@ body {
         // color: $turquoise;
         background: transparent;
       }
+    }
+    li.right-space {
+      margin-right: 30px;
     }
   }
   .navbar-brand {

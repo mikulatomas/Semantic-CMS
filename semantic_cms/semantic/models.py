@@ -79,6 +79,12 @@ class SemanticEdge(edge_factory('semantic.Semantic', concrete = False)):
     def childId(self):
         return self.child.id
 
+    def parentSlug(self):
+        return self.parent.slug
+
+    def childSlug(self):
+        return self.child.slug
+
     # def save(self, *args, **kwargs):
     #     """Override save"""
     #     time = timezone.now()
