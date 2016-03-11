@@ -199,7 +199,7 @@ getNodes(function(nodes) {
           return d.name;
         }).call(wrap, 70);
 
-      // redrawWeight();
+      redrawWeight();
     }
 
     function restart() {
