@@ -1,0 +1,122 @@
+// _button.scss
+
+.btn {
+  font-weight: lighter;
+  padding: 6px 25px;
+  border-radius: 40px;
+  box-shadow: none;
+
+  .margin-right {
+    margin-right: 10px;
+  }
+}
+
+
+.btn-group.open .dropdown-toggle {
+  box-shadow: none !important;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.btn:hover {
+  color: white;
+}
+
+.btn-round {
+  border-radius: 100px;
+  width: 35px;
+  // padding: 11px 9px 11px 8px;
+  padding: 7px 0px 7px 0px;
+}
+
+.btn-white-outline {
+  @include btn-outline($white);
+}
+
+.btn-white-outline:hover,
+.btn-white-outline:active,
+.btn-white-outline:focus {
+  @include btn-outline-hover($turquoise);
+}
+
+.btn-white-outline-no-hover {
+  @include btn-outline($white);
+}
+
+.btn-white-outline-no-hover:hover,
+.btn-white-outline-no-hover:active,
+.btn-white-outline-no-hover:focus {
+  @include btn-outline-hover($white);
+}
+
+.btn-gray-outline {
+  @include btn-outline($silver);
+}
+
+.btn-gray-outline:hover,
+.btn-gray-outline:active,
+.btn-gray-outline:focus {
+  @include btn-outline-hover(darken( $silver, 10% ));
+}
+
+.btn-green-outline {
+  @include btn-outline($turquoise);
+}
+
+.btn-green-outline:hover,
+.btn-green-outline:active,
+.btn-green-outline:focus {
+  @include btn-outline-hover(darken( $turquoise, 10% ));
+}
+
+.btn-blue-outline {
+  @include btn-outline($shakespeare);
+}
+
+.btn-blue-outline:hover,
+.btn-blue-outline:active,
+.btn-blue-outline:focus {
+  @include btn-outline-hover(darken( $shakespeare, 10% ));
+}
+
+.btn-red-outline {
+  @include btn-outline($sunset-orange);
+}
+
+.btn-red-outline:hover,
+.btn-red-outline:active,
+.btn-red-outline:focus {
+  @include btn-outline-hover(darken( $sunset-orange, 10% ));
+}
+
+.btn-blue-solid {
+  @include btn-solid($shakespeare, $white);
+}
+
+.btn-blue-solid:hover,
+.btn-blue-solid:active,
+.btn-blue-solid:focus {
+  @include btn-solid-hover(darken( $shakespeare, 10% ), $white);
+}
+
+.btn-red-solid {
+  @include btn-solid($sunset-orange, $white);
+}
+
+.btn-red-solid:hover,
+.btn-red-solid:active,
+.btn-red-solid:focus {
+  @include btn-solid-hover(darken( $sunset-orange, 10% ), $white);
+}
+
+.btn-green-solid {
+  @include btn-solid($turquoise, $white);
+}
+
+.btn-green-solid:hover,
+.btn-green-solid:active,
+.btn-green-solid:focus {
+  @include btn-solid-hover(darken( $turquoise, 10% ), $white);
+}

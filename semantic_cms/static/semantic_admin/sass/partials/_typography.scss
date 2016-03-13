@@ -1,0 +1,96 @@
+// _typography.scss
+
+body {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  color: $chicago;
+}
+
+h1 {
+  font-size: 48px !important;
+  font-weight: bolder;
+  // margin-bottom: 0 !important;
+}
+
+h2 {
+  font-size: 24px !important;
+  font-weight: normal;
+  // margin-top: 0 !important;
+}
+
+h3 {
+  font-size: 18px !important;
+  font-weight: normal;
+  // margin-top: 0 !important;
+}
+
+h4 {
+  font-size: 14px !important;
+  text-transform: uppercase;
+  color: $silver;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.settings-section {
+  h4 {
+    @extend h4;
+    display: block;
+  }
+
+}
+
+h4.gap {
+  margin-top: 50px;
+}
+
+.lowercase {
+  text-transform: none !important;
+}
+
+.headline {
+  h1 {
+    margin-top: 60px;
+    margin-bottom: 0;
+    color: $mine;
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 55px;
+  }
+}
+
+.no-content {
+
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+  .text {
+    color: $silver;
+    margin-left: 30px;
+  }
+
+  .icon {
+    font-size: 80px;
+    color: $mercury;
+  }
+
+  .title {
+    font-size: 45px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+}
+
+//COLORS
+//---------
+
+.white {
+  color: $white !important;
+}

@@ -1,0 +1,70 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{% block title %} - {{ article.title }}{% endblock %}
+
+{% block content %}
+  {% include "blog/includes/article-header.html" %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 article-content">
+    {% autoescape off %}{{ article.content }}{% endautoescape %}
+  </div>
+</div>
+
+      <div class="article-footer">
+        <div class="row">
+        <div class="col-sm-4">
+        <h3>Author</h3>
+        <div class="row">
+        <div class="col-sm-4">
+        <img width=100% src="{{ article.author.userprofile.profile_image.url }}">
+        </div>
+        <div class="col-sm-8">
+        <div class="author-info">
+        <p class="name">{{ article.author.get_full_name }}</p>
+        <p class="bio">{{ article.author.userprofile.bio }}</p>
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-sm-4">
+        <h3>Keywords</h3>
+        {% for keyword in article.keywords.all %}
+        <span class="keyword"><a href="{% url 'keyword' keyword.slug %}">{{ keyword.name }}</a></span>
+        {% empty %}
+        <span class="empty">No keywords.</span>
+        {% endfor %}
+      </div>
+      <div class="col-sm-4">
+        <h3>All topics</h3>
+        {% for topic in article.semantic.all %}
+        <span class="topic"><a href="{% url 'semantic' topic.slug %}">{{ topic.name }}</a></span>
+        {% empty %}
+        <span class="empty">No topics.</span>
+        {% endfor %}
+      </div>
+      </div>
+
+
+      <section class="similar-articles">
+        <h3>Similar articles</h3>
+        <div class="row">
+        {% for similar_article in similar_articles %}
+          <div class="col-sm-3">
+            <div class="article-miniature" style="background-image: {% if similar_article.cover_image %}url({{ similar_article.cover_image.url }});{% else %}linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);{% endif %}">
+
+              <h1><a href="{% url 'article' similar_article.slug %}">{{ similar_article }}</a></h1>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      </section>
+    </div>
+
+
+
+  </div>
+{% endblock %}

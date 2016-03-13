@@ -1,0 +1,184 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+
+{% block message %}
+  {% if form.errors %}
+    <div id="message">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <div class="container">
+              <i class="fa fa-exclamation-circle"></i> Please check errors.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+{% block jumbotron %}
+<div class="jumbotron" id="jumbotron" style="background-image: {% if article.cover_image %}url({{ article.cover_image.url }});{% else %}linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);{% endif %}">
+
+  <div class="container">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-7">
+          {% if form.title.errors %}
+            {% render_field form.title form="article_form" placeholder="Enter name of the Article" class+="form-error form-control white-form" id="article_title" %}
+            <div id="form-error-message">
+              <div class="alert alert-danger" role="alert">
+                {% for error in form.title.errors %}
+                {{ error|escape }}
+                {% endfor %}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+              </div>
+            </div>
+          {% else %}
+            {% render_field form.title form="article_form" placeholder="Enter name of the Article" class+="form-control white-form" id="article_title" %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-4">
+          {{ form.sub_title.errors }} {% render_field form.sub_title form="article_form" placeholder="Enter subtitle here" class+="form-control white-form" id="article_subtitle" %}
+          <!-- <input type="text" class="form-control white-form" id="article-subtitle" name="articleSubtitle" placeholder="Enter subtitle here"> -->
+        </div>
+      </div>
+    </form>
+    <div class="row jumbotron-gap">
+      <div class="col-sm-3">
+        <div id="article_flag_dropdown" class="dropdown dropdown-form">
+          {% render_field form.flag form="article_form" id="article_flag" data-width="100%" %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div id="article_created_date2" class="input-group input-append date">
+          <span class="input-group-addon white-form add-on"><i class="fa fa-calendar"></i></span>
+          {% render_field form.created_date form="article_form" class+="form-control white-form" id="article_created_date" data-format="yyyy-MM-dd hh:mm:ss" placeholder="Insert create date" %}
+          <span class="input-group-addon white-form add-on"><i class="fa fa-angle-down"></i></span>
+        </div>
+      </div>
+      <div class="col-sm-2 col-sm-offset-7 text-right" style="margin-top: 25px;">
+        <div class="hidden-minimal">
+        {% render_field form.cover_image form="article_form" style="display: none;" id="article_cover_image" %}
+        </div>
+        <input type="button" value="Change cover" class="btn btn-white-outline-no-hover" onclick="document.getElementById('article_cover_image').click();" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{{ form.media }}
+<div id="article_created_date" class="date">
+
+</div>
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <form class="form-horizontal">
+        {{ form.content.errors }}
+        {% render_field form.content %}
+    </form>
+    <div class="row">
+      <div class="col-sm-8">
+        <h4 class="headline">keywords</h4>
+        <div class="input-group">
+          {% render_field form.keywords form="article_form" class+="tagit-hidden-field" id="article_keywords" %}
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <h4 class="headline">post url</h4>
+        {% if form.slug.errors %}
+        <div class="input-group">
+          <span class="form-error input-group-addon gray-form"><i class="fa fa-link"></i></span>
+          {% render_field form.slug form="article_form" class+="form-error form-control gray-form" id="article_slug" placeholder="Enter article slug here" %}
+        </div>
+        <div id="form-error-message">
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.slug.errors %} {{ error|escape }} {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+        </div>
+        {% else %}
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-link"></i></span>
+          {% render_field form.slug form="article_form" class+="form-control gray-form" id="article_slug" placeholder="Enter article slug here" %}
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<form id="article_form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+</form>
+<div class="container-fluid footer">
+  <div class="container">
+    <a class="btn btn-gray-outline" href="{% url 'semantic_admin:content:index' %}" role="button">Close</a>
+    <div class="float-right">
+      <input form="article_form" class="btn btn-blue-outline inline" href="#" role="button" type="submit" name="semantic" value="Set semantic categories"/>
+
+      <input form="article_form" class="btn btn-gray-outline inline left-space" href="#" role="button" type="submit" name="draft" value="Draft" />
+      <input form="article_form" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="publish" value="Publish" />
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extrascripts %}
+<!-- Bootstrap DateTimePicker.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-datetimepicker.js' %}"></script>
+
+<!-- Slugify.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
+
+<!-- Are you sure?.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
+
+<!-- autosize.js -->
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
+
+<!-- tag it.js -->
+<script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  document.getElementById("article_cover_image").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+          document.getElementById("jumbotron").style.backgroundImage = 'url(' + e.target.result + ')';
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+  };
+
+  autosize($('textarea'));
+
+  $('#article_slug').slugify('#article_title');
+
+  $('#article_flag').selectpicker({
+    style: 'white-form',
+  });
+
+  $(function() {
+    $('#article_created_date2').datetimepicker();
+  });
+
+  $('#article_flag_dropdown #icon').addClass('fa-align-left');
+</script>
+{% endblock %}

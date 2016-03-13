@@ -1,0 +1,47 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% block extrahead %} {% endblock %}
+{% block jumbotron %}
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-sm-9 no-padding">
+    <div class="toolbar">
+
+        <a class="btn btn-green-solid" id="add" role="button">
+          <span class="icon margin-right">+</span>Add new topic</a>
+
+          <a class="btn btn-blue-outline hidden" id="edit" role="button">
+            Edit</a>
+
+        <a class="btn btn-red-outline hidden" id="delete" role="button">
+          <span class="icon margin-right"><span class="icon margin-right">×</span>Delete</a>
+
+          <a class="btn btn-green-outline hidden" id="connect" role="button">Connect</a>
+
+    </div>
+    <svg>
+    </svg>
+  </div>
+  <div class="col-sm-3 article-list-right">
+    <h4>Articles</h4>
+    <a class="btn btn-gray-outline inline float-right hidden" id="reset" role="button">
+    <span class="icon margin-right">×</span>Reset</a>
+
+    {% for article in article_list %}
+    <div class="article" id="{{ article.id }}">
+      <h3>{{ article.title }}</h3>
+      <h4 class="lowercase">{{ article.flag }} - {{ article.created_date|date:'m.d.Y' }}</h4>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+{% endblock %} {% block extrascripts %}
+<script type="text/javascript">
+  var article_nodes = JSON.parse("{{ article_nodes }}");
+  var selectedArticle; {% if selected_article.id %}
+  selectedArticle = {{ selected_article.id }}; {% endif %}
+</script>
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/d3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'semantic_admin/scripts/semantic_map.js' %}"></script>
+{% endblock %}

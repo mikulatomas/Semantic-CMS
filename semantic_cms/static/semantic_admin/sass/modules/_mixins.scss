@@ -1,0 +1,45 @@
+// _mixins.scss
+
+@mixin cover-background () {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+//FORMS
+//----------
+
+@mixin form-color($text, $border) {
+  color: $text;
+  border-bottom: 1px solid $border;
+}
+
+@mixin form-color-focus($text, $border) {
+  color: $text !important;
+  border-bottom: 1px solid $border;
+}
+
+//BUTTONS
+//----------
+
+@mixin btn-outline ($color) {
+  background: transparent;
+  border-color: $color;
+  color: $color;
+}
+
+@mixin btn-outline-hover ($color) {
+  background: transparent;
+  border-color: $color;
+  color: $color;
+}
+
+@mixin btn-solid ($background, $color) {
+  background: $background;
+  color: $color;
+}
+
+@mixin btn-solid-hover ($background, $color) {
+  background: $background;
+  color: $color;
+}
