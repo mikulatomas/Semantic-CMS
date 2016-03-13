@@ -29,7 +29,12 @@
         <ul class="nav navbar-nav navbar-right">
           <div class="dropdown navbar-right" id="navbar-user">
             <button class="btn navbar-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              {% if user_profile.0.profile_image %}
               <img width="30" height="30" alt="avatar" src="{{ user_profile.0.profile_image.url }}"><i class="fa fa-angle-down icon" style="float: right;"></i>
+              {% else %}
+              <img width="30" height="30" alt="avatar" src="http://placehold.it/100x100"><i class="fa fa-angle-down icon" style="float: right;"></i>
+              {% endif %}
+
             </button>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
               <li><a href="{% url 'admin:settings:user' %}">{{ user.first_name }} {{ user.last_name }}</a></li>
