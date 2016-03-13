@@ -51,14 +51,14 @@
 </form>
 
 {% if filter %}
-<a class="btn btn-green-solid" href="{% url 'semantic_admin:content:create_article' %}" role="button">
+<a class="btn btn-green-solid" href="{% url 'admin:content:create_article' %}" role="button">
   <span class="icon margin-right">+</span>Write new article</a>
 {% endif %}
 
 
 <div class="float-right">
   {% if request.GET.title__icontains != None and filter %}
-  <a class="btn btn-gray-outline inline" href="{% url 'semantic_admin:content:index' %}" role="button">
+  <a class="btn btn-gray-outline inline" href="{% url 'admin:content:index' %}" role="button">
     <span class="icon margin-right">×</span>Reset filters</a>
   {% endif %}
 </div>
@@ -68,7 +68,7 @@
 <div class="article-list">
   {% for article in filter %}
   <div class="article-row">
-    <h2 class="inline"><a href="{% url 'semantic_admin:content:edit_article' article.slug %}">{{ article.title }}</a></h2>
+    <h2 class="inline"><a href="{% url 'admin:content:edit_article' article.slug %}">{{ article.title }}</a></h2>
     {% if article.is_draft %}
     <h4>draft</h4>
     {% endif %}
@@ -80,11 +80,11 @@
       <span class="right">
         <span class="detail"><i class="fa fa-eye icon"></i>N/A</span>
         <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
-        <a class="btn btn-blue-outline btn-round" href="{% url 'semantic_admin:semantic:article' article.slug %}" role="button">
+        <a class="btn btn-blue-outline btn-round" href="{% url 'admin:semantic:article' article.slug %}" role="button">
           <i class="fa fa-sitemap"></i></a>
-        <a class="btn btn-green-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.slug %}" role="button">
+        <a class="btn btn-green-outline btn-round" href="{% url 'admin:content:edit_article' article.slug %}" role="button">
           <i class="fa fa-pencil"></i></a>
-        <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:content:delete_article' article.slug %}" role="button">
+        <a class="btn btn-red-outline btn-round" href="{% url 'admin:content:delete_article' article.slug %}" role="button">
           <i class="fa fa-trash-o"></i></a>
       </span>
     </div>
@@ -105,7 +105,7 @@
   </div>
 
   <div class="text-center">
-    <a class="btn btn-gray-outline inline" href="{% url 'semantic_admin:content:index' %}" role="button">
+    <a class="btn btn-gray-outline inline" href="{% url 'admin:content:index' %}" role="button">
       <span class="icon margin-right">×</span>Reset filters</a>
   </div>
   <div class="no-content">
@@ -124,7 +124,7 @@
   </div>
 
   <div class="text-center">
-  <a class="btn btn-green-solid" href="{% url 'semantic_admin:content:create_article' %}" role="button">
+  <a class="btn btn-green-solid" href="{% url 'admin:content:create_article' %}" role="button">
     <span class="icon margin-right">+</span>Write new article</a>
   </div>
   <div class="no-content">

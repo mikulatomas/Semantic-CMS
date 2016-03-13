@@ -38,9 +38,9 @@
         <span class="detail"><i class="fa fa-calendar icon"></i>{{ flag.created_date }}</span>
       </span>
       <span class="right">
-        <a class="btn btn-green-outline btn-round" href="{% url 'semantic_admin:article_types:edit_article_flag' flag.slug %}" role="button">
+        <a class="btn btn-green-outline btn-round" href="{% url 'admin:article_types:edit_article_flag' flag.slug %}" role="button">
           <i class="fa fa-pencil"></i></a>
-        <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:article_types:delete_article_flag' flag.slug %}" role="button">
+        <a class="btn btn-red-outline btn-round" href="{% url 'admin:article_types:delete_article_flag' flag.slug %}" role="button">
           <i class="fa fa-trash-o"></i></a>
       </span>
     </div>

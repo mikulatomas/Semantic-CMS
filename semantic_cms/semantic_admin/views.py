@@ -68,7 +68,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
 class CreateArticleFlagView(LoginRequiredMixin, CreateView):
     template_name = "semantic_admin/article_flag_edit.html"
-    success_url = reverse_lazy('semantic_admin:article_types:index')
+    success_url = reverse_lazy('admin:article_types:index')
     form_class = ArticleFlagEditForm
 
     def get_context_data(self, **kwargs):
@@ -82,7 +82,7 @@ class CreateArticleFlagView(LoginRequiredMixin, CreateView):
 class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = "semantic_admin/user_profile_edit.html"
-    success_url = reverse_lazy('semantic_admin:settings:user')
+    success_url = reverse_lazy('admin:settings:user')
     form_class = UserProfileEditForm
 
     def get_form_kwargs(self):
@@ -107,7 +107,7 @@ class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
 class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
     model = BlogSettings
     template_name = "semantic_admin/blog_settings_edit.html"
-    success_url = reverse_lazy('semantic_admin:settings:index')
+    success_url = reverse_lazy('admin:settings:index')
     fields = ('__all__')
     # form_class = UserProfileEditForm
 
@@ -124,7 +124,7 @@ class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
 class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
     model = Flag
     template_name = "semantic_admin/article_flag_edit.html"
-    success_url = reverse_lazy('semantic_admin:article_types:index')
+    success_url = reverse_lazy('admin:article_types:index')
     form_class = ArticleFlagEditForm
 
     def get_context_data(self, **kwargs):
@@ -138,7 +138,7 @@ class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
 class DeleteArticleFlagView(LoginRequiredMixin, DeleteView):
     template_name = "semantic_admin/article_flag_confirm_delete.html"
     model = Flag
-    success_url = reverse_lazy('semantic_admin:article_types:index')
+    success_url = reverse_lazy('admin:article_types:index')
 
 class ContentView(LoginRequiredMixin, FilterView):
     template_name = "semantic_admin/content.html"
@@ -154,7 +154,7 @@ class ContentView(LoginRequiredMixin, FilterView):
 
 class CreateArticleView(LoginRequiredMixin, CreateView):
     template_name = "semantic_admin/edit_article.html"
-    success_url = reverse_lazy('semantic_admin:content:index')
+    success_url = reverse_lazy('admin:content:index')
     form_class = ArticleEditForm
 
     def get_initial(self):
@@ -179,14 +179,14 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         if 'semantic' in self.request.POST:
-            return reverse('semantic_admin:semantic:article', kwargs={'slug': self.object.slug})
+            return reverse('admin:semantic:article', kwargs={'slug': self.object.slug})
         else:
-            return reverse('semantic_admin:content:index')
+            return reverse('admin:content:index')
 
 class UpdateArticleView(LoginRequiredMixin, UpdateView):
     model = Article
     template_name = "semantic_admin/edit_article.html"
-    success_url = reverse_lazy('semantic_admin:content:index')
+    success_url = reverse_lazy('admin:content:index')
     form_class = ArticleEditForm
 
     def form_valid(self, form):
@@ -209,14 +209,14 @@ class UpdateArticleView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         if 'semantic' in self.request.POST:
-            return reverse('semantic_admin:semantic:article', kwargs={'slug': self.object.slug})
+            return reverse('admin:semantic:article', kwargs={'slug': self.object.slug})
         else:
-            return reverse('semantic_admin:content:index')
+            return reverse('admin:content:index')
 
 class DeleteArticleView(LoginRequiredMixin, DeleteView):
     template_name = "semantic_admin/article_confirm_delete.html"
     model = Article
-    success_url = reverse_lazy('semantic_admin:content:index')
+    success_url = reverse_lazy('admin:content:index')
 
 class SemanticView(LoginRequiredMixin, ListView):
     template_name = "semantic_admin/semantic.html"

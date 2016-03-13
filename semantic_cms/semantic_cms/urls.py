@@ -23,7 +23,7 @@ from flags import views as flag_views
 from keywords import views as keyword_views
 from article import views as article_views
 from article.views import ArticleListView, ArticleDetailView
-# from article.admin import my_admin
+
 
 router = routers.DefaultRouter()
 router.register(r'semantic_node', semantic_views.SemanticNodeViewSet)
@@ -34,7 +34,7 @@ router.register(r'articles_edge', article_views.ArticleEdgeViewSet)
 urlpatterns = [
     url(r'^$', ArticleListView.as_view(), name='index'),
     # url(r'^semantic_admin/', include('semantic_admin.urls', namespace="semantic_admin")),
-    url(r'^admin/', include('semantic_admin.urls', namespace="semantic_admin")),
+    url(r'^admin/', include('semantic_admin.urls', namespace="admin")),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^keywords/', include('keywords.urls')),
