@@ -57,7 +57,7 @@ class SemanticNodeSerializer(serializers.Serializer):
 
 class SemanticEdgeListSerializer(serializers.ListSerializer):
     def create(self, validated_data):
-        SemanticEdges = [SemanticEdge(**item, created_date=timezone.now()) for item in validated_data]
+        SemanticEdges = [SemanticEdge(**item) for item in validated_data]
         return SemanticEdge.objects.bulk_create(SemanticEdges)
 
     def update(self, instance, validated_data):
