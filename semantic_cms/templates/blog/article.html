@@ -12,7 +12,8 @@
   </div>
 </div>
 
-      <div class="row article-footer">
+      <div class="article-footer">
+        <div class="row">
         <div class="col-sm-4">
         <h3>Author</h3>
         <div class="row">
@@ -44,8 +45,26 @@
         <span class="empty">No topics.</span>
         {% endfor %}
       </div>
+      </div>
 
+
+      <section class="similar-articles">
+        <h3>Similar articles</h3>
+        <div class="row">
+        {% for similar_article in similar_articles %}
+          <div class="col-sm-3">
+            <div class="article-miniature" style="background-image: {% if similar_article.cover_image %}url({{ similar_article.cover_image.url }});{% else %}linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);{% endif %}">
+
+              <h1><a href="{% url 'article' similar_article.slug %}">{{ similar_article }}</a></h1>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      </section>
     </div>
+
+
 
   </div>
 {% endblock %}

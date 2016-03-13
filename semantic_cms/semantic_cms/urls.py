@@ -33,10 +33,10 @@ router.register(r'articles_edge', article_views.ArticleEdgeViewSet)
 
 urlpatterns = [
     url(r'^$', ArticleListView.as_view(), name='index'),
-    url(r'^semantic_admin/', include('semantic_admin.urls', namespace="semantic_admin")),
+    # url(r'^semantic_admin/', include('semantic_admin.urls', namespace="semantic_admin")),
+    url(r'^admin/', include('semantic_admin.urls', namespace="semantic_admin")),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # url(r'^myadmin/', include(my_admin.urls)),
-    url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.site.urls)),
     url(r'^keywords/', include('keywords.urls')),
     url(r'^api/', include(router.urls)),
     url(r'^redactor/', include('redactor.urls')),

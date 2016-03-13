@@ -1,5 +1,4 @@
 #Article models
-
 from django.db import models
 
 #markdown
@@ -10,8 +9,6 @@ import datetime
 from django.utils import timezone
 
 #Article author
-# from django.conf import settings
-# AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 from django.contrib.auth.models import User
 
 #import fields
@@ -24,14 +21,9 @@ from semantic.models import Semantic
 from keywords.models import Keyword
 from keywords.models import TaggedArticle
 from keywords.managers import TaggableManager
-# from taggit.managers import TaggableManager
-# from taggit.models import TaggedItemBase
 
 #import Flags model
 from flags.models import Flag
-
-# #slugify
-# from django.utils.text import slugify
 
 #redactor
 from redactor.fields import RedactorField
@@ -56,26 +48,19 @@ class Article(models.Model):
 
     flag = models.ForeignKey(Flag, null=True, blank=True)
 
-    # cover_image = models.ImageField(upload_to="articles/", blank=True, null=True)
     cover_image = ProcessedImageField(upload_to=upload_to_id_image,
                                            processors=[ResizeToFill(3000, 1000)],
                                            format='JPEG',
                                            options={'quality': default_quality}, blank=True, null=True)
 
     content = RedactorField(verbose_name='Content')
-    # content = MarkupField(default_markup_type='markdown', null=True, blank=True)
-    # html = models.TextField(null=True, blank=True)
 
     author = models.ForeignKey(User, null=True, blank=True)
 
     semantic = models.ManyToManyField(Semantic, blank=True)
-    # keywords = models.ManyToManyField(Keyword, blank=True)
     keywords = TaggableManager(blank=True, through=TaggedArticle)
 
-
-    # edited_date = models.DateTimeField('date edited', null=True, blank=True)
     created_date = models.DateTimeField('date created')
-    # created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField('date published', null=True, blank=True)
 
@@ -88,9 +73,6 @@ class Article(models.Model):
 
     def is_draft(self):
         return self.status == DRAFT
-
-    # def generate_html(self):
-    #     self.html = self.content.rendered
 
     def publish_article(self, time):
         """Change status of article and dates"""
@@ -107,10 +89,6 @@ class Article(models.Model):
         """Update time of edit article"""
         self.edited_date = time
 
-    # def update_slug(self):
-    #     if not self.slug:
-    #         self.slug = slugify(self.title)
-
     def semantic_ids(self):
         result = []
         for semantic in self.semantic.all():
@@ -123,18 +101,28 @@ class Article(models.Model):
         for id in ids:
             self.semantic.add(Semantic.objects.get(pk = id))
 
-    # Do I need this???
-    # def type(self):
-    #     return "article";
+    def semantic_similar_with(self, source, target):
+        """Return similariti of semantic category for 2 articles, for example 0,5 = 50% similarity"""
 
-    def save(self, *args, **kwargs):
-        """Override save"""
-        time = timezone.now()
+        source_number_of_semantic = source.semantic.count()
+        target_number_of_semantic = target.semantic.count()
+        number_of_same = 0
 
-        self.edit_article(time)
+        for semantic in source.semantic.all():
+            if semantic in target.semantic.all():
+                number_of_same = number_of_same + 1
 
-        # self.update_slug()
+        if (number_of_same == 0):
+            return 0
+        else:
+            return number_of_same / source_number_of_semantic
 
-        super(Article, self).save(*args, **kwargs) # Call the "real" save() method.
-        # self.generate_html()
-        # super(Article, self).save(*args, **kwargs)
+    def return_similar_articles(self, number):
+        """Return number of similar article to this one"""
+
+        all_articles = Article.objects.filter(status='P')
+        all_articles = all_articles.exclude(pk=self.pk)
+
+        newlist = sorted(all_articles, key=lambda x: x.semantic_similar_with(self, x), reverse=True)
+
+        return newlist[:number]

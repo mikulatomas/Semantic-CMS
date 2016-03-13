@@ -653,6 +653,23 @@ main header {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 8px;
     margin-bottom: 15px; }
+  .article-footer .similar-articles {
+    margin-top: 80px; }
+    .article-footer .similar-articles .article-miniature {
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      text-align: center;
+      line-height: 150px; }
+      .article-footer .similar-articles .article-miniature h1, .article-footer .similar-articles .article-miniature #article_title {
+        display: inline-block;
+        font-size: 24px !important;
+        letter-spacing: 1.13px;
+        font-weight: normal;
+        vertical-align: middle;
+        margin: 0; }
+        .article-footer .similar-articles .article-miniature h1 a, .article-footer .similar-articles .article-miniature #article_title a {
+          color: #FFFFFF; }
 
 .empty {
   font-weight: lighter;

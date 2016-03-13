@@ -57,3 +57,10 @@ class ArticleDetailView(DetailView):
     model = Article
     context_object_name = 'article'
     template_name = 'blog/article.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        article = context['article']
+
+        context['similar_articles'] = article.return_similar_articles(4)
+        return context

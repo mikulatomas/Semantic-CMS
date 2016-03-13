@@ -28,7 +28,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -57,8 +57,6 @@ INSTALLED_APPS = (
     'keywords',
     'flags',
     'semantic_admin',
-
-
 )
 
 MIDDLEWARE_CLASSES = (
@@ -71,16 +69,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
-
-# TEMPLATE_CONTEXT_PROCESSORS = (
-#     "django.contrib.auth.context_processors.auth",
-#     "django.template.context_processors.debug",
-#     "django.template.context_processors.i18n",
-#     "django.template.context_processors.media",
-#     "django.template.context_processors.static",
-#     "django.template.context_processors.tz",
-#     "django.contrib.messages.context_processors.messages"
-# )
 
 ROOT_URLCONF = 'semantic_cms.urls'
 
@@ -112,29 +100,6 @@ TEMPLATES = [
     },
 ]
 
-# TEMPLATES = [
-#     {
-#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-#         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-#         'APP_DIRS': True,
-#         'OPTIONS': {
-#             'context_processors': [
-#                 'django.template.context_processors.debug',
-#                 'django.template.context_processors.request',
-#                 'django.contrib.auth.context_processors.auth',
-#                 'django.contrib.messages.context_processors.messages',
-#             ],
-#         },
-#     },
-# ]
-
-# TEMPLATE_DIRS = (
-#     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-#     # Always use forward slashes, even on Windows.
-#     # Don't forget to use absolute paths, not relative paths.
-#     '%s/templates' % (BASE_DIR),
-# )
-
 WSGI_APPLICATION = 'semantic_cms.wsgi.application'
 
 
@@ -154,18 +119,21 @@ USE_TZ = True
 
 # Media locations
 
-media_root_path = os.path.join(BASE_DIR, 'media')
-# media_url_path = os.path.join(BASE_DIR, 'media/')
-media_url_path = '/media/'
+# media_root_path = os.path.join(BASE_DIR, 'media/')
+# # media_url_path = os.path.join(BASE_DIR, 'media/')
+# media_url_path = '/media/'
 
-MEDIA_ROOT = media_root_path
-MEDIA_URL = media_url_path
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = BASE_DIR
-STATIC_URL = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = BASE_DIR
+# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 
 staticfiles_path = os.path.join(BASE_DIR, 'static')
 
@@ -191,9 +159,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/semantic_admin/'
-LOGIN_URL = '/semantic_admin/login'
-LOGOUT_URL = '/semantic_admin/logout'
+LOGIN_REDIRECT_URL = '/admin/'
+LOGIN_URL = '/admin/login'
+LOGOUT_URL = '/admin/logout'
 
 # TAGGIT_AUTOCOMPLETE_JS_BASE_URL = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
 

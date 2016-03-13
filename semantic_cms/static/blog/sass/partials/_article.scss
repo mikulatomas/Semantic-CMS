@@ -11,6 +11,28 @@
   padding-bottom: 8px;
   margin-bottom: 15px;
   }
+
+  .similar-articles {
+    margin-top: 80px;
+
+    .article-miniature {
+    @include cover-background();
+    text-align: center;
+    line-height: 150px;
+
+      h1 {
+        display: inline-block;
+        font-size: 24px !important;
+        letter-spacing: 1.13px;
+        font-weight: normal;
+        vertical-align: middle;
+        margin: 0;
+        a {
+          color: $white;
+        }
+      }
+    }
+  }
 }
 
 .empty {
