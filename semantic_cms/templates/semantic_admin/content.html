@@ -48,7 +48,6 @@
 
 {% block content %}
 <form id="filter_article_form" action="" method="get">
-  <!-- <input type="submit" /> -->
 </form>
 
 {% if filter %}
@@ -81,8 +80,6 @@
       <span class="right">
         <span class="detail"><i class="fa fa-eye icon"></i>N/A</span>
         <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
-        <!-- <button class="btn btn-gray-outline btn-round" href="#" role="button">
-          <i class="fa fa-sitemap"></i></button> -->
         <a class="btn btn-blue-outline btn-round" href="{% url 'semantic_admin:semantic:article' article.slug %}" role="button">
           <i class="fa fa-sitemap"></i></a>
         <a class="btn btn-green-outline btn-round" href="{% url 'semantic_admin:content:edit_article' article.slug %}" role="button">
@@ -144,17 +141,8 @@
 <!-- Bootstrap DateTimePicker.js -->
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-datetimepicker.js' %}"></script>
 
-<!-- Slugify.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
-
-<!-- Are you sure?.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
-
 <!-- autosize.js -->
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
-
-<!-- tag it.js -->
-<script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 

@@ -29,10 +29,6 @@
 {% endblock %}
 
 {% block content %}
-<!--<a class="btn btn-green-solid" href="#" role="button">
-  <span class="icon margin-right">+</span>Add new article type</a>
-
-  <h1>Create new article type</h1>-->
 <div class="article-list" style="margin-top: 0;">
   {% for flag in article_flags %}
   <div class="article-row">
@@ -42,10 +38,6 @@
         <span class="detail"><i class="fa fa-calendar icon"></i>{{ flag.created_date }}</span>
       </span>
       <span class="right">
-        <!--<span class="detail"><i class="fa fa-eye icon"></i>N/A</span>
-        <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
-         <button class="btn btn-gray-outline btn-round" href="#" role="button">
-          <i class="fa fa-sitemap"></i></button> -->
         <a class="btn btn-green-outline btn-round" href="{% url 'semantic_admin:article_types:edit_article_flag' flag.slug %}" role="button">
           <i class="fa fa-pencil"></i></a>
         <a class="btn btn-red-outline btn-round" href="{% url 'semantic_admin:article_types:delete_article_flag' flag.slug %}" role="button">
@@ -64,14 +56,11 @@
 <!-- Slugify.js -->
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
 
-<!-- Are you sure?.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
-
 <!-- autosize.js -->
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
 
 <!-- tag it.js -->
-<script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'semantic_admin/scripts/tag-it.min.js' %}" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
   $('.pull-down').each(function() {

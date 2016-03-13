@@ -3,12 +3,6 @@
 {% load widget_tweaks %}
 
 {% block jumbotron %}
-<!--<div class="jumbotron" style="background-image: linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);">
-  <div class="container">
-    <h1 class="white">User informations</h1>
-    <h2 class="white">You can edit user informations here</h2>
-  </div>
-</div>-->
 {% endblock %}
 
 {% block content %}
@@ -56,48 +50,4 @@
 {% endblock %}
 
 {% block extrascripts %}
-<!-- Bootstrap DateTimePicker.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/bootstrap-datetimepicker.js' %}"></script>
-
-<!-- Slugify.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
-
-<!-- Are you sure?.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
-
-<!-- autosize.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
-
-<!-- tag it.js -->
-<script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript">
-  $('.pull-down').each(function() {
-    $(this).css('margin-top', $(this).parent().height() - $(this).height())
-  });
-  $('#filter_article_flag').selectpicker({
-    style: 'white-form',
-  });
-
-  $('#filter_article_status').selectpicker({
-    style: 'white-form',
-  });
-
-  $(function() {
-    $('#filter_article_created_date_wrapper_from').datetimepicker({format: 'yyyy-MM-dd', pickTime: false});
-  });
-
-  $(function() {
-    $('#filter_article_created_date_wrapper_to').datetimepicker({format: 'yyyy-MM-dd', pickTime: false});
-  });
-
-  $('input').keydown(function(e) {
-    if (e.keyCode == 13) {
-        $('#filter_article_form').submit();
-    }});
-
-  $('#filter_article_status_dropdown #icon').addClass('fa-file-o');
-
-  $('#filter_article_flag_dropdown #icon').addClass('fa-align-left');
-</script>
 {% endblock %}

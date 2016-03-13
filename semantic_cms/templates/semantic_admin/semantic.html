@@ -28,7 +28,6 @@
     <span class="icon margin-right">×</span>Reset</a>
 
     {% for article in article_list %}
-    <!-- <h3 class="inline"><a class="article" id="{{ article.id }}" href="{% url 'semantic_admin:semantic:article' article.slug %}">{{ article.title }}</a></h2> -->
     <div class="article" id="{{ article.id }}">
       <h3>{{ article.title }}</h3>
       <h4 class="lowercase">{{ article.flag }} - {{ article.created_date|date:'m.d.Y' }}</h4>
