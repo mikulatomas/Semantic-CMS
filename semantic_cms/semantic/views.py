@@ -28,7 +28,6 @@ def articles_from_semantic(request, slug):
     semantic = get_object_or_404(Semantic, slug=slug)
     semantic_set = semantic.descendants_set()
     semantic_set.add(semantic)
-    # articles = Article.objects.filter(semantic__in=semantic_set).distinct()
     articles = Article.objects.order_by('-published_date').filter(semantic__in=semantic_set, status='P').distinct()
     paginator = Paginator(articles, 5)
 

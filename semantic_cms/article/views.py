@@ -26,8 +26,6 @@ class ArticleListView(ListView):
     """
 
     model = Article
-    # queryset = Article.objects.select_related().order_by('-published_date').filter(status='P')
-    # context_object_name = 'article_list'
     template_name = 'blog/homepage.html'
     paginate_by = 5
 

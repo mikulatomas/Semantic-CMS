@@ -1,14 +1,7 @@
-# from django.shortcuts import render
-
-# from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-# from django.http import HttpResponse
-# import datetime
 
 from django.contrib.auth import views
-# from django.template.response import TemplateResponse
-# from django.template import RequestContext
 
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
@@ -49,12 +42,6 @@ from semantic.serializers import SemanticEdgeSerializer
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
-# @login_required
-# def dashboard(request):
-#     now = datetime.datetime.now()
-#     html = "<html><body>It is now %s.</body></html>" % now
-#     return HttpResponse(html)
-
 class LoginRequiredMixin(object):
     @classmethod
     def as_view(cls, **initkwargs):
@@ -78,17 +65,6 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context = super(DashboardView, self).get_context_data(**kwargs)
         context['title'] = 'Dashboard'
         return context
-
-# class ArticleFlagView(LoginRequiredMixin, ListView):
-#     template_name = "semantic_admin/article_flag_list.html"
-#     model = Flag
-#     context_object_name = 'article_flags'
-#
-#     def get_context_data(self, **kwargs):
-#         # Call the base implementation first to get a context
-#         context = super(ArticleFlagView, self).get_context_data(**kwargs)
-#         context['title'] = 'Article types'
-#         return context
 
 class CreateArticleFlagView(LoginRequiredMixin, CreateView):
     template_name = "semantic_admin/article_flag_edit.html"
@@ -139,7 +115,6 @@ class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
         # Call the base implementation first to get a context
         context = super(UpdateBlogSettingsView, self).get_context_data(**kwargs)
         context['title'] = 'Edit Blog Settings'
-        # context['user_profile'] = UserProfile.objects.filter(user = self.request.user)
         return context
 
     def get_object(self):
@@ -185,7 +160,6 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
     def get_initial(self):
         initial = super(CreateArticleView, self).get_initial()
         initial["created_date"] = datetime.datetime.now()
-        # initial["author"] = self.request.user
         return initial
 
     def get_context_data(self, **kwargs):
@@ -208,14 +182,6 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
             return reverse('semantic_admin:semantic:article', kwargs={'slug': self.object.slug})
         else:
             return reverse('semantic_admin:content:index')
-
-# from django.views.generic.edit import FormView
-# from constance.admin import ConstanceAdmin, ConstanceForm, Config
-#
-# class UpdateSettingsView(LoginRequiredMixin, FormView):
-#     template_name = "semantic_admin/edit_settings.html"
-#     success_url = reverse_lazy('semantic_admin:index')
-#     form_class = ConstanceForm
 
 class UpdateArticleView(LoginRequiredMixin, UpdateView):
     model = Article
@@ -256,9 +222,6 @@ class SemanticView(LoginRequiredMixin, ListView):
     template_name = "semantic_admin/semantic.html"
     model = Article
     context_object_name = 'article_list'
-
-    # def get_queryset(self):
-        # slug = self.kwargs['slug']
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -312,7 +275,6 @@ def save_graph(request):
         for node in jsonNodes:
             tmp = {}
             for attribute in node:
-                # if (attribute == "id") or (attribute == "name"):
                 if (attribute == "id"):
                     tmp[attribute] = node[attribute]
                 if (attribute == "name"):
@@ -323,7 +285,6 @@ def save_graph(request):
         for edge in jsonEdges:
             tmp = {}
             for attribute in edge:
-                # if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
                 if (attribute == "id"):
                     tmp[attribute] = edge[attribute]
                 if (attribute == "parent_name"):
@@ -355,10 +316,6 @@ def add_edge(request):
 
         edge = {}
 
-        # for attribute in jsonData:
-        #     if (attribute == "id") or (attribute == "parent") or (attribute == "child"):
-        #         edge[attribute] = jsonData[attribute]
-
         for attribute in jsonData:
             if (attribute == "id"):
                 edge[attribute] = jsonData[attribute]
@@ -368,16 +325,9 @@ def add_edge(request):
                 edge["child_slug"] = slugify(jsonData[attribute])
 
         serializerEdges = SemanticEdgeSerializer(data=edge)
-        # print(serializerEdges)
-        # serializerEdges.is_valid()
 
         if serializerEdges.is_valid():
-            # try:
-            #     print("SAVING")
             serializerEdges.save()
-            # except Exception as e:
-            #     print(e)
-            #     return HttpResponse(json.dumps({'message': 1}))
 
             return HttpResponse(json.dumps({'message': 0}))
         else:

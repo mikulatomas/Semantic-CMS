@@ -14,15 +14,6 @@ def edit_string_for_tags(tags):
     Ported from Jonathan Buchanan's `django-tagging
     <http://django-tagging.googlecode.com/>`_
     """
-    # names = []
-    # for tag in tags:
-    #     name = tag.name
-    #     if u',' in name:
-    #         names.append('"%s"' % name)
-    #     else:
-    #         names.append(name)
-    # glue = u', '
-    # return glue.join(sorted(names))
     names = []
     for tag in tags:
         name = tag.name

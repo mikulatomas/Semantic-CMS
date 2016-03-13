@@ -15,19 +15,3 @@ def upload_to_id_image(instance, filename):
                                          'uuid': uuid.uuid1().time_hi_version }
     return '%(path)s%(extension)s' % {'path': path,
                                           'extension': extension}
-
-# def upload_ec_logo(instance, filename):
-#     return 'images/ec-logos/' + filename
-#
-# def upload_ec_logo_retina(instance, filename):
-#     file_name = splitext(filename)[0].lower()
-#     extension = splitext(filename)[1].lower()
-#     return 'images/ec-logos/' + file_name + "-retina" + extension
-#
-# def upload_website_logo(instance, filename):
-#     return 'images/website-logos/' + filename
-#
-# def upload_website_logo_retina(instance, filename):
-#     file_name = splitext(filename)[0].lower()
-#     extension = splitext(filename)[1].lower()
-#     return 'images/website-logos/' + file_name + "-retina" + extension
