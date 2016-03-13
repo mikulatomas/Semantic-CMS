@@ -59,12 +59,13 @@ semantic_patterns = [
 ]
 
 urlpatterns = [
+    url(r'^', include(content_patterns)),
     url(r'^content/', include(content_patterns, namespace="content")),
     url(r'^article-types/', include(article_types_patterns, namespace="article_types")),
     url(r'^semantic/', include(semantic_patterns, namespace="semantic")),
     url(r'^settings/', include(settings_patterns, namespace="settings")),
     # url(r'^$', DashboardView.as_view(), name='index'),
-    url(r'^$', include(content_patterns)),
+
     url(r'^login/$', auth_views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),
     url(r'^login$', auth_views.login, {'template_name': 'semantic_admin/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout_then_login, name='logout'),
