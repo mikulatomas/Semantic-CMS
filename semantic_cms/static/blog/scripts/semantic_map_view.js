@@ -79,8 +79,6 @@ function resetMouseVars() {
   mousedown_link = null;
 }
 
-var apiroot = "/semantic_admin/semantic/";
-
 //CALLS
 
 getNodes(function(nodes) {
@@ -99,8 +97,6 @@ getNodes(function(nodes) {
     width = parseInt($(document).width());
     height = parseInt(svg_tag.style("height"));
 
-    $(".article-list-right").height($(document).height() - 90);
-
     svg = svg_tag.append("g")
       .call(zoom);
 
@@ -111,8 +107,6 @@ getNodes(function(nodes) {
       .style("pointer-events", "all");
 
     var container = svg.append("g");
-
-    refreshArticleNodes();
 
     var nodeById = d3.map();
     var lastNodeId;
@@ -192,10 +186,6 @@ getNodes(function(nodes) {
         return 'translate(' + d.x + ',' + d.y + ')';
       });
 
-      // node.selectAll("text").text(function(d) {
-      //     return d.name;
-      //   }).call(wrap, 70);
-
       redrawWeight();
     }
 
@@ -228,7 +218,7 @@ getNodes(function(nodes) {
       });
 
       redrawWeight();
-      refreshArticleNodes();
+      // refreshArticleNodes();
 
       var group = node.enter().append("g").attr("class", "nodeGroup")
         .on('mousedown', function(d) {
@@ -236,32 +226,6 @@ getNodes(function(nodes) {
           d3.event.stopImmediatePropagation();
 
           window.location = "/semantic/" + d.slug + "/";
-          // console.log(d.name);
-
-          // if (d3.event.shiftKey) {
-          //   if (selected_node !== null && selected_node !== d && end_selected_node !== d) {
-          //     mousedown_node = d;
-          //     end_selected_node = mousedown_node;
-          //     selected_link = null;
-          //     hideElement("#delete");
-          //     hideElement("#edit");
-          //     showElement("#connect");
-          //   } else {
-          //     return;
-          //   }
-          // } else {
-            // select node
-            // mousedown_node = d;
-            // if (end_selected_node === null) {
-            //   showElement("#delete");
-            //   showElement("#edit");
-            // }
-            // if (mousedown_node === selected_node) return;
-            // else selected_node = mousedown_node;
-            // selected_link = null;
-          // }
-
-          // restart();
         });
 
       //ADD CIRCLE
@@ -297,168 +261,10 @@ getNodes(function(nodes) {
     }
 
     // --------------------
-    // EDIT FUNCIONS
-    // --------------------
-    function connect() {
-      if (end_selected_node === null) {
-        return;
-      }
-
-      if (checkIfConnectionExists(edges, selected_node, end_selected_node)) {
-        return;
-      }
-
-      var link;
-      link = {
-        id: ++lastEdgeId,
-        source: selected_node,
-        target: end_selected_node,
-        parent: selected_node.id,
-        child: end_selected_node.id
-      };
-
-      if (addEdge(link) === 0) {
-
-        edges.push(link);
-        refreshWeights(nodes);
-
-        //MAYBE DELETE
-        force.stop();
-        force.linkDistance(function(d) {
-          return 100 + 20 * (d.source.number_of_descendants);
-        });
-        force.start();
-
-        restart();
-      } else {
-        lastEdgeId--;
-        alert("Invalid connection.");
-      }
-
-
-    }
-
-    function add() {
-      // because :active only works in WebKit?
-      svg.classed('active', true);
-
-      var name;
-      while (true) {
-        name = prompt("Please enter (unique) name of the node");
-        if (!checkIfNameExists(name)) {
-          break;
-        }
-      }
-      console.log(lastNodeId);
-      var node = {
-        id: ++lastNodeId,
-        name: name,
-        type: "semantic",
-        number_of_descendants: 0
-      };
-
-      nodes.push(node);
-      console.log(nodes);
-      restart();
-      saveGraph(nodes, edges);
-    }
-
-    function del() {
-
-      if (selected_node) {
-        nodes.splice(nodes.indexOf(selected_node), 1);
-        spliceEdgesForNode(selected_node);
-      } else if (selected_link) {
-        edges.splice(edges.indexOf(selected_link), 1);
-      }
-
-      selected_link = null;
-      selected_node = null;
-
-      saveGraph(nodes, edges);
-      refreshWeights(nodes);
-      restart();
-    }
-
-    function edit(node) {
-      // because :active only works in WebKit?
-      // svg.classed('active', true);
-
-      var name;
-      while (true) {
-        name = prompt("Please enter (unique) name of the node");
-        if (!checkIfNameExists(name)) {
-          break;
-        }
-      }
-
-      node.name = name;
-
-      restart();
-      saveGraph(nodes, edges);
-    }
-
-    // --------------------
-    // MOUSE FUNCIONS
-    // --------------------
-    function mousedown() {
-      var stop = d3.event.button;
-      if (stop) d3.event.stopImmediatePropagation();
-
-      if (selected_node !== null || selected_link !== null || end_selected_node !== null) {
-        selected_node = null;
-        selected_link = null;
-        end_selected_node = null;
-        hideElement("#delete");
-        hideElement("#edit");
-        hideElement("#connect");
-        restart();
-      }
-    }
-
-    // --------------------
     // HELP FUNCIONS
     // --------------------
     function zoomed() {
       container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    }
-
-    function checkIfNameExists(name) {
-      var exists = false;
-      nodes.forEach(function(node) {
-        if (node.name.toUpperCase() === name.toUpperCase()) {
-          exists = true;
-        }
-      });
-      return exists;
-    }
-
-    function checkIfConnectionExists(edges, source_node, target_node) {
-      var connections = edges.filter(function(l) {
-        return (l.source === source_node && l.target === target_node) || (l.source === target_node && l.target === source_node);
-      });
-
-      return (connections.length > 0);
-    }
-
-    function refreshArticleNodes() {
-      nodes.forEach(function(d) {
-        d.article = false;
-        if (article_nodes)
-        article_nodes.forEach(function(n) {
-          if (d.id === n) {
-            d.article = true;
-            return;
-          }
-        });
-      });
-    }
-
-    function displayArticleNodes(button) {
-      article_nodes = requestArticleNodes(button.id);
-      selectedArticle = button.id;
-      refreshArticleNodes();
-      restart();
     }
 
     function refreshWeights(nodes) {
@@ -474,15 +280,6 @@ getNodes(function(nodes) {
       });
     }
 
-    function spliceEdgesForNode(node) {
-      var toSplice = edges.filter(function(l) {
-        return (l.source === node || l.target === node);
-      });
-      toSplice.map(function(l) {
-        edges.splice(edges.indexOf(l), 1);
-      });
-    }
-
     function redrawWeight() {
       node.selectAll("circle").attr("r", function(d) {
         if (d.type === "semantic") {
@@ -491,120 +288,6 @@ getNodes(function(nodes) {
           return 40;
         }
       });
-    }
-
-    // --------------------
-    // AJAX FUNCTIONS
-    // --------------------
-    function requestArticleNodes(article) {
-      var response;
-      $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-      });
-
-      $.ajax({
-        url: apiroot + 'request_article_nodes/',
-        type: 'POST',
-        data: JSON.stringify({
-          id: article
-        }),
-        // data: JSON.stringify(jsonNodes),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        async: false,
-        success: function(msg) {
-          response = msg;
-        }
-      });
-
-      return response.message;
-    }
-
-    function saveArticleNodes(article, article_nodes) {
-      var response;
-      $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-      });
-
-      $.ajax({
-        url: apiroot + 'save_article_nodes/',
-        type: 'POST',
-        data: JSON.stringify({
-          id: article,
-          article_nodes: article_nodes
-        }),
-        // data: JSON.stringify(jsonNodes),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        async: false,
-        success: function(msg) {
-          response = msg;
-        }
-      });
-
-      return response.message;
-    }
-
-    function saveGraph(jsonNodes, jsonEdges) {
-      var response;
-      $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-      });
-
-      $.ajax({
-        url: apiroot + 'save_graph/',
-        type: 'POST',
-        data: JSON.stringify({
-          nodes: jsonNodes,
-          edges: jsonEdges
-        }),
-        // data: JSON.stringify(jsonNodes),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        async: false,
-        success: function(msg) {
-          response = msg;
-        }
-      });
-      return response.message;
-    }
-
-    function addEdge(edge) {
-      var response;
-      $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-      });
-
-      $.ajax({
-        url: apiroot + 'add_edge/',
-        type: 'POST',
-        data: JSON.stringify(edge),
-        // data: JSON.stringify(jsonNodes),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        async: false,
-        success: function(msg) {
-          response = msg;
-        }
-      });
-
-      return response.message;
     }
 
     // --------------------
@@ -619,26 +302,6 @@ getNodes(function(nodes) {
       $(id).addClass("hidden");
     }
 
-    // --------------------
-    // UI
-    // --------------------
-    // var articleButtonsList = document.getElementsByClassName("article");
-    // articleButtons = Array.prototype.slice.call(articleButtonsList, 0);
-    //
-    // articleButtons.forEach(function(button) {
-    //   if (selectedArticle == button.id) {
-    //     $("#" + button.id).addClass("selected");
-    //     showElement("#reset");
-    //   }
-    //   button.addEventListener("click", function() {
-    //     $(".article").removeClass("selected");
-    //     $("#" + button.id).addClass("selected");
-    //
-    //     displayArticleNodes(button);
-    //     showElement("#reset");
-    //   }, false);
-    // });
-
     document.getElementById("hide-topics").addEventListener("click", function() {
       $("#semantic-map").attr("class", "hidden");
       hideElement("#hide-topics");
@@ -651,24 +314,6 @@ getNodes(function(nodes) {
       hideElement("#show-topics");
     }, false);
 
-    // document.getElementById("add").addEventListener("click", function() {
-    //   add();
-    // }, false);
-    //
-    // document.getElementById("edit").addEventListener("click", function() {
-    //   edit(selected_node);
-    // }, false);
-    //
-    // document.getElementById("delete").addEventListener("click", function() {
-    //   del();
-    //   hideElement("#delete");
-    // }, false);
-    //
-    // document.getElementById("connect").addEventListener("click", function() {
-    //   connect();
-    // }, false);
-
-    svg.on('mousedown', mousedown);
     restart();
   });
 });

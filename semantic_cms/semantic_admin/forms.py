@@ -13,7 +13,6 @@ class ArticleEditForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords", "cover_image"]
-        # fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords"]
         widgets = {
             'content': RedactorEditor(),
         }
@@ -27,21 +26,18 @@ class ArticleFlagEditForm(forms.ModelForm):
     class Meta:
         model = Flag
         fields = ["name"]
-        # fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords"]
 
 class UserEditForm(forms.ModelForm):
     class Meta:
         auto_id="test_%s"
         model = UserProfile
         fields = ["bio", "profile_image"]
-        # fields = ('test_string')
 
 class UserInfoEditForm(forms.ModelForm):
     class Meta:
         auto_id="test2_%s"
         model = User
         fields = ["first_name", "last_name", "email"]
-        # fields = ('first_name')
 
 class UserProfileEditForm(MultiModelForm):
     form_classes = {

@@ -79,7 +79,7 @@ function resetMouseVars() {
   mousedown_link = null;
 }
 
-var apiroot = "/semantic_admin/semantic/";
+var apiroot = "/admin/semantic/";
 
 //CALLS
 
@@ -397,8 +397,6 @@ getNodes(function(nodes) {
             number_of_descendants: 0
           };
 
-          console.log(node);
-          console.log(nodes);
           nodes.push(node);
 
           restart();
@@ -429,9 +427,6 @@ getNodes(function(nodes) {
     }
 
     function edit(node) {
-      // because :active only works in WebKit?
-      // svg.classed('active', true);
-
       var name;
       while (true) {
         name = prompt("Please enter (unique) name of the node");
