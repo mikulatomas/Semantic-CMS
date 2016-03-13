@@ -9,7 +9,7 @@ from django.utils.text import slugify
 
 class SemanticNodeListSerializer(serializers.ListSerializer):
     def create(self, validated_data):
-        semanticNodes = [Semantic(**item, created_date=timezone.now()) for item in validated_data]
+        semanticNodes = [Semantic(**item) for item in validated_data]
         return Semantic.objects.bulk_create(semanticNodes)
 
     def update(self, instance, validated_data):
