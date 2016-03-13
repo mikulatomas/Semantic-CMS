@@ -1,0 +1,28 @@
+// _helpers.scss
+
+.inline {
+  display: inline-block;
+}
+
+.inline-block {
+  display: inline-block !important;
+  float:none;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.no-padding
+ {
+   padding: 0;
+ }
+
+.hidden-minimal {
+  display: none !important;
+  font-size: 1px;
+}

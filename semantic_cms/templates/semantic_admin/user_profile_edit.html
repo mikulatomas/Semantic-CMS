@@ -1,0 +1,87 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="headline">
+          <h1>Settings</h1>
+          <h2>Setup your blog here</h2>
+        </div>
+        <ul class="nav nav-tabs">
+          <li role="presentation"><a href="{% url 'admin:settings:index' %}">Blog</a></li>
+          <li role="presentation" class="active"><a href="{% url 'admin:settings:user' %}">User profile</a></li>
+        </ul>
+
+        <div class="settings">
+        <div class="settings-section">
+        <h3>User informations</h3>
+        <div class="row">
+        <div class="col-sm-4">
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-user"></i></span>
+          {% render_field form.user.first_name form="user_profile_form" placeholder="First name" class+="form-control gray-form" %}
+        </div>
+        </div>
+
+        <div class="col-sm-4">
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-user"></i></span>
+          {% render_field form.user.last_name form="user_profile_form" placeholder="Last name" class+="form-control gray-form" %}
+        </div>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="col-sm-8">
+          <div class="input-group">
+            <span class="input-group-addon gray-form"><i class="fa fa-align-left"></i></span>
+          {% render_field form.info.bio form="user_profile_form" placeholder="Bio" class+="form-control gray-form" %}
+          </div>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="col-sm-4">
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-envelope"></i></span>
+          {% render_field form.user.email form="user_profile_form" placeholder="Last name" class+="form-control gray-form" %}
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="settings-section">
+
+          <div class="hidden-minimal">
+          {% render_field form.info.profile_image form="user_profile_form" style="display: none;" %}
+          </div>
+          <h3>User picture</h3>
+          <div class="user-picture">
+          {% if user_profile.0.profile_image %}
+          <img width=100 height=100 src="{{ user_profile.0.profile_image.url }}">
+          {% else %}
+          <img width=100 height=100 src="http://placehold.it/100x100">
+          {% endif %}
+
+          <input type="button" value="Change profile picture" class="btn btn-green-outline" onclick="document.getElementById('id_info-profile_image').click();" />
+        </div>
+
+        </div>
+
+        <form id="user_profile_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input form="user_profile_form" class="btn btn-green-solid inline" role="button" type="submit" name="save" value="Save" />
+        </form>
+
+        </div>
+
+      </div>
+      </div>
+{% endblock %}
+
+{% block extrascripts %}
+{% endblock %}

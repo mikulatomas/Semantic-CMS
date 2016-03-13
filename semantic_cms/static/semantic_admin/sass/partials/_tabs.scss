@@ -1,0 +1,41 @@
+// _tabs.scss
+
+.nav-tabs {
+  border: 0;
+  border-top: 1px solid $mercury;
+
+  li a {
+    @extend h4;
+    margin-top: -1px !important;
+    padding-top: 13px;
+    border: 0;
+    border-radius: 0;
+  }
+
+  li a:hover {
+    background: none;
+    color: $turquoise;
+    padding-top: 10px;
+    border-top: 3px $turquoise solid;
+  }
+
+  li.active a {
+    color: $turquoise;
+    padding-top: 10px;
+    border: 0;
+    border-radius: 0;
+    border-top: 3px $turquoise solid;
+  }
+
+  li.active a:hover {
+    color: $turquoise;
+    padding-top: 10px;
+    border: 0;
+    border-radius: 0;
+    border-top: 3px $turquoise solid;
+  }
+}
+
+.settings-tab {
+  margin-top: 100px;
+}

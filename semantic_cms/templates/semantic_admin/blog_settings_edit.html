@@ -1,0 +1,53 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="headline">
+          <h1>Settings</h1>
+          <h2>Setup your blog here</h2>
+        </div>
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="{% url 'admin:settings:index' %}">Blog</a></li>
+          <li role="presentation"><a href="{% url 'admin:settings:user' %}">User profile</a></li>
+        </ul>
+
+        <div class="settings">
+        <div class="settings-section">
+        <h3>Basic settings</h3>
+        <div class="row">
+        <div class="col-sm-4">
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-header"></i></span>
+          {% render_field form.blog_name form="blog_settings_form" placeholder="Blog name" class+="form-control gray-form" %}
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-4">
+        <div class="input-group">
+          <span class="input-group-addon gray-form"><i class="fa fa-font"></i></span>
+          {% render_field form.blog_description form="blog_settings_form" placeholder="Blog description" class+="form-control gray-form" %}
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <form id="blog_settings_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input form="blog_settings_form" class="btn btn-green-solid inline" role="button" type="submit" name="save" value="Save" />
+        </form>
+
+        </div>
+
+      </div>
+      </div>
+{% endblock %}
+
+{% block extrascripts %}
+{% endblock %}

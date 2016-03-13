@@ -1,0 +1,29 @@
+// _helpers.scss
+
+.inline {
+  display: inline-block;
+}
+
+.inline-block {
+  display: inline-block !important;
+  float:none;
+}
+
+.float-right {
+  float: right;
+}
+
+.no-padding
+ {
+   padding: 0;
+ }
+
+.hidden-minimal {
+  display: none !important;
+  font-size: 1px;
+}
+
+.centered{
+    float: none;
+    margin: 0 auto;
+}

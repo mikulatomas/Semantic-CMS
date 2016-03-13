@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>{% if blog_settings.blog_name %}
+          {{ blog_settings.blog_name }}
+          {% else %}
+          Blog name
+          {% endif %}
+          {% block title %}{{ title }}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+        {# <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">#}
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+        <!-- Own CSS -->
+        <link rel="stylesheet" href="{% static 'blog/sass/style.css' %}">
+
+        <!-- Typeface -->
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,700,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        {% block extrastyle %}{% endblock %}
+        {% block extrahead %}{% endblock %}
+    </head>
+
+    <body>
+      <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url 'index' %}">
+                {% if blog_settings.blog_name %}
+                  {{ blog_settings.blog_name }}
+                  {% else %}
+                  Blog name
+                {% endif %}
+              </a>
+              <p class="navbar-text">
+                {% if blog_settings.blog_description %}
+                  {{ blog_settings.blog_description }}
+                {% endif %}
+              </p>
+            </div>
+            <div class="navbar-right">
+            <a class="btn btn-green-outline" id="show-topics" role="button">Show Topics</a>
+            <a class="btn btn-green-outline hidden" id="hide-topics" role="button">Hide Topics</a>
+          </div>
+
+            <!--<div class="collapse navbar-collapse" id="header-navbar">-->
+
+            <!--</div>-->
+          </div>
+          <svg id="semantic-map" class="hidden">
+          </svg>
+        </nav>
+
+        </div>
+      </header>
+
+      {% block content %}
+      {% endblock %}
+
+      <footer>
+        <div class="container text-center">
+          <p>&copy; {% now "Y" %} - {{ blog_settings.blog_name }}</p>
+          <a href="{% url 'admin:index' %}">Admin</a>
+        </div>
+      </footer>
+
+
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+
+      <script type="text/javascript">
+        var article_nodes = [];
+        {% if article_nodes  %}
+          article_nodes = JSON.parse("{{ article_nodes }}");
+        {% endif %}
+        var selectedArticle; {% if selected_article.id %}
+        selectedArticle = {{ selected_article.id }}; {% endif %}
+      </script>
+
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="{% static 'blog/scripts/bootstrap.min.js' %}"></script>
+
+      <script type="text/javascript" src="{% static 'blog/scripts/d3.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'blog/scripts/semantic_map_view.js' %}"></script>
+
+      {% block extrascripts %}{% endblock %}
+    </body>
+</html>

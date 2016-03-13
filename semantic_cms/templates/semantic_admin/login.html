@@ -1,0 +1,86 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+
+<div class="row login">
+<div class="col-sm-4 col-sm-offset-4 text-center form">
+<img class="logo" src="{% static 'semantic_admin/img/logo-big.png' %}">
+
+{% if next %}
+<form action="?next={{next}}" method="post" id="login_form" >
+{%else%}
+
+<form action="{{ app_path }}" method="post" id="login_form">
+  {% endif %}
+  {% csrf_token %}
+
+    {% if form.username.errors %}
+      <div class="input-group">
+        <span class="form-error input-group-addon gray-form"><i class="fa fa-user"></i></span>
+        {% render_field form.username form="login_form" class+="form-error form-control gray-form" id="login_form_user" placeholder="Username" %}
+        </div>
+        <div id="form-error-message">
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.username.errors %}
+            {{ error|escape }}
+            {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+        </div>
+    {% else %}
+      <div class="input-group">
+        <span class="input-group-addon gray-form"><i class="fa fa-user"></i></span>
+        {% render_field form.username form="login_form" class+="form-control gray-form" id="login_form_user" placeholder="Username" %}
+      </div>
+    {% endif %}
+
+    {% if form.username.errors %}
+      <div class="input-group">
+        <span class="form-error input-group-addon gray-form"><i class="fa fa-lock"></i></span>
+        {% render_field form.password form="login_form" class+="form-error form-control gray-form" id="login_form_password" placeholder="Password" %}
+      </div>
+      <div id="form-error-message">
+        <div class="alert alert-danger" role="alert">
+          {% for error in form.username.errors %}
+          {{ error|escape }}
+          {% endfor %}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+        </div>
+      </div>
+    {% else %}
+      <div class="input-group">
+        <span class="input-group-addon gray-form"><i class="fa fa-lock"></i></span>
+      {% render_field form.password form="login_form" class+="form-control gray-form" id="login_form_password" placeholder="Password" %}
+      </div>
+    {% endif %}
+
+
+  {% url 'admin_password_reset' as password_reset_url %}
+  {% if password_reset_url %}
+  <div class="password-reset-link">
+    <a href="{{ password_reset_url }}">Forgotten your password or username?</a>
+  </div>
+  {% endif %}
+
+
+  <div class="button">
+    <button class="btn btn-green-solid" role="button" type="submit">
+      Login
+    </button>
+  </div>
+</form>
+</div>
+</div>
+
+{% block extrascripts %}
+<script type="text/javascript">
+document.getElementById('login_form_user').focus()
+</script>
+</div>
+{% endblock %}
+</body>
+{% endblock %}
