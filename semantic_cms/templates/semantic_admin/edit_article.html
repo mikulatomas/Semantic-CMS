@@ -88,7 +88,7 @@
   <div class="col-sm-10 col-sm-offset-1">
     <div class="form-horizontal">
         {{ form.content.errors }}
-        {% render_field form.content %}
+        {% render_field form.content form="article_form"%}
     </div>
     <div class="row">
       <div class="col-sm-8">
@@ -148,7 +148,7 @@
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.slugify.js' %}"></script>
 
 <!-- Are you sure?.js -->
-<script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>
+{# <script type="text/javascript" src="{% static 'semantic_admin/scripts/jquery.are-you-sure.js' %}"></script>#}
 
 <!-- autosize.js -->
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
