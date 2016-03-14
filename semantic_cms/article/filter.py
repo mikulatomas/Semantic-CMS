@@ -4,6 +4,7 @@ from django.db import models
 
 class ArticleFilter(django_filters.FilterSet):
 
+
     class Meta:
         model = Article
         fields = {
@@ -16,6 +17,7 @@ class ArticleFilter(django_filters.FilterSet):
     def __init__(self, *args, **kwargs):
         super(ArticleFilter, self).__init__(*args, **kwargs)
 
+        self.queryset = self.queryset.order_by('-published_date')
         self.filters['flag'].extra.update(
             {'empty_label': 'All article flags'})
 
