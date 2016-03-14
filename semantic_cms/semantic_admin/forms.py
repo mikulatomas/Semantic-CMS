@@ -13,9 +13,9 @@ class ArticleEditForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ["title", "sub_title", "content", "slug", "flag", "created_date", "keywords", "cover_image"]
-        widgets = {
-            'content': RedactorEditor(),
-        }
+        # widgets = {
+        #     'content': RedactorEditor(),
+        # }
 
     def __init__(self, *args, **kwargs):
         super(ArticleEditForm, self).__init__(*args, **kwargs)
