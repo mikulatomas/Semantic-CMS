@@ -58,9 +58,8 @@
         {% for similar_article in similar_articles %}
           <div class="col-sm-3">
             <div class="article-miniature" style="background-image: {% if similar_article.cover_image %}url({{ similar_article.cover_image.url }});{% else %}linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);{% endif %}">
-
+              <div class="background-overlay"></div>
               <h1><a href="{% url 'article' similar_article.slug %}">{{ similar_article }}</a></h1>
-
             </div>
           </div>
         {% endfor %}
