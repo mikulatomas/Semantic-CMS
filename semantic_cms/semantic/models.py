@@ -35,6 +35,7 @@ class SemanticEdge(edge_factory('semantic.Semantic', concrete = False)):
     SemanticEdge model class
     """
 
+    slug = models.SlugField(max_length=50, unique=True, blank=True,  null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
@@ -52,3 +53,15 @@ class SemanticEdge(edge_factory('semantic.Semantic', concrete = False)):
 
     def childSlug(self):
         return self.child.slug
+
+    def parentName(self):
+        return self.parent.name
+
+    def childName(self):
+        return self.child.name
+
+    def save(self, *args, **kwargs):
+        """Override save"""
+        self.slug = self.parentSlug() + self.childSlug()
+
+        super(SemanticEdge, self).save(*args, **kwargs)

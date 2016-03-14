@@ -272,6 +272,7 @@ def save_graph(request):
         jsonEdges = jsonData["edges"]
         jsonEdgesClean = []
 
+
         for node in jsonNodes:
             tmp = {}
             for attribute in node:
@@ -284,13 +285,9 @@ def save_graph(request):
 
         for edge in jsonEdges:
             tmp = {}
-            for attribute in edge:
-                if (attribute == "id"):
-                    tmp[attribute] = edge[attribute]
-                if (attribute == "parent_name"):
-                    tmp["parent_slug"] = slugify(edge[attribute])
-                if (attribute == "child_name"):
-                    tmp["child_slug"] = slugify(edge[attribute])
+            tmp["parent_slug"] = slugify(edge["parent_name"])
+            tmp["child_slug"] = slugify(edge["child_name"])
+            tmp["slug"] = tmp["parent_slug"] + tmp["child_slug"]
             jsonEdgesClean.append(tmp)
 
         querysetNodes = Semantic.objects.all()
@@ -299,7 +296,6 @@ def save_graph(request):
         serializerNodes = SemanticNodeSerializer(querysetNodes, data=jsonNodesClean, many=True)
         serializerEdges = SemanticEdgeSerializer(querysetEdges, data=jsonEdgesClean, many=True)
 
-        # print(serializerNodes)
         if serializerNodes.is_valid():
             serializerNodes.save()
 
@@ -317,12 +313,9 @@ def add_edge(request):
         edge = {}
 
         for attribute in jsonData:
-            if (attribute == "id"):
-                edge[attribute] = jsonData[attribute]
-            if (attribute == "parent_name"):
-                edge["parent_slug"] = slugify(jsonData[attribute])
-            if (attribute == "child_name"):
-                edge["child_slug"] = slugify(jsonData[attribute])
+            edge["parent_slug"] = slugify(jsonData["parent_name"])
+            edge["child_slug"] = slugify(jsonData["child_name"])
+            edge["slug"] = edge["parent_slug"] + edge["child_slug"]
 
         serializerEdges = SemanticEdgeSerializer(data=edge)
 

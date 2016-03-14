@@ -9,7 +9,7 @@ from django.utils.text import slugify
 
 class SemanticNodeListSerializer(serializers.ListSerializer):
     def create(self, validated_data):
-        semanticNodes = [Semantic(**item, created_date=timezone.now()) for item in validated_data]
+        semanticNodes = [Semantic(**item) for item in validated_data]
         return Semantic.objects.bulk_create(semanticNodes)
 
     def update(self, instance, validated_data):
@@ -57,12 +57,13 @@ class SemanticNodeSerializer(serializers.Serializer):
 
 class SemanticEdgeListSerializer(serializers.ListSerializer):
     def create(self, validated_data):
-        SemanticEdges = [SemanticEdge(**item, created_date=timezone.now()) for item in validated_data]
+        SemanticEdges = [SemanticEdge(**item) for item in validated_data]
         return SemanticEdge.objects.bulk_create(SemanticEdges)
 
     def update(self, instance, validated_data):
-        semanticEdge_mapping = {semanticEdge.id: semanticEdge for semanticEdge in instance}
-        data_mapping = {item['id']: item for item in validated_data}
+        print(validated_data)
+        semanticEdge_mapping = {semanticEdge.slug: semanticEdge for semanticEdge in instance}
+        data_mapping = {item['slug']: item for item in validated_data}
 
         # Perform creations and updates.
         ret = []
@@ -79,16 +80,19 @@ class SemanticEdgeListSerializer(serializers.ListSerializer):
         return ret
 
 class SemanticEdgeSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
+    slug = serializers.CharField()
     parent = serializers.ReadOnlyField(source = 'parentId')
     child = serializers.ReadOnlyField(source = 'childId')
     parent_slug = serializers.CharField(source = 'parentSlug')
     child_slug = serializers.CharField(source = 'childSlug')
+    parent_name = serializers.ReadOnlyField(source = 'parentName')
+    child_name = serializers.ReadOnlyField(source = 'childName')
 
     class Meta:
         list_serializer_class = SemanticEdgeListSerializer
 
     def create(self, validated_data):
+        print(validated_data)
         semanticEdge = SemanticEdge(
             parent = Semantic.objects.get(slug=validated_data['parentSlug']),
             child = Semantic.objects.get(slug=validated_data['childSlug']),
