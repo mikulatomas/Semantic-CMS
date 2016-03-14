@@ -3,20 +3,33 @@
 .jumbotron {
   // height: $jumbotron-height;
   height: auto;
-  margin-bottom: 60px;
-  padding-top: 70px;
-  padding-bottom: 90px;
+  margin-bottom: 50px;
+  padding-top: 0;
+  padding-bottom: 0 !important;
+  position: relative;
 
   @include cover-background();
 
   h1 {
     margin-bottom: 0;
+    margin-top: 60px;
   }
   h2 {
     margin-top: 0;
   }
 
+  .row:last-child {
+    margin-bottom: 80px;
+  }
+
   .jumbotron-gap {
     margin-top: 50px;
+  }
+
+  .background-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
   }
 }
