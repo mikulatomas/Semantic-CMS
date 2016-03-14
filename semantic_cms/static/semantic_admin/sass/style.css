@@ -568,11 +568,11 @@ button:focus,
       line-height: 38px; }
     .article-list .article-row .details .icon {
       margin-right: 15px; }
-    .article-list .article-row .details .right .detail {
+    .article-list .article-row .details .detail {
       margin-left: 20px; }
-    .article-list .article-row .details .right .detail:nth-child(1) {
+    .article-list .article-row .details .detail:nth-child(1) {
       margin-left: 0; }
-    .article-list .article-row .details .right .detail {
+    .article-list .article-row .details .detail {
       margin-right: 20px; }
 
 .nav-tabs {
