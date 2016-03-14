@@ -76,10 +76,10 @@
       <span class="left">
         <span class="detail"><i class="fa fa-align-left icon"></i>{{ article.flag }}</span>
         <span class="detail"><i class="fa fa-calendar icon"></i>{{ article.created_date }}</span>
+
       </span>
       <span class="right">
-        <span class="detail"><i class="fa fa-eye icon"></i>N/A</span>
-        <span class="detail"><i class="fa fa-heart-o icon"></i>N/A</span>
+        <span class="detail"><i class="fa fa-sitemap icon"></i>{{ article.number_of_semantic }} Semantic</span>
         <a class="btn btn-blue-outline btn-round" href="{% url 'admin:semantic:article' article.slug %}" role="button">
           <i class="fa fa-sitemap"></i></a>
         <a class="btn btn-green-outline btn-round" href="{% url 'admin:content:edit_article' article.slug %}" role="button">
