@@ -101,6 +101,9 @@ class Article(models.Model):
         for id in ids:
             self.semantic.add(Semantic.objects.get(pk = id))
 
+    def number_of_semantic(self):
+        return self.semantic.count()
+
     def semantic_similar_with(self, source, target):
         """Return similariti of semantic category for 2 articles, for example 0,5 = 50% similarity"""
 

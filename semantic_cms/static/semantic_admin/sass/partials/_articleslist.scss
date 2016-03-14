@@ -37,13 +37,19 @@
       .icon {
         margin-right: 15px;
       }
+      .right {
 
-      .detail {
-        margin-left: 20px;
-      }
+        .detail {
+          margin-left: 20px;
+        }
 
-      .detail:nth-child(1) {
-        margin-left: 0;
+        .detail:nth-child(1) {
+          margin-left: 0;
+        }
+
+        .detail {
+          margin-right: 20px;
+        }
       }
     }
 
