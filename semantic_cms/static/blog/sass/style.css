@@ -722,4 +722,35 @@ main header {
 .author-info .bio {
   font-weight: lighter; }
 
+@media (max-width: 767px) {
+  .navbar-header {
+    display: inline-block; }
+
+  .navbar-right {
+    display: inline-block;
+    position: absolute;
+    right: 15px; }
+
+  .info-headline {
+    margin-left: 40px;
+    margin-right: 40px; }
+
+  .article-cover {
+    height: auto; }
+    .article-cover .container {
+      padding-top: 30px;
+      padding-bottom: 30px; }
+      .article-cover .container .title {
+        display: block;
+        float: none;
+        text-align: center; }
+        .article-cover .container .title h1, .article-cover .container .title #article_title {
+          line-height: .9em; }
+        .article-cover .container .title .article-sub-title {
+          line-height: 3em; }
+      .article-cover .container .info {
+        display: block;
+        float: none;
+        text-align: center; } }
+
 /*# sourceMappingURL=style.css.map */
