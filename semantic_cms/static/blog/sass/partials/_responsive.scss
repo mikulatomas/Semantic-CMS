@@ -1,0 +1,40 @@
+@media(max-width:767px) {
+  .navbar-header {
+    display: inline-block;
+  }
+  .navbar-right {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+  }
+  .info-headline {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  .article-cover {
+    height: auto;
+    .container {
+      padding-top: 30px;
+      padding-bottom: 30px;
+
+      .title {
+        display: block;
+        float:none;
+        text-align: center;
+
+        h1 {
+            line-height: .9em;
+        }
+
+        .article-sub-title {
+          line-height: 3em;
+        }
+      }
+      .info {
+        display: block;
+        float:none;
+        text-align: center;
+      }
+    }
+  }
+}
