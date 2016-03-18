@@ -752,6 +752,12 @@ main header {
       .article-cover .container .info {
         display: block;
         float: none;
-        text-align: center; } }
+        text-align: center; }
+
+  .author-info .name {
+    margin-top: 10px; }
+
+  .article-miniature {
+    margin-top: 10px; } }
 
 /*# sourceMappingURL=style.css.map */
