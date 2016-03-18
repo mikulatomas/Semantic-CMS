@@ -747,7 +747,8 @@ main header {
         .article-cover .container .title h1, .article-cover .container .title #article_title {
           line-height: .9em; }
         .article-cover .container .title .article-sub-title {
-          line-height: 3em; }
+          display: block;
+          margin-top: 10px; }
       .article-cover .container .info {
         display: block;
         float: none;
