@@ -40,7 +40,7 @@ class Article(models.Model):
 
     title = models.CharField(max_length=128)
     sub_title = models.CharField(max_length=128, blank=True, null=True)
-    slug = models.SlugField(max_length=50, unique=True, blank=True,  null=True)
+    slug = models.SlugField(max_length=50, unique=True)
 
     status = models.CharField(max_length=1,
                                 choices=ARTICLE_STATUS,
