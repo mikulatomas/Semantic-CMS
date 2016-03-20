@@ -723,7 +723,10 @@ path.link.hidden {
   border-left: 1px #E5E5E5 solid;
   padding-top: 30px;
   padding-right: 40px;
-  padding-left: 25px; }
+  padding-left: 25px;
+  overflow-y: scroll;
+  position: fixed;
+  right: 0; }
   .article-list-right h4, .article-list-right .nav-tabs li a, .nav-tabs li .article-list-right a {
     margin-bottom: 15px; }
   .article-list-right .article h3 {
@@ -731,6 +734,8 @@ path.link.hidden {
   .article-list-right .article h4, .article-list-right .article .nav-tabs li a, .nav-tabs li .article-list-right .article a {
     margin-top: 5px;
     margin-bottom: 0; }
+  .article-list-right .article:last-child {
+    margin-bottom: 50px !important; }
   .article-list-right .article.selected h3, .article-list-right .article.selected h4, .article-list-right .article.selected .nav-tabs li a, .nav-tabs li .article-list-right .article.selected a {
     color: #36D7B7; }
   .article-list-right .article:hover h3 {
