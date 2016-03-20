@@ -721,7 +721,7 @@ main header {
 .author-info .bio {
   font-weight: lighter; }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .navbar-header {
     display: inline-block; }
 
@@ -744,7 +744,7 @@ main header {
         float: none;
         text-align: center; }
         .article-cover .container .title h1, .article-cover .container .title #article_title {
-          line-height: .9em; }
+          line-height: 0.9em; }
         .article-cover .container .title .article-sub-title {
           display: block;
           margin-top: 10px; }
@@ -758,6 +758,55 @@ main header {
 
   .article-miniature {
     margin-top: 10px; }
+
+  .article-footer {
+    margin-bottom: 50px; }
+
+  .author {
+    margin-bottom: 30px; } }
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .navbar-text {
+    display: inline-block; }
+
+  .navbar-header {
+    display: inline-block; }
+
+  .navbar-right {
+    display: inline-block;
+    position: absolute;
+    right: 30px; }
+
+  .info-headline {
+    margin-left: 40px;
+    margin-right: 40px; }
+
+  .article-cover {
+    height: auto; }
+    .article-cover .container {
+      padding-top: 30px;
+      padding-bottom: 30px; }
+      .article-cover .container .title {
+        display: block;
+        float: none;
+        text-align: left; }
+        .article-cover .container .title h1, .article-cover .container .title #article_title {
+          line-height: 0.9em; }
+        .article-cover .container .title .article-sub-title {
+          display: block;
+          margin-top: 10px; }
+      .article-cover .container .info {
+        display: block;
+        float: none;
+        text-align: left; }
+
+  .author {
+    margin-bottom: 30px; }
+
+  .author-info .name {
+    margin-top: 10px; }
+
+  .article-miniature {
+    margin-top: 30px; }
 
   .article-footer {
     margin-bottom: 50px; } }

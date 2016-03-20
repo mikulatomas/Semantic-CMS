@@ -14,17 +14,17 @@
 
       <div class="article-footer">
         <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-12 col-sm-12 col-md-4 author">
         <h3>Author</h3>
         <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-4 col-sm-2 col-md-4">
         {% if article.author.userprofile.profile_image %}
         <img width=100% src="{{ article.author.userprofile.profile_image.url }}">
         {% else %}
         <img width=100% src="http://placehold.it/200x200">
         {% endif %}
         </div>
-        <div class="col-sm-8">
+        <div class="col-xs-8 col-sm-8">
         <div class="author-info">
         <p class="name">{{ article.author.get_full_name }}</p>
         <p class="bio">{{ article.author.userprofile.bio }}</p>
@@ -33,7 +33,7 @@
       </div>
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-6 col-md-4">
         <h3>Keywords</h3>
         {% for keyword in article.keywords.all %}
         <span class="keyword"><a href="{% url 'keyword' keyword.slug %}">{{ keyword.name }}</a></span>
@@ -41,7 +41,7 @@
         <span class="empty">No keywords.</span>
         {% endfor %}
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6 col-md-4">
         <h3>All topics</h3>
         {% for topic in article.semantic.all %}
         <span class="topic"><a href="{% url 'semantic' topic.slug %}">{{ topic.name }}</a></span>
@@ -56,7 +56,7 @@
         <h3>Similar articles</h3>
         <div class="row">
         {% for similar_article in similar_articles %}
-          <div class="col-sm-3">
+          <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="article-miniature" style="background-image: {% if similar_article.cover_image %}url({{ similar_article.cover_image.url }});{% else %}linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);{% endif %}">
               <div class="background-overlay"></div>
               <h1><a href="{% url 'article' similar_article.slug %}">{{ similar_article }}</a></h1>
