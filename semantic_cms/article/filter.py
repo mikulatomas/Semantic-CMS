@@ -24,6 +24,8 @@ class ArticleFilter(django_filters.FilterSet):
         self.filters['status'].field.choices.insert(0, ('', u'All article status'))
 
     def search_filter(self, queryset, value):
-        return queryset.filter(
+        result = queryset.filter(
             title__icontains=value,
         ) | queryset.filter(sub_title__icontains=value,) | queryset.filter(content__icontains=value,) | queryset.filter(keywords__name__icontains=value,)
+
+        return result.distinct()
