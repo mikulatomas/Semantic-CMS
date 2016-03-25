@@ -44,9 +44,15 @@ article_types_patterns = [
     url(r'^delete/(?P<slug>[-_\w]+)$', DeleteArticleFlagView.as_view(), name='delete_article_flag'),
 ]
 
+user_patterns = [
+    url(r'^$', UpdateUserProfileView.as_view(), name='index'),
+    url(r'^change-password/$', auth_views.password_change, {'template_name': 'semantic_admin/change_password.html','post_change_redirect' : 'change-password/'}),
+
+]
+
 settings_patterns = [
     url(r'^$', UpdateBlogSettingsView.as_view(), name='index'),
-    url(r'^user/$', UpdateUserProfileView.as_view(), name='user'),
+    url(r'^user/', include(user_patterns, namespace="user")),
 ]
 
 semantic_patterns = [
