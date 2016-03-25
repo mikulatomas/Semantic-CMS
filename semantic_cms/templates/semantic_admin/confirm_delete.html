@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="delete-alert text-center">
+    <div class="inline-block">
+      <i class="fa fa-exclamation-triangle icon" style="font-size:80px;"></i>
+    </div>
+    <div class="text text-left inline-block">
+      <h3 class="title">Are you sure?</h3>
+      <div class="subtitle">You want to delete "{{ object }}"</div>
+    </div>
+  </div>
+
+  <div class="text-center">
+
+    <form action="" method="post">{% csrf_token %}
+        <button href="{{ view.get_success_url }}" class="btn btn-gray-outline">Cancel</button>
+        <input class="btn btn-red-solid left-space" type="submit" value="Delete">
+    </form>
+  </div>
+</div>

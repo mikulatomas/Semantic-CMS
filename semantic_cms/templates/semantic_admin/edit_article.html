@@ -72,7 +72,7 @@
         <div class="hidden-minimal">
         {% render_field form.cover_image form="article_form" style="display: none;" id="article_cover_image" %}
         </div>
-        <input type="button" value="Change cover" class="btn btn-white-outline-no-hover" onclick="document.getElementById('article_cover_image').click();" />
+        <input type="button" value="Change article picture" class="btn btn-white-outline-no-hover" title="Change main picture of article. Recommended minimum size is 2000x1000 px." onclick="document.getElementById('article_cover_image').click();" />
       </div>
     </div>
   </div>
@@ -92,13 +92,14 @@
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <h4 class="headline">keywords</h4>
+        <h4 class="headline">keywords (max length 15)</h4>
+
         <div class="input-group">
           {% render_field form.keywords form="article_form" class+="tagit-hidden-field" id="article_keywords" %}
         </div>
       </div>
       <div class="col-sm-4">
-        <h4 class="headline">post url</h4>
+        <h4 class="headline">SEO url</h4>
         {% if form.slug.errors %}
         <div class="input-group">
           <span class="form-error input-group-addon gray-form"><i class="fa fa-link"></i></span>
@@ -131,10 +132,10 @@
   <div class="container">
     <a class="btn btn-gray-outline" href="{% url 'admin:content:index' %}" role="button">Close</a>
     <div class="float-right">
-      <input form="article_form" class="btn btn-blue-outline inline" href="#" role="button" type="submit" name="semantic" value="Set semantic categories"/>
+      <input form="article_form" class="btn btn-blue-outline inline" href="#" role="button" type="submit" name="semantic" value="Set semantic categories" title="Save as Draft and set semantic categories"/>
 
-      <input form="article_form" class="btn btn-gray-outline inline left-space" href="#" role="button" type="submit" name="draft" value="Draft" />
-      <input form="article_form" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="publish" value="Publish" />
+      <input form="article_form" class="btn btn-gray-outline inline left-space" href="#" role="button" type="submit" name="draft" value="Draft" title="Save article as Draft"/>
+      <input form="article_form" class="btn btn-green-solid inline left-space" href="#" role="button" type="submit" name="publish" value="Publish" title="Save and Publish article" />
     </div>
   </div>
 </div>
@@ -156,6 +157,16 @@
 <!-- tag it.js -->
 <script src="{% static 'semantic_admin/scripts/tag-it.js' %}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+$(function() {
+    $( document ).uitooltip({
+    position: {
+    //   my: "center top",
+      at: "left bottom-10",
+    },
+    show: {
+        delay: 200
+    }
+    });
   document.getElementById("article_cover_image").onchange = function () {
     var reader = new FileReader();
 
@@ -180,5 +191,6 @@
   });
 
   $('#article_flag_dropdown #icon').addClass('fa-align-left');
+  });
 </script>
 {% endblock %}

@@ -9,7 +9,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 from django_filters.views import FilterView
-from article.filter import ArticleFilter
+from article.filter import ArticleFilter, ArticleFilterSemantic
 
 from article.models import Article
 from semantic.models import Semantic
@@ -21,6 +21,10 @@ from .models import BlogSettings
 
 from datetimewidget.widgets import DateTimeWidget
 from django.forms.models import modelform_factory
+
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 
 #time
 import datetime
@@ -140,16 +144,38 @@ class DeleteArticleFlagView(LoginRequiredMixin, DeleteView):
     model = Flag
     success_url = reverse_lazy('admin:article_types:index')
 
+    def get_context_data(self, **kwargs):
+        if 'view' not in kwargs:
+            kwargs['view'] = self
+        return kwargs
+
 class ContentView(LoginRequiredMixin, FilterView):
     template_name = "semantic_admin/content.html"
     filterset_class = ArticleFilter
     context_object_name = 'article_list'
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(ContentView, self).get_context_data(**kwargs)
         context['request'] = self.request
         context['title'] = 'Content Manager'
+
+        # Pagination
+        articles = context['filter'].qs
+        paginator = Paginator(articles, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            article_list = paginator.page(page)
+        except PageNotAnInteger:
+            article_list = paginator.page(1)
+        except EmptyPage:
+            article_list = paginator.page(paginator.num_pages)
+
+        print(paginator.num_pages)
+
+        context['article_list'] = article_list
         return context
 
 class CreateArticleView(LoginRequiredMixin, CreateView):
@@ -218,9 +244,27 @@ class DeleteArticleView(LoginRequiredMixin, DeleteView):
     model = Article
     success_url = reverse_lazy('admin:content:index')
 
-class SemanticView(LoginRequiredMixin, ListView):
+    def get_context_data(self, **kwargs):
+        if 'view' not in kwargs:
+            kwargs['view'] = self
+        return kwargs
+
+# class ContentView(LoginRequiredMixin, FilterView):
+#     template_name = "semantic_admin/content.html"
+#     filterset_class = ArticleFilter
+#     context_object_name = 'article_list'
+#
+#     def get_context_data(self, **kwargs):
+#         # Call the base implementation first to get a context
+#         context = super(ContentView, self).get_context_data(**kwargs)
+#         context['request'] = self.request
+#         context['title'] = 'Content Manager'
+#         return context
+
+class SemanticView(LoginRequiredMixin, FilterView):
     template_name = "semantic_admin/semantic.html"
-    model = Article
+    # model = Article
+    filterset_class = ArticleFilterSemantic
     context_object_name = 'article_list'
 
     def get_context_data(self, **kwargs):

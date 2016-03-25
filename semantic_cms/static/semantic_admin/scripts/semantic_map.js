@@ -82,7 +82,7 @@ function resetMouseVars() {
 var apiroot = "/admin/semantic/";
 
 //CALLS
-
+$(function() {
 getNodes(function(nodes) {
     getEdges(function(edges) {
 
@@ -93,14 +93,20 @@ getNodes(function(nodes) {
             .scaleExtent([0.1, 10])
             .on("zoom", zoomed);
 
+
+        var doc_height = $(document).height() - 65;
+
         var svg_tag = d3.select("body").selectAll("svg")
-            .style("height", $(document).height() - 65);
+            .style("height", doc_height);
 
         //Set real width and height
         width = parseInt(svg_tag.style("width"));
         height = parseInt(svg_tag.style("height"));
 
-        $(".article-list-right").height($(document).height() - 90);
+        // $(".articles").height($(document).height() - 394);
+        $(".articles").css("height", doc_height - 200);
+        // $(".articles").css("max-height", doc_height - 70);
+        $(".article-list-right").css("height", doc_height);
 
         svg = svg_tag.append("g")
             .call(zoom);
@@ -152,12 +158,15 @@ getNodes(function(nodes) {
         });
 
         var force = d3.layout.force()
-            .charge(-2000)
+            .charge(-1000)
             // .linkDistance(150)
             .linkDistance(function(d) {
-                return 100 + 20 * (d.source.number_of_descendants);
+                return 110 + 20 * (d.source.number_of_descendants);
             })
-            .chargeDistance(2000)
+            // .chargeDistance(5000)
+            // .linkStrength(0.5)
+            .gravity(0.04)
+            .friction(0.5)
             .nodes(nodes)
             .links(edges)
             .size([width, height])
@@ -361,7 +370,7 @@ getNodes(function(nodes) {
             }).call(wrap, 70);
 
             node.exit().remove();
-            force.resume();
+            // force.resume();
             force.start();
         }
 
@@ -394,12 +403,12 @@ getNodes(function(nodes) {
                 refreshWeights(nodes);
 
                 //MAYBE DELETE
-                force.stop();
-                force.linkDistance(function(d) {
-                    return 100 + 20 * (d.source.number_of_descendants);
-                });
-                force.start();
-
+                // force.stop();
+                // force.linkDistance(function(d) {
+                //     return 100 + 20 * (d.source.number_of_descendants);
+                // });
+                // force.start();
+                // force.start();
                 restart();
             } else {
                 lastEdgeId--;
@@ -409,30 +418,29 @@ getNodes(function(nodes) {
 
         }
 
-        function add() {
+        function add(name) {
             // because :active only works in WebKit?
             svg.classed('active', true);
-            while (true) {
-                var name = prompt("Please enter (unique and non-empty) name of the node");
 
-                if (name === "") {
-                    break;
-                }
-                if (!checkIfNameExists(name)) {
-                    var node = {
-                        id: ++lastNodeId,
-                        name: name,
-                        type: "semantic",
-                        number_of_descendants: 0
-                    };
+            if (checkIfNameExists(name)) {
+                return 1;
+            } else if (name.length > 25){
+                return 2;
+            } else {
+                var node = {
+                    id: ++lastNodeId,
+                    name: name,
+                    type: "semantic",
+                    number_of_descendants: 0
+                };
 
-                    nodes.push(node);
+                nodes.push(node);
 
-                    restart();
-                    saveGraph(nodes, edges);
-                    break;
-                }
+                restart();
+                saveGraph(nodes, edges);
+                return 0;
             }
+
 
         }
 
@@ -448,44 +456,47 @@ getNodes(function(nodes) {
             selected_link = null;
             selected_node = null;
 
-            hideButton("#edit");
-
             saveGraph(nodes, edges);
             refreshWeights(nodes);
             restart();
         }
 
-        function edit(node) {
-            var name;
-            while (true) {
-                name = prompt("Please enter (unique) name of the node");
-                if (!checkIfNameExists(name)) {
-                    break;
-                }
+        function edit(node, name) {
+            // var name;
+            // while (true) {
+            //     name = prompt("Please enter (unique) name of the node");
+            if (checkIfNameExists(name)) {
+                return 1;
+            } else if (name.length > 25){
+                return 2;
+            } else {
+                node.name = name;
+
+                restart();
+                saveGraph(nodes, edges);
+                return 0;
             }
 
-            node.name = name;
 
-            restart();
-            saveGraph(nodes, edges);
+
         }
 
         function assign() {
-          selected_node.article = true;
-          addArticleToSemantic(selected_node);
-          restart();
-          saveArticleNodes(selectedArticle, article_nodes);
-          hideButton("#assign");
-          showButton("#unassign");
+            selected_node.article = true;
+            addArticleToSemantic(selected_node);
+            restart();
+            saveArticleNodes(selectedArticle, article_nodes);
+            hideButton("#assign");
+            showButton("#unassign");
         }
 
         function unassign() {
-          selected_node.article = false;
-          removeArticleFromSemantic(selected_node);
-          restart();
-          saveArticleNodes(selectedArticle, article_nodes);
-          showButton("#assign");
-          hideButton("#unassign");
+            selected_node.article = false;
+            removeArticleFromSemantic(selected_node);
+            restart();
+            saveArticleNodes(selectedArticle, article_nodes);
+            showButton("#assign");
+            hideButton("#unassign");
         }
 
         // --------------------
@@ -741,6 +752,95 @@ getNodes(function(nodes) {
             }, false);
         });
 
+        $("#dialog-confirm").dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 400,
+            modal: true,
+            buttons: [{
+                text: "Delete",
+                "class": 'btn btn-red-solid',
+                click: function() {
+                    del();
+                    hideButton("#edit");
+                    hideButton("#delete");
+                    $(this).dialog("close");
+                }
+            }, {
+                text: "Cancel",
+                "class": 'btn btn-gray-outline',
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }]
+        });
+
+        $("#dialog-add").dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 400,
+            modal: true,
+            buttons: [{
+                text: "Add",
+                "class": 'btn btn-green-solid',
+                click: function() {
+                    var result = add($("#new-node-name").val());
+
+                    if (result === 1) {
+                        $(".error").text("You have to enter uqnique non-empty name!");
+                        return;
+                    } else if (result === 2) {
+                        $(".error").text("The name is too long (25 char max).");
+                        return;
+                    }
+                    $("#new-node-name").val("Node name");
+                    $(".error").empty();
+                    $(this).dialog("close");
+                }
+            }, {
+                text: "Cancel",
+                "class": 'btn btn-gray-outline',
+                click: function() {
+                    $("#new-node-name").val("Node name");
+                    $(".error").empty();
+                    $(this).dialog("close");
+                }
+            }]
+        });
+
+        $("#dialog-edit").dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 400,
+            modal: true,
+            buttons: [{
+                text: "Rename",
+                "class": 'btn btn-green-solid',
+                click: function() {
+                    var result = edit(selected_node, $("#rename-node-name").val());
+
+                    if (result === 1) {
+                        $(".error").text("You have to enter uqnique non-empty name!");
+                        return;
+                    } else if (result === 2) {
+                        $(".error").text("The name is too long (25 char max).");
+                        return;
+                    }
+                    // $("#rename-node-name").val("Node name");
+                    $(".error").empty();
+                    $(this).dialog("close");
+                }
+            }, {
+                text: "Cancel",
+                "class": 'btn btn-gray-outline',
+                click: function() {
+                    $("#rename-node-name").val("Node name");
+                    $(".error").empty();
+                    $(this).dialog("close");
+                }
+            }]
+        });
+
         document.getElementById("reset").addEventListener("click", function() {
             hideButton("#reset");
             $(".article").removeClass("selected");
@@ -750,16 +850,17 @@ getNodes(function(nodes) {
         }, false);
 
         document.getElementById("add").addEventListener("click", function() {
-            add();
+            $("#dialog-add").dialog("open");
         }, false);
 
         document.getElementById("edit").addEventListener("click", function() {
-            edit(selected_node);
+            $("#rename-node-name").val(selected_node.name);
+            $("#dialog-edit").dialog("open");
         }, false);
 
         document.getElementById("delete").addEventListener("click", function() {
-            del();
-            hideButton("#delete");
+            $("#dialog-confirm").dialog("open");
+
         }, false);
 
         document.getElementById("connect").addEventListener("click", function() {
@@ -775,6 +876,8 @@ getNodes(function(nodes) {
         }, false);
 
         svg.on('mousedown', mousedown);
+        // force.start();
         restart();
     });
+});
 });
