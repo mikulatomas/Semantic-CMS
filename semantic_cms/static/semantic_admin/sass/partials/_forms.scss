@@ -118,7 +118,15 @@ ul.tagit {
   // margin-top: -17px !important;
 }
 
-.tagit, .ui-widget-content {
+.ui-widget {
+    font-family: Roboto, sans-serif;
+}
+
+.tagit-label {
+    font-weight: lighter;
+}
+
+.tagit {
   @extend .form-control;
   @extend .gray-form;
   border: none !important;
@@ -129,6 +137,10 @@ ul.tagit {
   padding-bottom: 5px !important;
   // width: 100%;
   // font-weight: 400 !important;
+
+  input {
+      font-family: Roboto, sans-serif;
+  }
 
   .ui-state-default {
     background: none !important;
@@ -153,7 +165,7 @@ ul.tagit {
     a.tagit-close {
       margin-right: 15px;
       font-size: 18px;
-      margin-top: -10px !important;
+      margin-top: -8px !important;
     }
 
     a.tagit-close:hover {
@@ -199,21 +211,34 @@ ul.tagit {
   }
 }
 
-.ui-autocomplete {
+
+.tagit-autocomplete {
   border: 1px solid $mercury !important;
   border-radius: $dropdown-menu-radius;
   background: $white;
+  font-weight: lighter;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
   .ui-menu-item {
     margin-top: 8px;
     margin-bottom: 5px;
   }
 
+  li.ui-menu-item {
+    list-style-image: none;
+
+    a {
+        background: none;
+    }
+  }
   li.ui-menu-item:hover a {
     background: none !important;
     border: none !important;
     list-style-image: none !important;
-    font-weight: lighter !important;
+    box-shadow: none;
+    // font-weight: lighter !important;
   }
 
   a:hover {

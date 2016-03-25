@@ -35,12 +35,12 @@
     <h2 class="inline"><a href="#">{{ flag.name }}</a></h2>
     <div class="details">
       <span class="left">
-        <span class="detail"><i class="fa fa-calendar icon"></i>{{ flag.created_date }}</span>
+        <span class="detail" title="Created date"><i class="fa fa-calendar icon"></i>{{ flag.created_date|date:'d.m.Y' }}</span>
       </span>
       <span class="right">
-        <a class="btn btn-green-outline btn-round" href="{% url 'admin:article_types:edit_article_flag' flag.slug %}" role="button">
+        <a class="btn btn-green-outline btn-round" href="{% url 'admin:article_types:edit_article_flag' flag.slug %}" role="button" title="Edit name of the article flag">
           <i class="fa fa-pencil"></i></a>
-        <a class="btn btn-red-outline btn-round" href="{% url 'admin:article_types:delete_article_flag' flag.slug %}" role="button">
+        <a class="btn btn-red-outline btn-round" href="{% url 'admin:article_types:delete_article_flag' flag.slug %}" role="button" title="Delete this article flag">
           <i class="fa fa-trash-o"></i></a>
       </span>
     </div>
@@ -63,6 +63,16 @@
 <script src="{% static 'semantic_admin/scripts/tag-it.min.js' %}" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
+$(function() {
+    $( document ).uitooltip({
+    position: {
+    //   my: "center top",
+      at: "left bottom-10",
+    },
+    show: {
+        delay: 200
+    }
+    });
   $('.pull-down').each(function() {
     $(this).css('margin-top', $(this).parent().height() - $(this).height())
   });
@@ -90,5 +100,6 @@
   $('#filter_article_status_dropdown #icon').addClass('fa-file-o');
 
   $('#filter_article_flag_dropdown #icon').addClass('fa-align-left');
+  });
 </script>
 {% endblock %}

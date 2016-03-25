@@ -66,7 +66,7 @@
 
 {% if filter %}
 <div class="article-list">
-  {% for article in filter %}
+  {% for article in article_list %}
   <div class="article-row">
     <h2 class="inline"><a href="{% url 'admin:content:edit_article' article.slug %}">{{ article.title }}</a></h2>
     {% if article.is_draft %}
@@ -74,25 +74,43 @@
     {% endif %}
     <div class="details">
       <span class="left">
-        <span class="detail"><i class="fa fa-align-left icon"></i>{{ article.flag }}</span>
-        <span class="detail"><i class="fa fa-calendar icon"></i>{{ article.created_date }}</span>
+        <span class="detail" title="Article type"><i class="fa fa-align-left icon"></i>{{ article.flag }}</span>
+        <span class="detail" title="Create date"><i class="fa fa-calendar icon"></i>{{ article.created_date|date:'d.m.Y – H:i' }}</span>
 
       </span>
       <span class="right">
-        <span class="detail"><i class="fa fa-sitemap icon"></i>{{ article.number_of_semantic }} Semantic</span>
-        <a class="btn btn-blue-outline btn-round" href="{% url 'admin:semantic:article' article.slug %}" role="button">
+        <span class="detail" title="Number of semantic categories"><i class="fa fa-sitemap icon"></i>{{ article.number_of_semantic }} Semantic</span>
+        <a class="btn btn-blue-outline btn-round" href="{% url 'admin:semantic:article' article.slug %}" role="button" title="Edit semantic categories">
           <i class="fa fa-sitemap"></i></a>
-        <a class="btn btn-green-outline btn-round" href="{% url 'admin:content:edit_article' article.slug %}" role="button">
+        <a class="btn btn-green-outline btn-round" href="{% url 'admin:content:edit_article' article.slug %}" role="button" title="Edit article">
           <i class="fa fa-pencil"></i></a>
-        <a class="btn btn-red-outline btn-round" href="{% url 'admin:content:delete_article' article.slug %}" role="button">
+        <a class="btn btn-red-outline btn-round" href="{% url 'admin:content:delete_article' article.slug %}" role="button" title="Delete article">
           <i class="fa fa-trash-o"></i></a>
       </span>
     </div>
   </div>
   {% endfor %}
+  <div class="pagination-container">
+
+<ul class="pagination">
+{% if article_list.has_previous %}
+    <li>
+        <span><a href="?page={{ article_list.previous_page_number }}">Newer</a></span>
+    </li>
+{% endif %}
+    <li class="">
+        <span>Page {{ article_list.number }} of {{ article_list.paginator.num_pages }}.</span>
+    </li>
+{% if article_list.has_next %}
+    <li>
+        <span><a href="?page={{ article_list.next_page_number }}">Older</a></span>
+    </li>
+{% endif %}
+</ul>
+</div>
 </div>
 {% else %}
-{% if request.GET.title__icontains != None %}
+{% if request.GET.search != None %}
 <div class="row">
   <div class="no-content text-center">
     <div class="inline-block">
@@ -145,6 +163,16 @@
 <script type="text/javascript" src="{% static 'semantic_admin/scripts/autosize.min.js' %}"></script>
 
 <script type="text/javascript">
+$(function() {
+    $( document ).uitooltip({
+    position: {
+    //   my: "center top",
+      at: "left bottom-10",
+    },
+    show: {
+        delay: 200
+    }
+    });
 
   $('#filter_article_flag').selectpicker({
     style: 'white-form',
@@ -168,7 +196,10 @@
     }});
 
   $('#filter_article_status_dropdown #icon').addClass('fa-file-o');
+  $('#filter_article_status_dropdown button').removeAttr('title');
 
   $('#filter_article_flag_dropdown #icon').addClass('fa-align-left');
+  $('#filter_article_flag_dropdown button').removeAttr('title');
+  });
 </script>
 {% endblock %}
