@@ -264,6 +264,7 @@ h4.gap, .nav-tabs li a.gap {
   margin-bottom: 80px; }
   .delete-alert .text {
     color: #ABABAB;
+    vertical-align: super;
     margin-left: 30px; }
   .delete-alert .icon {
     font-size: 80px;

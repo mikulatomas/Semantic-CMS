@@ -33,7 +33,7 @@
         <div class="col-sm-10">
           {% if form.title.errors %}
             {% render_field form.title form="article_form" placeholder="Enter name of the Article" class+="form-error form-control white-form" id="article_title" %}
-            <div id="form-error-message">
+            <div class="form-error-message">
               <div class="alert alert-danger" role="alert">
                 {% for error in form.title.errors %}
                 {{ error|escape }}
@@ -105,7 +105,7 @@
           <span class="form-error input-group-addon gray-form"><i class="fa fa-link"></i></span>
           {% render_field form.slug form="article_form" class+="form-error form-control gray-form" id="article_slug" placeholder="Enter article slug here" %}
         </div>
-        <div id="form-error-message">
+        <div class="form-error-message">
           <div class="alert alert-danger" role="alert">
             {% for error in form.slug.errors %} {{ error|escape }} {% endfor %}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>

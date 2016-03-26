@@ -15,6 +15,7 @@
         <ul class="nav nav-tabs">
           <li role="presentation"><a href="{% url 'admin:settings:index' %}">Blog</a></li>
           <li role="presentation" class="active"><a href="{% url 'admin:settings:user:index' %}">User profile</a></li>
+          <li role="presentation"><a href="{% url 'admin:settings:user:change_password' %}">Change password</a></li>
         </ul>
 
         <div class="settings">
@@ -22,35 +23,87 @@
         <h3>User informations</h3>
         <div class="row">
         <div class="col-sm-4">
+        {% if form.user.first_name.errors %}
+        <div class="input-group">
+          <span class="form-error input-group-addon gray-form"><i class="fa fa-user"></i></span>
+          {% render_field form.user.first_name form="user_profile_form" placeholder="First name" class+="form-error form-control gray-form" %}
+        </div>
+        <div class="form-error-message">
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.user.first_name.errors %} {{ error|escape }} {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+        </div>
+        {% else %}
         <div class="input-group">
           <span class="input-group-addon gray-form"><i class="fa fa-user"></i></span>
           {% render_field form.user.first_name form="user_profile_form" placeholder="First name" class+="form-control gray-form" %}
         </div>
+        {% endif %}
         </div>
 
         <div class="col-sm-4">
+        {% if form.user.last_name.errors %}
+        <div class="input-group">
+          <span class="form-error input-group-addon gray-form"><i class="fa fa-user"></i></span>
+          {% render_field form.user.last_name form="user_profile_form" placeholder="Last name" class+="form-error form-control gray-form" %}
+        </div>
+        <div class="form-error-message">
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.user.last_name %} {{ error|escape }} {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+        </div>
+        {% else %}
         <div class="input-group">
           <span class="input-group-addon gray-form"><i class="fa fa-user"></i></span>
           {% render_field form.user.last_name form="user_profile_form" placeholder="Last name" class+="form-control gray-form" %}
         </div>
+        {% endif %}
         </div>
         </div>
 
         <div class="row">
         <div class="col-sm-8">
+        {% if form.info.bio.errors %}
+        <div class="input-group">
+          <span class="form-error input-group-addon gray-form"><i class="fa fa-align-left"></i></span>
+        {% render_field form.info.bio form="user_profile_form" placeholder="Bio" class+="form-error form-control gray-form" %}
+        </div>
+        <div class="form-error-message">
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.info.bio.errors %} {{ error|escape }} {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+        </div>
+        {% else %}
           <div class="input-group">
             <span class="input-group-addon gray-form"><i class="fa fa-align-left"></i></span>
           {% render_field form.info.bio form="user_profile_form" placeholder="Bio" class+="form-control gray-form" %}
           </div>
+         {% endif %}
         </div>
         </div>
 
         <div class="row">
         <div class="col-sm-4">
+        {% if form.user.email.errors %}
+        <div class="input-group">
+          <span class="form-error input-group-addon gray-form"><i class="fa fa-envelope"></i></span>
+          {% render_field form.user.email form="user_profile_form" placeholder="Last name" class+="form-error form-control gray-form" %}
+        </div>
+        <div class="form-error-message">
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.user.email.errors %} {{ error|escape }} {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+        </div>
+        {% else %}
         <div class="input-group">
           <span class="input-group-addon gray-form"><i class="fa fa-envelope"></i></span>
           {% render_field form.user.email form="user_profile_form" placeholder="Last name" class+="form-control gray-form" %}
         </div>
+        {% endif %}
         </div>
         </div>
         </div>

@@ -30,6 +30,7 @@ from semantic_admin.views import DeleteArticleFlagView
 from semantic_admin.views import UpdateUserProfileView
 from semantic_admin.views import UpdateBlogSettingsView
 import semantic_admin.views as semantic_admin_views
+from django.views.generic import TemplateView
 
 content_patterns = [
     url(r'^$', ContentView.as_view(), name='index'),
@@ -46,7 +47,8 @@ article_types_patterns = [
 
 user_patterns = [
     url(r'^$', UpdateUserProfileView.as_view(), name='index'),
-    url(r'^change-password/$', auth_views.password_change, {'template_name': 'semantic_admin/change_password.html','post_change_redirect' : 'change-password/'}),
+    url(r'^change-password/$', auth_views.password_change, {'template_name': 'semantic_admin/change_password.html','post_change_redirect' : 'done/'}, name='change_password'),
+    url(r'^change-password/done/$', TemplateView.as_view(template_name="semantic_admin/change_password_done.html"), name='change_password_done'),
 
 ]
 
