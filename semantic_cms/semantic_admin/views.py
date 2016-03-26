@@ -86,7 +86,7 @@ class CreateArticleFlagView(LoginRequiredMixin, CreateView):
 class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = "semantic_admin/user_profile_edit.html"
-    success_url = reverse_lazy('admin:settings:user')
+    success_url = reverse_lazy('admin:settings:user:index')
     form_class = UserProfileEditForm
 
     def get_form_kwargs(self):

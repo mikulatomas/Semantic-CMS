@@ -15,6 +15,7 @@
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="{% url 'admin:settings:index' %}">Blog</a></li>
           <li role="presentation"><a href="{% url 'admin:settings:user:index' %}">User profile</a></li>
+          <li role="presentation"><a href="{% url 'admin:settings:user:change_password' %}">Change password</a></li>
         </ul>
 
         <div class="settings">
@@ -22,10 +23,23 @@
         <h3>Basic settings</h3>
         <div class="row">
         <div class="col-sm-4">
+        {% if form.blog_name.errors %}
+        <div class="input-group">
+          <span class="form-error input-group-addon gray-form"><i class="fa fa-header"></i></span>
+          {% render_field form.blog_name form="blog_settings_form" placeholder="Blog name" class+="form-error form-control gray-form" %}
+        </div>
+        <div class="form-error-message">
+          <div class="alert alert-danger" role="alert">
+            {% for error in form.blog_name.errors %} {{ error|escape }} {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+          </div>
+        </div>
+        {% else %}
         <div class="input-group">
           <span class="input-group-addon gray-form"><i class="fa fa-header"></i></span>
           {% render_field form.blog_name form="blog_settings_form" placeholder="Blog name" class+="form-control gray-form" %}
         </div>
+        {% endif %}
         </div>
         </div>
         <div class="row">

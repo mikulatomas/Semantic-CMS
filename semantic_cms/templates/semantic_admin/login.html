@@ -23,7 +23,7 @@
         <span class="form-error input-group-addon gray-form"><i class="fa fa-user"></i></span>
         {% render_field form.username form="login_form" class+="form-error form-control gray-form" id="login_form_user" placeholder="Username" %}
         </div>
-        <div id="form-error-message">
+        <div class="form-error-message">
           <div class="alert alert-danger" role="alert">
             {% for error in form.username.errors %}
             {{ error|escape }}
@@ -43,7 +43,7 @@
         <span class="form-error input-group-addon gray-form"><i class="fa fa-lock"></i></span>
         {% render_field form.password form="login_form" class+="form-error form-control gray-form" id="login_form_password" placeholder="Password" %}
       </div>
-      <div id="form-error-message">
+      <div class="form-error-message">
         <div class="alert alert-danger" role="alert">
           {% for error in form.username.errors %}
           {{ error|escape }}
