@@ -29,6 +29,9 @@ DATABASES = {
     },
 }
 
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = 1025
+
 # TEMPLATE_DIRS = (
 #     '/Users/tomasmikula/Projects/Semantic-CMS/semantic_cms/templates/',
 # )

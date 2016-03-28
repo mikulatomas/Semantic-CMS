@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     # 'constance',
     # 'constance.backends.database',
     'betterforms',
+    'password_reset',
 
     #Own apps
     'article',
