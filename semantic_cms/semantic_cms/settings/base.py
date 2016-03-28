@@ -26,6 +26,8 @@ with open('/etc/secret_key.txt') as f:
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_AGE = 10800
+
 # Application definition
 
 INSTALLED_APPS = (
