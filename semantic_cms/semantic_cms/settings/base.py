@@ -25,6 +25,8 @@ SECRET_KEY = 'x1!)9*uc#1@7#qi8pawo&fh4bn2h$3abu*n2tz9@r8n6l_u_kb'
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_AGE = 10800
+
 # Application definition
 
 INSTALLED_APPS = (
