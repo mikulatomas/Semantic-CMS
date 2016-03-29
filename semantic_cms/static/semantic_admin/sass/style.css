@@ -166,6 +166,9 @@ ul.tagit {
     text-decoration: none !important;
     list-style-image: none !important; }
 
+.password-reset-link {
+  margin-top: 20px; }
+
 body {
   padding-top: 60px; }
 
@@ -223,6 +226,12 @@ h4, .settings-section h4, .nav-tabs li a {
   color: #ABABAB;
   margin-bottom: 10px;
   display: inline-block; }
+
+a {
+  color: #5F5F5F; }
+
+a:hover {
+  color: #36D7B7; }
 
 .settings-section h4, .settings-section .nav-tabs li a, .nav-tabs li .settings-section a {
   display: block; }

@@ -31,6 +31,14 @@ h4 {
   display: inline-block;
 }
 
+a {
+    color: $chicago;
+}
+
+a:hover {
+    color: $turquoise;
+}
+
 .settings-section {
   h4 {
     @extend h4;

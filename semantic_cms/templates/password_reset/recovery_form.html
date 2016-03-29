@@ -1,0 +1,33 @@
+{% extends "password_reset/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block title %}Password recovery{% endblock %}
+
+{% block content %}
+<div class="col-sm-6 col-sm-offset-3">
+	<h1>Password recovery</h1>
+	<form method="post" action="{{ url }}">
+		{% csrf_token %}
+		{% if form.username_or_email.errors %}
+			<div class="input-group">
+			  <span class="input-group-addon gray-form form-error"><i class="fa fa-user"></i></span>
+			{% render_field form.username_or_email class+="form-error form-control gray-form" placeholder="Username or E-mail" %}
+			</div>
+			<div class="form-error-message">
+	          <div class="alert alert-danger" role="alert">
+	            {% for error in form.username_or_email.errors %} {{ error|escape }} {% endfor %}
+	            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+	          </div>
+	        </div>
+		{% else %}
+		<div class="input-group">
+		  <span class="input-group-addon gray-form"><i class="fa fa-user"></i></span>
+		{% render_field form.username_or_email class+="form-control gray-form" placeholder="Username or E-mail" %}
+		</div>
+		{% endif %}
+		<br>
+		<input class="btn btn-green-solid" type="submit" value="Recover my password">
+	</form>
+</div>
+{% endblock %}
