@@ -1,0 +1,57 @@
+{% extends "password_reset/base.html" %}{% load i18n %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block title %}{% trans "Password reset" %}{% endblock %}
+
+{% block content %}
+<div class="col-sm-6 col-sm-offset-3">
+	<h1>Password recovery</h1>
+	{% if invalid %}{% url "password_reset_recover" as recovery_url %}
+		<p>{% blocktrans %}Sorry, this password reset link is invalid. You can still <a href="{{ recovery_url }}">request a new one</a>.{% endblocktrans %}</p>
+	{% else %}
+		<p>{% blocktrans %}Hi, <strong>{{ username }}</strong>. Please choose your new password.{% endblocktrans %}</p>
+		<form method="post" action="{% url "password_reset_reset" token %}">
+			{% csrf_token %}
+
+			{% if form.password1.errors %}
+	        <div class="input-group">
+	          <span class="form-error input-group-addon gray-form"><i class="fa fa-lock"></i></i></span>
+	          {% render_field form.password1 placeholder="New password" class+="form-error form-control gray-form" %}
+	        </div>
+	        <div class="form-error-message">
+	          <div class="alert alert-danger" role="alert">
+	            {% for error in form.password1.errors %} {{ error|escape }} {% endfor %}
+	            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+	          </div>
+	        </div>
+	        {% else %}
+	        <div class="input-group">
+	          <span class="input-group-addon gray-form"><i class="fa fa-lock"></i></i></span>
+	          {% render_field form.password1 placeholder="New password" class+="form-control gray-form" %}
+	        </div>
+	        {% endif %}
+
+			{% if form.password2.errors %}
+	        <div class="input-group">
+	          <span class="form-error input-group-addon gray-form"><i class="fa fa-lock"></i></i></span>
+	          {% render_field form.password2 placeholder="Confirm new password" class+="form-error form-control gray-form" %}
+	        </div>
+	        <div class="form-error-message">
+	          <div class="alert alert-danger" role="alert">
+	            {% for error in form.password2.errors %} {{ error|escape }} {% endfor %}
+	            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+	          </div>
+	        </div>
+	        {% else %}
+	        <div class="input-group">
+	          <span class="input-group-addon gray-form"><i class="fa fa-lock"></i></i></span>
+	          {% render_field form.password2 placeholder="Confirm new password" class+="form-control gray-form" %}
+	        </div>
+	        {% endif %}
+			<br>
+			<input class="btn btn-green-solid" type="submit" value="{% trans "Set new password" %}">
+		</form>
+	{% endif %}
+</div>
+{% endblock %}
