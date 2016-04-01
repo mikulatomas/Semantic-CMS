@@ -8,12 +8,22 @@
 .article-content {
   font-size: 18px;
   line-height: 28px;
-  font-weight: lighter;
-  text-align: justify;
+  // font-weight: lighter;
+  // text-align: justify;
+  font-family: Roboto slab;
+  font-weight: 300;
   margin-bottom: 70px;
+  color: $mine;
+
+
+  .content-preview {
+      overflow: hidden;
+      height: 150px;
+  }
 
   p {
-    margin: 30px 0 30px;
+    margin: 15px 0 30px;
+    padding: 0 30px;
   }
 
   img {
@@ -23,10 +33,10 @@
 
   .read-more {
     font-family: Roboto;
-    font-weight: lighter;
-    font-size: 14px;
+    font-weight: normal;
+    font-size: 16px;
     text-transform: uppercase;
-    margin-top: 50px;
+    margin-top: 25px;
 
     a {
       color: $turquoise;
@@ -39,7 +49,7 @@
 
 .article-cover {
   @include cover-background();
-  height: 250px;
+  height: 230px;
   position: relative;
   margin-bottom: 20px;
 
@@ -47,22 +57,29 @@
   //   position: absolute;
   //   bottom: 0;
   // }
-  .container {
-    padding-top: 120px;
+  .content {
+    padding: 0 30px;
+    // padding-top: 20px;
+    bottom: 30px;
+    // left: 15px;
+    width: 100%;
+    position: absolute;
+
   }
   .title {
-    float: left;
+    // float: left;
   }
 
   .info {
     font-family: Roboto;
     font-weight: lighter;
     font-size: 18px;
-    text-align: right;
+    // text-align: right;
     margin-top: 23px;
 
     .date {
-      color: darken($white, 10);;
+      color: darken($white, 10);
+      float: right;
     }
     a {
       color: $white;
@@ -74,6 +91,7 @@
     p {
       margin-top: 0px;
       margin-bottom: 0;
+      display: inline-block;
     }
   }
   // .container {
@@ -81,7 +99,7 @@
   // }
   color: $white;
   h1 {
-    font-size: 48px;
+    font-size: 40px !important;
     letter-spacing: 1.39px;
     font-weight: normal;
     margin: 0;
@@ -112,6 +130,66 @@
   }
 }
 
+.article-cover-small {
+    @extend .article-cover;
+    height: 180px;
+
+    h1 {
+        font-size: 33px !important;
+    }
+
+    .article-sub-title {
+        font-size: 15px;
+    }
+
+    .info {
+        margin-top: 10px;
+    }
+}
+
+.article-cover-detail {
+    @extend .article-cover;
+
+    .container {
+      padding-top: 100px;
+    }
+
+    .title {
+      float: left;
+    }
+
+    .info {
+      text-align: right;
+    }
+    h1 {
+      font-size: 48px;
+    }
+    .info {
+      font-family: Roboto;
+      font-weight: lighter;
+      font-size: 18px;
+      // text-align: right;
+      margin-top: 23px;
+
+      .date {
+        color: darken($white, 10);
+        float: none;
+      }
+      a {
+        color: $white;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+      p {
+          display: block;
+        margin-top: 0px;
+        margin-bottom: 0;
+      }
+    }
+}
+
 .pagination-container {
   text-align: center;
   margin-bottom: 50px;
@@ -122,7 +200,7 @@
   margin-top: 30px;
   display: inline-block;
   text-transform: uppercase;
-  font-weight: 300;
+  // font-weight: 300;
 
 
   li {
@@ -143,4 +221,31 @@ main {
   header {
     margin: 80px 0 60px;
   }
+}
+
+aside {
+    position: relative;
+}
+
+.sidebar {
+    padding-top: 80px;
+    padding-left: 70px;
+    position: relative;
+
+
+    .sidebar-content {
+        max-width: 300px;
+    }
+
+    .topics, .keywords {
+        margin-top: 20px;
+    }
+
+    h4 {
+        margin-top: 30px;
+    }
+
+    h4:first-child {
+        margin-top: 0px;
+    }
 }

@@ -1,45 +1,69 @@
 // _mixins.scss
-
 @mixin cover-background () {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
-
 //FORMS
 //----------
-
 @mixin form-color($text, $border) {
-  color: $text;
-  border-bottom: 1px solid $border;
+    color: $text;
+    border-bottom: 1px solid $border;
 }
-
 @mixin form-color-focus($text, $border) {
-  color: $text !important;
-  border-bottom: 1px solid $border;
+    color: $text !important;
+    border-bottom: 1px solid $border;
 }
-
 //BUTTONS
 //----------
-
 @mixin btn-outline ($color) {
-  background: transparent;
-  border-color: $color;
-  color: $color;
+    background: transparent;
+    border-color: $color !important;
+    color: $color !important;
+    border-width: 1px !important;
+    border-style: solid !important;
 }
-
 @mixin btn-outline-hover ($color) {
-  background: transparent;
-  border-color: $color;
-  color: $color;
+    background: transparent;
+    border-color: $color !important;
+    color: $color !important;
+    border-width: 1px !important;
+    border-style: solid !important;
 }
-
 @mixin btn-solid ($background, $color) {
-  background: $background;
-  color: $color;
+    background: $background !important;
+    color: $color !important;
+    border-color: $background !important;
+    border-width: 1px !important;
+    border-style: solid !important;
 }
-
 @mixin btn-solid-hover ($background, $color) {
-  background: $background;
-  color: $color;
+    background: $background !important;
+    color: $color !important;
+    border-color: $background !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+@mixin floating ($size) {
+    // box-shadow: 0px 1px 2px lighten($silver, 10);
+    // -webkit-box-shadow: 0px 1px 2px lighten($silver, 10);
+    border-radius: 100px;
+    width: $size;
+    height: $size;
+    text-align: center;
+    padding: 0;
+    i {
+        font-size: 16px;
+        line-height: $size;
+        vertical-align: middle;
+        // padding-right: 1px;
+    }
+}
+@mixin btn-color ($background, $color) {
+    color: $color !important;
+    background-color: $background;
+}
+@mixin btn-color-hover ($background, $color) {
+    color: $color !important;
+    background-color: darken( $background, 10% )
 }

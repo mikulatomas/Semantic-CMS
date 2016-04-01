@@ -2,8 +2,8 @@
   margin-bottom: 200px;
 
   h3 {
-  color: $mine;
-  font-weight: lighter;
+  color: $chicago;
+  font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   text-transform: uppercase;
@@ -13,10 +13,11 @@
   }
 
   .similar-articles {
-    margin-top: 80px;
+    margin-top: 110px;
 
     .article-miniature {
     @include cover-background();
+    margin-top: 20px;
     text-align: center;
     line-height: 150px;
     position: relative;
@@ -50,15 +51,17 @@
 .empty {
   font-weight: lighter;
   margin-top: 25px;
+  margin-bottom: 400px;
 }
 
 .bubble {
-  font-weight: lighter;
+  font-weight: normal;
   padding: 6px 25px;
   border-radius: 40px;
   border: 1px solid $mercury;
   box-shadow: none;
   line-height: 40px;
+  white-space: nowrap;
   margin-right: 5px;
 
   a {
@@ -93,6 +96,10 @@
   border-color: $turquoise;
 }
 
+.author {
+    margin-bottom: 30px;
+}
+
 .author-info {
   .name {
     font-size: 18px;
@@ -101,4 +108,8 @@
   .bio {
     font-weight: lighter;
   }
+}
+
+.full-article {
+    margin-top: 65px;
 }

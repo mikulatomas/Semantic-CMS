@@ -1,0 +1,15 @@
+{% if not request.GET.page or request.GET.page == "1"%}
+    {% if forloop.first %}
+    <div class="col-sm-12">
+        {% include "blog/includes/article-preview-homepage.html" with article=article %}
+    </div>
+    {% else %}
+        <div class="col-sm-6">
+            {% include "blog/includes/article-preview-small-homepage.html" with article=article %}
+        </div>
+    {% endif %}
+{% else %}
+    <div class="col-sm-6">
+        {% include "blog/includes/article-preview-small-homepage.html" with article=article %}
+    </div>
+{% endif %}

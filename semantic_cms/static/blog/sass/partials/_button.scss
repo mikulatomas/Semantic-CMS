@@ -1,122 +1,172 @@
 // _button.scss
 
 .btn {
-  font-weight: lighter;
-  padding: 6px 25px;
-  border-radius: 40px;
-  box-shadow: none;
+    font-weight: lighter;
+    padding: 6px 25px;
+    border-radius: 40px;
+    box-shadow: none;
 
-  .margin-right {
-    margin-right: 10px;
-  }
+    .margin-right {
+        margin-right: 10px;
+    }
 }
 
+#navbar-user {
+    .btn {
+        border-radius: 0;
+    }
+}
+
+#show-topics {
+    // position: absolute;
+    // bottom: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 25px;
+    width: 300px;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.floating {
+    @include floating(46px);
+}
+
+.btn.blue {
+    @include btn-color($shakespeare, $white);
+}
+
+.btn.blue:hover {
+    @include btn-color(darken($shakespeare, 8), $white);
+}
+
+.btn.white {
+    @include btn-color(darken($white, 8), $chicago);
+}
+.btn.white:hover {
+    @include btn-color-hover(darken($white, 8), $chicago);
+}
+
+.btn.red {
+    @include btn-color($sunset-orange, $white);
+}
+.btn.red:hover {
+    @include btn-color-hover($sunset-orange, $white);
+}
+
+.btn.green {
+    @include btn-color($turquoise, $white);
+}
+
+.btn.green:hover {
+    @include btn-color-hover($turquoise, $white);
+}
 
 .btn-group.open .dropdown-toggle {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .btn:active {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 .btn:hover {
-  color: white;
+    color: white;
 }
 
 .btn-round {
-  border-radius: 100px;
-  width: 35px;
-  // padding: 11px 9px 11px 8px;
-  padding: 7px 0px 7px 0px;
+    border-radius: 100px;
+    width: 35px;
+    // padding: 11px 9px 11px 8px;
+    padding: 7px 0;
 }
 
 .btn-white-outline {
-  @include btn-outline($white);
+    @include btn-outline($white);
 }
 
-.btn-white-outline:hover,
 .btn-white-outline:active,
-.btn-white-outline:focus {
-  @include btn-outline-hover($turquoise);
+.btn-white-outline:focus,
+.btn-white-outline:hover {
+    @include btn-outline-hover($turquoise);
 }
 
 .btn-white-outline-no-hover {
-  @include btn-outline($white);
+    @include btn-outline($white);
 }
 
-.btn-white-outline-no-hover:hover,
 .btn-white-outline-no-hover:active,
-.btn-white-outline-no-hover:focus {
-  @include btn-outline-hover($white);
+.btn-white-outline-no-hover:focus,
+.btn-white-outline-no-hover:hover {
+    @include btn-outline-hover($white);
 }
 
 .btn-gray-outline {
-  @include btn-outline($silver);
+    @include btn-outline($silver);
 }
 
-.btn-gray-outline:hover,
 .btn-gray-outline:active,
-.btn-gray-outline:focus {
-  @include btn-outline-hover(darken( $silver, 10% ));
+.btn-gray-outline:focus,
+.btn-gray-outline:hover {
+    @include btn-outline-hover(darken( $silver, 10% ));
 }
 
 .btn-green-outline {
-  @include btn-outline($turquoise);
+    @include btn-outline($turquoise);
 }
 
-.btn-green-outline:hover,
 .btn-green-outline:active,
-.btn-green-outline:focus {
-  @include btn-outline-hover(darken( $turquoise, 10% ));
+.btn-green-outline:focus,
+.btn-green-outline:hover {
+    @include btn-outline-hover(darken( $turquoise, 10% ));
 }
 
 .btn-blue-outline {
-  @include btn-outline($shakespeare);
+    @include btn-outline($shakespeare);
 }
 
-.btn-blue-outline:hover,
 .btn-blue-outline:active,
-.btn-blue-outline:focus {
-  @include btn-outline-hover(darken( $shakespeare, 10% ));
+.btn-blue-outline:focus,
+.btn-blue-outline:hover {
+    @include btn-outline-hover(darken( $shakespeare, 10% ));
 }
 
 .btn-red-outline {
-  @include btn-outline($sunset-orange);
+    @include btn-outline($sunset-orange);
 }
 
-.btn-red-outline:hover,
 .btn-red-outline:active,
-.btn-red-outline:focus {
-  @include btn-outline-hover(darken( $sunset-orange, 10% ));
+.btn-red-outline:focus,
+.btn-red-outline:hover {
+    @include btn-outline-hover(darken( $sunset-orange, 10% ));
 }
 
 .btn-blue-solid {
-  @include btn-solid($shakespeare, $white);
+    @include btn-solid($shakespeare, $white);
 }
 
-.btn-blue-solid:hover,
 .btn-blue-solid:active,
-.btn-blue-solid:focus {
-  @include btn-solid-hover(darken( $shakespeare, 10% ), $white);
+.btn-blue-solid:focus,
+.btn-blue-solid:hover {
+    @include btn-solid-hover(darken( $shakespeare, 10% ), $white);
 }
 
 .btn-red-solid {
-  @include btn-solid($sunset-orange, $white);
+    @include btn-solid($sunset-orange, $white);
 }
 
-.btn-red-solid:hover,
 .btn-red-solid:active,
-.btn-red-solid:focus {
-  @include btn-solid-hover(darken( $sunset-orange, 10% ), $white);
+.btn-red-solid:focus,
+.btn-red-solid:hover {
+    @include btn-solid-hover(darken( $sunset-orange, 10% ), $white);
 }
 
 .btn-green-solid {
-  @include btn-solid($turquoise, $white);
+    @include btn-solid($turquoise, $white);
 }
 
-.btn-green-solid:hover,
 .btn-green-solid:active,
-.btn-green-solid:focus {
-  @include btn-solid-hover(darken( $turquoise, 10% ), $white);
+.btn-green-solid:focus,
+.btn-green-solid:hover {
+    @include btn-solid-hover(darken( $turquoise, 10% ), $white);
 }

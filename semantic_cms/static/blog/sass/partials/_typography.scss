@@ -1,12 +1,21 @@
 // _typography.scss
 
 body {
-  font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   color: $chicago;
 }
 
+a {
+    color: $turquoise;
+}
+
+a:hover {
+    color: $turquoise;
+}
+
 .info-headline {
-  font-weight: lighter;
+  font-weight: normal;
+  color: $chicago;
   font-size: 24px;
   text-transform: uppercase;
   border-bottom: 1px solid $mercury;

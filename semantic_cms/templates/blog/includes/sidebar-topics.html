@@ -1,0 +1,8 @@
+<h4>Biggest topics</h4>
+<div class="topics">
+    {% for topic in popular_semantic|slice:":5" %}
+    <span class="topic"><a href="{% url 'semantic' topic.slug %}">{{ topic.name }}</a></span>
+    {% empty %}
+    <span class="empty">No topics.</span>
+    {% endfor %}
+</div>

@@ -1,0 +1,27 @@
+<div class="article-cover" style="background-image: {% if article.cover_image %}url({{ article.cover_image.url }});{% else %}linear-gradient(-180deg, #64DDC4 0%, #74C1C6 100%);{% endif %}">
+  <div class="background-overlay"></div>
+
+    <div class="content">
+
+    <div class="title">
+    <h1><a href="{% url 'article' article.slug %}">{{ article.title }}</a></h1>
+    <span class="article-sub-title hidden-xs">
+      {% if article.flag %}
+      <span class="article-flag>"><a href="{% url 'flag' article.flag.slug %}">{{ article.flag }}</a></span> -
+      {% endif %}
+      {{ article.sub_title }}
+    </span>
+    </div>
+    <div class="info">
+        <p>
+        {% for semantic in article.semantic.all %}
+        <a href="{% url 'semantic' semantic.slug %}">{{ semantic.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        </p>
+    <span class="date">{{ article.published_date|date:'d. E Y' }}</span>
+
+
+
+  </div>
+  </div>
+</div>
