@@ -2,27 +2,50 @@
 
 <script>
 var fixmeTop = $('.sidebar-content').offset().top;       // get initial position of the element
+$( document ).ready(function() {
+  var is_mobile = false;
 
-$(window).scroll(function() {                  // assign scroll event listener
+  if( $('#mobile-check').css('display')=='none') {
+      is_mobile = true;
+  }
 
-  var currentScroll = $(window).scrollTop(); // get current position
+  if (is_mobile == false) {
+      $('#show-topics').css({
+          width: $('.sidebar-content').width(),
+      })
 
-  if (currentScroll >= fixmeTop + 100) {           // apply position: fixed if you
-    //   $('.sidebar-content').css({                      // scroll to that element or below it
-    //       position: 'fixed',
-    //       top: '80px',
-    //   });
-    $('.sidebar-content').addClass('sidebar-fixed');
-    $('.sidebar-content').removeClass('sidebar-static');
-    //   $('#show-topics').removeClass("hidden");
+      $('.sidebar-content').css({
+          width: $('.sidebar-content').width(),
+      })
 
-  } else {                                   // apply position: static
-    //   $('.sidebar-content').css({                      // if you scroll above it
-    //       position: 'static'
-    //   });
-    $('.sidebar-content').removeClass('sidebar-fixed');
-    $('.sidebar-content').addClass('sidebar-static');
-    //   $('#show-topics').addClass("hidden");
+    $(window).scroll(function() {                  // assign scroll event listener
+
+      var currentScroll = $(window).scrollTop(); // get current position
+
+
+
+
+
+
+
+      if (currentScroll >= fixmeTop + 100) {           // apply position: fixed if you
+        //   $('.sidebar-content').css({                      // scroll to that element or below it
+        //       position: 'fixed',
+        //       top: '80px',
+        //   });
+        $('.sidebar-content').addClass('sidebar-fixed');
+        $('.sidebar-content').removeClass('sidebar-static');
+        //   $('#show-topics').removeClass("hidden");
+
+      } else {                                   // apply position: static
+        //   $('.sidebar-content').css({                      // if you scroll above it
+        //       position: 'static'
+        //   });
+        $('.sidebar-content').removeClass('sidebar-fixed');
+        $('.sidebar-content').addClass('sidebar-static');
+        //   $('#show-topics').addClass("hidden");
+      }
+  });
   }
 });
 
