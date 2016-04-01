@@ -52,9 +52,9 @@
           <div class="row">
           <div class="col-xs-4 col-sm-2 col-md-2">
           {% if article.author.userprofile.profile_image %}
-          <img width=100% src="{{ article.author.userprofile.profile_image.url }}">
+          <img style="width: 100%;" src="{{ article.author.userprofile.profile_image.url }}" alt="User picture">
           {% else %}
-          <img width=100% src="http://placehold.it/200x200">
+          <img style="width: 100%;" src="http://placehold.it/200x200" alt="User picture">
           {% endif %}
           </div>
           <div class="col-xs-8 col-sm-8">
