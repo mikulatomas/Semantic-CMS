@@ -3,16 +3,33 @@
 
 {% block title %} - {{ semantic.name }}{% endblock %}
 
+{% block content_top %}
+<svg id="semantic-map" class="hidden">
+</svg>
+<button class="btn floating white hidden switch" id="hide-topics"><i class="fa fa-times"></i></button>
+
+{% endblock %}
+
 {% block content %}
-<main>
+<div class="col-sm-8">
   {% include "blog/includes/header-subtitle.html" with title=semantic.name subtitle="Articles with topic" %}
+  <div class="row">
   {% for article in article_list %}
-    {% include "blog/includes/article-preview.html" with article=article %}
-  {% empty %}
-  <div class="container">
-    <p class="text-center empty">No articles.</p>
-  </div>
+    {% include "blog/includes/article-list-featured.html" with article=article %}
+    {% empty %}
+      <p class="text-center empty">No articles.</p>
   {% endfor %}
+  </div>
   {% include "blog/includes/pagination.html" %}
-</main>
+</div>
+{% endblock %}
+
+{% block content_side %}
+    <div class="col-sm-4 sidebar">
+        <div class="sidebar-content">
+            {% include "blog/includes/sidebar-topics.html" %}
+            {% include "blog/includes/sidebar-keywords.html" %}
+            {% include "blog/includes/sidebar-show-topics.html" %}
+        </div>
+    </div>
 {% endblock %}

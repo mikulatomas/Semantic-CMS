@@ -1,0 +1,10 @@
+{% include "blog/includes/article-header-homepage.html" %}
+
+  <div class="article-content">
+<div class="content-preview">
+  {% autoescape off %}{{ article.content|truncatewords_html:40 }}{% endautoescape %}
+  </div>
+  <div class="text-center read-more">
+  <a href="{% url 'article' article.slug %}">Read more</a>
+</div>
+  </div>

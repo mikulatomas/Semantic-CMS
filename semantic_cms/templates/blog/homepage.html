@@ -1,18 +1,45 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 
-{% block content %}
-  <main>
-  <header class="container">
-    <div class="row">
-      <p class="text-center info-headline col-sm-10 col-sm-offset-1">Recent articles</p>
+{% block content_top %}
+<div class="svg-container container">
+    <div class="svg-info hidden-xs">
+        <span class="icon"><i class="fa fa-sitemap"></i></span>
+        <div class="text">
+            <h4>Topics map</h4>
+            <p>Welcome, here you can see map of topics on this website.</p><p>Fell free to discover it my zooming and dragging.</p><p>If you want to see content of some category just click on it.</p>
+        </div>
     </div>
+
+</div>
+<svg id="semantic-map" class="border relative">
+</svg>
+<button class="btn floating white hidden" id="hide-topics"><i class="fa fa-times"></i></button>
+
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-8">
+  <header>
+      <p class="text-center info-headline">Recent articles</p>
   </header>
 
+  <div class="row">
   {% for article in article_list %}
-    {% include "blog/includes/article-preview.html" with article=article %}
+    {% include "blog/includes/article-list-featured.html" with article=article %}
   {% endfor %}
+  </div>
 
   {% include "blog/includes/pagination.html" %}
-  </main>
+  </div>
+{% endblock %}
+
+{% block content_side %}
+    <div class="col-sm-4 sidebar">
+        <div class="sidebar-content">
+            {% include "blog/includes/sidebar-topics.html" %}
+            {% include "blog/includes/sidebar-keywords.html" %}
+            {% include "blog/includes/sidebar-show-topics.html" %}
+        </div>
+    </div>
 {% endblock %}
