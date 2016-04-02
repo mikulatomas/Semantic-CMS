@@ -89,8 +89,11 @@ getNodes(function(nodes) {
         var width = 960,
             height = 500;
 
+        var initialScale = 0.7;
+
         var zoom = d3.behavior.zoom()
-            .scaleExtent([0.1, 10])
+            .scaleExtent([0.5, 1.5])
+            .scale(initialScale)
             .on("zoom", zoomed);
 
 
@@ -876,6 +879,7 @@ getNodes(function(nodes) {
         }, false);
 
         svg.on('mousedown', mousedown);
+        container.attr("transform", "scale(" + initialScale + ")");
         // force.start();
         restart();
     });
