@@ -379,3 +379,10 @@ def login(request, template_name):
     }
     template_response = views.login(request, template_name, extra_context=login_context)
     return template_response
+
+from django.core.management import call_command
+from django.shortcuts import render
+def reset_database(request):
+
+    call_command('loaddata', 'all.json')
+    return render(request, 'semantic_admin/reset_done.html')

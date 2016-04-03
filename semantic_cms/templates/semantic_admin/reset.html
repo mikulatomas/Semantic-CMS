@@ -1,0 +1,54 @@
+{% extends "semantic_admin/base_site.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block title %}
+Reset database
+{% endblock %}
+
+{% block content %}
+<div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="headline">
+          <h1>Settings</h1>
+          <h2>Setup your blog here</h2>
+        </div>
+        <ul class="nav nav-tabs">
+          <li role="presentation"><a href="{% url 'admin:settings:index' %}">Blog</a></li>
+          <li role="presentation"><a href="{% url 'admin:settings:user:index' %}">User profile</a></li>
+          <li role="presentation"><a href="{% url 'admin:settings:user:change_password' %}">Change password</a></li>
+          <li role="presentation" class="active"><a href="{% url 'admin:settings:reset' %}">Reset data</a></li>
+        </ul>
+
+        <div class="settings">
+        <div class="settings-section">
+        <h3>Reset data in database</h3>
+        <div class="row">
+        <div class="col-sm-8">
+            <p>Here you can reset all data of this demo blog to initial values.</p>
+            <div style="margin: 40px 0">
+            <h4 style="color: #f41616;">Warning!</h4>
+            <p>You won't be able to rever this step!</p>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-sm-4">
+            <a href="{% url 'admin:settings:reset_done' %}" class="btn btn-red-solid">Reset now</a>
+        </div>
+        </div>
+        </div>
+
+
+
+        </div>
+
+      </div>
+      </div>
+{% endblock %}
+
+{% block extrascripts %}
+{% endblock %}

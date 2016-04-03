@@ -55,6 +55,8 @@ user_patterns = [
 settings_patterns = [
     url(r'^$', UpdateBlogSettingsView.as_view(), name='index'),
     url(r'^user/', include(user_patterns, namespace="user")),
+    url(r'^reset/$', TemplateView.as_view(template_name="semantic_admin/reset.html"), name='reset'),
+    url(r'^reset-done/$', semantic_admin_views.reset_database, name='reset_done'),
 ]
 
 semantic_patterns = [
