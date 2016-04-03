@@ -110,7 +110,7 @@ class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         obj, created = UserProfile.objects.get_or_create(user = self.request.user)
         return obj
-        
+
 class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
     model = BlogSettings
     template_name = "semantic_admin/blog_settings_edit.html"
@@ -125,7 +125,7 @@ class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_object(self):
-        obj, created = BlogSettings.objects.get_or_create(pk = 1)
+        obj, created = BlogSettings.objects.get_or_create(pk = 0)
         return obj
 
 class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
@@ -389,6 +389,6 @@ from semantic_cms.settings.base import BASE_DIR
 def reset_database(request):
     path = BASE_DIR + '/reset-output.log'
     with open(path,'w') as f:
-        call_command('loaddata', 'all.json', stdout=f)
+        call_command('loaddata', BASE_DIR + 'all.json', stdout=f)
 
     return render(request, 'semantic_admin/reset_done.html')
