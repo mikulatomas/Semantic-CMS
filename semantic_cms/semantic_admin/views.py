@@ -395,6 +395,6 @@ def reset_database(request):
     with open(path,'w') as f:
         call_command('loaddata', BASE_DIR + '/all.json', stdout=f)
 
-    context['user_profile'] = UserProfile.objects.filter(user = request.user)
+    # context['user_profile'] = UserProfile.objects.filter(user = request.user)
 
     return render(request, 'semantic_admin/reset_done.html', context=context)
