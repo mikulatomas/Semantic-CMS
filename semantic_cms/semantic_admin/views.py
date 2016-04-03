@@ -397,4 +397,4 @@ def reset_database(request):
 
     context['user_profile'] = UserProfile.objects.filter(user = self.request.user)
 
-    return render(request, context=context, 'semantic_admin/reset_done.html')
+    return render(request, 'semantic_admin/reset_done.html', context=context)
