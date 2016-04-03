@@ -382,10 +382,13 @@ def login(request, template_name):
     }
     template_response = views.login(request, template_name, extra_context=login_context)
     return template_response
-
+    
 from django.core.management import call_command
 from django.shortcuts import render
 from semantic_cms.settings.base import BASE_DIR
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def reset_database(request):
     path = BASE_DIR + '/reset-output.log'
     call_command('flush', interactive=False)
