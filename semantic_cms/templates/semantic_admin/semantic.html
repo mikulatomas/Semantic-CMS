@@ -28,15 +28,31 @@
             <i class="fa fa-trash"></i></a>
 
           <a class="btn floating white hidden" id="connect" role="button" title="Connect nodes"><i class="fa fa-link"></i></a>
+
+          <a class="btn floating white" id="help" role="button" title="Help"><i class="fa fa-question"></i></a>
       </div>
     </div>
     <svg>
     </svg>
-    <div id="dialog-confirm" title="Delete selected node?">
+    <div id="dialog-confirm" title="Delete selected node?" class="hidden">
      <p><i class="fa fa-exclamation-triangle icon"></i>This node will be permanently deleted and cannot be recovered. Are you sure?</p>
    </div>
 
-   <div id="dialog-add" title="Add new node?">
+   <div id="dialog-help" title="Help" class="hidden">
+    <p>Welcome in Semantic map editor, here you can manage your topic map and assign/unassign articles to the topics.<br><br></p>
+    <h4>Node operations</h4>
+    <p><b>Add node</b> - Click on round button with <i class="fa fa-plus"></i> icon.</p>
+    <p><b>Edit node</b> - Select node, then click on round button with <i class="fa fa-pencil"></i> icon.</p>
+    <p><b>Delete node</b> - Select node, click on round button with <i class="fa fa-trash"></i> icon.</p>
+    <p><b>Connect two nodes</b> - Select first node, select second node with SHIFT key then click on button with <i class="fa fa-link"></i> icon.<br><br></p>
+    <h4>Article operations</h4>
+    <p>You can select and deselect article in right sidebar. If selected article has some assigned topics, they will be displayed as <b>blue one</b>.<br><br></p>
+    <p><b>Deselect selected article</b> - Click on round button with <i class="fa fa-times"></i> icon.</p>
+    <p><b>Assign article to the topic</b> - Select article, then click on round button with <i class="fa fa-bookmark"></i> icon.</p>
+    <p><b>Un-assign article from the topic</b> - Select article, then click on round button with <i class="fa fa-bookmark-o"></i> icon.</p>
+  </div>
+
+   <div id="dialog-add" title="Add new node?" class="hidden">
        <p>
        Enter name of the new node here, name should be unique.<br>
        <span class="error"></span>
@@ -47,7 +63,7 @@
    </p>
    </div>
 
-   <div id="dialog-edit" title="Edit name of selected node?">
+   <div id="dialog-edit" title="Edit name of selected node?" class="hidden">
        <p>
        Enter new name of the selected node. Name must be unique.<br>
        <span class="error"></span>

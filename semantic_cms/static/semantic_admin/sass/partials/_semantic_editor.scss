@@ -148,7 +148,7 @@ body .ui-tooltip {
             float: left;
             font-size: 30px;
         }
-
+        
         .input-group {
             // margin-top: 0;
             padding-left: 15px;
@@ -163,6 +163,10 @@ body .ui-tooltip {
             color: $chicago;
             padding-left: 15px;
             padding-right: 15px;
+        }
+
+        h4 {
+          padding-left: 15px;
         }
     }
 
