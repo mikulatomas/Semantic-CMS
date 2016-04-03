@@ -389,6 +389,6 @@ from semantic_cms.settings.base import BASE_DIR
 def reset_database(request):
     path = BASE_DIR + '/reset-output.log'
     with open(path,'w') as f:
-        call_command('loaddata', BASE_DIR + 'all.json', stdout=f)
+        call_command('loaddata', BASE_DIR + '/all.json', stdout=f)
 
     return render(request, 'semantic_admin/reset_done.html')
