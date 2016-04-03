@@ -388,6 +388,7 @@ from django.shortcuts import render
 from semantic_cms.settings.base import BASE_DIR
 def reset_database(request):
     path = BASE_DIR + '/reset-output.log'
+    call_command('flush')
     with open(path,'w') as f:
         call_command('loaddata', BASE_DIR + '/all.json', stdout=f)
 
