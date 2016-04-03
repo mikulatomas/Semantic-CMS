@@ -4,7 +4,7 @@ from keywords.models import Keyword
 from django.db.models import Count
 
 def basic(request):
-    blog_settings = BlogSettings.objects.filter(pk = 0)
+    blog_settings = BlogSettings.objects.filter(pk = 1)
     context = {}
 
     popular_semantic = Semantic.objects.annotate(article_count=Count('article')).order_by('-article_count')
