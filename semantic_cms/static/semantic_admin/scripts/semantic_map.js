@@ -112,6 +112,7 @@ getNodes(function(nodes) {
         $(".article-list-right").css("height", doc_height);
 
         svg = svg_tag.append("g")
+            .attr("transform", "translate(" +[width / 5,50]+ ")")
             .call(zoom);
 
         var rect = svg.append("rect")
@@ -161,15 +162,15 @@ getNodes(function(nodes) {
         });
 
         var force = d3.layout.force()
-            .charge(-1000)
+            .charge(-2000)
             // .linkDistance(150)
             .linkDistance(function(d) {
                 return 110 + 20 * (d.source.number_of_descendants);
             })
             // .chargeDistance(5000)
             // .linkStrength(0.5)
-            .gravity(0.04)
-            .friction(0.5)
+            .gravity(0.1)
+            .friction(0.7)
             .nodes(nodes)
             .links(edges)
             .size([width, height])
@@ -778,6 +779,20 @@ getNodes(function(nodes) {
             }]
         });
 
+        $("#dialog-help").dialog({
+            autoOpen: false,
+            resizable: false,
+            width: 800,
+            modal: true,
+            buttons: [{
+                text: "OK",
+                "class": 'btn btn-gray-outline',
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }]
+        });
+
         $("#dialog-add").dialog({
             autoOpen: false,
             resizable: false,
@@ -852,16 +867,24 @@ getNodes(function(nodes) {
             restart();
         }, false);
 
+        document.getElementById("help").addEventListener("click", function() {
+          $("#dialog-help").removeClass("hidden");
+            $("#dialog-help").dialog("open");
+        }, false);
+
         document.getElementById("add").addEventListener("click", function() {
+          $("#dialog-add").removeClass("hidden");
             $("#dialog-add").dialog("open");
         }, false);
 
         document.getElementById("edit").addEventListener("click", function() {
+          $("#dialog-edit").removeClass("hidden");
             $("#rename-node-name").val(selected_node.name);
             $("#dialog-edit").dialog("open");
         }, false);
 
         document.getElementById("delete").addEventListener("click", function() {
+          $("#dialog-confirm").removeClass("hidden");
             $("#dialog-confirm").dialog("open");
 
         }, false);
@@ -880,6 +903,8 @@ getNodes(function(nodes) {
 
         svg.on('mousedown', mousedown);
         container.attr("transform", "scale(" + initialScale + ")");
+        // zoom.translate([100,0]);
+        // container.attr("transform", "translate(" +[100,0]+ ")");
         // force.start();
         restart();
     });

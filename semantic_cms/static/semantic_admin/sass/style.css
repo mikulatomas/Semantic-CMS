@@ -895,6 +895,8 @@ body .ui-tooltip {
       color: #5F5F5F;
       padding-left: 15px;
       padding-right: 15px; }
+    .ui-dialog .ui-dialog-content h4, .ui-dialog .ui-dialog-content .nav-tabs li a, .nav-tabs li .ui-dialog .ui-dialog-content a {
+      padding-left: 15px; }
   .ui-dialog .ui-dialog-buttonpane {
     padding-left: 15px;
     padding-right: 15px;
