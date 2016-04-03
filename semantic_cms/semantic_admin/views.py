@@ -46,6 +46,9 @@ from semantic.serializers import SemanticEdgeSerializer
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
+# from settings import BASE_DIR
+
+
 class LoginRequiredMixin(object):
     @classmethod
     def as_view(cls, **initkwargs):
@@ -382,8 +385,10 @@ def login(request, template_name):
 
 from django.core.management import call_command
 from django.shortcuts import render
+from semantic_cms.settings.base import BASE_DIR
 def reset_database(request):
-    with open('output.log','w') as f:
+    path = BASE_DIR + 'reset-output.log'
+    with open(path,'w') as f:
         call_command('loaddata', 'all.json', stdout=f)
 
     return render(request, 'semantic_admin/reset_done.html')
