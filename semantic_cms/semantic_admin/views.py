@@ -383,6 +383,7 @@ def login(request, template_name):
 from django.core.management import call_command
 from django.shortcuts import render
 def reset_database(request):
+    with open('output.log','w') as f:
+        call_command('loaddata', 'all.json', stdout=f)
 
-    call_command('loaddata', 'all.json')
     return render(request, 'semantic_admin/reset_done.html')
