@@ -110,7 +110,7 @@ class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         obj, created = UserProfile.objects.get_or_create(user = self.request.user)
         return obj
-
+        
 class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
     model = BlogSettings
     template_name = "semantic_admin/blog_settings_edit.html"
@@ -125,7 +125,7 @@ class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_object(self):
-        obj, created = BlogSettings.objects.get_or_create(pk = 0)
+        obj, created = BlogSettings.objects.get_or_create(pk = 1)
         return obj
 
 class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
