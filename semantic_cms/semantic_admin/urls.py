@@ -29,8 +29,10 @@ from semantic_admin.views import UpdateArticleFlagView
 from semantic_admin.views import DeleteArticleFlagView
 from semantic_admin.views import UpdateUserProfileView
 from semantic_admin.views import UpdateBlogSettingsView
+from semantic_admin.views import DbResetView
 import semantic_admin.views as semantic_admin_views
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 
 content_patterns = [
     url(r'^$', ContentView.as_view(), name='index'),
@@ -55,7 +57,7 @@ user_patterns = [
 settings_patterns = [
     url(r'^$', UpdateBlogSettingsView.as_view(), name='index'),
     url(r'^user/', include(user_patterns, namespace="user")),
-    url(r'^reset/$', TemplateView.as_view(template_name="semantic_admin/reset.html"), name='reset'),
+    url(r'^reset/$', DbResetView.as_view(), name='reset'),
     url(r'^reset-done/$', semantic_admin_views.reset_database, name='reset_done'),
 ]
 

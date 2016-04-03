@@ -286,6 +286,9 @@ class SemanticView(LoginRequiredMixin, FilterView):
         context['title'] = 'Semantic'
         return context
 
+class DbResetView(LoginRequiredMixin, TemplateView):
+    template_name="semantic_admin/reset.html"
+
 def request_article_nodes(request):
     if request.method == 'POST':
         jsonData = json.loads(request.body.decode('utf-8'))
@@ -382,17 +385,16 @@ def login(request, template_name):
     }
     template_response = views.login(request, template_name, extra_context=login_context)
     return template_response
-    
+
 from django.core.management import call_command
 from django.shortcuts import render
 from semantic_cms.settings.base import BASE_DIR
-from django.contrib.auth.decorators import login_required
-
-@login_required
 def reset_database(request):
     path = BASE_DIR + '/reset-output.log'
     call_command('flush', interactive=False)
     with open(path,'w') as f:
         call_command('loaddata', BASE_DIR + '/all.json', stdout=f)
 
-    return render(request, 'semantic_admin/reset_done.html')
+    context['user_profile'] = UserProfile.objects.filter(user = self.request.user)
+
+    return render(request, context=context, 'semantic_admin/reset_done.html')
