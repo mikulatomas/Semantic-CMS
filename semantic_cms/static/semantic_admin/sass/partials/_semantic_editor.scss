@@ -18,7 +18,7 @@ svg {
 
 .article circle {
     // fill: ligten($shakespeare, 5);
-    fill: $yellow;
+    fill: $shakespeare;
 }
 
 .article.selected circle {
@@ -65,7 +65,7 @@ svg {
 path.link {
     fill: none;
     stroke: gray;
-    stroke-width: 2.5px;
+    stroke-width: 3.5px;
     cursor: default;
 }
 
