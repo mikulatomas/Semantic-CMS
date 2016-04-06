@@ -875,8 +875,9 @@ aside {
 .sidebar {
   padding-top: 80px;
   padding-left: 70px;
-  position: relative; }
+  position: static; }
   .sidebar .sidebar-content {
+    transform: translateZ(0);
     max-width: 300px; }
   .sidebar .topics, .sidebar .keywords {
     margin-top: 20px; }
