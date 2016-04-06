@@ -33,3 +33,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+article_nodes = JSON.parse("[{{ semantic.id }}]");
+</script>
+{% endblock %}
