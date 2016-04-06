@@ -670,6 +670,13 @@ svg.fixed {
   width: 100%;
   height: 100%; }
 
+.article text {
+  text-anchor: middle;
+  fill: white; }
+
+.article circle {
+  fill: #40BBCB; }
+
 #hide-topics {
   position: fixed;
   top: 80px;
@@ -690,7 +697,7 @@ svg.fixed {
       text-align: center;
       padding: 0;
       color: #FFFFFF !important;
-      background-color: #F2784B;
+      background-color: #40BBCB;
       margin-top: 10px; }
       .svg-container .svg-info .icon i {
         font-size: 16px;

@@ -223,7 +223,7 @@ getNodes(function(nodes) {
             });
 
             redrawWeight();
-            // refreshArticleNodes();
+            refreshArticleNodes();
 
             var group = node.enter().append("g").attr("class", "nodeGroup")
                 .on('mousedown', function(d) {
@@ -282,6 +282,20 @@ getNodes(function(nodes) {
                 nodes.forEach(function(node) {
                     node.number_of_descendants = nodeById.get(node.id).number_of_descendants;
                 });
+            });
+        }
+
+        function refreshArticleNodes() {
+            nodes.forEach(function(d) {
+                d.article = false;
+                if (article_nodes !== undefined) {
+                    article_nodes.forEach(function(n) {
+                        if (d.id === n) {
+                            d.article = true;
+                            return;
+                        }
+                    });
+                }
             });
         }
 

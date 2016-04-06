@@ -18,7 +18,7 @@ svg {
 
 .article circle {
     // fill: ligten($shakespeare, 5);
-    fill: $shakespeare;
+    fill: $yellow;
 }
 
 .article.selected circle {
@@ -148,7 +148,7 @@ body .ui-tooltip {
             float: left;
             font-size: 30px;
         }
-        
+
         .input-group {
             // margin-top: 0;
             padding-left: 15px;

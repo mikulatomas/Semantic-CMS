@@ -80,10 +80,23 @@
       <div id="mobile-check"></div>
 
 
+{% block extrascripts %}{% endblock %}
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script type="text/javascript">
+  var article_nodes;
+  {% if article_nodes %}
+  article_nodes = JSON.parse("{{ article_nodes }}");
+  {% endif %}
+  $(function() {
+
+      var selectedArticle;
+      {% if article.id %}
+      selectedArticle = {{ article.id }};
+      {% endif %}
+  });</script>
   <script type="text/javascript" src="{% static 'blog/scripts/semantic_map_view.js' %}"></script>
 
-  {% block extrascripts %}{% endblock %}
+
 </body>
 
 </html>
