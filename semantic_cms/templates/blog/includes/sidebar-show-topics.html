@@ -1,8 +1,13 @@
 <button class="btn btn-blue-solid" id="show-topics"><i class="fa fa-sitemap margin-right"></i>Show topics</button>
 
 <script>
-var fixmeTop = $('.sidebar-content').offset().top;       // get initial position of the element
 $( document ).ready(function() {
+  var fixmeTop = $('.sidebar').offset().top;
+
+  if ($('#semantic-map').css("display") == 'block') {
+      fixmeTop = fixmeTop + 240
+  }
+
   var is_mobile = false;
 
   if( $('#mobile-check').css('display')=='none') {
@@ -18,32 +23,17 @@ $( document ).ready(function() {
           width: $('.sidebar-content').width(),
       })
 
-    $(window).scroll(function() {                  // assign scroll event listener
+    $(window).scroll(function() {
 
-      var currentScroll = $(window).scrollTop(); // get current position
+      var currentScroll = $(window).scrollTop();
 
-
-
-
-
-
-
-      if (currentScroll >= fixmeTop + 100) {           // apply position: fixed if you
-        //   $('.sidebar-content').css({                      // scroll to that element or below it
-        //       position: 'fixed',
-        //       top: '80px',
-        //   });
+      if (currentScroll >= fixmeTop) {           // apply position: fixed if you
         $('.sidebar-content').addClass('sidebar-fixed');
         $('.sidebar-content').removeClass('sidebar-static');
-        //   $('#show-topics').removeClass("hidden");
-
       } else {                                   // apply position: static
-        //   $('.sidebar-content').css({                      // if you scroll above it
-        //       position: 'static'
-        //   });
+
         $('.sidebar-content').removeClass('sidebar-fixed');
         $('.sidebar-content').addClass('sidebar-static');
-        //   $('#show-topics').addClass("hidden");
       }
   });
   }

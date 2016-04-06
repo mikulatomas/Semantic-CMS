@@ -660,7 +660,8 @@ svg {
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
-  user-select: none; }
+  user-select: none;
+  display: block; }
 
 svg.border {
   border-bottom: 1px solid #E5E5E5; }
@@ -683,32 +684,35 @@ svg.fixed {
   right: 30px;
   z-index: 1000; }
 
-.svg-container {
+.svg-container-outer {
   position: relative; }
-  .svg-container .svg-info {
-    position: absolute;
-    right: 20px;
-    top: 50px; }
-    .svg-container .svg-info .icon {
-      display: inline-block;
-      border-radius: 100px;
-      width: 46px;
-      height: 46px;
-      text-align: center;
-      padding: 0;
-      color: #FFFFFF !important;
-      background-color: #40BBCB;
-      margin-top: 10px; }
-      .svg-container .svg-info .icon i {
-        font-size: 16px;
-        line-height: 46px;
-        vertical-align: middle; }
-    .svg-container .svg-info .text {
-      float: right;
-      text-align: justify;
-      width: 230px;
-      margin-left: 20px;
-      color: #5F5F5F; }
+  .svg-container-outer .svg-container {
+    position: relative;
+    display: block; }
+    .svg-container-outer .svg-container .svg-info {
+      position: absolute;
+      right: 20px;
+      top: 50px; }
+      .svg-container-outer .svg-container .svg-info .icon {
+        display: inline-block;
+        border-radius: 100px;
+        width: 46px;
+        height: 46px;
+        text-align: center;
+        padding: 0;
+        color: #FFFFFF !important;
+        background-color: #40BBCB;
+        margin-top: 10px; }
+        .svg-container-outer .svg-container .svg-info .icon i {
+          font-size: 16px;
+          line-height: 46px;
+          vertical-align: middle; }
+      .svg-container-outer .svg-container .svg-info .text {
+        float: right;
+        text-align: justify;
+        width: 230px;
+        margin-left: 20px;
+        color: #5F5F5F; }
 
 .node circle {
   fill: #36D7B7; }
