@@ -7,6 +7,7 @@
     position: static;
 }
 #mobile-check { display: block; }
+
 @media only screen and (max-width:767px) {
     #mobile-check { display: none; }
 
@@ -45,6 +46,7 @@
 
         .sidebar-content {
             max-width: 100%;
+            transform: none;
         }
 
         #show-topics {
@@ -120,8 +122,18 @@
     .author {
         margin-bottom: 30px;
     }
+
+    .similar-articles {
+        margin-top: 60px !important;
+    }
 }
 @media only screen and (min-width:768px) and (max-width : 992px) {
+    .sidebar {
+        padding-left: 20px;
+    }
+    .similar-articles {
+        margin-top: 80px !important;
+    }
     // .navbar-text {
     //     display: inline-block;
     // }
