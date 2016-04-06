@@ -38,7 +38,7 @@ svg.fixed {
         .icon {
             display: inline-block;
             @include floating(46px);
-            @include btn-color($turquoise, $white);
+            @include btn-color($yellow, $white);
             margin-top: 10px;
         }
 

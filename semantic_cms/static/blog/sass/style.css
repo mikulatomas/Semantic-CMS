@@ -334,6 +334,14 @@ footer {
   color: #FFFFFF !important;
   background-color: #f41616; }
 
+.btn.yellow {
+  color: #FFFFFF !important;
+  background-color: #F2784B; }
+
+.btn.yellow:hover {
+  color: #FFFFFF !important;
+  background-color: #ef541b; }
+
 .btn.green {
   color: #FFFFFF !important;
   background-color: #36D7B7; }
@@ -459,12 +467,28 @@ footer {
   border-width: 1px !important;
   border-style: solid !important; }
 
+.btn-yellow-solid {
+  background: #F2784B !important;
+  color: #FFFFFF !important;
+  border-color: #F2784B !important;
+  border-width: 1px !important;
+  border-style: solid !important; }
+
 .btn-blue-solid:active,
 .btn-blue-solid:focus,
 .btn-blue-solid:hover {
   background: #2e9caa !important;
   color: #FFFFFF !important;
   border-color: #2e9caa !important;
+  border-width: 1px !important;
+  border-style: solid !important; }
+
+.btn-yellow-solid:active,
+.btn-yellow-solid:focus,
+.btn-yellow-solid:hover {
+  background: #ef541b !important;
+  color: #FFFFFF !important;
+  border-color: #ef541b !important;
   border-width: 1px !important;
   border-style: solid !important; }
 
@@ -666,7 +690,7 @@ svg.fixed {
       text-align: center;
       padding: 0;
       color: #FFFFFF !important;
-      background-color: #36D7B7;
+      background-color: #F2784B;
       margin-top: 10px; }
       .svg-container .svg-info .icon i {
         font-size: 16px;

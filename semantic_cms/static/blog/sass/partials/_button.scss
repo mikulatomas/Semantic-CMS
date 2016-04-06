@@ -54,6 +54,13 @@
     @include btn-color-hover($sunset-orange, $white);
 }
 
+.btn.yellow {
+    @include btn-color($yellow, $white);
+}
+.btn.yellow:hover {
+    @include btn-color-hover($yellow, $white);
+}
+
 .btn.green {
     @include btn-color($turquoise, $white);
 }
@@ -145,10 +152,20 @@
     @include btn-solid($shakespeare, $white);
 }
 
+.btn-yellow-solid {
+    @include btn-solid($yellow, $white);
+}
+
 .btn-blue-solid:active,
 .btn-blue-solid:focus,
 .btn-blue-solid:hover {
     @include btn-solid-hover(darken( $shakespeare, 10% ), $white);
+}
+
+.btn-yellow-solid:active,
+.btn-yellow-solid:focus,
+.btn-yellow-solid:hover {
+    @include btn-solid-hover(darken( $yellow, 10% ), $white);
 }
 
 .btn-red-solid {
