@@ -342,6 +342,7 @@ getNodes(function(nodes) {
               height = parseInt($(window).height()) - 80;
               rect.attr("width", width)
                   .attr("height", height);
+              svg.attr("transform", "translate(" +[0,50]+ ")");
               zoom.scale(1);
               container.attr("transform", "scale(" + 1 + ")");
               force.size([width, height]).resume();
@@ -369,6 +370,7 @@ getNodes(function(nodes) {
                   .attr("height", height);
               zoom.scale(initialScale);
               container.attr("transform", "scale(" + initialScale + ")");
+              svg.attr("transform", "translate(" +[width / 10,50]+ ")");
               force.size([width, height]).resume();
               $('#hide-topics').addClass("hidden");
           });
