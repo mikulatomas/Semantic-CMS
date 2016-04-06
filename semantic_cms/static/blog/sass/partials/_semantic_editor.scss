@@ -8,6 +8,7 @@ svg {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  display: block;
 }
 
 svg.border {
@@ -37,30 +38,35 @@ svg.fixed {
     z-index: 1000;
 }
 
-.svg-container {
+.svg-container-outer {
     position: relative;
+    .svg-container {
+        position: relative;
+        display: block;
 
-    .svg-info {
-        position:absolute;
-        right: 20px;
-        top: 50px;
+        .svg-info {
+            position:absolute;
+            right: 20px;
+            top: 50px;
 
-        .icon {
-            display: inline-block;
-            @include floating(46px);
-            @include btn-color($shakespeare, $white);
-            margin-top: 10px;
-        }
+            .icon {
+                display: inline-block;
+                @include floating(46px);
+                @include btn-color($shakespeare, $white);
+                margin-top: 10px;
+            }
 
-        .text {
-            float: right;
-            text-align: justify;
-            width: 230px;
-            margin-left: 20px;
-            color: $chicago;
+            .text {
+                float: right;
+                text-align: justify;
+                width: 230px;
+                margin-left: 20px;
+                color: $chicago;
+            }
         }
     }
 }
+
 
 .node circle {
   fill: $turquoise;

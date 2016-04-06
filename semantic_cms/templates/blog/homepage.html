@@ -2,7 +2,8 @@
 {% load staticfiles %}
 
 {% block content_top %}
-<div class="svg-container container">
+<div class="svg-container-outer">
+    <div class="svg-container container">
     <div class="svg-info hidden-xs">
         <span class="icon"><i class="fa fa-sitemap"></i></span>
         <div class="text">
@@ -10,10 +11,12 @@
             <p>Welcome, here you can see map of topics on this website.</p><p>Fell free to discover it my zooming and dragging.</p><p>If you want to see content of some category just click on it.</p>
         </div>
     </div>
+    </div>
 
-</div>
+
 <svg id="semantic-map" class="border relative">
 </svg>
+</div>
 <button class="btn floating white hidden" id="hide-topics"><i class="fa fa-times"></i></button>
 
 {% endblock %}
