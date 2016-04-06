@@ -64,7 +64,7 @@
         </div>
         </div>
 
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-12 col-md-6">
           <h3>Keywords</h3>
           {% for keyword in article.keywords.all %}
           <span class="keyword"><a href="{% url 'keyword' keyword.slug %}">{{ keyword.name }}</a></span>
@@ -72,7 +72,7 @@
           <span class="empty">No keywords.</span>
           {% endfor %}
         </div>
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-12 col-md-6">
           <h3>All topics</h3>
           {% for topic in article.semantic.all %}
           <span class="topic"><a href="{% url 'semantic' topic.slug %}">{{ topic.name }}</a></span>

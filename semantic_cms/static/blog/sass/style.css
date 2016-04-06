@@ -1003,7 +1003,8 @@ aside {
   .sidebar {
     padding: 0; }
     .sidebar .sidebar-content {
-      max-width: 100%; }
+      max-width: 100%;
+      transform: none; }
     .sidebar #show-topics {
       width: 100%;
       position: fixed;
@@ -1048,6 +1049,15 @@ aside {
     padding-right: 15px; }
 
   .author {
-    margin-bottom: 30px; } }
+    margin-bottom: 30px; }
+
+  .similar-articles {
+    margin-top: 60px !important; } }
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .sidebar {
+    padding-left: 20px; }
+
+  .similar-articles {
+    margin-top: 80px !important; } }
 
 /*# sourceMappingURL=style.css.map */
