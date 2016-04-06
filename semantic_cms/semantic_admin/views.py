@@ -125,9 +125,9 @@ class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_object(self):
-        obj, created = BlogSettings.objects.get_or_create(pk = 0)
+        obj, created = BlogSettings.objects.get_or_create(pk = 1)
         return obj
-
+        
 class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
     model = Flag
     template_name = "semantic_admin/article_flag_edit.html"
@@ -389,6 +389,7 @@ def login(request, template_name):
 from django.core.management import call_command
 from django.shortcuts import render
 from semantic_cms.settings.base import BASE_DIR
+
 @login_required
 def reset_database(request):
     path = BASE_DIR + '/reset-output.log'
