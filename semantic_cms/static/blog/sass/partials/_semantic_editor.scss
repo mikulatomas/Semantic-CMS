@@ -20,6 +20,16 @@ svg.fixed {
     height: 100%;
 }
 
+.article text {
+    text-anchor: middle;
+    fill: white;
+}
+
+.article circle {
+    // fill: ligten($shakespeare, 5);
+    fill: $shakespeare;
+}
+
 #hide-topics {
     position: fixed;
     top: 80px;
@@ -38,7 +48,7 @@ svg.fixed {
         .icon {
             display: inline-block;
             @include floating(46px);
-            @include btn-color($yellow, $white);
+            @include btn-color($shakespeare, $white);
             margin-top: 10px;
         }
 

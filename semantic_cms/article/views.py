@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
+import json
 
 class ArticleViewSet(viewsets.ModelViewSet):
     """
@@ -24,7 +25,7 @@ class ArticleListView(ListView):
     """
     View for blog article list
     """
-
+    
     model = Article
     template_name = 'blog/homepage.html'
     paginate_by = 9
@@ -59,6 +60,6 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         article = context['article']
-
+        context['article_nodes'] = json.dumps(article.semantic_ids())
         context['similar_articles'] = article.return_similar_articles(4)
         return context
