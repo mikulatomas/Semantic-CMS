@@ -89,7 +89,7 @@ getNodes(function(nodes) {
         var width = 960,
             height = 500;
 
-        var initialScale = 0.7;
+        var initialScale = 0.8;
 
         var zoom = d3.behavior.zoom()
             .scaleExtent([0.5, 1.5])

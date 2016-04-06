@@ -100,6 +100,7 @@ getNodes(function(nodes) {
         height = parseInt(svg_tag.style("height"));
 
         svg = svg_tag.append("g")
+            .attr("transform", "translate(" +[width / 10,50]+ ")")
             .call(zoom);
 
         var rect = svg.append("rect")
