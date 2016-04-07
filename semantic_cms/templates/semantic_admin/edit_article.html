@@ -160,7 +160,6 @@
 $(function() {
     $( document ).uitooltip({
     position: {
-    //   my: "center top",
       at: "left bottom-10",
     },
     show: {
@@ -191,6 +190,7 @@ $(function() {
   });
 
   $('#article_flag_dropdown #icon').addClass('fa-align-left');
-  });
+  $('#article_flag_dropdown button').removeAttr('title');
+   });
 </script>
 {% endblock %}
