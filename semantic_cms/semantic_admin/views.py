@@ -127,7 +127,7 @@ class UpdateBlogSettingsView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         obj, created = BlogSettings.objects.get_or_create(pk = 1)
         return obj
-        
+
 class UpdateArticleFlagView(LoginRequiredMixin, UpdateView):
     model = Flag
     template_name = "semantic_admin/article_flag_edit.html"
@@ -251,18 +251,6 @@ class DeleteArticleView(LoginRequiredMixin, DeleteView):
         if 'view' not in kwargs:
             kwargs['view'] = self
         return kwargs
-
-# class ContentView(LoginRequiredMixin, FilterView):
-#     template_name = "semantic_admin/content.html"
-#     filterset_class = ArticleFilter
-#     context_object_name = 'article_list'
-#
-#     def get_context_data(self, **kwargs):
-#         # Call the base implementation first to get a context
-#         context = super(ContentView, self).get_context_data(**kwargs)
-#         context['request'] = self.request
-#         context['title'] = 'Content Manager'
-#         return context
 
 class SemanticView(LoginRequiredMixin, FilterView):
     template_name = "semantic_admin/semantic.html"
