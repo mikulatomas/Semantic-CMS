@@ -19,7 +19,7 @@ class ArticleFilter(django_filters.FilterSet):
 
         self.queryset = self.queryset.order_by('-created_date')
         self.filters['flag'].extra.update(
-            {'empty_label': 'All article flags'})
+            {'empty_label': 'All article types'})
 
         self.filters['status'].field.choices.insert(0, ('', u'All article status'))
 
@@ -27,7 +27,7 @@ class ArticleFilter(django_filters.FilterSet):
         result = queryset.filter(
             title__icontains=value,
         ) | queryset.filter(sub_title__icontains=value,) | queryset.filter(content__icontains=value,) | queryset.filter(keywords__name__icontains=value,)
-        
+
         return result.distinct()
 
 class ArticleFilterSemantic(django_filters.FilterSet):
