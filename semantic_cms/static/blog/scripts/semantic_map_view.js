@@ -30,7 +30,7 @@ function wrap(text, width) {
                 line.push(word);
                 // tspan.attr("y", 0);
                 tspan.text(line.join(" "));
-                if (tspan.node().getComputedTextLength() > width) {
+                if (tspan.node().getComputedTextLength() > width + 20) {
                     line.pop();
                     tspan.text(line.join(" "));
                     line = [word];
@@ -182,7 +182,7 @@ getNodes(function(nodes) {
                     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
                     normX = deltaX / dist,
                     normY = deltaY / dist,
-                    targetPadding = 33 + (25 * (Math.log((d.target.number_of_descendants + 2)))),
+                    targetPadding = 43 + (20 * (Math.log((d.target.number_of_descendants + 2)))),
                     targetX = d.target.x - (targetPadding * normX),
                     targetY = d.target.y - (targetPadding * normY);
                 return 'M' + d.source.x + ',' + d.source.y + 'L' + targetX + ',' + targetY;
@@ -303,7 +303,7 @@ getNodes(function(nodes) {
         function redrawWeight() {
             node.selectAll("circle").attr("r", function(d) {
                 if (d.type === "semantic") {
-                    return 30 + (25 * (Math.log((d.number_of_descendants + 2))));
+                    return 40 + (20 * (Math.log((d.number_of_descendants + 2))));
                 } else {
                     return 40;
                 }
