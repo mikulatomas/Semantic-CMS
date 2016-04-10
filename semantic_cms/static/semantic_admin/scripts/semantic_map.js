@@ -165,7 +165,7 @@ getNodes(function(nodes) {
             .charge(-2000)
             // .linkDistance(150)
             .linkDistance(function(d) {
-                return 110 + 20 * (d.source.number_of_descendants);
+                return 140 + 10 * (d.source.number_of_descendants);
             })
             // .chargeDistance(5000)
             // .linkStrength(0.5)
