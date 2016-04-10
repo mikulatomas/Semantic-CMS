@@ -30,7 +30,7 @@ function wrap(text, width) {
                 line.push(word);
                 // tspan.attr("y", 0);
                 tspan.text(line.join(" "));
-                if (tspan.node().getComputedTextLength() > width) {
+                if (tspan.node().getComputedTextLength() > width + 20) {
                     line.pop();
                     tspan.text(line.join(" "));
                     line = [word];
@@ -162,7 +162,7 @@ getNodes(function(nodes) {
         });
 
         var force = d3.layout.force()
-            .charge(-2000)
+            .charge(-2500)
             // .linkDistance(150)
             .linkDistance(function(d) {
                 return 140 + 10 * (d.source.number_of_descendants);
@@ -198,7 +198,7 @@ getNodes(function(nodes) {
                     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
                     normX = deltaX / dist,
                     normY = deltaY / dist,
-                    targetPadding = 33 + (25 * (Math.log((d.target.number_of_descendants + 2)))),
+                    targetPadding = 43 + (20 * (Math.log((d.target.number_of_descendants + 2)))),
                     targetX = d.target.x - (targetPadding * normX),
                     targetY = d.target.y - (targetPadding * normY);
                 return 'M' + d.source.x + ',' + d.source.y + 'L' + targetX + ',' + targetY;
@@ -406,13 +406,7 @@ getNodes(function(nodes) {
                 edges.push(link);
                 refreshWeights(nodes);
 
-                //MAYBE DELETE
-                // force.stop();
-                // force.linkDistance(function(d) {
-                //     return 100 + 20 * (d.source.number_of_descendants);
-                // });
-                // force.start();
-                // force.start();
+                redrawWeight();
                 restart();
             } else {
                 lastEdgeId--;
@@ -592,7 +586,7 @@ getNodes(function(nodes) {
         function redrawWeight() {
             node.selectAll("circle").attr("r", function(d) {
                 if (d.type === "semantic") {
-                    return 30 + (25 * (Math.log((d.number_of_descendants + 2))));
+                    return 40 + (20 * (Math.log((d.number_of_descendants + 2))));
                 } else {
                     return 40;
                 }
@@ -861,6 +855,7 @@ getNodes(function(nodes) {
 
         document.getElementById("reset").addEventListener("click", function() {
             hideButton("#reset");
+            hideButton("#assign");
             $(".article").removeClass("selected");
             selectedArticle = null;
             article_nodes = [];
@@ -876,7 +871,7 @@ getNodes(function(nodes) {
           $("#dialog-add").removeClass("hidden");
             $("#dialog-add").dialog("open");
         }, false);
-
+        
         document.getElementById("edit").addEventListener("click", function() {
           $("#dialog-edit").removeClass("hidden");
             $("#rename-node-name").val(selected_node.name);
