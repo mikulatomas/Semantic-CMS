@@ -1,0 +1,1612 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "taggit",
+    "model": "tag"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "taggit",
+    "model": "taggeditem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "article",
+    "model": "article"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "semantic",
+    "model": "semantic"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "semantic",
+    "model": "semanticedge"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "keywords",
+    "model": "keyword"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "keywords",
+    "model": "taggedarticle"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "flags",
+    "model": "flag"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "semantic_admin",
+    "model": "userprofile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "semantic_admin",
+    "model": "blogsettings"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1e7kpo0mqjtpi05w58udrg6vhdope2k2",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-03-28T11:10:32.051Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2k3dacmumrzgquuw53ku7rv10gijwp4d",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-04-07T13:39:34.601Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2nu89u7ubhk8ddowwfhoh61lzjvq20oe",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-04-08T11:43:44.923Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "65buscfy58vxtlopetey1rrhijdms2yl",
+  "fields": {
+    "session_data": "NTdkYzdmNDgwOGQ4MGQ2OWMwY2QyYTM2Mzc3Zjc3OTA2OTAzMGY0Zjp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-03-30T23:55:01.070Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "78u8xu2klxjwnzfsig6m2foyly23kdow",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-03-29T11:38:36.919Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "80cfl1cdn9dogpx1bjx0b70we0amn0rf",
+  "fields": {
+    "session_data": "MTZhMzY4MjQwMTQzNmY3ZTAyZWE1YTQ1OTNiNWRlNDQ0ZDU3NDZhODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyMzc0NjVmN2NkNDMwMWIzMGM5ODJjY2Y2MmEzZWE3MGY1Y2YyZTAzIn0=",
+    "expire_date": "2016-04-03T13:49:34.160Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "882x1jlcfker3r5ec8nureksji0d3g8g",
+  "fields": {
+    "session_data": "MTZhMzY4MjQwMTQzNmY3ZTAyZWE1YTQ1OTNiNWRlNDQ0ZDU3NDZhODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyMzc0NjVmN2NkNDMwMWIzMGM5ODJjY2Y2MmEzZWE3MGY1Y2YyZTAzIn0=",
+    "expire_date": "2016-03-28T15:49:54.570Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9gmkcq8swbh8iqhx24ttuu1bf1lldarf",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-04-08T19:53:43.269Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9lj7sakg8cshs461d3je2ak41nvcugwj",
+  "fields": {
+    "session_data": "NTdkYzdmNDgwOGQ4MGQ2OWMwY2QyYTM2Mzc3Zjc3OTA2OTAzMGY0Zjp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-03-30T11:30:01.730Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b327v15d4hyo68o3nl7opisjymv248h2",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-04-10T23:01:34.290Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cl9xpzkxhkeqniqkv8s733dzw1coz99t",
+  "fields": {
+    "session_data": "NTdkYzdmNDgwOGQ4MGQ2OWMwY2QyYTM2Mzc3Zjc3OTA2OTAzMGY0Zjp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-03-30T15:55:35.139Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "d2z0avj0qrckoicfg7oy2vnucnw9g6ql",
+  "fields": {
+    "session_data": "ZTkxMTVhNGI4NzljNTEyMDgzMTljOGU3OGJkODQzMmM5MmM5NDBlZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiMjM3NDY1ZjdjZDQzMDFiMzBjOTgyY2NmNjJhM2VhNzBmNWNmMmUwMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-03-27T20:03:52.229Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dkxfdn6dle4isr3nqzdog28lq09q28fv",
+  "fields": {
+    "session_data": "MWVlMzFlZGZlMTk0OWQ1ZTg2NjBhM2Y5N2E3YTgwMjg5Y2NkMTc4Mjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiMjM3NDY1ZjdjZDQzMDFiMzBjOTgyY2NmNjJhM2VhNzBmNWNmMmUwMyIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-03-27T20:05:09.153Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dz7elm4108pv517shhytyu68d4mzmm60",
+  "fields": {
+    "session_data": "Mjc1ZWI3NmU3YTI3OGE1YjZhMmIzZjkwZjE5ZmIzNTY4NmY4ZjIwNDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiIyMzc0NjVmN2NkNDMwMWIzMGM5ODJjY2Y2MmEzZWE3MGY1Y2YyZTAzIn0=",
+    "expire_date": "2016-04-03T10:50:47.979Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "eu0skoj5l59ast1znopd89slu77ydptc",
+  "fields": {
+    "session_data": "MWVlMzFlZGZlMTk0OWQ1ZTg2NjBhM2Y5N2E3YTgwMjg5Y2NkMTc4Mjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiMjM3NDY1ZjdjZDQzMDFiMzBjOTgyY2NmNjJhM2VhNzBmNWNmMmUwMyIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-03-27T20:05:21.663Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ly1hf6z2xtufcof82jmhjpitfza015wa",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-04-06T14:19:42.793Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "m976wg3qha0x5tlqjat0awacm3ttvy67",
+  "fields": {
+    "session_data": "NTdkYzdmNDgwOGQ4MGQ2OWMwY2QyYTM2Mzc3Zjc3OTA2OTAzMGY0Zjp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-04-05T13:30:07.322Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "n6vrkqdw93jxpaxyul9l6q927py802sc",
+  "fields": {
+    "session_data": "ZTkxMTVhNGI4NzljNTEyMDgzMTljOGU3OGJkODQzMmM5MmM5NDBlZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiMjM3NDY1ZjdjZDQzMDFiMzBjOTgyY2NmNjJhM2VhNzBmNWNmMmUwMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-04-09T12:03:43.629Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ntwhn2n7dv44ygc3mcvhtch02vwgoyuj",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-03-29T13:26:25.732Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "s4unjlpna441jlzvzjk8u33uyk3beqp1",
+  "fields": {
+    "session_data": "ZTkxMTVhNGI4NzljNTEyMDgzMTljOGU3OGJkODQzMmM5MmM5NDBlZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9oYXNoIjoiMjM3NDY1ZjdjZDQzMDFiMzBjOTgyY2NmNjJhM2VhNzBmNWNmMmUwMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-03-27T20:03:45.592Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tuvvzcgs1u9l5i07u08avj902pqo31g1",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-03-29T22:09:07.999Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ugb3f346yuda31e67lnf0mmfu9psi9dj",
+  "fields": {
+    "session_data": "NTdkYzdmNDgwOGQ4MGQ2OWMwY2QyYTM2Mzc3Zjc3OTA2OTAzMGY0Zjp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2016-03-30T20:46:18.539Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "z5aau1n25c57wmwunpf3m9x045t42obe",
+  "fields": {
+    "session_data": "MTllZGZjZDc4MWMyZTgxYTEyOWMzOWVmZDZiNGUzOTIzNzUwNGZiMDp7Il9hdXRoX3VzZXJfaGFzaCI6IjIzNzQ2NWY3Y2Q0MzAxYjMwYzk4MmNjZjYyYTNlYTcwZjVjZjJlMDMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2016-03-28T11:09:35.025Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 14,
+  "fields": {
+    "name": "Computer Science",
+    "slug": "computer-science",
+    "created_date": "2016-03-14T13:06:38.267Z",
+    "updated_date": "2016-04-10T20:22:06.886Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 17,
+  "fields": {
+    "name": "Internet",
+    "slug": "internet",
+    "created_date": "2016-03-14T13:06:48.148Z",
+    "updated_date": "2016-04-10T20:22:06.893Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 18,
+  "fields": {
+    "name": "Software",
+    "slug": "software",
+    "created_date": "2016-03-14T13:06:55.378Z",
+    "updated_date": "2016-04-10T20:22:06.884Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 21,
+  "fields": {
+    "name": "Writing",
+    "slug": "writing",
+    "created_date": "2016-03-14T13:07:49.010Z",
+    "updated_date": "2016-04-10T20:22:06.877Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 22,
+  "fields": {
+    "name": "Design",
+    "slug": "design",
+    "created_date": "2016-03-14T13:15:32.325Z",
+    "updated_date": "2016-04-10T20:22:06.880Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 24,
+  "fields": {
+    "name": "UX",
+    "slug": "ux",
+    "created_date": "2016-03-14T13:25:16.313Z",
+    "updated_date": "2016-04-10T20:22:06.873Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 28,
+  "fields": {
+    "name": "Creativity",
+    "slug": "creativity",
+    "created_date": "2016-03-20T15:38:32.747Z",
+    "updated_date": "2016-04-10T20:22:06.871Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 29,
+  "fields": {
+    "name": "Mobile App",
+    "slug": "mobile-app",
+    "created_date": "2016-03-20T15:39:00.647Z",
+    "updated_date": "2016-04-10T20:22:06.876Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 30,
+  "fields": {
+    "name": "Desktop App",
+    "slug": "desktop-app",
+    "created_date": "2016-03-20T15:39:04.481Z",
+    "updated_date": "2016-04-10T20:22:06.888Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 32,
+  "fields": {
+    "name": "Technology",
+    "slug": "technology",
+    "created_date": "2016-04-10T20:10:26.477Z",
+    "updated_date": "2016-04-10T20:22:06.890Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 35,
+  "fields": {
+    "name": "Autonomous",
+    "slug": "autonomous",
+    "created_date": "2016-04-10T20:12:23.408Z",
+    "updated_date": "2016-04-10T20:22:06.891Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 37,
+  "fields": {
+    "name": "Traveling",
+    "slug": "traveling",
+    "created_date": "2016-04-10T20:14:59.436Z",
+    "updated_date": "2016-04-10T20:22:06.874Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 38,
+  "fields": {
+    "name": "Space Traveling",
+    "slug": "space-traveling",
+    "created_date": "2016-04-10T20:15:33.030Z",
+    "updated_date": "2016-04-10T20:22:06.882Z"
+  }
+},
+{
+  "model": "semantic.semantic",
+  "pk": 39,
+  "fields": {
+    "name": "Cars",
+    "slug": "cars",
+    "created_date": "2016-04-10T20:22:06.869Z",
+    "updated_date": "2016-04-10T20:22:06.869Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 14,
+  "fields": {
+    "parent": 14,
+    "child": 17,
+    "slug": "computer-scienceinternet",
+    "created_date": "2016-03-14T13:07:00.738Z",
+    "updated_date": "2016-03-14T13:07:00.739Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 19,
+  "fields": {
+    "parent": 22,
+    "child": 24,
+    "slug": "designux",
+    "created_date": "2016-03-14T13:25:20.347Z",
+    "updated_date": "2016-03-14T13:25:20.347Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 21,
+  "fields": {
+    "parent": 28,
+    "child": 21,
+    "slug": "creativitywriting",
+    "created_date": "2016-03-20T15:38:35.809Z",
+    "updated_date": "2016-03-20T15:38:35.809Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 22,
+  "fields": {
+    "parent": 14,
+    "child": 18,
+    "slug": "computer-sciencesoftware",
+    "created_date": "2016-03-20T15:38:56.298Z",
+    "updated_date": "2016-03-20T15:38:56.298Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 23,
+  "fields": {
+    "parent": 18,
+    "child": 29,
+    "slug": "softwaremobile-app",
+    "created_date": "2016-03-20T15:39:07.363Z",
+    "updated_date": "2016-03-20T15:39:07.363Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 24,
+  "fields": {
+    "parent": 18,
+    "child": 30,
+    "slug": "softwaredesktop-app",
+    "created_date": "2016-03-20T15:39:10.150Z",
+    "updated_date": "2016-03-20T15:39:10.150Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 26,
+  "fields": {
+    "parent": 32,
+    "child": 14,
+    "slug": "technologycomputer-science",
+    "created_date": "2016-04-10T20:10:29.815Z",
+    "updated_date": "2016-04-10T20:10:29.815Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 29,
+  "fields": {
+    "parent": 32,
+    "child": 37,
+    "slug": "technologytraveling",
+    "created_date": "2016-04-10T20:15:04.554Z",
+    "updated_date": "2016-04-10T20:15:04.554Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 31,
+  "fields": {
+    "parent": 37,
+    "child": 35,
+    "slug": "travelingautonomous",
+    "created_date": "2016-04-10T20:15:22.590Z",
+    "updated_date": "2016-04-10T20:15:22.590Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 32,
+  "fields": {
+    "parent": 37,
+    "child": 38,
+    "slug": "travelingspace-traveling",
+    "created_date": "2016-04-10T20:20:29.244Z",
+    "updated_date": "2016-04-10T20:20:29.244Z"
+  }
+},
+{
+  "model": "semantic.semanticedge",
+  "pk": 33,
+  "fields": {
+    "parent": 37,
+    "child": 39,
+    "slug": "travelingcars",
+    "created_date": "2016-04-10T20:22:11.514Z",
+    "updated_date": "2016-04-10T20:22:11.514Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 1,
+  "fields": {
+    "name": "Apple",
+    "slug": "apple",
+    "created_date": "2016-03-14T10:58:28.056Z",
+    "updated_date": "2016-03-14T10:58:28.056Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 2,
+  "fields": {
+    "name": "Application",
+    "slug": "application",
+    "created_date": "2016-03-14T10:58:28.058Z",
+    "updated_date": "2016-03-14T10:58:28.058Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 3,
+  "fields": {
+    "name": "Blogging",
+    "slug": "blogging",
+    "created_date": "2016-03-14T10:58:28.059Z",
+    "updated_date": "2016-03-14T10:58:28.060Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 4,
+  "fields": {
+    "name": "iPhone",
+    "slug": "iphone",
+    "created_date": "2016-03-14T10:58:28.061Z",
+    "updated_date": "2016-03-14T10:58:28.061Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 5,
+  "fields": {
+    "name": "USA",
+    "slug": "usa",
+    "created_date": "2016-03-14T11:17:13.945Z",
+    "updated_date": "2016-03-14T11:17:13.945Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 6,
+  "fields": {
+    "name": "Security",
+    "slug": "security",
+    "created_date": "2016-03-14T11:17:13.946Z",
+    "updated_date": "2016-03-14T11:17:13.946Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 7,
+  "fields": {
+    "name": "Wikipedia",
+    "slug": "wikipedia",
+    "created_date": "2016-03-14T11:23:07.044Z",
+    "updated_date": "2016-03-14T11:23:07.044Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 8,
+  "fields": {
+    "name": "Internet",
+    "slug": "internet",
+    "created_date": "2016-03-14T11:27:55.519Z",
+    "updated_date": "2016-03-14T11:27:55.519Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 9,
+  "fields": {
+    "name": "Domain",
+    "slug": "domain",
+    "created_date": "2016-03-14T11:27:55.521Z",
+    "updated_date": "2016-03-14T11:27:55.521Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 10,
+  "fields": {
+    "name": "Prototype",
+    "slug": "prototype",
+    "created_date": "2016-03-14T13:14:39.727Z",
+    "updated_date": "2016-03-14T13:14:39.727Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 11,
+  "fields": {
+    "name": "Sketch",
+    "slug": "sketch",
+    "created_date": "2016-03-14T13:14:39.728Z",
+    "updated_date": "2016-03-14T13:14:39.728Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 12,
+  "fields": {
+    "name": "Design",
+    "slug": "design",
+    "created_date": "2016-03-14T13:14:39.730Z",
+    "updated_date": "2016-03-14T13:14:39.730Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 13,
+  "fields": {
+    "name": "Adobe",
+    "slug": "adobe",
+    "created_date": "2016-03-14T13:23:11.194Z",
+    "updated_date": "2016-03-14T13:23:11.194Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 14,
+  "fields": {
+    "name": "UX",
+    "slug": "ux",
+    "created_date": "2016-03-14T13:23:11.196Z",
+    "updated_date": "2016-03-14T13:23:11.196Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 17,
+  "fields": {
+    "name": "Rocket",
+    "slug": "rocket",
+    "created_date": "2016-04-10T20:09:44.757Z",
+    "updated_date": "2016-04-10T20:09:44.757Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 18,
+  "fields": {
+    "name": "SpaceX",
+    "slug": "spacex",
+    "created_date": "2016-04-10T20:09:44.778Z",
+    "updated_date": "2016-04-10T20:09:44.778Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 19,
+  "fields": {
+    "name": "Universe",
+    "slug": "universe",
+    "created_date": "2016-04-10T20:09:44.780Z",
+    "updated_date": "2016-04-10T20:09:44.780Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 20,
+  "fields": {
+    "name": "Technology",
+    "slug": "technology",
+    "created_date": "2016-04-10T20:09:44.782Z",
+    "updated_date": "2016-04-10T20:09:44.782Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 21,
+  "fields": {
+    "name": "Car",
+    "slug": "car",
+    "created_date": "2016-04-10T20:20:20.070Z",
+    "updated_date": "2016-04-10T20:20:20.070Z"
+  }
+},
+{
+  "model": "keywords.keyword",
+  "pk": 22,
+  "fields": {
+    "name": "Tesla",
+    "slug": "tesla",
+    "created_date": "2016-04-10T20:20:20.073Z",
+    "updated_date": "2016-04-10T20:20:20.073Z"
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 5,
+  "fields": {
+    "content_type": 8,
+    "object_id": 2,
+    "tag": 1
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 6,
+  "fields": {
+    "content_type": 8,
+    "object_id": 2,
+    "tag": 2
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 7,
+  "fields": {
+    "content_type": 8,
+    "object_id": 2,
+    "tag": 3
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 8,
+  "fields": {
+    "content_type": 8,
+    "object_id": 2,
+    "tag": 4
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 18,
+  "fields": {
+    "content_type": 8,
+    "object_id": 3,
+    "tag": 1
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 19,
+  "fields": {
+    "content_type": 8,
+    "object_id": 3,
+    "tag": 5
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 20,
+  "fields": {
+    "content_type": 8,
+    "object_id": 3,
+    "tag": 6
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 24,
+  "fields": {
+    "content_type": 8,
+    "object_id": 4,
+    "tag": 1
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 25,
+  "fields": {
+    "content_type": 8,
+    "object_id": 4,
+    "tag": 4
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 26,
+  "fields": {
+    "content_type": 8,
+    "object_id": 4,
+    "tag": 7
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 29,
+  "fields": {
+    "content_type": 8,
+    "object_id": 5,
+    "tag": 8
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 30,
+  "fields": {
+    "content_type": 8,
+    "object_id": 5,
+    "tag": 9
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 58,
+  "fields": {
+    "content_type": 8,
+    "object_id": 7,
+    "tag": 12
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 59,
+  "fields": {
+    "content_type": 8,
+    "object_id": 7,
+    "tag": 13
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 60,
+  "fields": {
+    "content_type": 8,
+    "object_id": 7,
+    "tag": 14
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 64,
+  "fields": {
+    "content_type": 8,
+    "object_id": 6,
+    "tag": 10
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 65,
+  "fields": {
+    "content_type": 8,
+    "object_id": 6,
+    "tag": 11
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 66,
+  "fields": {
+    "content_type": 8,
+    "object_id": 6,
+    "tag": 12
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 71,
+  "fields": {
+    "content_type": 8,
+    "object_id": 9,
+    "tag": 17
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 72,
+  "fields": {
+    "content_type": 8,
+    "object_id": 9,
+    "tag": 18
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 73,
+  "fields": {
+    "content_type": 8,
+    "object_id": 9,
+    "tag": 19
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 74,
+  "fields": {
+    "content_type": 8,
+    "object_id": 9,
+    "tag": 20
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 81,
+  "fields": {
+    "content_type": 8,
+    "object_id": 10,
+    "tag": 21
+  }
+},
+{
+  "model": "keywords.taggedarticle",
+  "pk": 82,
+  "fields": {
+    "content_type": 8,
+    "object_id": 10,
+    "tag": 22
+  }
+},
+{
+  "model": "flags.flag",
+  "pk": 1,
+  "fields": {
+    "name": "Review",
+    "slug": "review",
+    "created_date": "2016-03-14T10:52:17.866Z",
+    "updated_date": "2016-03-14T10:52:17.866Z"
+  }
+},
+{
+  "model": "flags.flag",
+  "pk": 2,
+  "fields": {
+    "name": "News",
+    "slug": "news",
+    "created_date": "2016-03-14T11:14:04.060Z",
+    "updated_date": "2016-03-14T11:14:04.060Z"
+  }
+},
+{
+  "model": "semantic_admin.blogsettings",
+  "pk": 1,
+  "fields": {
+    "blog_name": "TechBlog",
+    "blog_description": "For demo purpose, all articles are copied from TechCrunch.com"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 1,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 1,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 1,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 2,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 2,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 2,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 3,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 3,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 3,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can add Tag",
+    "content_type": 6,
+    "codename": "add_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can change Tag",
+    "content_type": 6,
+    "codename": "change_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can delete Tag",
+    "content_type": 6,
+    "codename": "delete_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can add Tagged Item",
+    "content_type": 7,
+    "codename": "add_taggeditem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can change Tagged Item",
+    "content_type": 7,
+    "codename": "change_taggeditem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can delete Tagged Item",
+    "content_type": 7,
+    "codename": "delete_taggeditem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can add article",
+    "content_type": 8,
+    "codename": "add_article"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can change article",
+    "content_type": 8,
+    "codename": "change_article"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can delete article",
+    "content_type": 8,
+    "codename": "delete_article"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add semantic",
+    "content_type": 9,
+    "codename": "add_semantic"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change semantic",
+    "content_type": 9,
+    "codename": "change_semantic"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete semantic",
+    "content_type": 9,
+    "codename": "delete_semantic"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can add semantic edge",
+    "content_type": 10,
+    "codename": "add_semanticedge"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can change semantic edge",
+    "content_type": 10,
+    "codename": "change_semanticedge"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can delete semantic edge",
+    "content_type": 10,
+    "codename": "delete_semanticedge"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can add Keyword",
+    "content_type": 11,
+    "codename": "add_keyword"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can change Keyword",
+    "content_type": 11,
+    "codename": "change_keyword"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can delete Keyword",
+    "content_type": 11,
+    "codename": "delete_keyword"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can add tagged article",
+    "content_type": 12,
+    "codename": "add_taggedarticle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can change tagged article",
+    "content_type": 12,
+    "codename": "change_taggedarticle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can delete tagged article",
+    "content_type": 12,
+    "codename": "delete_taggedarticle"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add flag",
+    "content_type": 13,
+    "codename": "add_flag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change flag",
+    "content_type": 13,
+    "codename": "change_flag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete flag",
+    "content_type": 13,
+    "codename": "delete_flag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can add user profile",
+    "content_type": 14,
+    "codename": "add_userprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can change user profile",
+    "content_type": 14,
+    "codename": "change_userprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can delete user profile",
+    "content_type": 14,
+    "codename": "delete_userprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can add blog settings",
+    "content_type": 15,
+    "codename": "add_blogsettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can change blog settings",
+    "content_type": 15,
+    "codename": "change_blogsettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can delete blog settings",
+    "content_type": 15,
+    "codename": "delete_blogsettings"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$24000$v2AEdauJuQvh$W1Z5RDt4Ph7vL6DZCITqCw8xLqSZv2fyR5PQiteyzhM=",
+    "last_login": "2016-04-10T20:01:34.285Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Tom\u00e1\u0161",
+    "last_name": "Mikula",
+    "email": "mail@tomasmikula.cz",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2016-03-13T19:32:38.040Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "article.article",
+  "pk": 2,
+  "fields": {
+    "title": "Ulysses for iPhone",
+    "sub_title": "Makes me consider writing articles on my phone",
+    "slug": "ulysses-for-iphone",
+    "status": "P",
+    "flag": 1,
+    "cover_image": "images/20160314_105035_4581.jpeg",
+    "content": "<p>I write hundreds of words every day on my phone. At first it was just emails and text messages, but now it's also Slack conversations, notes and countless of messages of various sizes and shapes in all sorts of messaging apps. And yet, there's one thing I've refrained from doing so far \u2014 writing TechCrunch posts on my phone. But this is also changing.</p><p>Earlier this week, small indie development shop The Soulmen released <a target=\"_blank\" href=\"http://www.ulyssesapp.com/\">Ulysses for iPhone</a>. Ulysses is a popular writing app on OS X and iPad. I've played with the app on my Mac in the past. But I couldn't really consider using it seriously because there was one missing element \u2014 an iPhone app.</p><p>Ulysses is a <a target=\"_blank\" href=\"http://daringfireball.net/projects/markdown/\">Markdown</a> text editor for small and big projects. It works quite well for anything between a blog post and a novel. And Ulysses is also the kind of apps we need on iOS. It's an expensive $25 app that provides nearly all the features of its desktop equivalent. In other words, it's a serious app to do serious work with a clear business model. And of course, everything stays in sync between the different versions of the apps.</p><p>And this is key to understanding how Ulysses stands out. I can now start a draft on my phone, edit it on my iPad, give it a final look on my Mac and publish it on this website. I've already written a handful of drafts in <a target=\"_blank\" href=\"http://simplenote.com/\">Simplenote</a> on my iPhone in the past. But this is a much more streamlined process.</p><p>Ulysses is a polished iOS app that lets you write, organize and export your writing in different formats. It's a well-designed, versatile app that is worth trying if you write every day. It competes with many other apps, such as <a target=\"_blank\" href=\"http://omz-software.com/editorial/\">Editorial</a> and <a target=\"_blank\" href=\"http://1writerapp.com/\">1Writer</a> on iOS, and <a target=\"_blank\" href=\"http://www.literatureandlatte.com/scrivener.php\">Scrivener</a> on OS X.</p><p>I wanted to take Ulysses one step further and make it work seamlessly with our CMS \u2014 WordPress. I started with Ulysses for OS X. With a few clicks, I can now run a Ruby script that sends my draft to our backend so that I just have to review it, tweak a few options and publish it.</p><p>But what about iOS? You can't do that on iOS right? Feeling inspired by iOS automation wizard <a target=\"_blank\" href=\"https://twitter.com/viticci\">Federico Viticci</a>, I tried to recreate my OS X script on iOS. And sure enough, automation app <a target=\"_blank\" href=\"https://workflow.is/\">Workflow</a> lets you do that just fine. I can now post to WordPress from Ulysses and auto-fill the headline, tags and excerpt using <a target=\"_blank\" href=\"https://workflow.is/workflows/39513979b5924c0e998fe79bd5d42715\">this workflow</a>. <a target=\"_blank\" href=\"https://workflow.is/workflows/5d4bc5cb5ad84b2580f3fc75978394cb\">Another workflow</a> lets me upload images to WordPress from iOS.</p><p>I've already written a few posts using this process and it's been even more useful than I expected. I already spend so much time typing on my iPhone that I can type nearly as fast on my iPhone as on my Mac. But in many cases, it's much more convenient to write on my phone. In fact, this post was written on my phone.</p><p>For demo purpose of Semantic CMS copied from <a href=\"http://techcrunch.com/2016/03/13/ulysses-for-iphone-makes-me-consider-writing-articles-on-my-phone/\" target=\"_blank\">TechCrunch.com</a>, I am not the author.<br></p>",
+    "author": 1,
+    "created_date": "2016-03-14T10:49:39Z",
+    "updated_date": "2016-03-14T10:58:28.076Z",
+    "published_date": "2016-03-14T10:58:28.049Z",
+    "semantic": [
+      29,
+      21
+    ]
+  }
+},
+{
+  "model": "article.article",
+  "pk": 3,
+  "fields": {
+    "title": "Obama vs Security",
+    "sub_title": "FBI vs. Apple",
+    "slug": "obama-we-dont-want-government",
+    "status": "P",
+    "flag": 2,
+    "cover_image": "images/20160314_111713_4581.jpg",
+    "content": "<p>Encryption with a backdoor accessible to very few in important situations is what President Barack Obama says he suspects is the answer to the digital privacy versus security debate. That contradicts the position of many in the security industry who believe that would inevitability lead to abuses of such a backdoor.</p><p>While speaking today at SXSW, Obama said he could not comment directly on the Apple-San Bernardino shooter case, but gave these remarks on the larger issue surrounding the <a href=\"http://techcrunch.com/tag/apple-vs-fbi/\">FBI\u2019s ongoing fight with Apple</a> about penetrating encryption.</p><p>Here are Obama\u2019s full remarks on the matter:</p><p style=\"margin-left: 20px;\">\u201cAll of us value our privacy, and this is a society that is built on a Constitution and a Bill Of Rights and a healthy skepticism about overreaching government power. Before smartphones were invented and to this day, if there is probable cause to think that you have abducted a child, or that you are engaging in a terrorist plot, or you are guilty of some serious crime, law enforcement can appear at your doorstep and say we have a warrant to search your home and can go into your bedroom and into your bedroom drawers to rifle through your underwear to see if there\u2019s any evidence of wrongdoing.</p><p style=\"margin-left: 20px;\">And we agree on that because we recognize that just like all of our other rights, freedom of speech, freedom of religion, etc, that <strong>there are</strong><strong> going to be some constraints imposed to ensure we are safe</strong>, secure and living in a civilized society.</p><p style=\"margin-left: 20px;\">Technology is evolving so rapidly that new questions are being asked, and I am of the view that <strong>there are very real reasons why we want to make sure the government can not just wily-nilly get into everyone\u2019s iPhones or smartphones</strong> that are full of very personal information or very personal data.\u201d</p><p>Obama went on to note that concerns about the government encroaching on privacy were heightened by the Snowden revelations, but also joked that TV crime shows have exaggerated the powers of law enforcement. But getting serious again, he said:</p><p style=\"margin-left: 20px;\">\u201cWhat makes it even more complicated is that <strong>we also want really strong encryption</strong> because part of us preventing terrorism or preventing people from disrupting the financial system or our air traffic control system or a whole other set of systems that are increasingly digitized, is that hackers, state or non-state, can\u2019t get in there and mess around.</p><p style=\"margin-left: 20px;\">So we have two values, both of which are important.</p><p style=\"margin-left: 20px;\">And the question we now have to ask is if technologically it is possible to make an impenetrable device or system where the encryption is so strong that there is no key there, there\u2019s no door at all? And how do we apprehend the child pornographer? How do we solve or disrupt a terrorist plot? What mechanisms do we have available that even do simple things like tax enforcement? Because if you can\u2019t crack that at all, and government can\u2019t get in, then everybody\u2019s walking around with a Swiss bank account in their pocket. <strong>So there has to be some some concession to the need to be able to get to that information somehow.\u201d</strong></p><p>Rather than only give his own perspective, Obama acknowledged the risks of a backdoor being misused, but said those risks can be mitigated with the help of the tech community.<br></p><p style=\"margin-left: 20px;\">Now what folks who are on the encryption side will argue is any key whatsoever, even if it starts off as just being directed at one device, could end up being used on any device. That\u2019s just the nature of these systems.That is a technical question. I am not a software engineer. It is, I think, technically true, but i think it it can be overstated.<br></p><p style=\"margin-left: 20px;\">So the question now becomes, we as a society, setting aside the specific case between the FBI and Apple, setting aside the commercial interests, the concerns about what the Chinese government could do with this even if we trust the US government, setting aside all these questions, we\u2019re going to have to make some decisions about how we balance these respective risks. I\u2019ve got a bunch of smart people sitting there talking about it, thinking about it. We have engaged the tech community aggressively to help solve this problem.</p><p style=\"margin-left: 20px;\">My conclusion so far is that <strong>you cannot take an absolutist view on this</strong>. So if your argument is strong encryption no matter what, and we can\u2019t and shouldn\u2019t make black boxes, that I do not think strikes the balances we\u2019ve struck for 200 or 300 years and it\u2019s fetishizing our phones above every other value. And that can\u2019t be the right answer. <strong>I suspect the answer will come down to how can we make sure the encryption is as strong as possible, the key as strong as possible, it\u2019s accessible by the smallest number of people possible, for a subset of issues that we agree are important.</strong> How we design that is not something I have the expertise to do.</p><p>Obama concluded by urging us to address this problem now in a rational way rather than waiting for a catastrophe to force us into clumsy action.<br></p><p style=\"margin-left: 20px;\">I am way on the civil liberties side of this thing\u2026I anguish a lot over the decisions we make in terms of how we keep this country safe, and I am not interested in overdrawing the values that have made us an exceptional and great nation simply for expediency. But the dangers are real. Maintaining law and order in a civilized society is important. Protecting our kids is important. And so I would just caution against an absolutist perspective on this.<br></p><p style=\"margin-left: 20px;\">Because we make compromises all the time. You know, I haven\u2019t flown commercial in a while. But my understanding is that it\u2019s not great fun going through security. But we make the concession. It\u2019s a big intrusion on our privacy, but we recognize it as important. We have stops for drunk drivers. It\u2019s an intrusion but we think it\u2019s the right thing to do.</p><p style=\"margin-left: 20px;\"><strong>And this notion that somehow our data is different and can be walled off from those other trade-offs we make, I believe is incorrect.</strong> We do have to make sure, given the power of the Internet and how much our lives are digitized, that it is narrow, and is constrained, and that there\u2019s oversight. I\u2019m confident that this is something that we can solve.</p><p style=\"margin-left: 20px;\">But we\u2019re going to need the tech community, the software designers, the people who care deeply about this stuff to help us solve it. Because what will happen is if everyone goes to their respective corners and the tech community says \u2018Either we have strong, perfect encryption or else it\u2019s Big Brother and an Orwellian world,\u2019 <strong>what you\u2019ll find is that after something really bad happens, the politics of this will swing, and they will become sloppy, and rushed, and it will go through Congress in ways that have not been thought through. And then you really will have dangers to our civil liberties</strong> because the people who understand this best, who care most about privacy and civil liberties, will have disengaged or taken a position that is not sustainable for the general public as a whole over time.</p><p>Obama essentially played both sides of the argument, identifying the need for privacy, but admitting that some limitations are required to keep Americans safe.</p><p>Pushing for backdoors goes against the perspective of many tech insiders and security advocates. Weakening core security of phones could make them vulnerable if the backdoor were ever misused by the government or stolen by hackers or a foreign state. Yet refusing to compromise encryption in any way now could lead to disastrous legislation in the future. Expect this to be a debate that will rage for years to come.</p><p>For demo purpose of Semantic CMS copied from <a href=\"http://techcrunch.com/2016/03/11/obama-says-we-dont-want-government-to-look-into-everyones-phones-willy-nilly/\" target=\"_blank\">TechCrunch.com</a>, I am not the author.<br></p>",
+    "author": 1,
+    "created_date": "2016-03-14T11:13:10Z",
+    "updated_date": "2016-03-14T11:17:37.612Z",
+    "published_date": "2016-03-14T11:17:37.579Z",
+    "semantic": [
+      17
+    ]
+  }
+},
+{
+  "model": "article.article",
+  "pk": 4,
+  "fields": {
+    "title": "Wikipedia\u2019s new iOS app",
+    "sub_title": "Focuses on discovery, personalization",
+    "slug": "wikipedias-new-ios-app",
+    "status": "P",
+    "flag": 1,
+    "cover_image": "images/20160314_112147_4581.jpg",
+    "content": "<p>Wikipedia today launched an upgraded version of <a target=\"_blank\" href=\"https://itunes.apple.com/us/app/wikipedia-mobile/id324715238?mt=8\">its iOS application</a> aimed at helping users better discover content matching their own interests, including both articles and images. In addition, the app has been optimized for Apple\u2019s newer OS and latest iPhones (6s and 6s Plus) with support for 3D Touch and Spotlight Search integrations.</p><p>This is the latest in a series of efforts from the organization to make its mobile application something users turn to for more than everyday fact-checking purposes.</p><p>In the past, those efforts have included the rollout of more utilitarian features like <a href=\"http://techcrunch.com/2014/07/31/wikipedia-revamps-its-ios-app-with-offline-access-support-for-editing-while-on-the-go/\">offline access and mobile editing, </a>as well as an experiment with <a href=\"http://techcrunch.com/2015/04/15/wikipedias-new-ios-app-sees-an-improved-design-adds-social-features-with-shareable-fact-cards/\">going social by way of shareable \u201cfact cards</a>,\u201d  which were added last year. (That feature is still supported, but has been made less prominent. You now have to select text to \u201cshare a fact.\u201d)</p><p>In the latest <a target=\"_blank\" href=\"https://itunes.apple.com/us/app/wikipedia-mobile/id324715238?mt=8\">version</a>, Wikipedia focuses more heavily on finding interesting things to read and personalization. That is, it presents users with a new \u201cExplore\u201d feed that showcases a combination of the top read articles, the featured article and featured picture of the day, random articles, and nearby articles, in addition to those recommended based on how you\u2019ve been using the app previously. These latter suggestions will be related to what you read on the app, the organization says.</p><p>In addition, the update includes support for navigating using multi-touch gestures (including swipe, tap and 3D Touch), as well as 3D Touch from the app\u2019s icon on the homescreen. This will let you open search, read a random article, see nearby articles, or continue reading your latest. Another iOS-specific feature, Handoff, is now supported in this release, too.<br></p><p>Finally, a feature that you save articles to read later, which are also available offline, arrived along with improvements to image galleries and tools to more easily share articles via social media or email.</p><p>The extent any of these changes \u2013 or those in the past \u2013 are having on Wikipedia\u2019s traction on iOS is less certain. The app remains top-ranked in the \u201cReference\u201d category on the App Store, where it\u2019s usually in the top 15 or 20 (Though, lately it dropped a bit to the 30\u2019s.) However, it\u2019s certainly not one of the most popular \u201cOverall\u201d apps on the iPhone, despite its brand-name awareness.</p><p>The problem is that many people don\u2019t think of Wikipedia as a place they want to explore, but rather a place to look something up. And the fact that its web content has been surfaced through Apple\u2019s Spotlight Search since iOS 8 likely satisfies most in need of a quick fact check. Wikipedia is still trying to find the sweet spot in terms of making its iOS app something that would be more regularly launched, but it\u2019s not a certainty that simply rolling out a better \u201cexplore\u201d feed will do the trick.</p><p>That said, the app is well-designed and highly polished, and worth the download for those who would rather learn something in their free time rather than goof off on Snapchat or Vine. The updated Wikipedia app is <a target=\"_blank\" href=\"https://itunes.apple.com/us/app/wikipedia-mobile/id324715238?mt=8\">live now on the iTunes App Store</a>.</p><p>For demo purpose of Semantic CMS copied from <a href=\"http://techcrunch.com/2016/03/10/wikipedias-new-ios-app-focuses-on-discovery-personalization/\" target=\"_blank\">TechCrunch.com</a>, I am not the author.<br></p>",
+    "author": 1,
+    "created_date": "2016-03-14T11:19:49Z",
+    "updated_date": "2016-03-14T11:23:07.060Z",
+    "published_date": "2016-03-14T11:23:07.029Z",
+    "semantic": [
+      29,
+      17
+    ]
+  }
+},
+{
+  "model": "article.article",
+  "pk": 5,
+  "fields": {
+    "title": "New domains",
+    "sub_title": "How new domains are building better brands",
+    "slug": "new-domains",
+    "status": "P",
+    "flag": 2,
+    "cover_image": "images/20160314_112755_4581.jpg",
+    "content": "<p>New domain extensions have accumulated some pretty big numbers over the last couple of years. Collective registrations for the new GTLDs (generic top-level domains) have now surpassed 13 million, according to NTLD stats. This number is not small by any means. Comparably speaking, this represents just over 10 percent of total .com registrations, more than 50 percent of the total .net registrations and 30 percent more than total .org registrations.</p><p>While these numbers may not be a surprise to some, they certainly prove the Not-Com revolution (a term coined by Jeff Davidoff, CMO of Donuts, and the largest applicant for new domain-name extensions) is certainly making waves.</p><p>From Lady Gaga (bornthisway.foundation) to Oprah (wherearetheynow.buzz) to Slack (slack.help), thousands of companies have adopted the new domains. Some use one as a primary domain, others for email; others are embracing the very tangible, visual marketing advantage of these.</p><p>Deadpool uses a URL shortener from <a target=\"_blank\" href=\"http://bit.ly/\">bit.ly</a> to promote an external link. In theory this works, because Bitly is a well-trusted brand. However, Deadpool is missing out on a very real opportunity for consistent brand experience by using a custom URL shortener \u2014 maybe deadpool.link, dp.link or something that\u2019s more the Deadpool brand than someone else\u2019s.</p><p>Bitly has even started embracing the adoption of Branded Short Domains under their Bitly Enterprise product offering. For example, ATTN.com is a highly popular news site with more than 1.6 million Facebook likes. However, if you look at ATTN\u2019s Twitter <a target=\"_blank\" href=\"https://twitter.com/attn\">feed</a>, you\u2019ll see they use attn.link as a URL shortener.</p><p>Now, visit ATTN.link and you\u2019ll clearly see that the domain name is part of Bitly\u2019s Branded URL enterprise solution product, where Bitly claims users can experience up to a 34 percent CTR increase simply by changing the name of their URL shortener (read <a target=\"_blank\" href=\"https://bitly.com/pages/resources/casestudies/increasing-engagement-the-power-of-a-branded-short-domain?\">Bitly\u2019s case study</a>).</p><p>For brand builders, these custom URL shorteners provide an extremely low-cost solution for maintaining brand consistency. You may have to sacrifice a character or two, but Twitter has discussed <a href=\"http://techcrunch.com/2016/01/05/information-density/\">expanding the number of characters</a> in future tweets.</p><p>From generic extensions like .help and .link to targeted extensions like .movie and .style, brands may do well to remember they often have the power to control anything left of the dot.</p><p>For those who doubted new domain name extensions, it may be time to widen your perspective and possibly even your ROI \u2014 which is, after all, every company\u2019s dream.</p>",
+    "author": 1,
+    "created_date": "2016-03-14T11:23:42Z",
+    "updated_date": "2016-03-14T11:27:55.528Z",
+    "published_date": "2016-03-14T11:27:53.788Z",
+    "semantic": [
+      17
+    ]
+  }
+},
+{
+  "model": "article.article",
+  "pk": 6,
+  "fields": {
+    "title": "Prototyping inside Sketch",
+    "sub_title": "InVision acquires Silver Flows",
+    "slug": "prototyping-inside-sketch",
+    "status": "P",
+    "flag": 2,
+    "cover_image": "images/20160314_131439_4581.jpg",
+    "content": "<p>Prototyping suite <a target=\"_blank\" href=\"http://www.invisionapp.com/\">InVision</a> just <a target=\"_blank\" href=\"http://blog.invisionapp.com/invision-acquires-silver-flows\">announced</a> they are acquiring <a target=\"_blank\" href=\"http://silverflows.com/\">Silver Flows</a>, a tool that lets developers prototype directly inside <a target=\"_blank\" href=\"http://sketchapp.com/\">Sketch</a>. The acquisition comes just a few months after InVision <a href=\"http://techcrunch.com/2016/01/26/prototyping-suite-invision-is-acquiring-design-tool-macaw/\">acquired the code-based design tool Macaw</a>, and is the company\u2019s fourth acquisition to date.</p><p>Silver Flows, which is currently in private beta, removes the hassle of designing in Sketch then prototyping inside a separate tool. Before Silver Flows designers would have to to make graphics in Sketch then manually move them into a different prototyping app.</p><p>As a result of the acquisition, the tool will soon be incorporated into <a target=\"_blank\" href=\"http://www.invisionapp.com/craft\">Craft</a>, which is InVision\u2019s suite of design plugins.</p><p>Once incorporated into Craft, designers will be able to leverage InVision\u2019s cloud based feedback tools while working inside Sketch. In other words, all prototypes and design changes will automatically sync with shareable InVision files, and vice versa (all changes in InVision will sync to Sketch files). </p><p>By expanding their brand into Sketch and acquiring yet another popular design tool, InVision is making it clear that they hope to eventually own the entire design and prototyping workflow, essentially becoming a one stop shop for web and app designers.</p><p>For demo purpose of Semantic CMS copied from <a href=\"http://techcrunch.com/2016/03/14/invision-acquires-silver-flows-a-tool-for-prototyping-inside-sketch/\" target=\"_blank\">TechCrunch.com</a>, I am not the author.<br></p>",
+    "author": 1,
+    "created_date": "2016-03-14T13:13:26Z",
+    "updated_date": "2016-03-20T13:53:04.983Z",
+    "published_date": "2016-03-14T13:24:05.902Z",
+    "semantic": [
+      28,
+      22
+    ]
+  }
+},
+{
+  "model": "article.article",
+  "pk": 7,
+  "fields": {
+    "title": "Experience Design CC",
+    "sub_title": "Adobe launches Experience Design CC, a new tool for UX designers",
+    "slug": "experience-design-cc",
+    "status": "P",
+    "flag": 2,
+    "cover_image": "images/20160314_132311_4581.jpg",
+    "content": "<p>Adobe today launched the first public preview of its new Experience Design CC tool, which was previously known as <a target=\"_blank\" href=\"http://blogs.adobe.com/creativecloud/update-on-project-comet-where-we-are-and-whats-to-come/\">Project Comet</a>.</p><p>Experience Design CC is the company\u2019s first tool that is purpose-built for user experience (UX) designers. It takes what Adobe has learned from working with UX designers who currently use its tools like Illustrator, Photoshop and others and distills it into a single product that aims to make designers more productive.</p><p>As Andrew Shorten, Adobe\u2019s director of product management for Experience Design CC, told me, the company started this project about 18 months ago. \u201cWe began to see challenges with combining established tools like Photoshop,\u201d he said, and noted how the company\u2019s research found lots of gaps in the standard workflow for UX designers. Specifically, the fact that they often had to use multiple tools that didn\u2019t necessarily talk to each other meant that every time designers wanted to change something in their mockups, they had to go back and change it manually (and maybe numerous times to account for different screen sizes).</p><p><img src=\"/media/2016/3/14/adobexd_hero.png\"></p><p>With this new tool, designers can quickly change back and forth between the artboards designers create in the \u201cdesign\u201d mode and the prototype mode.</p><p>Any changes they make in the design mode (an updated icon, text, etc.) are automatically reflected in the prototype mode, which makes it easy to define interactive hotspots and transitions that make a mockup come to life. Say you want a \u201cread more\u201d button on a mobile homepage to connect to an article; all you have to do is define the hotspot and drag a line to the mockup of the article page.</p><p>For demo purpose of Semantic CMS copied from <a href=\"http://techcrunch.com/2016/03/14/adobe-launches-experience-design-cc-a-new-tool-for-ux-designers/\" target=\"_blank\">TechCrunch.com</a>, I am not the author.<br></p>",
+    "author": 1,
+    "created_date": "2016-03-14T13:17:28Z",
+    "updated_date": "2016-03-20T13:51:11.316Z",
+    "published_date": "2016-03-14T13:23:10.369Z",
+    "semantic": [
+      28,
+      24
+    ]
+  }
+},
+{
+  "model": "article.article",
+  "pk": 9,
+  "fields": {
+    "title": "SpaceX rocket",
+    "sub_title": "SpaceX just landed a rocket on a drone ship for the first time",
+    "slug": "spacex-rocket",
+    "status": "P",
+    "flag": 2,
+    "cover_image": "images/20160410_200944_4581.jpg",
+    "content": "<p>At 4:43 pm EST, SpaceX successfully launched their next resupply mission to the International Space Station (ISS). In addition to a seamless launch, SpaceX landed the first stage of their Falcon 9 rocket on an autonomous drone ship for the very first time.</p><p>This was SpaceX\u2019s fifth landing attempt on a drone ship \u2014 all previous attempts ended in explosions. Although in December of last year, Elon Musk\u2019s rocket company <a href=\"http://techcrunch.com/2015/12/21/spacex-successfully-lands-a-giant-falcon-9-rocket-for-the-first-time/\">successfully landed</a> their first rocket, but that recovery took place back on stable ground.<span class=\"redactor-invisible-space\"><br></span></p><p><span class=\"redactor-invisible-space\">Today\u2019s rocket recovery was an entirely different beast. Soft-landing a rocket on a drone ship floating in the ocean is inherently more difficult than safely recovering a rocket on land.<span class=\"redactor-invisible-space\"><br></span></span></p><p><span class=\"redactor-invisible-space\"><span class=\"redactor-invisible-space\">Despite this increased complexity, SpaceX <a href=\"http://techcrunch.com/2016/02/22/spacexs-ses-9-launch-and-why-they-land-rockets-at-sea/\">chooses</a> to recover rockets on drone ships rather than stable landing pads for missions that require the rocket to move at a high velocity. Depending on the necessary velocity for that particular mission, and the mass of the payload SpaceX is carrying, there may not be sufficient fuel to bring the rocket back to land.<span class=\"redactor-invisible-space\"><br></span></span></span></p><p><span class=\"redactor-invisible-space\"><span class=\"redactor-invisible-space\"><span class=\"redactor-invisible-space\"><img src=\"/media/2016/4/10/spacex-landing-on-drone.gif\"><span class=\"redactor-invisible-space\"><br></span></span></span></span></p><p>For these reasons, a drone ship away from land may be the only option for rocket recovery for certain missions.<span class=\"redactor-invisible-space\"> Today\u2019s landing took place on SpaceX\u2019s drone ship named \u201cOf Course I Still Love You,\u201d a nod to ships in the late Iain Banks\u2019 science fiction novels.<span class=\"redactor-invisible-space\"></span><br></span></p><p><span class=\"redactor-invisible-space\"><span class=\"redactor-invisible-space\"><img src=\"/media/2016/4/10/of-course-i-still-love-you.jpg\"><span class=\"redactor-invisible-space\"><br></span></span></span></p><p>Recovering a rocket is the first step toward rocket reusability. However, in order to make a subsequent launch cheaper, that same rocket must be able to launch again without much refurbishment.<br></p><p>It\u2019s difficult to truly assess the condition of today\u2019s recovered rocket just by looking at it. Further analysis is required to determine if this rocket can fly again.</p><p>While the landing of the rocket is an exciting milestone on the path to rocket reusability, the primary goal of today\u2019s mission is to bring 7,000 pounds of important supplies to the crew on the ISS. This was the eighth of up to 20 missions to the ISS that SpaceX is contracted to fly for NASA.</p><p><img src=\"/media/2016/4/10/bigelow-gif.gif\"></p><p>Most notably, in the trunk of SpaceX\u2019s Dragon capsule for this mission is Bigelow Aerospace\u2019s inflatable space habitat known as the <a href=\"http://techcrunch.com/2016/03/29/spacex-is-launching-an-inflatable-space-habitat/\">Bigelow Expandable Activity Module</a>(BEAM). BEAM will be attached to one of the nodes on the station and used to demonstrate expandable habitat technology in space.</p><p>Dragon is currently on its way to the station now and will arrive on Sunday morning. Eventually, when Dragon leaves ISS to return to Earth, it will bring down trash, critical science samples and failed hardware in need of repair.</p>",
+    "author": 1,
+    "created_date": "2016-04-10T20:05:58Z",
+    "updated_date": "2016-04-10T20:09:44.818Z",
+    "published_date": "2016-04-10T20:09:43.634Z",
+    "semantic": [
+      38,
+      14,
+      35
+    ]
+  }
+},
+{
+  "model": "article.article",
+  "pk": 10,
+  "fields": {
+    "title": "This is Tesla\u2019s Model 3",
+    "sub_title": "New model of Tesla",
+    "slug": "this-is-teslas-model-3",
+    "status": "P",
+    "flag": 2,
+    "cover_image": "images/20160410_202020_4581.jpg",
+    "content": "<p>And there it is.</p><p>After years of speculation, the Tesla Model 3 has been unveiled. We\u2019re live in Hawthorne, CA, where the company has just shown the car for the very first time.</p><p><strong>Here\u2019s what we know so far:</strong></p><ul><li>Deliveries will begin at the end of next year, and start at $35,000 for the base model.</li><li>Base model will do 0-60 in under 6 seconds, with versions that go \u201cmuch, much faster\u201d to be announced later.</li><li>Base model will get at least 215 miles per charge, and Elon said that \u201cthese are minimum numbers, we hope to exceed them\u201d.</li><li>Base model is rear wheel drive; dual motor versions are planned.</li><li>All Model 3s will have autopilot hardware built-in \u2014 it\u2019s not an additional upgrade.</li><li>Like the Model S, it will have front and rear trunks.</li><li>All Model 3s will come with supercharging support standard.</li><li>The roof area is \u201cone continuous pane of glass\u201d.</li><li>It has a 15-inch horizontal (widescreen) monitor in the dash, as opposed to the 17-inch portrait (vertical) monitor in the Model S and Model X.</li><li>Much of the instrument panel \u2014 things like the speedometer \u2014 have been moved to the corner of that center dash display, as opposed to the Model S, where it\u2019s on a separate screen behind the steering wheel. That behind-wheel screen, at least in this prototype, is gone.</li></ul><p>But what good is a snazzy electric vehicle if you can\u2019t easily charge it? Tesla\u2019s more popular supercharger stations can already get super busy during peak times \u2014 add in a sudden onslaught of Model 3 owners, and things might get crazy. Fortunately, Elon also committed Tesla to doubling the number of public superchargers from 3,600 to 7,200 by the end of 2017 \u2014 right around the time the Model 3 is scheduled to ship.</p>",
+    "author": 1,
+    "created_date": "2016-04-10T20:17:13Z",
+    "updated_date": "2016-04-10T20:22:42.563Z",
+    "published_date": "2016-04-10T20:22:42.538Z",
+    "semantic": [
+      39,
+      37,
+      35
+    ]
+  }
+},
+{
+  "model": "semantic_admin.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "test_string": null,
+    "bio": "I'm a creative guy from the Czech Republic who loves Photography and Graphic design. I'm currently working as Stocksy.com photographer.",
+    "profile_image": "images/20160314_105659_4581.jpg"
+  }
+}
+]
