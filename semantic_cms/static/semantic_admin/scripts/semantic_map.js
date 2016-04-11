@@ -162,14 +162,14 @@ getNodes(function(nodes) {
         });
 
         var force = d3.layout.force()
-            .charge(-2500)
+            .charge(-10000)
             // .linkDistance(150)
             .linkDistance(function(d) {
-                return 140 + 10 * (d.source.number_of_descendants);
+                return 80 + 9 * (d.source.number_of_descendants);
             })
-            // .chargeDistance(5000)
+            .chargeDistance(8000)
             // .linkStrength(0.5)
-            .gravity(0.1)
+            .gravity(0.2)
             .friction(0.7)
             .nodes(nodes)
             .links(edges)
@@ -586,6 +586,7 @@ getNodes(function(nodes) {
         function redrawWeight() {
             node.selectAll("circle").attr("r", function(d) {
                 if (d.type === "semantic") {
+                    // return 40 + (15 * (Math.sqrt((d.number_of_descendants + 2))));
                     return 40 + (20 * (Math.log((d.number_of_descendants + 2))));
                 } else {
                     return 40;
@@ -871,7 +872,7 @@ getNodes(function(nodes) {
           $("#dialog-add").removeClass("hidden");
             $("#dialog-add").dialog("open");
         }, false);
-        
+
         document.getElementById("edit").addEventListener("click", function() {
           $("#dialog-edit").removeClass("hidden");
             $("#rename-node-name").val(selected_node.name);

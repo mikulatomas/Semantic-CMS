@@ -146,14 +146,14 @@ getNodes(function(nodes) {
         });
 
         var force = d3.layout.force()
-            .charge(-2000)
+            .charge(-10000)
             // .linkDistance(150)
             .linkDistance(function(d) {
-                return 140 + 10 * (d.source.number_of_descendants);
+                return 80 + 9 * (d.source.number_of_descendants);
             })
-            // .chargeDistance(5000)
+            .chargeDistance(8000)
             // .linkStrength(0.5)
-            .gravity(0.1)
+            .gravity(0.2)
             .friction(0.7)
             .nodes(nodes)
             .links(edges)
