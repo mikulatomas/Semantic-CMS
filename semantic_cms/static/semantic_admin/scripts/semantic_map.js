@@ -208,9 +208,9 @@ getNodes(function(nodes) {
                 return 'translate(' + d.x + ',' + d.y + ')';
             });
 
-            node.selectAll("text").text(function(d) {
-                return d.name;
-            }).call(wrap, 70);
+            // node.selectAll("text").text(function(d) {
+            //     return d.name;
+            // }).call(wrap, 70);
 
             redrawWeight();
         }
@@ -405,9 +405,6 @@ getNodes(function(nodes) {
 
                 edges.push(link);
                 refreshWeights(nodes);
-
-                redrawWeight();
-                restart();
             } else {
                 lastEdgeId--;
                 alert("Invalid connection.");
@@ -571,6 +568,8 @@ getNodes(function(nodes) {
                 nodes.forEach(function(node) {
                     node.number_of_descendants = nodeById.get(node.id).number_of_descendants;
                 });
+                redrawWeight();
+                restart();
             });
         }
 
