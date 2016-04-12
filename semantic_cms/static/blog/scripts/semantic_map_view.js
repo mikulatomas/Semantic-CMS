@@ -375,8 +375,13 @@ getNodes(function(nodes) {
               $('#hide-topics').addClass("hidden");
           });
       });
-
-
+      $('#semantic-map').css({
+          position: 'static',
+          width: '100%',
+          height: '400',
+          zIndex: '1000',
+          visibility: 'visible',
+      });
         container.attr("transform", "scale(" + initialScale + ")");
 
         restart();
