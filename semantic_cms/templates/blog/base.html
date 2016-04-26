@@ -83,6 +83,10 @@
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script type="text/javascript">
+  $('.pull-down').each(function() {
+    $(this).css('margin-top', $(this).parent().height() - $(this).height())
+  });
+  
   var article_nodes;
   {% if article_nodes %}
   article_nodes = JSON.parse("{{ article_nodes }}");

@@ -6,7 +6,7 @@ from django.utils.text import slugify
 class Flag(models.Model):
     """Flag model, you can set up flag for your content"""
 
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=25, unique=True)
     slug = models.SlugField(max_length=50, unique=True)
 
     created_date = models.DateTimeField(auto_now_add=True)

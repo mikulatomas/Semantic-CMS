@@ -4,12 +4,12 @@
     <div class="content">
 
     <div class="title">
-    <h1><a href="{% url 'article' article.slug %}">{{ article.title }}</a></h1>
+    <h1><a href="{% url 'article' article.slug %}">{{ article.title|truncatechars:40 }}</a></h1>
     <span class="article-sub-title hidden-xs">
       {% if article.flag %}
       <span class="article-flag>"><a href="{% url 'flag' article.flag.slug %}">{{ article.flag }}</a></span> -
       {% endif %}
-      {{ article.sub_title }}
+      {{ article.sub_title|truncatechars:70 }}
     </span>
     </div>
     <div class="info">
@@ -18,7 +18,7 @@
         <a href="{% url 'semantic' semantic.slug %}">{{ semantic.name }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
         </p>
-    <span class="date">{{ article.published_date|date:'d. E Y' }}</span>
+    {# <span class="date">{{ article.published_date|date:'d. E Y' }}</span>#}
 
 
 
