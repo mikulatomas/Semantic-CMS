@@ -39,7 +39,7 @@ INSTALLED_APPS = (
 
     #3party
     'django_dag',
-    'markupfield',
+    # 'markupfield',
     'django_extensions',
     'widget_tweaks',
     'datetimewidget',
