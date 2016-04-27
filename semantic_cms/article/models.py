@@ -111,24 +111,11 @@ class Article(models.Model):
         target_number_of_semantic = target.semantic.count()
         number_of_same = 0
 
-        # print("-------------------------------------")
-        # print("Source article", source)
-        # print("Source: ", source.semantic.all())
-        # print("Target article", target)
-        # print("Target: ", target.semantic.all())
-        # print("BASIC CHECK")
-        # print("Same categories:")
-
         for semantic in source.semantic.all():
             if semantic in target.semantic.all():
                 print(semantic)
                 number_of_same = number_of_same + 1
 
-        # print("Number of same semantics: ", number_of_same)
-        # print("ADVANCE CHECK")
-        # print("Same categories:")
-
-        # if (number_of_same == 0):
         for semantic in source.semantic.all():
             for semantic_parent in semantic.parents():
                 if semantic_parent in target.semantic.all():
@@ -139,14 +126,9 @@ class Article(models.Model):
                         print(semantic)
                         number_of_same = number_of_same + 1
 
-        # print("Number of same semantics: ", number_of_same)
-        # print("-------------------------------------")
-
         if (number_of_same == 0):
-
             return 0;
         else:
-
             return number_of_same / source_number_of_semantic
 
     def return_similar_articles(self, number):
