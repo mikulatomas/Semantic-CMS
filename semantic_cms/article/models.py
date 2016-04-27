@@ -113,7 +113,6 @@ class Article(models.Model):
 
         for semantic in source.semantic.all():
             if semantic in target.semantic.all():
-                print(semantic)
                 number_of_same = number_of_same + 1
 
         for semantic in source.semantic.all():
@@ -123,7 +122,6 @@ class Article(models.Model):
 
                 for semantic_target in target.semantic.all():
                     if semantic_parent in semantic_target.parents():
-                        print(semantic)
                         number_of_same = number_of_same + 1
 
         if (number_of_same == 0):
