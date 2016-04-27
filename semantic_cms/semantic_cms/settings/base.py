@@ -40,18 +40,13 @@ INSTALLED_APPS = (
 
     #3party
     'django_dag',
-    # 'markupfield',
-    'django_extensions',
     'widget_tweaks',
     'datetimewidget',
     'taggit',
-    # 'taggit_templatetags',
     'django_filters',
     'rest_framework',
     'redactor',
     'imagekit',
-    # 'constance',
-    # 'constance.backends.database',
     'betterforms',
     'password_reset',
 
