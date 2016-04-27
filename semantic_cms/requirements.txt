@@ -5,7 +5,6 @@ django-constance==1.1.2
 -e git+https://github.com/wilima/django-dag/@1f800e2abc48a3763207103ab4015c0059c9a11d#egg=django_dag
 django-datetime-widget==0.9.3
 -e git+https://github.com/sciyoshi/django-dbsettings@7085ec3b7e7b4f540f67ed8dec127da692b04905#egg=django_dbsettings
-django-extensions==1.6.1
 django-filter==0.12.0
 django-guardian==1.3.1
 django-imagekit==3.3
@@ -13,16 +12,13 @@ django-mptt==0.8.2
 django-password-reset==0.8.2
 django-picklefield==0.3.2
 -e git+https://github.com/alex/django-taggit.git@d3a6399352947e089aa5967ce8db7ea421b6ffea#egg=django_taggit
-django-taggit-templatetags==0.2.5
 django-templatetag-sugar==1.0
 django-userena==1.5.1
-django-uuidfield==0.5.0
 django-widget-tweaks==1.4.1
 -e git+https://github.com/wilima/django-wysiwyg-redactor@9263821eace164b201b64899fd675fd200f88069#egg=django_wysiwyg_redactor
 djangorestframework==3.3.2
 docutils==0.12
 easy-thumbnails==2.3
-html2text==2014.12.29
 Markdown==2.6.5
 pilkit==1.1.13
 Pillow==3.1.1
