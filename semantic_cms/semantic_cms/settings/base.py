@@ -91,7 +91,6 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
-                'constance.context_processors.config',
                 'context_processors.semantic_cms.basic',
             ],
         },
@@ -162,18 +161,6 @@ LOGIN_URL = '/admin/login'
 LOGOUT_URL = '/admin/logout'
 
 # TAGGIT_AUTOCOMPLETE_JS_BASE_URL = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
-
-#MARKDOWN PLUGIN
-import markdown
-from docutils.core import publish_parts
-
-def render_rest(markup):
-    parts = publish_parts(source=markup, writer_name="html4css1")
-    return parts["fragment"]
-
-MARKUP_FIELD_TYPES = (
-    ('markdown', markdown.markdown),
-)
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
