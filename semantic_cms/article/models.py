@@ -1,9 +1,6 @@
 #Article models
 from django.db import models
 
-#markdown
-from markupfield.fields import MarkupField
-
 #time
 import datetime
 from django.utils import timezone
