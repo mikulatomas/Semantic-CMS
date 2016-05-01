@@ -6,7 +6,6 @@
 # Icon must end with two \r
 Icon
 
-*.db
 
 # Thumbnails
 ._*
@@ -99,5 +98,4 @@ docs/_build/
 # PyBuilder
 target/
 
-# Media folder
-semantic_cms/media/
+media/
