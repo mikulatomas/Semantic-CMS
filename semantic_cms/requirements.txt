@@ -16,7 +16,7 @@ djangorestframework==3.3.2
 easy-thumbnails==2.3
 html2text==2014.12.29
 pilkit==1.1.13
-Pillow==3.1.1
+Pillow==8.3.2
 pytz==2016.4
 six==1.10.0
 wheel==0.24.0
