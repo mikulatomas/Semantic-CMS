@@ -1,4 +1,4 @@
-Django==1.9.3
+Django==2.2.24
 django-appconf==1.0.2
 -e git+https://github.com/wilima/django-betterforms@a3ec2770985990206a25df8344e2f53f099c60a4#egg=django_betterforms-master
 -e git+https://github.com/wilima/django-dag/@1f800e2abc48a3763207103ab4015c0059c9a11d#egg=django_dag-master
