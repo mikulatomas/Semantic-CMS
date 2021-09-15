@@ -12,7 +12,7 @@ django-picklefield==0.3.2
 django-userena==1.5.1
 django-widget-tweaks==1.4.1
 -e git+https://github.com/wilima/django-wysiwyg-redactor@9263821eace164b201b64899fd675fd200f88069#egg=django_wysiwyg_redactor-master
-djangorestframework==3.3.2
+djangorestframework==3.11.2
 easy-thumbnails==2.3
 html2text==2014.12.29
 pilkit==1.1.13
